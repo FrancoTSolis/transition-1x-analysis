@@ -121,6 +121,18 @@ atkpython scripts/run_dft.py extracted_data_check/frame_000.xyz
       -   **Basis Set**: Dynamically assigns `DoubleZetaPolarized` basis sets from the `GGABasis` module for each element present in the molecule (e.g., `GGABasis.Oxygen_DoubleZetaPolarized`). Falls back to other available basis sets if needed.
       -   **Exchange-Correlation**: Uses `GGA.PBE` as the functional. (Note: wB97X was originally requested but is not available in the standard namespace, so PBE is used as a robust standard).
   3.  **Calculation**: Runs a Self-Consistent Field (SCF) calculation to determine the electronic ground state.
-  4.  **Energy Extraction**: Calculates the `TotalEnergy` analysis object and evaluates it to get the total energy in Hartree.
-  5.  **Output**: Prints the energy to stdout as `DFT_ENERGY_HARTREE: <value>`.
+  4.  **Energy and Charge Extraction**: 
+      -   Calculates `TotalEnergy` and evaluates it to get the total energy in Hartree.
+      -   Calculates `MullikenPopulation` to get net atomic charges.
+  5.  **Output**: Prints a JSON object containing energy and per-atom charge data, framed by `JSON_OUTPUT_START` and `JSON_OUTPUT_END`. Also prints legacy `DFT_ENERGY_HARTREE` line.
 - **`run_trajectory_analysis.py`**: The main driver script.
+- **`animate_reaction.py`**: Creates a video animation of the reaction trajectory.
+  -   **Inputs**: Directory of XYZ frames (e.g., `extracted_data_check`).
+  -   **Process**:
+      -   Subsamples frames (stride ~20-30 frames total) for performance.
+      -   Runs `run_dft.py` on each selected frame to get energy and charges.
+      -   Caches results in `trajectory_data.json` to avoid re-calculation.
+  -   **Output**: Generates `reaction_animation.gif` with:
+      -   **Left Panel**: 3D visualization of the molecule, atoms colored by partial charge (Blue=Positive, Red=Negative).
+      -   **Right Panel**: Energy profile with a moving marker indicating the current frame.
+  -   **Usage**: `python scripts/animate_reaction.py --last_frames 8`

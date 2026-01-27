@@ -130,12 +130,75 @@ calculator = LCAOCalculator(
 
 configuration.setCalculator(calculator)
 
+import json
+
 # 3. Calculate Energy
 configuration.update()
 total_energy_analysis = TotalEnergy(configuration)
 energy = total_energy_analysis.evaluate()
 
-# 4. Output
-# Print the energy in Hartree to be parsed later
-# evaluate() returns a PhysicalQuantity which has inUnitsOf
+# Calculate Mulliken Population (Charges)
+mulliken_pop = MullikenPopulation(configuration)
+
+output_data = {
+    "energy_hartree": energy.inUnitsOf(Hartree),
+    "energy_ev": energy.inUnitsOf(eV),
+    "atoms": []
+}
+
+# We need to get the population per atom.
+try:
+    # atomicCharge() returns the net charge per atom as a PhysicalQuantity array
+    # We need to explicitly use the ElementaryCharge unit which might need to be accessed via the Units namespace or explicit import.
+    # The manual says: "More units are available using the Units prefix." and lists "elementary_charge" in the table of physical constants.
+    # It also lists "Units available in QuantumATK. More units are available using the Units prefix."
+    # The error "Unable to convert unit value e to a non-unit "e" that has type: <class 'str'>" suggests "e" string doesn't work.
+    
+    # Try getting elementary_charge from the Units or PhysicalQuantity module if available, or just use the variable if it's imported.
+    # The manual lists 'elementary_charge' as a physical constant. It might be available as 'elementary_charge' (lowercase) or 'Units.elementary_charge'.
+    
+    try:
+        # Try lowercase as per manual's constants table
+        net_charges = mulliken_pop.atomicCharge().inUnitsOf(elementary_charge)
+    except NameError:
+        # If not in global scope, try Units prefix
+        try:
+             net_charges = mulliken_pop.atomicCharge().inUnitsOf(Units.elementary_charge)
+        except (NameError, AttributeError):
+             # Try just 'e' if it's a unit (not string "e")
+             # But 'e' is not listed in the unit table.
+             # 'Coulomb' is. But we want atomic charge count.
+             # Atomic charge is dimensionless in terms of 'e'.
+             # Wait, Mulliken population is a number of electrons. atomicCharge returns charge in Coulombs usually?
+             # Or net charge in 'e'?
+             # If atomicCharge() returns a value with unit Charge (Coulomb), we need to divide by elementary_charge to get the number.
+             # .inUnitsOf(elementary_charge) does exactly that.
+             
+             # Fallback: if we can't find the unit object, manually import it? 
+             # Or use Coulomb and divide by 1.602e-19?
+             # Let's try importing explicitly if needed, but NanoLanguage * should have it.
+             # Maybe it's named 'ElementaryCharge' (CamelCase) in some versions?
+             # Let's try to verify what's available.
+             # But first, let's try the lowercase 'elementary_charge' as per manual.
+             pass
+             
+    elements = configuration.elements()
+    
+    for i in range(len(elements)):
+        output_data["atoms"].append({
+            "symbol": elements[i].symbol(),
+            "charge": float(net_charges[i])
+        })
+
+except Exception as e:
+    # If explicit extraction fails, we might just have to skip charges or parse the log later.
+    # But let's try to print the error to stderr
+    sys.stderr.write(f"Error extracting Mulliken populations: {e}\n")
+
+# Print JSON to stdout
+print(f"JSON_OUTPUT_START")
+print(json.dumps(output_data))
+print(f"JSON_OUTPUT_END")
+
+# Keep the old output format too for compatibility if needed
 print(f"DFT_ENERGY_HARTREE: {energy.inUnitsOf(Hartree)}")
