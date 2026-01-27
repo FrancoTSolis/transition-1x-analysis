@@ -1,0 +1,863 @@
+Python in QuantumATK
+
+Table of Contents
+
+    ATK-Python
+
+    Physical quantities and units
+
+    Read and Write Support
+
+    Metatext
+
+    Spin
+
+    Command Line Usage with QATK Shell Environments
+
+All calculations in QuantumATK are controlled via ATK-Python, which is an extension to the well-known Python scripting language. All QuantumATK Python scripts are executed using the atkpython executable, which is installed with QuantumATK.
+
+If you have no prior knowledge about the Python Programming Language you might want to check out our quick introduction in Python basics.
+
+If you have an QuantumATK Python script named script.py, it is easy to run it from command line:
+
+$ atkpython script.py
+
+You can also simply execute atkpython without an argument to invoke an interactive session that allows you to execute ATK-Python commands one after another (hit Enter to execute a line):
+
+$ atkpython
+# ---------------------------------------------------------------- #
+# QuantumATK license information.                                         #
+# ---------------------------------------------------------------- #
+QuantumATK 2016.0
+
+In [1]: a=1.0
+
+In [2]: b=2.0
+
+In [3]: c=a+b
+
+In [4]: print("a+b = c =", c)
+a+b = c = 3.0
+
+In [5]: bulk_configuration = BulkConfiguration(
+    ...:     bravais_lattice=FaceCenteredCubic(5.4306*Angstrom),
+    ...:     elements=[Silicon, Silicon],
+    ...:     fractional_coordinates=[[0.,0.,0.],[0.25,0.25,0.25]])
+
+In [6]: nlprint(bulk_configuration)
++----------------------------------------------------------+
+| Bulk Bravais lattice                                     |
++----------------------------------------------------------+
+Type:
+FaceCenteredCubic
+
+Lattice constants:
+a =     5.430600 Ang
+b =     5.430600 Ang
+c =     5.430600 Ang
+
+Lattice angles:
+alpha =    90.000000 deg
+beta  =    90.000000 deg
+gamma =    90.000000 deg
+
+Primitive vectors:
+u_1 =      0.000000      2.715300      2.715300 Ang
+u_2 =      2.715300      0.000000      2.715300 Ang
+u_3 =      2.715300      2.715300      0.000000 Ang
+
++----------------------------------------------------------+
+| Bulk: Cartesian (Angstrom) / fractional                  |
++----------------------------------------------------------+
+2
+Bulk
+Si    0.000000e+00  0.000000e+00  0.000000e+00    0.00000  0.00000  0.00000
+Si    1.357650e+00  1.357650e+00  1.357650e+00    0.25000  0.25000  0.25000
+
+Input lines 1–4 in the example above are standard Python commands. However, input line 5 creates the primitive silicon bulk using the BulkConfiguration class from ATK-Python, while input line 6 uses the nlprint functionality to print the main contents of the parameters defining the silicon bulk.
+
+All the standard functionality of Python is available when you invoke QuantumATK. However, the main purpose of this chapter is to introduce the ATK-Python module. If you have no prior experience with Python, we encourage you to first go through the section Python basics.
+ATK-Python
+
+ATK-Python extends the standard Python environment with concepts and objects relevant for computational nano-scale physics and chemistry. This enables a simple, flexible, and intuitive way to operate QuantumATK: Use Python scripting to define nano-structures, atomic-scale simulators, and post-SCF analyses to be performed. Simply write the QuantumATK Python script and execute it.
+
+For example, ATK-Python contains a periodic table of the elements, units such as Rydberg and Angstrom, methods for calculating the one-electron spectrum of a molecule, band structure of solids, and transmission spectra of nano-scale devices, as well of constructors for creating molecules, Bravais lattices, and devices.
+
+The DFT: LCAO calculator may be largely implemented in highly efficient C++ routines, but setting up and executing DFT calculations is done using Python and ATK-Python commands. The same applies to setting up and executing analysis tools, as well as reading and writing of computational data. Moreover, the graphical user interface NanoLab uses ATK-Python to read data produced by QuantumATK. ATK-Python is therefore the scripting language that binds all QuantumATK products together, and is a platform on which other developers and companies can build applications and extend the functionality of QuantumATK products.
+
+Important
+
+All QuantumATK functionality available through ATK-Python is documented in the QuantumATK Reference Manual.
+Python packages in QuantumATK
+
+The QuantumATK distribution comes with all the standard Python modules, plus some additional packages which are useful for scientific computing, such as NumPy and SciPy. The list is long and can change with every release, the best way to get the full list for your local installation of QuantumATK is to run this command on Linux:
+
+sh$ /quantumatk_installation_directory/atkpython/bin/python -m pip list
+
+or this command on Windows:
+
+PS> C:\quantumatk_installation_directory\atkpython\Scripts\python -m pip list
+
+Using NumPy with QuantumATK
+
+NumPy is the fundamental package for scientific computing with Python, since it can be used to perform advanced mathematical operations much faster than using ordinary Python lists. The NumPy module is therefore used throughout ATK-Python to store and manipulate values from analysis functions. NumPy objects resemble ordinary lists, but contain a lot more functionality, and QuantumATK ships with built-in NumPy support to easily facilitate its usage.
+
+A few major differences between ordinary lists and NumPy arrays can be seen from this short example:
+
+>>> from numpy import array
+>>> a = array([1,2]) # a NumPy array
+>>> a = a+[3,4]
+>>> print(a)
+[4, 6]
+>>> b = [1,2]  # an ordinary Python list
+>>> b = b+[3,4]
+>>> print(b)
+[1, 2, 3, 4]
+
+As seen in the example above, NumPy arrays can in many ways be regarded as matrices. The following example underlines this:
+
+>>> a = array([1,2],[3,4]])
+>>> a = a *[3,4]
+>>> print(a)
+[[ 3  8]
+[ 9 16]]
+>>> print(a.trace())
+19
+>>> a.transpose()
+>>> print(a)
+[[ 3  9]
+ [ 8 16]]
+>>> print(a.trace())
+19
+
+Note in the above that the values 8 and 9 changed place in the matrix after applying the transpose() operation. However, as expected, the trace of the matrix remains the same.
+
+NumPy arrays may also be converted into lists:
+
+>>> a = array([1,2],[3,4]])
+>>> print(a.tolist())
+[[1, 2], [3, 4]]
+
+There are many more possibilities using arrays from the NumPy module, and it is usually faster than iterating through for-loops or using ordinary lists!
+
+More information can be found at the NumPy website, or by using the dir() command on a NumPy array object. Details on how NumPy can be used for improved performance can be found at the online resource Python Performance Tips.
+Cloning of QuantumATK Python objects
+
+It is possible to get a copy of an QuantumATK object using a method called cloning. This is done by adding a closed parenthesis after the object:
+
+parameter_object = IterationControlParameters(tolerance=1.e-5)
+parameter_object_clone = parameter_object()
+
+Very importantly, it is possible to modify the parameters of the clone by specifying the new parameters during cloning:
+
+parameter_object = IterationControlParameters(tolerance=1.e-5)
+parameter_object_clone = parameter_object(max_steps=50, damping_factor=0.2)
+
+Plotting using pylab
+
+The following script uses the NumPy and matplotlib modules for creating a 2D plot:
+
+import pylab
+x = numpy.linspace(-1,5,10)
+y = numpy.exp(x)
+pylab.figure()
+pylab.plot(x,y)
+pylab.show()
+
+Note that the NumPy package is automatically loaded with the ATK-Python module, so the import numpy statement is not really needed when running atkpython.
+
+Note that QuantumATK also has an advanced plotting module for plotting publication quality 2D plots. The Plot module is automatically included in the ATK-Python module, and plots can be created, modified and shown both from scripts and through the NanoLab GUI. Read more in the NanoLab Plot Reference Manual.
+Physical quantities and units
+
+Units are a key concept in QuantumATK. All parameters that correspond to physical quantities, such as lengths, energies, voltages, etc., should be specified with an explicit unit. Similarly, all physical results returned from QuantumATK calculations also contain an explicit unit. PhysicalQuantity objects are created by multiplying the scalar, list, or array, containing the quantity’s value(s), with the desired unit:
+
+>>> a = [[1.0, 2.0], [3.0, 4.0]]*Angstrom
+>>> t = 0.5*femtoSecond**-1
+
+See below sections for physical units available in QuantumATK.
+
+All PhysicalQuantity objects have two query methods:
+
+    inUnitsOf(Unit): Returns the numerical value in the specified unit as a numpy-array, respectively numpy-float object for scalar values.
+
+    convertTo(Unit): Returns the value of the PhysicalQuantity as a new PhysicalQuantity object in the specified unit.
+
+Moreover, since the PhysicalQuantity class derives from numpy.array, PhysicalQuantity objects can be used, in most respects, as a numpy array. This means that many class methods of numpy arrays, such as sum(), max(), or reshape() can be used with PhysicalQuantity objects.
+
+Element-wise operations between two PhysicalQuantity objects work as in numpy, e.g.:
+
+>>> a = [[1.0, 2.0], [3.0, 4.0]]*Ang
+>>> b = [[2.0, 2.0], [4.0, 4.0]]*nanoMeter
+>>> c = a + b
+>>> print(c)
+[[ 21.  22.]
+ [ 43.  44.]] Ang
+
+Note, that addition and multiplication require compatible units for all operands.
+
+Most numpy universal functions, as well as the two numpy functions numpy.dot and numpy.cross, work for PhysicalQuantity objects, in the same way as for numpy arrays.
+
+Note, however, that most other numpy and python functions, e.g. numpy.arange, are not supported for PhysicalQuantity. In order to use them, the units have to be removed, via inUnitsOf() before the function is invoked:
+
+>>> a = 5.0*Ang
+>>> b = 1.0*nanoMeter
+>>> delta = 0.5*Ang
+>>> distances = numpy.arange(a.inUnitsOf(Ang), b.inUnitsOf(Ang), delta.inUnitsOf(Ang))
+
+If the result of a PhysicalQuantity-operation is unitless, e.g:
+
+>>> a = [[1.0, 2.0], [3.0, 4.0]]*Ang
+>>> b = [[2.0, 2.0], [4.0, 4.0]]*Ang**-1
+>>> c = a*b
+>>> print(c)
+[[ 21.  22.]
+ [ 43.  44.]]
+
+the result is directly returned as a numpy array, respectively as numpy float for scalar values.
+Usage Examples
+
+Getting a float value:
+
+>>> a = 5*Angstrom
+>>> print(a.inUnitsOf(nanoMeter))
+0.5
+
+Getting a PhysicalQuantity object:
+
+>>> print(a.convertTo(nanoMeter))
+0.5 nm
+
+Physical quantities can be transformed with an exponent:
+
+>>> a = 2. * Meter * Second**-2
+>>> v = (2 * a * (1*Meter))**0.5
+>>> print(v)
+2.0 m/s
+
+Inverse units are specified by using the exponent operator **:
+
+>>> f = 2.2/Second
+>>> print(f.inUnitsOf(Second**-1))
+2.2
+
+Units are attached to values by multiplication. Thus, to specify a length of 5 Bohr:
+
+>>> a = 5*Bohr
+
+By printing the value of the variable a, the unit will automatically be displayed:
+
+>>> print(a)
+5.0 Bohr
+
+Units can also be composite. The unit for force is Newton, which is Joule per Meter. This is a rather awkward unit for nano-scale calculations, where something like electron volt per nm makes more sense. Any energy divided by a length is, however, a valid force unit, so to specify a force, write:
+
+>>> F = 5*eV/Bohr
+
+Next, multiply this by a length again and the result will be an energy:
+
+>>> b = F*5*Bohr
+>>> print(b)
+25*eV
+
+Some unit abbreviations are only available with the Units prefix:
+
+>>> b = 5.1*Units.Ry
+>>> print(b)
+5.1 Rydberg
+
+Units that by default are specified without a prefix, can also be given with a prefix:
+
+>>> b = 5.1*Rydberg
+>>> c = 5.1*Units.Rydberg
+
+Units available in QuantumATK
+
+The following units are made available when importing QuantumATK:
+Table 14 Units available in QuantumATK. More units are available using the Units prefix.¶
+
+Unit type
+	
+
+Name
+
+Length units
+	
+
+nm
+	
+
+nanoMeter
+	
+
+Ang
+	
+
+Angstrom
+	
+
+Bohr
+	
+
+Meter
+
+Energy units
+	
+
+Rydberg
+	
+
+eV
+	
+
+meV
+	
+
+electronVolt
+	
+
+Hartree
+	
+
+J
+	
+
+Joule
+	
+
+Calorie
+	
+
+kiloCaloriePerMol
+	
+
+kiloJoulePerMol
+
+Force units
+	
+
+Newton
+	
+
+nanoNewton
+
+Mass unit
+	
+
+kiloGram
+
+Temperature unit
+	
+
+Kelvin
+
+Time units
+	
+
+fs
+	
+
+femtoSecond
+	
+
+femtosecond
+	
+
+ps
+	
+
+picoSecond
+	
+
+picosecond
+	
+
+ns
+	
+
+nanoSecond
+	
+
+nanosecond
+	
+
+microSecond
+	
+
+microsecond
+	
+
+milliSecond
+	
+
+millisecond
+	
+
+Second
+	
+
+Minute
+	
+
+Hour
+	
+
+Day
+
+Conductivity related units
+	
+
+Ampere
+	
+
+Volt
+	
+
+Siemens
+	
+
+G0
+	
+
+Coulomb
+
+Pressure units
+	
+
+bar
+	
+
+Pa
+	
+
+GPa
+
+Spin unit
+	
+
+hbar
+
+Number unit
+	
+
+Mol
+	
+
+mol
+
+Angle units
+	
+
+Radians
+	
+
+Degrees
+
+Physical constants
+	
+
+boltzmann_constant
+	
+
+planck_constant
+	
+
+avogadro_number
+	
+
+speed_of_light
+	
+
+atomic_mass_unit
+	
+
+hbar
+	
+
+electron_mass
+	
+
+elementary_charge
+	
+
+vacuum_permitivity
+Read and Write Support
+
+Read and write functionality in QuantumATK is provided by two functions: nlread and nlsave. Storage of several objects per file is supported. Each object in native ATK files is associated with a unique identifier – the object_id. If a new entry is saved without specifying an object_id, the entry is appended to the file with an auto-generated object_id. If an object_id is specified which already is present in the file, the old entry is automatically deleted.
+
+ATK natively supports the HDF5 file format (from QuantumATK version ≥
+
+2017). It is platform independent, i.e. the files can, for instance, be written on a Linux platform and later be read on a Windows platform. The internal data structure is performance-optimized.
+HDF5 (Default File Format)
+
+specification
+	
+
+HDF5 format
+
+object_id (default)
+	
+
+classname_x with x being an increasing integer
+
+HDF5 is the default file format for QuantumATK version ≥
+
+2017. The file format supports Metatext, and deleting objects – see nldelete. Due to the performance-optimized storage, the file size is not automatically reduced if objects have been deleted / overwritten. The free space can be reclaimed with nlrepack. The stored data can easily be accessed by hdf-view or by any program based on libhdf5.
+Metatext
+
+Most of the objects available in QuantumATK have support for Metatext. This feature allows the user to store additional text on an object. All Configuration and Analysis objects support this feature. The information is automatically written to / read from HDF5 files. Access to the Metatext of an object obj is provided by two functions:
+
+obj.setMetatext(metatext)
+	
+
+Sets the metatext on obj. metatext has to be of type str.
+
+obj.metatext()
+	
+
+Returns the metatext of obj.
+
+Moreover, with the utility functions readMetatext one can access the Metatext of an object stored in a file.
+Spin
+
+Spin is a flag. As such it cannot be constructed; Spin() is an invalid command. Instead, Spin provides derived classes (flags) to represent spin components and projections:
+
+Spin.Up
+	
+
+The ‘up’ component of a spinor (up-up component of a spin matrix).
+
+Spin.Down
+	
+
+The ‘down’ component of a spinor (down-down component of a spin matrix).
+
+Spin.RealUpDown
+	
+
+The real part of the ‘up-down’ component of a spinor (spin matrix.)
+
+Spin.ImagUpDown
+	
+
+The imaginary part of the ‘up-down’ component of a spinor (spin matrix).
+
+Spin.All
+	
+
+All spin components.
+
+Spin.Sum
+	
+
+The sum ‘Spin.Up + Spin.Down’
+
+Spin.X
+	
+
+The spin projection along ‘x’ (Spin.X = 2*Spin.RealUpDown).
+
+Spin.Y
+	
+
+The spin projection along ‘y’ (Spin.Y = -2*Spin.ImagUpDown).
+
+Spin.Z
+	
+
+The spin projection along ‘z’ (Spin.Z = Spin.Up - Spin.Down).
+
+Spin.Unknown
+	
+
+Unknown spin.
+Usage Example
+
+Calculate the electron density for all spin and evaluate some components:
+
+# Calculate the electron density for a given configuration.
+ed_up = ElectronDensity(configuration, spin=Spin.All)
+
+# Take some spin projections.
+x = ed.spinProjection(spin=Spin.X)
+y = ed.spinProjection(spin=Spin.Y)
+z = ed.spinProjection(spin=Spin.Z)
+s = ed.spinProjection(spin=Spin.Sum)
+r = ed.spinProjection(spin=Spin.RealUpDown)
+i = ed.spinProjection(spin=Spin.ImagUpDown)
+u = ed.spinProjection(spin=Spin.Up)
+d = ed.spinProjection(spin=Spin.Down)
+
+# Evaluate for Spin.X at the origin.
+data = ed.evaluate(0.0*Bohr, 0.0*Bohr, 0.0*Bohr, spin=Spin.X)
+
+Note about Spin.All
+
+Precisely which spin components are returned when calling an objects query method with spin = Spin.All depends on the queried object. E.g. ElectronDensity.evaluate(x, y, z, spin=Spin.All) returns a list of four electron density values at the grid point (x, y, z) corresponding to Spin.Sum, Spin.X, Spin.Y, and Spin.Z. In other cases (e.g. ExchangeCorrelationPotential), the returned array contains the values corresponding to the spinor components Spin.Up, Spin.Down, Spin.RealUpDown, and Spin.ImagUpDown. Refer to the object’s documentation for details.
+Note on Spin in low level interface functions
+
+In all low level interface functions such as calculateHamiltonianAndOverlap, calculateDensityMatrix, calculateSelfEnergy etc., the following rules for the spin parameter apply:
+
+    UNPOLARIZED: Valid spin parameters are Spin.Up and Spin.All, which both yield the same result in this case, as there is no designated spin direction in UNPOLARIZED calculations.
+
+    POLARIZED: Valid spin parameters are Spin.All, Spin.Up, and Spin.Down. The default is Spin.All, in which case the function returns a pair of matrices, one for the Spin.Up and one for the Spin.Down component. For Spin.Up or Spin.Down, only the respective spin component is returned.
+
+    NONCOLLINEAR / SPINORBIT: In noncollinear calculations, only Spin.All is an accepted parameter. The returned matrix contains the spin components Spin.Up, Spin.Down, Spin.UpDown, and Spin.DownUp in an interleaved fashion, see below for an example.
+
+Examples
+
+# Calculate the density matrix for a polarized system.
+D = calculateDensityMatrix(polarized_configuration, spin=Spin.All)
+# Extract the Spin.Up component.
+D_uu = D[0]
+# Extract the Spin.Down component.
+D_dd = D[1]
+
+# Calculate the density matrix for a noncollinear system.
+D = calculateDensityMatrix(noncollinear_configuration, spin=Spin.All)
+# Get all up-up entries:
+D_ud = D[::2,::2]
+# Get all down-down entries:
+D_du = D[1::2,1::2]
+# Get all up-down entries:
+D_ud = D[1::2,::2]
+# Get all down-up entries:
+D_du = D[::2,1::2]
+
+Command Line Usage with QATK Shell Environments
+Introduction
+
+One of the most notable features of QuantumATK is the powerful graphical user interface, which makes it easy to develop complex workflows and analyze their results. Nevertheless, the command line (CLI) usage is common and sometimes necessary, for example in high performance computing (HPC) systems or when you want to experiment with new Python packages.
+
+We present here two useful tools for these purposes:
+
+    QATK Shell Environment: a convenient way to have all QuantumATK utilities at your fingertips when working in a CLI environment.
+
+    Python Virtual Environments: the best way to experiment with additional Python packages in combination with QuantumATK modules.
+
+In the following section you will find several examples of commands, the commands come after the command prompt which is here shortened to sh$ for Bash on Linux and PS> for PowerShell on Windows.
+Use QuantumATK effectively from CLI: Shell Environments
+
+Starting from the W-2024.09 release, you can find an additional file in your QuantumATK installation, atkpython/bin/activate_env on Linux and atkpython/Scripts/activate_env.ps1 on Windows. The first one is a Bash script and the second one a PowerShell script. These scripts make it easier to use ATKPython and other QuantumATK tools from a command line prompt, and the next two section will explain how.
+Bash on Linux
+
+From an open Bash shell you activate the environment by dot sourcing the script:
+
+sh$ source <quantumatk_installation>/atkpython/bin/activate_env
+
+You will notice a change in the command prompt written in the terminal, for example the common prompt username@hostname$ will become (qatk) username@hostname$, the (qatk) prefix in the prompt text will help you remember you are inside the QATK Shell Environment.
+
+Note
+
+This can remind you of Python virtual environments, but it is not the same, because there is no virtualized environment, you are directly using the QuantumATK installation. The implications of this are explained in this section: Customize the environment: Python venvs.
+
+Once the QATK Shell Environment is active, you have all the main QuantumATK binaries available in the shell, for example you can execute atkpython or execute the built-in python executable with access to all QuantumATK modules:
+
+(qatk) sh$ atkpython -c 'print((5*Angstrom).convertTo(Bohr))'
+9.44863062283 Bohr
+(qatk) sh$ python -c 'from QuantumATK import Units; print((5*Units.Angstrom).convertTo(Units.Bohr))'
+9.44863062283 Bohr
+
+The environment also gives access to a large class of executables, including those included with the pre-installed Python modules and the default Intel MPI installation. This means you can easily run an ATKPython script in parallel from inside this environment:
+
+(qatk) sh$ mpiexec -n 4 atkpython /path/to/script.py
+
+If you prefer to use a system installation of MPI instead of the Intel MPI setup included with QuantumATK, you can just add a flag when sourcing the activation script:
+
+sh$ source <quantumatk_installation>/atkpython/bin/activate_env --use-system-mpi
+
+In order to deactivate the environment and go back to the previous state of the shell:
+
+(qatk) sh$ deactivate_qatk
+
+The (qatk) prefix will disappear from the prompt, which means that the QATK Shell Environment is no longer active. If you do not want this prefix to be shown in the command prompt, you can assign any value to the QATK_ENV_DISABLE_PROMPT environment variable before activating the environment.
+Advanced options for activate_env
+
+Sourcing the activate_env script without additional options will set up the LD_LIBRARY_PATH and PATH environment variables to point to all the necessary bundled libraries and executables used for QuantumATK. This ensures that the QuantumATK tools can work in most environments.
+
+By default, the activate_env script will add the following to the environment:
+
+    Prepend to LD_LIBRARY_PATH:
+
+            The C++ standard library libstdc++
+
+            A software rendering implementation of OpenGL libGL
+
+            The Intel MPI libraries
+
+            Many other 3rd party libraries located in <quantumatk_installation>/atkpython/lib (e.g. libQt5Core).
+
+            The python library used for QuantumATK
+
+    Append to LD_LIBRARY_PATH:
+
+            The CUDA libraries
+
+    Prepend to PATH:
+
+            The Intel MPI executables
+
+The activate_env script comes with several options to change this behavior. You can see the full list of options by running:
+
+sh$ <quantumatk_installation>/atkpython/bin/activate_env --help
+
+Note
+
+All libraries bundled with QuantumATK are using DT_RUNPATH to find their dependencies, so that QuantumATK can also run with an empty LD_LIBRARY_PATH. Since LD_LIBRARY_PATH has higher priority than DT_RUNPATH and could potentially be set to a conflicting value, we set LD_LIBRARY_PATH to the QuantumATK libraries by default. However, options to change this behavior are available.
+
+Common cases where you might want to use these options are:
+
+    Systems with hardware accelerated OpenGL
+
+        Use the system OpenGL libraries instead of the bundled software rendering implementation to get the best QuantumATK Nanolab performance:
+
+        sh$ source <quantumatk_installation>/atkpython/bin/activate_env --use-system-gl
+
+    Systems with well integrated MPI libraries and executables (e.g. on HPC clusters)
+
+        Try to use the system MPI installation, in case you encounter issues with the bundled Intel MPI:
+
+        sh$ source <quantumatk_installation>/atkpython/bin/activate_env --use-system-mpi
+
+    Systems with a libstdc++ newer than libstdc++.so.6.0.31
+
+        Use the system libstdc++ instead of the bundled one, as it will allow for the use of system tools in the QuantumATK environment:
+
+        sh$ source <quantumatk_installation>/atkpython/bin/activate_env --use-system-stdcpp
+
+    Conflicts between the 3rd party libraries in <quantumatk_installation>/atkpython/lib and system tools you want to use in the QuantumATK environment
+
+        In these cases you can try omitting the lib folder from the LD_LIRBARY_PATH:
+
+        sh$ source <quantumatk_installation>/atkpython/bin/activate_env --prefer-system-libs
+
+PowerShell on Windows
+
+From an open Windows PowerShell shell you activate the environment with:
+
+PS> & "<quantumatk_installation>\atkpython\Scripts\activate_env.ps1"
+
+Just as in the case of Bash on Linux, the prompt text will show the prefix (qatk) when the environment is active, and it gives access to the already named executables and modules. As in the Linux case, you can assign any value to $QATK_ENV_DISABLE_PROMPT if you do not want this prefix to be displayed.
+
+Note
+
+The above command might fail because of restrictions in executing scripts inside PowerShell, if this happens the solution might be to modify the execution policy:
+
+PS> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+The Intel MPI setup is included by default in the environment, but if you want to use a separate system installation of MPI you can add a flag as argument to the script:
+
+PS> & "<quantumatk_installation>\atkpython\Scripts\activate_env.ps1" -UseSystemMPI
+
+You can easily deactivate the environment and go back to the original shell state:
+
+(qatk) PS> deactivate_qatk
+
+Note
+
+The above applies to all flavours of PowerShell, it is tested on Windows PowerShell which is shipped with Windows 10/11, but it is compatible with the newer PowerShell Core and PowerShell 7.
+Customize the environment: Python venvs
+
+In this section we will go through some of the reasons why it is a good idea to use virtual environments with Python, with a special focus on ATKPython.
+The problems
+
+With the scripts shown in the previous section you can now use all the powerful tools shipped with QuantumATK, including all the pre-installed Python modules. In fact ATKPython includes NumPy, SciPy, Pandas and many other Python packages which are useful for scientific computing.
+
+But what if you need to install an additional package?
+
+We suppose that you need a package named final-destination. You could find instructions online suggesting to run:
+
+python -m pip install final-destination
+
+But this is usually not a good idea because it installs the package in the system site-packages directory which, in the case of the Python executable shipped with QuantumATK, resides inside the QuantumATK installation directory. Therefore, if you run the above command and you have permissions to write to the QuantumATK installation directory, you are going to overwrite the pre-installed files. This can cause two issues. First, if the final-destination package depends on, for example, a very recent version of NumPy, this will be installed on top of the pre-installed NumPy package. But this new version of NumPy has not been reviewed by the QuantumATK team, and parts of QuantumATK or pre-installed Python packages might not be compatible with it. The result could be that you are no longer able to start QuantumATK and you would then need to reinstall the software from scratch. Second, if the package installation goes fine and final-destination is now installed and works, it will still pollute the QuantumATK environment, adding possible sources of problems that the QuantumATK team could not consider when preparing the QuantumATK release. If there is any issue after installing a package this way, the first suggestion would again be to reinstall the software from scratch.
+
+A slightly better alternative is:
+
+python -m pip install --user final-destination
+
+This command will install the final-destination package and all its dependencies to the QuantumATK user folder ($HOME/.quantumatk on Linux, %USERPROFILE%\.quantumatk on Windows). Unfortunately the problem outlined above still apply, the only positive difference is that you can remove the QuantumATK user folder instead of removing the entire installation. But the QuantumATK user folder also contains the project folders, the license configuration, and many other files you would probably prefer to keep.
+The solution
+
+All of the above problems can be solved by using Python Virtual Environments (venv), which allow you to create isolated and self-contained environments you can safely play around with, without any risk for the QuantumATK installation or user folder.
+
+Assuming you are already inside an active QATK Shell Environment and you want to name the virtual environment final-destination-venv, you can create a Python venv and activate it with:
+
+(qatk) sh$ python -m venv --system-site-packages final-destination-venv
+(qatk) sh$ source final-destination-venv/bin/activate
+
+The prompt will now show the prefix (final-destination-venv) (qatk) to represent the two active environments. Note that the order matters in this case, since the first in the prompt is the last one that has been activated and is therefore the one that has priority. Of course this prefix is a bit long, so we suggest using shorter names for your venvs or specifying a shorter prompt with the --prompt flag.
+
+The commands above are almost identical in Windows PowerShell:
+
+(qatk) PS> python -m venv --system-site-packages final-destination-venv
+(qatk) PS> & "final-destination-venv\Scripts\Activate.ps1"
+
+Now that you are inside a virtual environment you can feel free to install your needed package:
+
+python -m pip install final-destination
+
+This will be installed inside the virtual environment and will not affect anything outside of it. After you are done working with the virtual environment you can go back to the original shell by deactivating the active environments, starting by the last one that has been activated:
+
+(final-destination-venv) (qatk) sh$ deactivate
+(qatk) sh$ deactivate_qatk
+
+You will see the prefixes disappear which means that the environments have been deactivated and your final-destination package will not get in your way until you activate the final-destination-venv environment again.
+
+If you do not need to have direct access to the additional executables contained in the QuantumATK installation folder, and you do not need to run anything under MPI, then you can skip the QATK Shell Environment activation above:
+
+sh$ <quantumatk_installation>/atkpython/bin/python -m pip --system-site-packages final-destination-venv
+
+This will create a virtual environment which still has access to the Python modules shipped with QuantumATK, and will work in most cases. If you encounter any issue with this approach while using the Python modules shipped with QuantumATK, just revert to the two steps procedure explained above.
+
+The virtual environment folder will always be available on the system until you manually delete it, and the venv can be activated again at any time by dot sourcing the activate (Activate.ps1) script on Linux (Windows) as explained above. There is no need to create the venv every time with the python -m venv command.
+
+You can have several venvs, each in its dedicated folder, and activate them when they are needed. This allows for experimentation and can help organizing your work, when developing several projects in parallel.
+
+Note
+
+It is not guaranteed that QuantumATK modules can be imported and used in a virtual environment created with a different version of QuantumATK.
+Step by step examples
+
+We include some examples which summarize in a few commands what we explained above.
+
+Bash on Linux, QATK Shell Environment + Python venv:
+
+sh$ QATK_DIR="/path/to/your/QuantumATK/installation"
+sh$ VENV_DIR="/path/to/your/custom/venv"
+sh$ source "${QATK_DIR}/atkpython/bin/activate_env"
+(qatk) sh$ python -m venv --system-site-packages --upgrade-deps "$VENV_DIR"
+(qatk) sh$ source "${VENV_DIR}/bin/activate"
+(venv) (qatk) sh$ python -m pip install emoji
+[...]
+(venv) (qatk) sh$ python -m pip show emoji
+[...]
+Location: /path/to/your/custom/venv/lib/python3.11/site-packages
+[...]
+(venv) (qatk) sh$ mpiexec -n 4 python -c "import emoji; print(emoji.emojize('This is an ambulance: :ambulance:'))"
+This is an ambulance: 🚑
+This is an ambulance: 🚑
+This is an ambulance: 🚑
+This is an ambulance: 🚑
+(venv) (qatk) sh$ atkpython -c "import emoji; length=3.5*Units.m; print(emoji.emojize(f'The :ambulance: is {length.convertTo(Bohr)} long.'))"
+The 🚑 is 66140414359.8 Bohr long.
+(venv) (qatk) sh$ deactivate
+(qatk) sh$ deactivate_qatk
+sh$
+
+In the above example you can see that we have access to atkpython and mpiexec because we are inside the QATK Shell Environment, but we can also install a new package (emoji) which ends up inside the Python venv folder (notice the “Location” line in the output) without disturbing our QuantumATK installation. We have also added the --upgrade-deps flag which makes sure that pip is updated to the latest version inside the virtual environment.
+
+PowerShell on Windows, only Python venv:
+
+PS> $QATK_DIR="C:\path\to\your\QuantumATK\installation"
+PS> $VENV_DIR="C:\path\to\your\custom\venv"
+PS> "$QATK_DIR\atkpython\python.exe" -m venv --system-site-packages --upgrade-deps "$VENV_DIR"
+PS> & "${VENV_DIR}\Scripts\Activate.ps1"
+(venv) PS> python -m pip install pyjokes emoji
+[...]
+(venv) PS> pyjoke
+What is Benoit B. Mandelbrot's middle name? Benoit B. Mandelbrot.
+(venv) PS> python -c "from ATKVersion import Version; import emoji; print(emoji.emojize(f'The QATK version is {Version.version()}. :atom_symbol:'))"
+The QATK version is W-2024.09. ⚛️
+(venv) PS> deactivate
+PS>
+
+In this case we are using the python executable shipped with QuantumATK to create a Python venv, so we can access QuantumATK modules (if we import them) and we can peacefully install new packages inside the virtual environment.
