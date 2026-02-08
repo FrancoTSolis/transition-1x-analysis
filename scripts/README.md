@@ -241,7 +241,42 @@ ANI-2x and QuantumATK both output in **Hartree**. The animation scripts (`animat
 
 *Note: The key `original_energies_hartree` in `summary_ani.json` is a misnomer — those values are actually in eV (from the Transition1x dataset).*
 
-## 9. Full Scripts Overview
+## 9. 3-Way Energy Comparison (`compare_energy_methods.py`)
+
+Plots DFT, ground truth, and ANI-2x energy curves side by side for the same selected frames. Ground truth is in the middle panel. The energy barrier (ΔE‡ = E_TS − E_reactant) is annotated on all three panels, where the TS frame is the one with the highest ground-truth energy among the selected frames. On the DFT and ANI panels, the ground-truth curve is overlaid as a dashed reference and the per-frame error is shaded with red hatched lines.
+
+Requires: numpy, matplotlib (no torch or atkpython).
+
+### Usage
+
+```bash
+python scripts/compare_energy_methods.py \
+    --xyz_dir trajectory_analysis_ani/C2H2N2O_rxn2091/xyz_frames \
+    --ani_energies trajectory_analysis_ani/C2H2N2O_rxn2091/calculated_energies_ani.txt \
+    --dft_cache trajectory_data.json \
+    --last_frames 8
+```
+
+### Options
+
+- `--xyz_dir` (required): directory with `frame_*.xyz` files containing ground-truth energies in the comment line.
+- `--ani_energies`: path to `calculated_energies_ani.txt` (Hartree, one value per line).
+- `--dft_cache`: path to `trajectory_data.json` (JSON cache from `animate_reaction.py`, energies in eV).
+- `--dft_energies`: alternative to `--dft_cache` — plain-text file of DFT energies in Hartree.
+- `--last_frames N`: number of last frames to include (default: 8).
+- `--include_reactant_and_product` / `--no-include_reactant_and_product`: include frame 0 (reactant) and frame N+1 (product) in the selection (default: on).
+- `--output`: output image filename (default: `energy_comparison_3way.png`).
+
+### Output
+
+`energy_comparison_3way.png` with three panels:
+
+| Left | Middle | Right |
+|---|---|---|
+| DFT — GGA.PBE | Ground Truth — ωB97x/6-31G(d) | ANI-2x |
+| + red hatched error vs GT | energy barrier annotated | + red hatched error vs GT |
+
+## 10. Full Scripts Overview
 
 | Script | Requires | Purpose |
 |---|---|---|
@@ -253,3 +288,4 @@ ANI-2x and QuantumATK both output in **Hartree**. The animation scripts (`animat
 | `animate_reaction.py` | **atkpython**, numpy, matplotlib, scipy | Animate trajectory with DFT energies + Mulliken charges |
 | `animate_reaction_ani.py` | torch, torchani, numpy, matplotlib, scipy | Animate trajectory with ANI-2x energies |
 | `animate_reaction_gt.py` | numpy, matplotlib, scipy | Animate trajectory with ground-truth wB97x/6-31G(d) energies (no model needed) |
+| `compare_energy_methods.py` | numpy, matplotlib | 3-way side-by-side comparison of DFT / GT / ANI energy curves |
