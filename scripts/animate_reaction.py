@@ -25,36 +25,63 @@ def read_xyz_coords(filename):
 
 import argparse
 
-def run_dft_on_frames(frame_dir, last_k_frames=10, cache_file='trajectory_data.json'):
-    # Check for cache
-    # Note: Cache might be stale if we change sampling parameters, 
-    # but for simplicity we rely on user to clean it or we could make cache key depend on params.
-    # Actually, if we just want last K frames, using a cached list of ALL frames (if we had it) would be fine,
-    # but here the cache stores the RESULTS of the run. 
-    # If the cache contains results for the frames we want, we could use them.
-    # But simplifying: if cache exists, warn user or just overwrite?
-    # The previous implementation loaded cache blindly. 
-    # Let's force re-calculation if cache doesn't match roughly, 
-    # OR better: just load cache, check if we have data for the specific frames we want.
-    # For now, to ensure we get the right K frames, let's ignore cache for frame selection 
-    # but maybe use it for lookup?
-    # Simpler: If user asks for last K frames, we just pick them.
-    
-    frames = sorted(glob.glob(os.path.join(frame_dir, "frame_*.xyz")), key=natural_sort_key)
-    if not frames:
+def select_frame_indices(total_frames, last_k_frames, include_reactant_and_product):
+    """
+    Build the ordered list of frame indices to include.
+
+    Default (include_reactant_and_product=True):
+        [0, -last_k, -(last_k-1), ..., -1, last_k+1]
+        i.e. reactant, last K frames, product
+
+    Without the flag:
+        just the last K frames (original behaviour).
+    """
+    if last_k_frames > 0:
+        start_idx = max(0, total_frames - last_k_frames)
+        indices = list(range(start_idx, total_frames))
+    else:
+        indices = list(range(total_frames))
+
+    if include_reactant_and_product:
+        extra_front = []
+        extra_back = []
+
+        # Frame 0 = reactant
+        if 0 not in indices:
+            extra_front.append(0)
+
+        # Frame (last_k_frames + 1) = product
+        product_idx = last_k_frames + 1
+        if product_idx < total_frames and product_idx not in indices:
+            extra_back.append(product_idx)
+
+        indices = extra_front + indices + extra_back
+
+    return indices
+
+
+def run_dft_on_frames(frame_dir, last_k_frames=10, cache_file='trajectory_data.json',
+                      include_reactant_and_product=True):
+    all_frames = sorted(glob.glob(os.path.join(frame_dir, "frame_*.xyz")), key=natural_sort_key)
+    if not all_frames:
         print(f"No frames found in {frame_dir}")
         return []
         
-    # Select last K frames
-    total_frames = len(frames)
-    if last_k_frames > 0:
-        start_idx = max(0, total_frames - last_k_frames)
-        frames = frames[start_idx:]
-        print(f"Selected last {len(frames)} frames (from index {start_idx} to {total_frames-1})")
-    else:
-        # If 0 or negative, maybe process all? Or just default behavior.
-        # Let's assume argument is always provided with default 10.
-        pass
+    # Select frame indices
+    total_frames = len(all_frames)
+    indices = select_frame_indices(total_frames, last_k_frames, include_reactant_and_product)
+    frames = [all_frames[i] for i in indices]
+
+    desc_parts = []
+    if include_reactant_and_product:
+        desc_parts.append(f"frame 0 (reactant)")
+    desc_parts.append(f"last {min(last_k_frames, total_frames)} frames")
+    if include_reactant_and_product:
+        product_idx = last_k_frames + 1
+        if product_idx < total_frames:
+            desc_parts.append(f"frame {product_idx} (product)")
+    print(f"Selected {len(frames)} frames: {', '.join(desc_parts)}")
+    print(f"  Indices: {indices}")
 
     results = []
     # Load cache for lookup
@@ -267,8 +294,18 @@ if __name__ == "__main__":
     parser.add_argument('--frames_dir', type=str, default="extracted_data_check", help='Directory containing XYZ frames')
     parser.add_argument('--last_frames', type=int, default=10, help='Number of last frames to process (default: 10)')
     parser.add_argument('--output', type=str, default='reaction_animation.gif', help='Output GIF filename')
+    parser.add_argument(
+        '--include_reactant_and_product', action=argparse.BooleanOptionalAction,
+        default=True,
+        help='Include frame 0 (reactant) and frame last_frames+1 (product) '
+             'in the animation (default: on). Use --no-include_reactant_and_product to disable.',
+    )
     
     args = parser.parse_args()
     
-    data = run_dft_on_frames(args.frames_dir, last_k_frames=args.last_frames)
+    data = run_dft_on_frames(
+        args.frames_dir,
+        last_k_frames=args.last_frames,
+        include_reactant_and_product=args.include_reactant_and_product,
+    )
     create_animation(data, output_file=args.output)

@@ -136,3 +136,120 @@ atkpython scripts/run_dft.py extracted_data_check/frame_000.xyz
       -   **Left Panel**: 3D visualization of the molecule, atoms colored by partial charge (Blue=Positive, Red=Negative).
       -   **Right Panel**: Energy profile with a moving marker indicating the current frame.
   -   **Usage**: `python scripts/animate_reaction.py --last_frames 8`
+
+## 5. ANI-2x Scripts (No QuantumATK Required)
+
+A parallel set of scripts uses the **ANI-2x neural network potential** (`torchani`) instead of QuantumATK DFT. These run with standard Python and are significantly faster since energies are computed in batch on GPU/CPU without spawning subprocesses.
+
+### Prerequisites (ANI)
+
+```bash
+pip install torch torchani h5py matplotlib numpy scipy
+```
+
+ANI-2x supports a limited set of elements: **H, C, N, O, F, S, Cl**.
+
+### Running ANI Energy on a Single XYZ File (`run_ani.py`)
+
+The ANI counterpart of `run_dft.py`. No `atkpython` needed.
+
+```bash
+python scripts/run_ani.py extracted_data_check/frame_000.xyz
+# With GPU:
+python scripts/run_ani.py extracted_data_check/frame_000.xyz --device cuda
+```
+
+Output format is compatible with `run_dft.py` (JSON block + `ANI_ENERGY_HARTREE: <value>`).
+
+### Running ANI Trajectory Analysis (`run_trajectory_analysis_ani.py`)
+
+The ANI counterpart of `run_trajectory_analysis.py`. Computes all frame energies in a single batch.
+
+```bash
+# Specific reaction
+python scripts/run_trajectory_analysis_ani.py --formula C2H2N2O --rxn_id rxn2091
+
+# Dry run
+python scripts/run_trajectory_analysis_ani.py --dry_run
+
+# Use GPU
+python scripts/run_trajectory_analysis_ani.py --device cuda
+```
+
+Output is saved to `trajectory_analysis_ani/` by default, with the same directory structure as the DFT version plus an additional `summary_ani.json`.
+
+### Animating with ANI Energies (`animate_reaction_ani.py`)
+
+The ANI counterpart of `animate_reaction.py`. Atoms are colored by element (CPK convention) since ANI does not provide partial charges.
+
+```bash
+python scripts/animate_reaction_ani.py \
+    --frames_dir trajectory_analysis_ani/C2H2N2O_rxn2091/xyz_frames \
+    --last_frames 8
+```
+
+## 6. Ground-Truth Animation (`animate_reaction_gt.py`)
+
+Animates the trajectory using the **ground-truth wB97x/6-31G(d) energies** that are already embedded in each XYZ file's comment line. No DFT or ANI computation is performed — only `numpy`, `matplotlib`, and `scipy` are required.
+
+```bash
+python scripts/animate_reaction_gt.py \
+    --frames_dir trajectory_analysis_ani/C2H2N2O_rxn2091/xyz_frames \
+    --last_frames 8
+```
+
+Output: `reaction_animation_gt.gif`.
+
+## 7. The `--include_reactant_and_product` Flag
+
+All three animation scripts (`animate_reaction.py`, `animate_reaction_ani.py`, `animate_reaction_gt.py`) support this flag. It is **on by default**.
+
+When enabled, the selected frames follow this pattern (for `--last_frames K`):
+
+```
+[0,  -K, -(K-1), ..., -1,  K+1]
+ ^   \_________________/    ^
+ |     last K frames        |
+ reactant                 product
+```
+
+- **Frame 0**: the reactant geometry (first frame of the trajectory).
+- **Frames -K to -1**: the last K frames of the trajectory.
+- **Frame K+1**: the product geometry.
+
+To disable and only use the last K frames (original behaviour):
+
+```bash
+python scripts/animate_reaction_gt.py --last_frames 8 --no-include_reactant_and_product
+```
+
+## 8. Energy Units — Important Notes
+
+The three methods output energies in **different units**. Be aware of this when comparing:
+
+| Source | Method | Native Unit | Typical Value (C2H2N2O) |
+|---|---|---|---|
+| **Ground truth** | wB97x/6-31G(d) from Transition1x H5 | **eV** | -7130 eV |
+| **ANI-2x** | `torchani.models.ANI2x` | **Hartree** | -262 Ha |
+| **DFT (ATK)** | QuantumATK `LCAOCalculator` (GGA.PBE) | **Hartree** | ~-262 Ha |
+
+Conversion: **1 Hartree = 27.211386 eV**.
+
+The ground-truth energies stored in the Transition1x dataset (`wB97x_6-31G(d).energy` field in the H5 file) are in **eV**. These are written into the XYZ comment line as `Energy=<value>` when frames are extracted by `extract_and_visualize.py`. The `animate_reaction_gt.py` script reads these values directly — no conversion is needed.
+
+ANI-2x and QuantumATK both output in **Hartree**. The animation scripts (`animate_reaction_ani.py`, `animate_reaction.py`) convert to eV internally before plotting.
+
+*Note: The key `original_energies_hartree` in `summary_ani.json` is a misnomer — those values are actually in eV (from the Transition1x dataset).*
+
+## 9. Full Scripts Overview
+
+| Script | Requires | Purpose |
+|---|---|---|
+| `extract_and_visualize.py` | numpy, h5py, matplotlib | Extract trajectories from H5, save XYZ frames, plot energy profiles |
+| `run_dft.py` | **atkpython** | Single-point DFT energy via QuantumATK (GGA.PBE) |
+| `run_ani.py` | torch, torchani | Single-point energy via ANI-2x neural network potential |
+| `run_trajectory_analysis.py` | **atkpython**, h5py, numpy, matplotlib | Batch trajectory analysis with QuantumATK DFT |
+| `run_trajectory_analysis_ani.py` | torch, torchani, h5py, numpy, matplotlib | Batch trajectory analysis with ANI-2x |
+| `animate_reaction.py` | **atkpython**, numpy, matplotlib, scipy | Animate trajectory with DFT energies + Mulliken charges |
+| `animate_reaction_ani.py` | torch, torchani, numpy, matplotlib, scipy | Animate trajectory with ANI-2x energies |
+| `animate_reaction_gt.py` | numpy, matplotlib, scipy | Animate trajectory with ground-truth wB97x/6-31G(d) energies (no model needed) |
