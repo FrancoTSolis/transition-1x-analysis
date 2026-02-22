@@ -1,0 +1,58 @@
+How to use templates:
+
+__________________ general notes __________________
+Variables named "TODO_x" must be specified for calculation to run. 
+Variables names "x_opt" can be excluded if desired. 
+------------------ ccsd_template ------------------
+Structure Variables:
+charge                              - TODO_CHARGE
+multiplicity                        - TODO_MULT
+coordinates (in xyz or zmol format) - TODO_MOL
+
+
+Calculation Variables:
+Basis                           - TODO_BASIS 
+Memory                          - mem_opt
+Type of Hartree-Fock            - hf_opt
+Hartree-Fock algorithm          - scf_opt
+Maximum number of HF iterations - scf_cycle_opt
+Integral Threshold              - thresh_opt
+HF convergence threshold        - conv_opt
+CC convergence threshold        - cc_conv_opt
+
+
+Recommendations:
+As discussed, start with STO-3G for the basis for test of project validity. 
+Memory - can likely run STO-3G without needing to specify. If you run into issues, set a number s.t. 1000 = 1GB. For the largest jobs I've run I have used 300000. If you hit that point, I would also specify the variable "MEM_STATIC 5000".
+Type of Hartree-Fock - since we're running transition states, should set this to TRUE. However, for "easy" systems should set to FALSE which saves half the memory. 
+The Hartree-Fock algorithm - start with DIIS-GDM, if issues persist run GDM. 
+Thresh - integral threshold for neglecting, 15 should be more than adequate. 
+scf convergence - 10 should be good for these cases. Lower if calculations almost converge but don't quite hit the threshold. Or, you could increase the number of iterations in the number of iterations.
+scf iterations - see above. 
+CC_convergence - 7 should be good.
+
+
+_________________ mp2_template __________________ 
+
+Same structure variables and calculation variables. Should be good to use same parameters.
+
+
+
+_________________ [cc/mp2]_slurm_generator.sh  __________________ 
+
+Calculation Variables:
+
+todo - jobname, usually just the molecule name
+set the slurm variables as proper for your allocation. 
+
+________________ Sample output job ______________________________
+
+ These indicate notable parts in the output --------------------------------------------------------------!!!!!!!!
+
+
+_____________________ Other Notes ______________________________
+
+Once you have qchem I will send where/how to modify to dump amplitudes/orbital coefficients. 
+Qchem cannot read in .xyz files so you will need to put the coordinates into the input files (TODO_MOL). 
+
+

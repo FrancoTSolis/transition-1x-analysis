@@ -1,0 +1,16 @@
+$molecule
+TODO_CHARGE TODO_MULT
+TODO_MOL 
+$end
+
+$rem
+	METHOD          mp2
+	BASIS TODO_BASIS
+	MEM_TOTAL TODO_MEM 
+        UNRESTRICTED hf_opt
+        INTERNAL_STABILITY TRUE 
+        SCF_ALGORITHM scf_opt
+        MAX_SCF_CYCLES scf_cycle_opt	
+        N_FROZEN_CORE fc
+$end
+

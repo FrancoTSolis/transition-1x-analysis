@@ -1,0 +1,16 @@
+14
+[3,3] Sigmatropic Rearrangements All calculations were carried out using Gaussian 16 Rev. A.03.68 Optimized geometries and frequencies were computed at the M06-2X/6-311+G(d,p) level of theory followed by CCSD(T)/cc-pVTZ single point energies. All stationary points were confirmed to be energy minima (zero imaginary frequencies) or first-order saddle points (one imaginary frequency). The forward and reverse free energy barriers, ΔG‡, were calculated under the quasi-RRHO approximation of Grimme and co-workers69 using AaronTools70 by combining the CCSD(T)/cc-pVTZ electronic energies with thermal and entropic corrections from the M06-2X/6-311+G(d,p) frequencies. Claisen Rearrangement Transition State | 0 1
+C          1.215804       -0.579377        0.252971
+C          1.471876        0.661540       -0.294775
+O          0.357748       -1.382391       -0.255275
+C         -1.330655       -0.780522        0.183694
+C         -1.306470        0.533972       -0.295753
+C         -0.474912        1.444998        0.328289
+H          1.582783       -0.790571        1.266589
+H          2.211156        1.306180        0.168621
+H          1.252451        0.834759       -1.339760
+H         -1.897208       -1.537806       -0.342408
+H         -1.234077       -0.950402        1.250682
+H         -1.612477        0.715924       -1.320269
+H         -0.338659        2.440896       -0.078703
+H         -0.279813        1.356482        1.390890

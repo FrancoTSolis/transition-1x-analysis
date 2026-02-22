@@ -1,0 +1,18 @@
+$molecule
+TODO_CHARGE TODO_MULT
+TODO_MOL 
+$end
+
+$rem
+	METHOD          ccsd
+	BASIS TODO_BASIS
+	MEM_TOTAL mem_opt 
+        UNRESTRICTED hf_opt
+        INTERNAL_STABILITY TRUE
+        SCF_ALGORITHM scf_opt
+        MAX_SCF_CYCLES scf_cycle_opt
+	THRESH thresh_opt
+	SCF_CONVERGENCE conv_opt
+	CC_CONVERGENCE	cc_conv_opt
+$end
+

@@ -1,0 +1,6 @@
+Format: XYZ (Angstroms)
+Precision: Full precision from source text preserved.
+Reference: Jeffery Richardson, Varinder K. Aggarwal and Jeremy N. Harvey
+Source: JA025633n – Supplementary Material
+Context: Epoxide Formation from Sulfur Ylides and Aldehydes.
+Energies found in file are preserved in the comment line of each XYZ file.

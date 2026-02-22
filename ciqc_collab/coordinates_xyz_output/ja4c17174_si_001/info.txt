@@ -1,0 +1,9 @@
+Format: XYZ (Angstroms)
+Precision: Full precision from source text preserved.
+Reference: [3,3] Sigmatropic Rearrangements (JA4C17174)
+Source: compiled_raw_pages_ja4c17174_si_001.txt
+Context: 
+- Stationary points (minima/saddle points).
+- Optimization: M06-2X/6-311+G(d,p)
+- Single Points: CCSD(T)/cc-pVTZ
+NOTE: For the larger (harder) molecules in this set, consider using MP2 approximation for CCSD single point energy calculations.

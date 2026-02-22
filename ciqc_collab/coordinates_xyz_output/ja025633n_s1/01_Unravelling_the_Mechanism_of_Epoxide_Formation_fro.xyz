@@ -1,0 +1,18 @@
+16
+Unravelling the Mechanism of Epoxide Formation from Sulfur Ylides and Aldehydes JA025633n – Supplementary Material Jeffery Richardson, Varinder K. Aggarwal and Jeremy N. Harvey School of Chemistry, University of Bristol, Cantock’s Close, Bristol BS8 1TS U.K. I. Energies and Geometries. point at the B3LYP/6-31+G*(acetonitrile) or B3LYP/6-31G*(acetonitrile) geometry. Energies in a.u., Geometries as Cartesian coordinates in Å. Torsional Rotation Transition State (7). | All energies are B3LYP, and obtained after geometry optimisation, unless mentioned otherwise. GP = GP, SP, SP = single | 6-31+G* (GP, SP) = -631.735422 | 6-31+G* (CH3CN) = -631.809820 | MP2/6-311+G** (GP, SP) = -630.561211 | 6-311+G** (GP, SP) = -631.826093 | 6-311+G** (CH3CN, SP) = -631.900177
+O           -0.0032          1.0395          0.4071
+C           -0.0346         -0.0214          1.2643
+C            1.3583         -0.2925          1.9196
+S            1.3201          0.0241          3.7243
+C            2.9472         -0.5940          4.2510
+C            0.1834         -1.2796          4.2950
+H           -0.3212         -0.9735          0.7695
+H           -0.7896          0.1128          2.0718
+H            2.0860          0.4200          1.5200
+H            1.7287         -1.3126          1.7737
+H            2.9696         -0.6066          5.3432
+H            3.6902          0.1133          3.8714
+H            3.1182         -1.5918          3.8386
+H            0.2336         -1.3183          5.3857
+H            0.4535         -2.2397          3.8478
+H           -0.8207         -0.9799          3.9846
