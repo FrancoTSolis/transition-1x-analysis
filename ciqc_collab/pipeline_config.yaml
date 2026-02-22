@@ -1,0 +1,49 @@
+# ============================================================
+# Q-Chem Pipeline Configuration
+# ============================================================
+# This file is auto-discovered by the pipeline when it sits
+# in or above the working directory.  Override any value via
+# CLI flags (flags take precedence).
+# ============================================================
+
+qchem:
+  # --- Method & Basis ---
+  method: "auto"              # auto, ccsd, ccsd(t), or mp2  (auto = ccsd(t) for ≤40 atoms, mp2 for larger)
+  basis: "STO-3G"            # Start small; scale up to 6-31G*, cc-pVTZ, def2-TZVPD
+  mem_total: null             # Memory in MB (null = let Q-Chem decide; 24000 = 24 GB)
+
+  # --- SCF Settings ---
+  unrestricted: true          # UHF for transition states (set false for "easy" systems)
+  internal_stability: true    # Always check orbital stability for TS geometries
+  scf_algorithm: "DIIS_GDM"  # Alternatives: GDM (more robust, slower)
+  max_scf_cycles: 200
+  thresh: 15                  # Integral threshold (10^-15)
+  scf_convergence: 10        # SCF convergence (10^-10); lower to 8 if stalling
+
+  # --- Coupled Cluster Settings ---
+  cc_convergence: 7           # CC convergence (10^-7)
+  n_frozen_core: "FC"         # FC = freeze standard core; 0 = all-electron
+
+  # --- Output Control ---
+  gui: 2                      # Generate .fchk file with MO coefficients
+
+
+slurm:
+  account: null               # REQUIRED for SLURM mode — your allocation code
+  time: "08:00:00"            # Wall-time limit
+  nodes: 1
+  ntasks: 1
+  cpus_per_task: 18
+  constraint: "cpu"
+  qos: "regular"
+  modules:
+    - qchem
+  extra_exports: {}           # e.g. { "OMP_NUM_THREADS": "18" }
+
+
+# Override charge/multiplicity for specific molecules.
+# Keys are matched as filename prefixes.
+charge_mult_overrides:
+  "02_Cationic_Aza_Cope": [1, 1]
+  # Add more overrides here as needed, e.g.:
+  # "some_radical_ts": [0, 2]
