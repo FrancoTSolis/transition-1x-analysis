@@ -188,7 +188,7 @@ def main():
     )
     parser.add_argument(
         "--h5_path", type=str,
-        default="Transition-State-Generation-Flow/dataset/transition1x/data/Transition1x.h5",
+        default="data/transition1x.h5",
         help="Path to h5 file",
     )
     parser.add_argument(

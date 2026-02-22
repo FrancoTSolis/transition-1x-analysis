@@ -127,7 +127,7 @@ def visualize_trajectory(atomic_numbers, positions, energies, output_dir):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Extract and visualize transition state trajectory")
-    parser.add_argument("--h5_path", type=str, default="Transition-State-Generation-Flow/dataset/transition1x/data/transition1x.h5", help="Path to h5 file")
+    parser.add_argument("--h5_path", type=str, default="data/transition1x.h5", help="Path to h5 file")
     parser.add_argument("--output_dir", type=str, default="extracted_data", help="Output directory")
     parser.add_argument("--formula", type=str, default="C2H2N2O", help="Chemical formula to select")
     parser.add_argument("--rxn_id", type=str, default="rxn2091", help="Reaction ID to select")

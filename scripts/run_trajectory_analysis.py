@@ -121,7 +121,7 @@ def process_trajectory(f, formula, rxn_id, args):
 
 def main():
     parser = argparse.ArgumentParser(description="Run trajectory analysis with QuantumATK")
-    parser.add_argument("--h5_path", type=str, default="Transition-State-Generation-Flow/dataset/transition1x/data/transition1x.h5", help="Path to h5 file")
+    parser.add_argument("--h5_path", type=str, default="data/transition1x.h5", help="Path to h5 file")
     parser.add_argument("--output_dir", type=str, default="trajectory_analysis", help="Output directory")
     parser.add_argument("--formula", type=str, default="C2H2N2O", help="Chemical formula to select")
     parser.add_argument("--rxn_id", type=str, default="rxn2091", help="Reaction ID to select")

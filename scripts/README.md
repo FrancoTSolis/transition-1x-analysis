@@ -45,7 +45,7 @@ The main script is `run_trajectory_analysis.py`. It handles data extraction, run
 ### Basic Usage
 Run analysis on a single random trajectory:
 ```bash
-python scripts/run_trajectory_analysis.py --h5_path Transition-State-Generation-Flow/dataset/transition1x/data/Transition1x.h5
+python scripts/run_trajectory_analysis.py --h5_path data/transition1x.h5
 ```
 
 ### Options
@@ -96,7 +96,7 @@ This script extracts a trajectory from the H5 file, saves XYZ frames, and plots 
 
 ```bash
 python scripts/extract_and_visualize.py \
-    --h5_path Transition-State-Generation-Flow/dataset/transition1x/data/Transition1x.h5 \
+    --h5_path data/transition1x.h5 \
     --formula C2H2N2O --rxn_id rxn2091 \
     --output_dir extracted_data_check
 ```
