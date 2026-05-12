@@ -244,6 +244,22 @@ The `positions` at the reaction level is the full trajectory (hundreds of
 frames). The `reactant`, `transition_state`, and `product` subgroups each
 contain a **single optimized geometry** -- these are what we extract.
 
+## NFS Performance: Why `run_single.sh` Uses `cd`
+
+Q-Chem's launch scripts (`serial.csh`, `qchem`) create temporary files
+(`.qcin`, `.out.files/`, `.in.fchk`) in the **current working directory**.
+If Q-Chem is invoked from a directory containing tens of thousands of entries
+(like `jobs/` with 30k subdirectories), every `open()` / `stat()` / `creat()`
+triggers an NFS LOOKUP against that huge directory. With multiple processes
+doing this concurrently, NFS serializes the lookups and throughput collapses.
+
+In testing, running 12 parallel jobs from the top-level `ccsd_amplitudes/`
+directory resulted in **~390s per job**. After changing `run_single.sh` to
+`cd` into each job's own directory (which contains only 2--3 files) before
+invoking Q-Chem, the same jobs completed in **~10--25s** -- a 15--40x
+improvement. This also keeps all Q-Chem artifacts (`.fchk`, `.out.files/`,
+etc.) contained inside each job directory rather than littering the parent.
+
 ## Notes
 
 - The custom Q-Chem dev build (SVN trunk r47985) does not require a license.

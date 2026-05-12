@@ -5,10 +5,11 @@
 # Example: bash run_single.sh jobs/C2H2N2O_rxn2091_TS 1
 #
 # Uses local scratch (/tmp) instead of NFS for I/O performance.
+# Runs Q-Chem from inside the job directory so .fchk lands there.
 
 set -euo pipefail
 
-JOB_DIR="$1"
+JOB_DIR="$(cd "$1" && pwd)"
 THREADS="${2:-1}"
 
 if [ ! -d "$JOB_DIR" ]; then
@@ -23,6 +24,7 @@ if [ -z "$INPUT_FILE" ]; then
 fi
 
 JOB_NAME=$(basename "$JOB_DIR")
+INPUT_BASENAME=$(basename "$INPUT_FILE")
 OUTPUT_FILE="$JOB_DIR/${JOB_NAME}.out"
 SCRATCH_NAME="ccsd_amp_${JOB_NAME}"
 
@@ -43,32 +45,35 @@ fi
 rm -f "$FAIL_MARKER"
 rm -rf "$QCSCRATCH/$SCRATCH_NAME" 2>/dev/null || true
 
+# cd into job dir so Q-Chem writes .fchk there
+cd "$JOB_DIR"
+
 echo "$(date +%Y-%m-%dT%H:%M:%S) START $JOB_NAME (threads=$THREADS)"
 
 START_TIME=$(date +%s)
-if qchem -save -nt "$THREADS" "$INPUT_FILE" "$OUTPUT_FILE" "$SCRATCH_NAME" 2>/dev/null; then
+if qchem -save -nt "$THREADS" "$INPUT_BASENAME" "${JOB_NAME}.out" "$SCRATCH_NAME" 2>/dev/null; then
     END_TIME=$(date +%s)
     WALL=$(( END_TIME - START_TIME ))
 
-    CCSD_E=$(grep "CCSD total energy" "$OUTPUT_FILE" 2>/dev/null | tail -1 | awk '{print $NF}')
+    CCSD_E=$(grep "CCSD total energy" "${JOB_NAME}.out" 2>/dev/null | tail -1 | awk '{print $NF}')
     CCSD_E="${CCSD_E:-N/A}"
 
     for DATNAME in ccsd_t1.dat ccsd_t2.dat mp2_t2.dat mp2_t1.dat; do
         DATPATH="$QCSCRATCH/$SCRATCH_NAME/$DATNAME"
         if [ -f "$DATPATH" ]; then
-            cp "$DATPATH" "$JOB_DIR/"
+            cp "$DATPATH" .
         fi
     done
 
-    echo "$CCSD_E" > "$JOB_DIR/ccsd_energy.txt"
-    echo "$WALL" > "$JOB_DIR/wall_time.txt"
-    touch "$DONE_MARKER"
+    echo "$CCSD_E" > ccsd_energy.txt
+    echo "$WALL" > wall_time.txt
+    touch .done
 
     echo "$(date +%Y-%m-%dT%H:%M:%S) DONE  $JOB_NAME  E=$CCSD_E  wall=${WALL}s"
 else
     END_TIME=$(date +%s)
     WALL=$(( END_TIME - START_TIME ))
-    echo "QCHEM_FAILURE" > "$FAIL_MARKER"
+    echo "QCHEM_FAILURE" > .failed
     echo "$(date +%Y-%m-%dT%H:%M:%S) FAIL  $JOB_NAME  wall=${WALL}s"
 fi
 
