@@ -1,0 +1,20 @@
+# Large dataset files
+data/*.h5
+**/*.fchk
+ciqc_collab/runs/
+ciqc_collab/runs_prev/
+**/__pycache__/
+
+# CCSD amplitude jobs (generated, large)
+ccsd_amplitudes/jobs/
+ccsd_amplitudes/jobs_*/
+ccsd_amplitudes/benchmark/
+ccsd_amplitudes/*.log
+ccsd_amplitudes/*.dat
+ccsd_amplitudes/*.fchk
+ccsd_amplitudes/.*.qcin.*
+ccsd_amplitudes/*.out.files/
+
+# Stale Q-Chem scratch artifacts
+*.dat
+!ccsd_amplitudes/extract_geometries.py
