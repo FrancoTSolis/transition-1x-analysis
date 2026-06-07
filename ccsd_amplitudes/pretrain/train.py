@@ -422,6 +422,9 @@ def parse_args() -> argparse.Namespace:
                         help="Use HF orbital energies instead of learned positional embeddings")
     parser.add_argument("--use-mo-coeffs", action="store_true",
                         help="Use atom-aware set pooling of MO coefficients for orbital encoding")
+    parser.add_argument("--species-filter", type=str, default=None,
+                        choices=["TS", "RP"],
+                        help="Filter data by species: TS=transition states only, RP=reactants+products only")
     return parser.parse_args()
 
 
@@ -454,7 +457,7 @@ def main():
         logger.error(f"Jobs directory not found: {jobs_dir}")
         sys.exit(1)
 
-    dataset = CCSDAmplitudeDataset(jobs_dir)
+    dataset = CCSDAmplitudeDataset(jobs_dir, species_filter=args.species_filter)
     logger.info(f"Dataset size: {len(dataset)} molecules")
 
     n_val = int(len(dataset) * args.val_split)

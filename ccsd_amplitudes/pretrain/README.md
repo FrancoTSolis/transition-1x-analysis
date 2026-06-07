@@ -250,6 +250,9 @@ Key arguments:
 | `--no-amp` | False | Disable mixed precision (recommended for stability) |
 | `--dropout` | 0.1 | Dropout rate (set to 0.0 if NaN issues) |
 | `--resume` | None | Path to checkpoint for resuming |
+| `--use-hf-energies` | False | Use HF orbital energies for orbital encoding |
+| `--use-mo-coeffs` | False | Use atom-aware MO coefficient pooling |
+| `--species-filter` | None | Filter data: `TS` = transition states only, `RP` = reactants+products only |
 
 ### Monitoring
 
@@ -327,9 +330,45 @@ Default config (`ModelConfig`):
 For the current dataset (norb up to 88, batch_size=4), a reduced config
 (embed_dim=128, num_layers=4) fits in ~40GB GPU memory.
 
+## Experiments
+
+### Orbital Encoding Ablation
+
+Three orbital encoding modes run in parallel on separate GPUs:
+
+| Experiment | GPU | Flag | Checkpoint dir |
+|:-----------|:----|:-----|:---------------|
+| Positional (baseline) | 0 | (none) | `checkpoints/` |
+| HF orbital energies | 1 | `--use-hf-energies` | `checkpoints_hf/` |
+| MO coefficient pooling | 2 | `--use-mo-coeffs` | `checkpoints_mo/` |
+
+Launch: `bash launch_all_training.sh`
+
+### Species-Filtered Experiments
+
+Test whether the model benefits from seeing only transition states (which
+have distinct electronic structure) or only equilibrium geometries (reactants
++ products). The Transition1x dataset has ~10k reactants, ~10k TS, ~10k
+products.
+
+| Experiment | GPU | Flag | Checkpoint dir | Data size |
+|:-----------|:----|:-----|:---------------|:----------|
+| TS only | 3 | `--species-filter TS` | `checkpoints_ts/` | ~10k |
+| R+P only | 4 | `--species-filter RP` | `checkpoints_rp/` | ~20k |
+
+Launch: `bash launch_species_experiments.sh`
+
+**Motivation**: Transition states have qualitatively different coupled-cluster
+amplitudes than equilibrium structures (stronger multi-reference character,
+larger T1 diagnostics). Training on TS alone tests whether the model can
+specialize; training on R+P tests generalization from equilibrium to
+non-equilibrium.
+
 ## References
 
 - Edge Transformer: Mueller et al., "Towards Principled Graph Transformers",
   NeurIPS 2024. arXiv:2401.10119
 - Compressed Double Factorization: Lin et al. (2025), arXiv:2511.22476
 - ffsim: `UCJOpSpinBalanced.from_t_amplitudes` for LUCJ target generation
+- MoLe: Thiede et al., "Molecular Orbital Learning", arXiv:2602.20232
+- CEONET: King et al., PNAS 2025, doi:10.1073/pnas.2510235122

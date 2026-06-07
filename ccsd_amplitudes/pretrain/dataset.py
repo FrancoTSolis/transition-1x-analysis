@@ -138,15 +138,33 @@ class CCSDAmplitudeDataset(Dataset):
     in __getitem__.
     """
 
-    def __init__(self, jobs_dir: str | Path) -> None:
+    def __init__(self, jobs_dir: str | Path, species_filter: str | None = None) -> None:
+        """
+        Args:
+            jobs_dir: Path to directory containing job subdirectories.
+            species_filter: Filter jobs by species type. Options:
+                None  — all species (R, TS, P)
+                "TS"  — only transition states
+                "RP"  — only reactants and products (no TS)
+        """
         self.jobs_dir = Path(jobs_dir)
         self.job_names: list[str] = []
         self._norbs: list[int] = []
+
+        _allowed_suffixes: set[str] | None = None
+        if species_filter == "TS":
+            _allowed_suffixes = {"_TS"}
+        elif species_filter == "RP":
+            _allowed_suffixes = {"_R", "_P"}
 
         for d in sorted(self.jobs_dir.iterdir()):
             if not d.is_dir():
                 continue
             if (d / ".done").exists() and (d / ".lucj_done").exists():
+                if _allowed_suffixes is not None:
+                    suffix = "_" + d.name.rsplit("_", 1)[-1]
+                    if suffix not in _allowed_suffixes:
+                        continue
                 self.job_names.append(d.name)
                 meta_path = d / "lucj_metadata.json"
                 with open(meta_path) as f:
