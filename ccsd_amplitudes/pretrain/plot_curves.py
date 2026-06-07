@@ -24,6 +24,7 @@ import numpy as np
 def read_log(log_path: Path):
     train_steps, train_losses, train_j, train_u = [], [], [], []
     val_epochs, val_losses, val_j, val_u = [], [], [], []
+    # Also accept kappa_loss as u_loss for backward compat
 
     with open(log_path) as f:
         for line in f:
@@ -39,12 +40,12 @@ def read_log(log_path: Path):
                 train_steps.append(entry["step"])
                 train_losses.append(entry["loss"])
                 train_j.append(entry.get("j_loss", 0))
-                train_u.append(entry.get("u_loss", 0))
+                train_u.append(entry.get("kappa_loss", entry.get("u_loss", 0)))
             elif entry.get("type") == "val_epoch":
                 val_epochs.append(entry["epoch"])
                 val_losses.append(entry["val_loss"])
                 val_j.append(entry.get("val_j_loss", 0))
-                val_u.append(entry.get("val_u_loss", 0))
+                val_u.append(entry.get("val_kappa_loss", entry.get("val_u_loss", 0)))
 
     return {
         "train_steps": np.array(train_steps),
@@ -102,7 +103,7 @@ def plot(data, output_path: Path):
         ax.grid(True, alpha=0.3)
 
         ax = axes[2]
-        ax.set_title("U Loss")
+        ax.set_title("Kappa Loss")
         ax.plot(data["train_steps"], data["train_u"],
                 alpha=0.2, color="C0")
         if len(data["train_u"]) > 50:

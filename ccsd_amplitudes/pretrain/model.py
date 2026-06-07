@@ -324,10 +324,12 @@ class TransformerLayer(nn.Module):
 
 
 class DecodeHeads(nn.Module):
-    """Predict LUCJ J and U matrices from final pair embeddings.
+    """Predict LUCJ J and kappa matrices from final pair embeddings.
 
-    J head: symmetric via g(z_pq) + g(z_qp), then sparsity-masked.
-    U head: predict real and imaginary parts of unitary matrices.
+    J head: symmetric via g(z_pq) + g(z_qp).
+    Kappa head: kappa_real is anti-symmetric via f(z_pq) - f(z_qp),
+                kappa_imag is symmetric via f(z_pq) + f(z_qp).
+    U is reconstructed as expm(kappa_real + i*kappa_imag) at inference time.
     """
 
     def __init__(self, config: ModelConfig):
@@ -335,19 +337,17 @@ class DecodeHeads(nn.Module):
         d = config.embed_dim
         n_reps = config.n_reps
 
-        # J: one MLP per (rep, spin_type). 2 spin types → 2*n_reps heads.
         n_j_heads = 2 * n_reps
         self.j_mlps = nn.ModuleList([
             nn.Sequential(nn.Linear(d, d // 2), nn.GELU(), nn.Linear(d // 2, 1))
             for _ in range(n_j_heads)
         ])
 
-        # U: one (real, imag) MLP pair per rep.
-        self.u_real_mlps = nn.ModuleList([
+        self.kappa_real_mlps = nn.ModuleList([
             nn.Sequential(nn.Linear(d, d // 2), nn.GELU(), nn.Linear(d // 2, 1))
             for _ in range(n_reps)
         ])
-        self.u_imag_mlps = nn.ModuleList([
+        self.kappa_imag_mlps = nn.ModuleList([
             nn.Sequential(nn.Linear(d, d // 2), nn.GELU(), nn.Linear(d // 2, 1))
             for _ in range(n_reps)
         ])
@@ -359,12 +359,12 @@ class DecodeHeads(nn.Module):
         z_active = z[:, :norb, :norb]
         z_T = z_active.transpose(1, 2)
 
-        n_reps = len(self.u_real_mlps)
+        n_reps = len(self.kappa_real_mlps)
         N = z.shape[1]
 
         j_out = z.new_zeros(B, n_reps, 2, N, N)
-        u_real_out = z.new_zeros(B, n_reps, N, N)
-        u_imag_out = z.new_zeros(B, n_reps, N, N)
+        kr_out = z.new_zeros(B, n_reps, N, N)
+        ki_out = z.new_zeros(B, n_reps, N, N)
 
         for rep in range(n_reps):
             for spin in range(2):
@@ -373,13 +373,18 @@ class DecodeHeads(nn.Module):
                 g_qp = mlp(z_T).squeeze(-1)
                 j_out[:, rep, spin, :norb, :norb] = g_pq + g_qp
 
-            u_real_out[:, rep, :norb, :norb] = self.u_real_mlps[rep](z_active).squeeze(-1)
-            u_imag_out[:, rep, :norb, :norb] = self.u_imag_mlps[rep](z_active).squeeze(-1)
+            f_pq = self.kappa_real_mlps[rep](z_active).squeeze(-1)
+            f_qp = self.kappa_real_mlps[rep](z_T).squeeze(-1)
+            kr_out[:, rep, :norb, :norb] = f_pq - f_qp
+
+            h_pq = self.kappa_imag_mlps[rep](z_active).squeeze(-1)
+            h_qp = self.kappa_imag_mlps[rep](z_T).squeeze(-1)
+            ki_out[:, rep, :norb, :norb] = h_pq + h_qp
 
         return {
             "j_pred": j_out,
-            "u_real_pred": u_real_out,
-            "u_imag_pred": u_imag_out,
+            "kappa_real_pred": kr_out,
+            "kappa_imag_pred": ki_out,
         }
 
 

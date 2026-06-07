@@ -147,20 +147,42 @@ where $g: \mathbb{R}^d \to \mathbb{R}$ is `Linear(d, d//2) -> GELU -> Linear(d//
 Symmetry is enforced by construction. There are 4 heads total
 (2 reps $\times$ 2 spin types: $\alpha\alpha$ and $\alpha\beta$).
 
-**U head** (real and imaginary parts):
+**Kappa head** (anti-Hermitian generator of U):
 
-$$U_\text{re}^\mu[p,q] = f_\text{re}^\mu(\mathbf{z}_{pq}), \quad U_\text{im}^\mu[p,q] = f_\text{im}^\mu(\mathbf{z}_{pq})$$
+Rather than predicting $U$ directly, the model predicts
+$\kappa = \log(U)$, the matrix logarithm. Since $U$ is unitary,
+$\kappa$ is anti-Hermitian: its real part is anti-symmetric and its
+imaginary part is symmetric. These constraints are enforced by
+construction:
 
-Same MLP architecture as J heads. There are 4 heads total
-(2 reps $\times$ {real, imag}).
+$$\kappa_\text{re}^\mu[p,q] = f^\mu(\mathbf{z}_{pq}) - f^\mu(\mathbf{z}_{qp}) \quad \text{(anti-symmetric)}$$
+$$\kappa_\text{im}^\mu[p,q] = h^\mu(\mathbf{z}_{pq}) + h^\mu(\mathbf{z}_{qp}) \quad \text{(symmetric)}$$
+
+At inference, $U = \exp(\kappa_\text{re} + i\,\kappa_\text{im})$ is
+reconstructed via matrix exponential.
+
+**Why kappa instead of U?** Diagnostic analysis revealed that predicting
+$U$ directly caused the model to collapse to near-zero predictions. The
+target $U$ matrices are dense complex unitary matrices with entries
+spread across $[-0.8, 0.8]$ — predicting all $n_\text{orb}^2$ entries
+accurately is extremely hard. The MSE of predicting zeros was ~102 per
+sample, and the trained model could not improve beyond this baseline
+(U loss stuck at ~131, *worse* than zero). Meanwhile, $\kappa$ provides
+structured targets with built-in anti-Hermitian constraints that
+regularize the output space and halve the effective number of free
+parameters.
+
+See `diagnose_loss.png` for the visualization that motivated this change.
 
 ### 5. Loss Function
 
-$$\mathcal{L} = \frac{1}{K} \sum_{k=1}^K \left[ \sum_\mu \bigl\| \hat{J}_\mu^{(k)} - J_\mu^{*(k)} \bigr\|_F^2 \;+\; \alpha \sum_\mu \bigl( \bigl\| \hat{U}_{\text{re},\mu}^{(k)} - U_{\text{re},\mu}^{*(k)} \bigr\|_F^2 + \bigl\| \hat{U}_{\text{im},\mu}^{(k)} - U_{\text{im},\mu}^{*(k)} \bigr\|_F^2 \bigr) \right]$$
+$$\mathcal{L} = \frac{1}{K} \sum_{k=1}^K \left[ \sum_\mu \bigl\| \hat{J}_\mu^{(k)} - J_\mu^{*(k)} \bigr\|_F^2 \;+\; \alpha \sum_\mu \bigl( \bigl\| \hat{\kappa}_{\text{re},\mu}^{(k)} - \kappa_{\text{re},\mu}^{*(k)} \bigr\|_F^2 + \bigl\| \hat{\kappa}_{\text{im},\mu}^{(k)} - \kappa_{\text{im},\mu}^{*(k)} \bigr\|_F^2 \bigr) \right]$$
 
 - $\alpha$: balancing weight (default 1.0)
 - J loss is computed on non-padded entries only
-- U loss is computed on non-padded entries only
+- Kappa loss is computed on non-padded entries only
+- U loss is reported for monitoring (via $U = \exp(\hat\kappa)$) but not
+  used for gradient computation
 
 ## Data Loading
 
@@ -173,7 +195,8 @@ with both `.done` and `.lucj_done` markers. Each job provides:
 
 **Targets:**
 - `lucj_diag_coulomb_mats.npy` $\to$ `j_target`: $(L, 2, n_\text{orb}, n_\text{orb})$
-- `lucj_orbital_rotations.npy` $\to$ `u_real_target`, `u_imag_target`: $(L, n_\text{orb}, n_\text{orb})$
+- `kappa_real.npy` $\to$ `kappa_real_target`: $(L, n_\text{orb}, n_\text{orb})$ (precomputed via `precompute_kappa.py`)
+- `kappa_imag.npy` $\to$ `kappa_imag_target`: $(L, n_\text{orb}, n_\text{orb})$
 
 **Variable-size handling:** Molecules have $n_\text{orb}$ from 30 to 88.
 The `collate_fn` pads all tensors to the maximum size in the batch and

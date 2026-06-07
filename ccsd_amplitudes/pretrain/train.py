@@ -80,55 +80,42 @@ class LUCJLoss(nn.Module):
         self,
         j_pred: torch.Tensor,
         j_target: torch.Tensor,
-        u_real_pred: torch.Tensor,
-        u_real_target: torch.Tensor,
-        u_imag_pred: torch.Tensor,
-        u_imag_target: torch.Tensor,
+        kappa_real_pred: torch.Tensor,
+        kappa_real_target: torch.Tensor,
+        kappa_imag_pred: torch.Tensor,
+        kappa_imag_target: torch.Tensor,
         norbs: torch.Tensor,
         max_norb: int,
     ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
-        """Compute loss with masking for variable-size molecules.
-
-        Args:
-            j_pred: (B, n_layers, 2, max_norb, max_norb) predicted J matrices
-            j_target: same shape, ground truth
-            u_real_pred: (B, n_layers, max_norb, max_norb) real part of U
-            u_real_target: same shape
-            u_imag_pred: (B, n_layers, max_norb, max_norb) imag part of U
-            u_imag_target: same shape
-            norbs: (B,) actual norb per sample
-            max_norb: max norb in batch (padding dimension)
+        """Compute loss on J and kappa with masking for variable-size molecules.
 
         Returns:
-            (total_loss, j_loss, u_loss)
+            (total_loss, j_loss, kappa_loss)
         """
         batch_size = j_pred.shape[0]
         device = j_pred.device
 
         j_loss_total = torch.tensor(0.0, device=device)
-        u_loss_total = torch.tensor(0.0, device=device)
+        kappa_loss_total = torch.tensor(0.0, device=device)
 
         for i in range(batch_size):
             n = norbs[i].item()
 
-            # J loss: only on mask-valid (tridiagonal/diagonal) non-padded entries
-            j_mask = self._get_j_mask(n, device)  # (2, n, n)
+            j_mask = self._get_j_mask(n, device)
             j_diff = j_pred[i, :, :, :n, :n] - j_target[i, :, :, :n, :n]
-            # j_diff: (n_layers, 2, n, n), j_mask: (2, n, n)
             masked_diff = j_diff * j_mask.unsqueeze(0).float()
             j_loss_total = j_loss_total + masked_diff.pow(2).sum()
 
-            # U loss: all non-padded entries
-            u_real_diff = u_real_pred[i, :, :n, :n] - u_real_target[i, :, :n, :n]
-            u_imag_diff = u_imag_pred[i, :, :n, :n] - u_imag_target[i, :, :n, :n]
-            u_loss_total = u_loss_total + u_real_diff.pow(2).sum()
-            u_loss_total = u_loss_total + u_imag_diff.pow(2).sum()
+            kr_diff = kappa_real_pred[i, :, :n, :n] - kappa_real_target[i, :, :n, :n]
+            ki_diff = kappa_imag_pred[i, :, :n, :n] - kappa_imag_target[i, :, :n, :n]
+            kappa_loss_total = kappa_loss_total + kr_diff.pow(2).sum()
+            kappa_loss_total = kappa_loss_total + ki_diff.pow(2).sum()
 
         j_loss = j_loss_total / batch_size
-        u_loss = u_loss_total / batch_size
-        total_loss = j_loss + self.alpha * u_loss
+        kappa_loss = kappa_loss_total / batch_size
+        total_loss = j_loss + self.alpha * kappa_loss
 
-        return total_loss, j_loss, u_loss
+        return total_loss, j_loss, kappa_loss
 
 
 # ---------------------------------------------------------------------------
@@ -229,7 +216,7 @@ def train_one_epoch(
     model.train()
     total_loss = 0.0
     total_j_loss = 0.0
-    total_u_loss = 0.0
+    total_kappa_loss = 0.0
     num_batches = 0
 
     for batch in loader:
@@ -241,13 +228,13 @@ def train_one_epoch(
         use_amp = scaler is not None
         with torch.amp.autocast("cuda", enabled=use_amp):
             outputs = model(batch)
-            loss, j_loss, u_loss = criterion(
+            loss, j_loss, kappa_loss = criterion(
                 j_pred=outputs["j_pred"],
                 j_target=batch["j_target"],
-                u_real_pred=outputs["u_real_pred"],
-                u_real_target=batch["u_real_target"],
-                u_imag_pred=outputs["u_imag_pred"],
-                u_imag_target=batch["u_imag_target"],
+                kappa_real_pred=outputs["kappa_real_pred"],
+                kappa_real_target=batch["kappa_real_target"],
+                kappa_imag_pred=outputs["kappa_imag_pred"],
+                kappa_imag_target=batch["kappa_imag_target"],
                 norbs=batch["norbs"],
                 max_norb=outputs["j_pred"].shape[-1],
             )
@@ -268,21 +255,21 @@ def train_one_epoch(
 
         total_loss += loss.item()
         total_j_loss += j_loss.item()
-        total_u_loss += u_loss.item()
+        total_kappa_loss += kappa_loss.item()
         num_batches += 1
 
         if global_step % log_interval == 0:
             lr = scheduler.get_last_lr()[0]
             logger.info(
                 f"step={global_step:6d}  loss={loss.item():.6f}  "
-                f"j_loss={j_loss.item():.6f}  u_loss={u_loss.item():.6f}  "
+                f"j_loss={j_loss.item():.6f}  kappa_loss={kappa_loss.item():.6f}  "
                 f"lr={lr:.2e}"
             )
             if json_log_file is not None:
                 json_log_file.write(json_mod.dumps({
                     "type": "train_step", "step": global_step,
                     "loss": loss.item(), "j_loss": j_loss.item(),
-                    "u_loss": u_loss.item(), "lr": lr,
+                    "kappa_loss": kappa_loss.item(), "lr": lr,
                 }) + "\n")
                 json_log_file.flush()
 
@@ -297,11 +284,11 @@ def validate(
     criterion: LUCJLoss,
     device: torch.device,
 ) -> tuple[float, float, float]:
-    """Run validation. Returns (avg_total_loss, avg_j_loss, avg_u_loss)."""
+    """Run validation. Returns (avg_total_loss, avg_j_loss, avg_kappa_loss)."""
     model.eval()
     total_loss = 0.0
     total_j_loss = 0.0
-    total_u_loss = 0.0
+    total_kappa_loss = 0.0
     num_batches = 0
 
     for batch in loader:
@@ -309,24 +296,24 @@ def validate(
                  for k, v in batch.items()}
 
         outputs = model(batch)
-        loss, j_loss, u_loss = criterion(
+        loss, j_loss, kappa_loss = criterion(
             j_pred=outputs["j_pred"],
             j_target=batch["j_target"],
-            u_real_pred=outputs["u_real_pred"],
-            u_real_target=batch["u_real_target"],
-            u_imag_pred=outputs["u_imag_pred"],
-            u_imag_target=batch["u_imag_target"],
+            kappa_real_pred=outputs["kappa_real_pred"],
+            kappa_real_target=batch["kappa_real_target"],
+            kappa_imag_pred=outputs["kappa_imag_pred"],
+            kappa_imag_target=batch["kappa_imag_target"],
             norbs=batch["norbs"],
             max_norb=outputs["j_pred"].shape[-1],
         )
 
         total_loss += loss.item()
         total_j_loss += j_loss.item()
-        total_u_loss += u_loss.item()
+        total_kappa_loss += kappa_loss.item()
         num_batches += 1
 
     n = max(num_batches, 1)
-    return total_loss / n, total_j_loss / n, total_u_loss / n
+    return total_loss / n, total_j_loss / n, total_kappa_loss / n
 
 
 def save_checkpoint(
@@ -604,7 +591,7 @@ def main():
             epoch_time = time.time() - epoch_start
 
             # Validation
-            val_loss, val_j_loss, val_u_loss = validate(
+            val_loss, val_j_loss, val_kappa_loss = validate(
                 model, val_loader, criterion, device
             )
 
@@ -612,13 +599,13 @@ def main():
                 f"Epoch {epoch+1}/{args.epochs}  "
                 f"train_loss={train_loss:.6f}  "
                 f"val_loss={val_loss:.6f}  "
-                f"val_j={val_j_loss:.6f}  val_u={val_u_loss:.6f}  "
+                f"val_j={val_j_loss:.6f}  val_kappa={val_kappa_loss:.6f}  "
                 f"time={epoch_time:.1f}s"
             )
             json_log_file.write(json_mod.dumps({
                 "type": "val_epoch", "epoch": epoch + 1,
                 "train_loss": train_loss, "val_loss": val_loss,
-                "val_j_loss": val_j_loss, "val_u_loss": val_u_loss,
+                "val_j_loss": val_j_loss, "val_kappa_loss": val_kappa_loss,
                 "time": epoch_time,
             }) + "\n")
             json_log_file.flush()

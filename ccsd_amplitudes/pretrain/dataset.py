@@ -177,6 +177,9 @@ class CCSDAmplitudeDataset(Dataset):
         U = np.load(job_dir / "lucj_orbital_rotations.npy")
         final_rot = np.load(job_dir / "lucj_final_orbital_rotation.npy")
 
+        kappa_real = np.load(job_dir / "kappa_real.npy")
+        kappa_imag = np.load(job_dir / "kappa_imag.npy")
+
         orb_ene_path = job_dir / "mo_ene_for_qis.dat"
         if orb_ene_path.exists():
             orb_energies = _parse_orbital_energies(orb_ene_path).astype(np.float32)
@@ -207,6 +210,8 @@ class CCSDAmplitudeDataset(Dataset):
             "J": torch.from_numpy(J.astype(np.float32)),
             "U_real": torch.from_numpy(U.real.astype(np.float32)),
             "U_imag": torch.from_numpy(U.imag.astype(np.float32)),
+            "kappa_real": torch.from_numpy(kappa_real.astype(np.float32)),
+            "kappa_imag": torch.from_numpy(kappa_imag.astype(np.float32)),
             "final_rot": torch.from_numpy(final_rot.astype(np.float32)),
             "orb_energies": torch.from_numpy(orb_energies),
             "mo_coeffs": torch.from_numpy(mo_data["mo_coeffs"]),
@@ -237,6 +242,8 @@ class CCSDAmplitudeDataset(Dataset):
         J = torch.zeros(B, max_n_reps, 2, max_norb, max_norb)
         U_real = torch.zeros(B, max_n_reps, max_norb, max_norb)
         U_imag = torch.zeros(B, max_n_reps, max_norb, max_norb)
+        kappa_real = torch.zeros(B, max_n_reps, max_norb, max_norb)
+        kappa_imag = torch.zeros(B, max_n_reps, max_norb, max_norb)
         final_rot = torch.zeros(B, max_norb, max_norb)
         orb_energies = torch.zeros(B, max_norb)
         mo_coeffs = torch.zeros(B, max_norb, max_nbasis)
@@ -263,6 +270,8 @@ class CCSDAmplitudeDataset(Dataset):
             J[i, :nr, :, :nb, :nb] = s["J"]
             U_real[i, :nr, :nb, :nb] = s["U_real"]
             U_imag[i, :nr, :nb, :nb] = s["U_imag"]
+            kappa_real[i, :nr, :nb, :nb] = s["kappa_real"]
+            kappa_imag[i, :nr, :nb, :nb] = s["kappa_imag"]
             final_rot[i, :nb, :nb] = s["final_rot"]
             orb_energies[i, :nb] = s["orb_energies"]
             mo_coeffs[i, :nb, :nbas] = s["mo_coeffs"]
@@ -289,6 +298,8 @@ class CCSDAmplitudeDataset(Dataset):
             "j_target": J,
             "u_real_target": U_real,
             "u_imag_target": U_imag,
+            "kappa_real_target": kappa_real,
+            "kappa_imag_target": kappa_imag,
             "final_rot": final_rot,
             "orb_mask": orb_mask,
             "occ_mask": occ_mask,
