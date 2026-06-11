@@ -1,8 +1,32 @@
-# CCSD Amplitude Extraction -- Transition1x Dataset
+# CCSD Amplitudes → LUCJ Surrogate -- Transition1x Dataset
 
-Extract full CCSD T1/T2 amplitude tensors for **reactant**, **transition state**,
-and **product** geometries from the Transition1x dataset using a custom-patched
-Q-Chem (with `PRINT_QIS` support).
+Two stages:
+
+1. **Raw CCSD extraction (this README, §"Q-Chem"):** full CCSD T1/T2 amplitude
+   tensors for **reactant**, **transition state**, and **product** geometries via
+   a custom-patched Q-Chem (`PRINT_QIS`). *Kept as-is for provenance.*
+2. **LUCJ surrogate modeling (`pretrain/`):** an Edge Transformer that predicts
+   LUCJ parameters from CCSD amplitudes. This stage uses **RHF restricted
+   amplitudes regenerated with pyscf** (`generate_rhf_dataset.py`), not the
+   original Q-Chem UHF amplitudes — see why below.
+
+> ### ⚠️ Important correction (June 2026)
+> The original Q-Chem runs used `UNRESTRICTED TRUE` (UHF → **spin-orbital**
+> amplitudes), but `ffsim.UCJOpSpinBalanced` needs **RHF restricted spatial** t2.
+> Feeding spin-orbital amplitudes doubled `norb` and produced physically
+> meaningless LUCJ targets. The modeling pipeline now regenerates amplitudes with
+> **pyscf RHF-CCSD/STO-3G** (`rhf_dataset/`) and ffsim DF targets (`rhf_targets/`).
+> The stale UHF-era LUCJ outputs and models are archived under
+> `stale_2026-06-10_kappa_era/`.
+>
+> **The full story — observations, numbers, and design rationale — is in
+> [`docs/FINDINGS.md`](docs/FINDINGS.md). Model details are in
+> [`pretrain/README.md`](pretrain/README.md).**
+>
+> Headline results: the diagonal-Coulomb **J/Z is learnable** ($R^2 \approx 0.62$
+> and rising on the full set, 0.75 on a uniform-size subset); the orbital
+> rotation **U/κ is not** (gauge-scrambled across molecules) and is kept as a weak
+> pretraining head.
 
 ## Overview
 
@@ -260,88 +284,54 @@ invoking Q-Chem, the same jobs completed in **~10--25s** -- a 15--40x
 improvement. This also keeps all Q-Chem artifacts (`.fchk`, `.out.files/`,
 etc.) contained inside each job directory rather than littering the parent.
 
-## LUCJ Compressed Double Factorization (ffsim)
+## LUCJ targets & surrogate model (RHF pipeline)
 
-After the CCSD amplitude extraction, a second stage computes **LUCJ
-(Locally-Unitary Coupled-Cluster Jastrow) operators** from the T1/T2
-amplitudes using ffsim's compressed double factorization. This produces
-the U (orbital rotation) and J (diagonal Coulomb) matrices needed to
-initialize a quantum circuit ansatz.
+The second stage computes **LUCJ (Locally-Unitary Coupled-Cluster Jastrow)
+operators** — the U (orbital rotation) and J/Z (diagonal Coulomb) matrices — and
+trains a surrogate to predict them from amplitudes. See [`pretrain/README.md`](pretrain/README.md)
+for the model and [`docs/FINDINGS.md`](docs/FINDINGS.md) for the rationale.
 
-### What It Computes
+### Corrected data generation (current)
 
-For each job directory that contains `ccsd_t1.dat` and `ccsd_t2.dat`,
-`compute_lucj.py` calls:
-
-```python
-lucj_op = ffsim.UCJOpSpinBalanced.from_t_amplitudes(
-    t2=ccsd_t2,
-    t1=ccsd_t1,
-    n_reps=2,
-    interaction_pairs=(pairs_aa, pairs_ab),
-    optimize=True,
-    options=dict(maxiter=50),
-)
-```
-
-where `pairs_aa = [(p, p+1) for p in range(norb-1)]` and
-`pairs_ab = [(p, p) for p in range(norb)]` model square-lattice hardware
-connectivity. `n_reps=2` gives two circuit layers (as required by QSD).
-`optimize=True` enables the compressed double factorization, which adjusts
-the truncated U/J matrices to better recover the original T2 amplitudes.
-
-### Output Files (Per Job Directory)
-
-| File | Description |
-|------|-------------|
-| `lucj_diag_coulomb_mats.npy` | J matrices, shape `(n_reps, 2, norb, norb)` |
-| `lucj_orbital_rotations.npy` | U matrices, shape `(n_reps, norb, norb)` |
-| `lucj_final_orbital_rotation.npy` | Final orbital rotation, shape `(norb, norb)` |
-| `lucj_parameters.npy` | Flat parameter vector for the LUCJ operator |
-| `lucj_metadata.json` | Metadata: norb, n_reps, nocc, nvirt, timing, etc. |
-| `.lucj_done` | Completion marker |
-
-### Running
+`ffsim.UCJOpSpinBalanced` requires **RHF restricted spatial** t2, so we generate
+fresh RHF amplitudes and DF targets rather than reuse the Q-Chem UHF outputs:
 
 ```bash
-cd /xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes
+# 1) RHF-CCSD/STO-3G restricted amplitudes (+ orbital energies, MO coeffs)
+#    -> rhf_dataset/<mol>.npz   (pyscf; ~0.5-1 s/molecule; shardable)
+for i in $(seq 0 23); do
+  OMP_NUM_THREADS=1 python3 generate_rhf_dataset.py --shard $i --n-shards 24 &
+done
 
-# Single job (must run from outside the project root to avoid
-# the local ffsim/ source tree shadowing the pip-installed package):
-cd /tmp
-python3 /path/to/compute_lucj.py jobs/C2H2N2O_rxn2091_TS
-
-# Full batch (recommended: 6 parallel, 6 threads each = 36 of 48 cores):
-nohup bash run_lucj_batch.sh --parallel-jobs 6 --threads-per-job 6 \
-    > lucj_batch.log 2>&1 &
-disown
-
-# Monitor progress:
-grep -c "DONE" run_lucj_batch.log
-grep "DONE" run_lucj_batch.log | tail -5
+# 2) ffsim compressed-DF targets (U->kappa, Z) from the cached t2
+#    -> rhf_targets/<mol>.npz   (unconstrained DF; shardable)
+for i in $(seq 0 23); do
+  OMP_NUM_THREADS=1 python3 generate_df_targets.py --shard $i --n-shards 24 &
+done
 ```
 
-### Parallelism
+Both stages are idempotent (skip existing) and write one `.npz` per molecule
+(flat layout — far faster on NFS than thousands of per-job directories).
 
-Unlike the Q-Chem CCSD stage (which is single-threaded and I/O-bound),
-the ffsim LUCJ computation is **CPU-bound and internally multithreaded**
-via jax/numpy. Each job uses ~6 CPU cores for ~30--55s per molecule
-(depending on orbital count). The optimal configuration on this 48-core
-machine is:
+### Output (per molecule)
 
-| Configuration | Cores used | Per-job wall time |
-|--------------|-----------|-------------------|
-| 6 parallel x 6 threads | 36 | ~28--55s |
+| File | Contents |
+|------|----------|
+| `rhf_dataset/<mol>.npz` | `t1`, `t2` (restricted spatial), `orb_energies`, `mo_coeff`, `ao_Z`, `ao_l`, sizes, `e_hf`, `e_ccsd` |
+| `rhf_targets/<mol>.npz` | `Z` (diag Coulomb), `kappa_real`/`kappa_imag` (= log U) — shape `(n_reps, norb, norb)` |
 
-The batch runner sets `OMP_NUM_THREADS`, `OPENBLAS_NUM_THREADS`,
-`MKL_NUM_THREADS`, and `JAX_NUM_THREADS` to control thread usage per job.
+### Deprecated: `compute_lucj.py` (spin-orbital)
 
-### Note on ffsim Import
+The original per-job `compute_lucj.py` / `run_lucj_batch.sh` path fed **Q-Chem UHF
+spin-orbital** amplitudes to `UCJOpSpinBalanced` (with square-lattice
+`interaction_pairs` and `n_reps=2`). This produced invalid, 2×-oversized targets
+(see [`docs/FINDINGS.md` §2](docs/FINDINGS.md)) and is **superseded** by the RHF
+pipeline above. Its outputs were archived to `stale_2026-06-10_kappa_era/`.
 
-The project root contains a local `ffsim/` source checkout (used for
-reference and the tutorial notebook). This **shadows** the pip-installed
-ffsim package. The batch runner avoids this by `cd /tmp` before invoking
-Python. If running `compute_lucj.py` manually, do the same.
+> **ffsim import note:** the project root contains a local `ffsim/` source
+> checkout that shadows the pip-installed package. Run generation from a venv /
+> a directory where the installed `ffsim` resolves (the generators use the
+> `.lucj_venv`).
 
 ## Notes
 

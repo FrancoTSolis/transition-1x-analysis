@@ -4,15 +4,30 @@ Predicts LUCJ (Locally-Unitary Coupled-Cluster Jastrow) circuit parameters
 from CCSD amplitudes using an Edge Transformer architecture adapted from
 the (2,1)-GT ("Towards Principled Graph Transformers", NeurIPS 2024).
 
-## Architecture
+The model is trained with a **gauge-invariant reconstruction loss**: it predicts
+orbital rotations $U^{(\mu)}$ and diagonal-Coulomb matrices $Z^{(\mu)}$, and is
+supervised on how well these *reconstruct* the input $t_2$ via the double
+factorization identity — not on matching specific (gauge-dependent) target
+matrices. See [Why reconstruction loss?](#why-reconstruction-loss-the-gauge-problem).
+
+## Data: RHF-CCSD restricted amplitudes
+
+> **Important (June 2026 rewrite).** Earlier versions read **UHF spin-orbital**
+> amplitudes from Q-Chem and fed them to `ffsim.UCJOpSpinBalanced`, which expects
+> **RHF restricted spatial** $t_2$. That mismatch (wrong spin basis, doubled
+> orbital count) made the LUCJ targets physically meaningless. The dataset is now
+> generated directly with **pyscf RHF-CCSD/STO-3G** (frozen core), which produces
+> exactly the restricted spatial $t_2$ that ffsim expects. See
+> `generate_rhf_dataset.py`. The old Q-Chem/UHF LUCJ outputs and kappa-era models
+> were archived to `stale_2026-06-10_kappa_era/`.
 
 ### Problem Setup
 
-Given a molecular system with $n_\text{orb}$ orbitals ($n_\text{occ}$
-occupied + $n_\text{virt}$ virtual), the model takes CCSD amplitudes
-$\mathbf{t}_1, \mathbf{t}_2$ as input and predicts the LUCJ diagonal
-Coulomb matrices $\mathbf{J}^{(\mu)}$ and orbital rotations
-$\mathbf{U}^{(\mu)}$ for $\mu = 1, \ldots, L$ circuit layers.
+Given a molecular system with $n_\text{orb}$ spatial orbitals ($n_\text{occ}$
+occupied + $n_\text{virt}$ virtual), the model takes the restricted CCSD
+amplitudes $\mathbf{t}_2$ as input and predicts, per circuit layer
+$\mu = 1, \ldots, L$, the orbital rotation $U^{(\mu)}$ (as an anti-Hermitian
+generator $\kappa^{(\mu)}$) and the diagonal Coulomb matrix $Z^{(\mu)}$.
 
 ### Pair-Token Representation
 
@@ -92,9 +107,18 @@ orbital representations, and bipartite Cholesky graph networks
 | virt-occ | $t_2[:, q, p', :]$ where $p' = p - n_\text{occ}$ | $n_\text{occ} \times n_\text{virt}$ |
 | virt-virt | $t_2[:, :, p', q']$ | $n_\text{occ} \times n_\text{occ}$ |
 
-Each slice is flattened and encoded via a **DeepSets** encoder:
-$\text{SliceEnc}(\mathbf{s}) = \rho\bigl(\text{mean}(\phi(\mathbf{s}))\bigr)$
-where $\phi: \mathbb{R} \to \mathbb{R}^{d/2}$ and $\rho: \mathbb{R}^{d/2} \to \mathbb{R}^d$ are linear layers.
+Each 2-D slice is encoded via a **positional set encoder** that preserves
+within-slice structure (a plain DeepSets mean-pool is permutation-invariant and
+discards *which* element holds *which* amplitude — far too lossy to reconstruct
+$t_2$). For a slice element at within-slice position $(r, s)$ with value $v_{rs}$:
+
+$$\text{SliceEnc}(\mathbf{s}) = \rho\Bigl(\sum_{r,s} \phi\bigl(v_{rs},\, \text{PosEmb}(r),\, \text{PosEmb}(s)\bigr)\Bigr)$$
+
+The learned positional embeddings let the (nonlinear) pooled sum represent
+structured functions of the full slice. The $t_2$ slice is the **only**
+molecule-specific token component (orbital/pair-type/global features are
+identical across same-size molecules), so it is LayerNorm'd and scaled by a
+learnable gate to keep it from being drowned out by those structural priors.
 
 ### 2. Edge Attention with $t_2$ Bias
 
@@ -158,101 +182,140 @@ construction:
 $$\kappa_\text{re}^\mu[p,q] = f^\mu(\mathbf{z}_{pq}) - f^\mu(\mathbf{z}_{qp}) \quad \text{(anti-symmetric)}$$
 $$\kappa_\text{im}^\mu[p,q] = h^\mu(\mathbf{z}_{pq}) + h^\mu(\mathbf{z}_{qp}) \quad \text{(symmetric)}$$
 
-At inference, $U = \exp(\kappa_\text{re} + i\,\kappa_\text{im})$ is
-reconstructed via matrix exponential.
+$U = \exp(\kappa_\text{re} + i\,\kappa_\text{im})$ is built via matrix
+exponential. These outputs feed the reconstruction loss below (they are **not**
+matched against precomputed $\kappa$ targets).
 
-**Why kappa instead of U?** Diagnostic analysis revealed that predicting
-$U$ directly caused the model to collapse to near-zero predictions. The
-target $U$ matrices are dense complex unitary matrices with entries
-spread across $[-0.8, 0.8]$ — predicting all $n_\text{orb}^2$ entries
-accurately is extremely hard. The MSE of predicting zeros was ~102 per
-sample, and the trained model could not improve beyond this baseline
-(U loss stuck at ~131, *worse* than zero). Meanwhile, $\kappa$ provides
-structured targets with built-in anti-Hermitian constraints that
-regularize the output space and halve the effective number of free
-parameters.
+### 5. Loss Function — two selectable modes (`--loss-mode`)
 
-See `diagnose_loss.png` for the visualization that motivated this change.
+`train.py::LUCJLoss` supports two objectives for the U/kappa head. **J/Z is the
+robust, shippable head; the U/kappa head is intentionally weak** (see the gauge
+problem below) — acceptable for a pretraining stage.
 
-### 5. Loss Function
+**`supervised` (default, robust):** direct regression to the ffsim
+double-factorization targets (`rhf_targets/`):
 
-$$\mathcal{L} = \frac{1}{K} \sum_{k=1}^K \left[ \sum_\mu \bigl\| \hat{J}_\mu^{(k)} - J_\mu^{*(k)} \bigr\|_F^2 \;+\; \alpha \sum_\mu \bigl( \bigl\| \hat{\kappa}_{\text{re},\mu}^{(k)} - \kappa_{\text{re},\mu}^{*(k)} \bigr\|_F^2 + \bigl\| \hat{\kappa}_{\text{im},\mu}^{(k)} - \kappa_{\text{im},\mu}^{*(k)} \bigr\|_F^2 \bigr) \right]$$
+$$\mathcal{L} = \frac{1}{K}\sum_k \Big[ \lVert \hat Z^{(k)} - Z^{*(k)} \rVert^2 + \lambda_\kappa \big(\lVert \hat\kappa_\text{re} - \kappa_\text{re}^* \rVert^2 + \lVert \hat\kappa_\text{im} - \kappa_\text{im}^* \rVert^2\big)\Big]$$
 
-- $\alpha$: balancing weight (default 1.0)
-- J loss is computed on non-padded entries only
-- Kappa loss is computed on non-padded entries only
-- U loss is reported for monitoring (via $U = \exp(\hat\kappa)$) but not
-  used for gradient computation
+No saddle, always trains. **Z/J reaches $R^2 \approx 0.75$**; the kappa term
+plateaus quickly (gauge). Inference: $U = \exp(\hat\kappa)$.
+
+**`reconstruction` (gauge-invariant, experimental):** supervise on how well the
+predicted $(U, Z)$ reconstruct $t_2$:
+
+$$\hat t_2[i,j,a,b] = i \sum_{\mu,pq} Z^{(\mu)}_{pq} U^{(\mu)}_{ap} U^{(\mu)*}_{ip} U^{(\mu)}_{bq} U^{(\mu)*}_{jq}, \quad \mathcal{L} = \frac{\lVert \hat t_2 - t_2\rVert}{\lVert t_2\rVert} + \lambda_Z \lVert \hat Z - Z^*\rVert^2$$
+
+with $U = U_\text{base}\exp(\kappa_\text{head})$ for a **fixed complex** $U_\text{base}$
+(saved in the checkpoint; must be applied at inference). Two facts make this work
+at all: (i) $U$ must be **complex** — a real orthogonal $U$ gives
+$i\cdot\text{einsum}(\text{real})$, whose real part is 0; (ii) $(U=I,Z=0)$ is a
+degenerate saddle / $Z{=}0$ is a local min, hence the fixed base rotation and the
+$Z$ anchor. On heterogeneous data it escapes only slowly.
+
+#### Why U/kappa is hard: the gauge problem
+
+$Z = U\,\mathrm{diag}(z)\,U^\dagger$ ⇒ $U$ is the *eigenvector matrix*, $z$ the
+eigenvalues. Eigenvalues are gauge-invariant (⇒ **Z is learnable**, $R^2{\approx}0.75$–0.79);
+eigenvectors carry **sign + basis ambiguity**, so **U/$\kappa$ is not a smooth
+function of $t_2$** — two molecules with near-identical $t_2$ have near-random
+$\kappa$ relative to each other ($\mathrm{corr}(\lVert\Delta t_2\rVert,\lVert\Delta\kappa\rVert)\approx 0$
+vs strong for $Z$). Direct $\kappa$ regression therefore mean-collapses, and the
+gauge-invariant reconstruction loss only escapes its $Z{=}0$ trap slowly on
+diverse molecules. This is the spectral-learning eigenvector-ambiguity problem
+(cf. Laplacian canonicalization / SignNet); resolving U properly is future work.
 
 ## Data Loading
 
-`CCSDAmplitudeDataset` scans the `jobs/` directory for all subdirectories
-with both `.done` and `.lucj_done` markers. Each job provides:
+The dataset is generated by `generate_rhf_dataset.py` (pyscf RHF-CCSD/STO-3G,
+frozen core) into one `rhf_dataset/<name>.npz` per molecule. `CCSDAmplitudeDataset`
+indexes these (a cached `_index.json` records sizes so the bucket sampler need
+not open every file). Each `.npz` provides:
 
-**Inputs:**
-- `ccsd_t1.dat` $\to$ `t1`: $(n_\text{occ}, n_\text{virt})$
-- `ccsd_t2.dat` $\to$ `t2`: $(n_\text{occ}, n_\text{occ}, n_\text{virt}, n_\text{virt})$
+**Inputs / target:**
+- `t2`: $(n_\text{occ}, n_\text{occ}, n_\text{virt}, n_\text{virt})$ — restricted
+  spatial amplitudes; also the **reconstruction target**.
+- `t1`: $(n_\text{occ}, n_\text{virt})$
+- `orb_energies`: $(n_\text{orb},)$ active-space RHF eigenvalues (for `--use-hf-energies`)
+- `mo_coeff`: $(n_\text{ao}, n_\text{orb})$, `ao_Z`, `ao_l` (for `--use-mo-coeffs`)
 
-**Targets:**
-- `lucj_diag_coulomb_mats.npy` $\to$ `j_target`: $(L, 2, n_\text{orb}, n_\text{orb})$
-- `kappa_real.npy` $\to$ `kappa_real_target`: $(L, n_\text{orb}, n_\text{orb})$ (precomputed via `precompute_kappa.py`)
-- `kappa_imag.npy` $\to$ `kappa_imag_target`: $(L, n_\text{orb}, n_\text{orb})$
+No precomputed $U$/$Z$/$\kappa$ targets are needed — the reconstruction loss
+supervises directly against `t2`.
 
-**Variable-size handling:** Molecules have $n_\text{orb}$ from 30 to 88.
-The `collate_fn` pads all tensors to the maximum size in the batch and
-produces boolean masks. A `BucketBatchSampler` groups molecules by similar
+**Variable-size handling:** Molecules have $n_\text{orb}$ from 15 to 44 (30,205
+molecules total). The `collate_fn` pads `t2` to the batch max
+$(n_\text{occ}^{\max}, n_\text{virt}^{\max})$. Because each molecule has its own
+occ/virt split, the loss gathers each sample's active orbital slots
+$[0, n_\text{occ}) \cup [n_\text{occ}^{\max}, n_\text{occ}^{\max}+n_\text{virt})$
+before reconstructing. A `BucketBatchSampler` groups molecules by similar
 $n_\text{orb}$ to minimize padding waste.
 
 ## Files
 
 | File | Description |
 |:-----|:------------|
-| `dataset.py` | `CCSDAmplitudeDataset` with lazy loading, padding collate, norb caching |
-| `model.py` | `PretrainingModel`: Tokenizer + EdgeTransformer + DecodeHeads (~1M params at default config) |
-| `train.py` | Training loop: AdamW, cosine warmup LR, gradient clipping, checkpointing |
+| `../generate_rhf_dataset.py` | Generate `rhf_dataset/*.npz` via pyscf RHF-CCSD (shardable) |
+| `dataset.py` | `CCSDAmplitudeDataset`: loads `.npz`, cached size index, padding collate |
+| `model.py` | `PretrainingModel`: Tokenizer (+ positional slice encoder) + EdgeTransformer + DecodeHeads |
+| `train.py` | Training loop + `ReconstructionLoss` (gauge-invariant, fixed complex base rotation) |
 | `plot_curves.py` | Live-updating train/val loss plots from JSON log |
+| `validate_rhf.py`, `build_rhf_cache.py`, `analyze_rhf_cache.py` | Learnability diagnostics (J vs kappa, baselines) |
+| `test_smoothness.py`, `test_canonicalization.py` | Gauge / smoothness diagnostics for the kappa target |
+| `exp_reconstruction.py`, `exp_continuation.py` | Standalone proofs-of-concept for the reconstruction loss |
+| `diag_differentiate.py` | Checks the model produces molecule-distinct (U,Z) |
 
 ## Usage
 
-### Training
-
-From the `ccsd_amplitudes/` directory:
+### Generating the dataset
 
 ```bash
-# Full training on GPU (run on a machine with GPU, e.g. scai5)
-python -m pretrain.train \
-    --jobs-dir jobs \
-    --epochs 200 \
-    --batch-size 4 \
-    --lr 1e-4 \
-    --embed-dim 128 \
-    --num-layers 4 \
-    --no-amp \
-    --dropout 0.0
+# Parallel shards (pyscf RHF-CCSD is fast; ~0.5-1 s/molecule)
+for i in $(seq 0 23); do
+  OMP_NUM_THREADS=1 python generate_rhf_dataset.py --shard $i --n-shards 24 --out-dir rhf_dataset &
+done
+```
 
-# Or via the convenience script (dispatches to GPU server)
-bash run_train.sh
+### Training
+
+From the `ccsd_amplitudes/` directory (AMP is disabled automatically — the
+complex `matrix_exp` in the loss needs float32):
+
+First generate the ffsim DF targets once (see `../generate_df_targets.py`), then:
+
+```bash
+# Default: supervised pretraining (robust J/Z head + weak kappa head)
+CUDA_VISIBLE_DEVICES=4 python -m pretrain.train \
+    --data-dir rhf_dataset --targets-dir rhf_targets \
+    --loss-mode supervised \
+    --epochs 40 --batch-size 12 --lr 1.5e-3 \
+    --embed-dim 192 --num-layers 6 --num-heads 8 --n-reps 2 \
+    --warmup-steps 500 --checkpoint-dir checkpoints_pretrain
+
+# Alternative: gauge-invariant reconstruction (experimental U head)
+python -m pretrain.train ... --loss-mode reconstruction --z-anchor-weight 1.0
 ```
 
 Key arguments:
 
 | Argument | Default | Description |
 |:---------|:--------|:------------|
-| `--jobs-dir` | (required) | Path to job directories |
+| `--data-dir` | `rhf_dataset` | Directory of per-molecule `.npz` files |
+| `--targets-dir` | `rhf_targets` | ffsim DF (Z, kappa) targets |
+| `--loss-mode` | `supervised` | `supervised` (direct Z+kappa regression) or `reconstruction` (gauge-invariant) |
+| `--kappa-weight` | 1.0 | [supervised] weight of the kappa regression term |
+| `--z-anchor-weight` | 1.0 | [reconstruction] weight of the Z anchor term |
 | `--epochs` | 200 | Training epochs |
-| `--batch-size` | 32 | Batch size (reduce for large norb) |
-| `--lr` | 3e-4 | Peak learning rate |
+| `--batch-size` | 32 | Use ~8-12 (positional slice encoder memory; larger molecules need smaller) |
+| `--lr` | 3e-4 | Peak LR (~1.5-2e-3 works well for supervised) |
 | `--warmup-steps` | 1000 | Linear LR warmup steps |
-| `--alpha` | 1.0 | Weight for U loss term |
-| `--embed-dim` | 192 | Model embedding dimension |
-| `--num-layers` | 6 | Transformer layers |
-| `--num-heads` | 8 | Attention heads |
-| `--no-amp` | False | Disable mixed precision (recommended for stability) |
-| `--dropout` | 0.1 | Dropout rate (set to 0.0 if NaN issues) |
-| `--resume` | None | Path to checkpoint for resuming |
-| `--use-hf-energies` | False | Use HF orbital energies for orbital encoding |
-| `--use-mo-coeffs` | False | Use atom-aware MO coefficient pooling |
-| `--species-filter` | None | Filter data: `TS` = transition states only, `RP` = reactants+products only |
+| `--embed-dim` / `--num-layers` / `--num-heads` | 192 / 6 / 8 | Model size |
+| `--n-reps` | 2 | LUCJ repetitions (U,Z) the model outputs |
+| `--accum-steps` | 1 | Gradient accumulation (note: for reconstruction, SGD noise *helps* escape the saddle, so prefer small effective batch) |
+| `--use-hf-energies` / `--use-mo-coeffs` | False | Orbital encoding mode |
+| `--species-filter` | None | `TS` or `RP` data subset |
+
+Logged metrics: `z` (J/Z regression MSE — the meaningful one), `kappa` (weak, gauge),
+`recon` (relative t2 residual; 0 in supervised mode). Use `eval_zpred.py` to report
+the J/Z $R^2$.
 
 ### Monitoring
 
@@ -288,29 +351,29 @@ import torch
 from pretrain.model import PretrainingModel, ModelConfig
 from pretrain.dataset import CCSDAmplitudeDataset
 
-# Load model
-config = ModelConfig(embed_dim=128, num_layers=4)
+# Load model (match the trained config)
+config = ModelConfig(embed_dim=192, num_layers=6, num_heads=8, n_reps=2)
 model = PretrainingModel(config)
-ckpt = torch.load("checkpoints/best.pt", map_location="cpu")
+ckpt = torch.load("checkpoints_recon/best.pt", map_location="cpu")
 model.load_state_dict(ckpt["model_state_dict"])
 model.eval()
 
 # Load a single sample
-ds = CCSDAmplitudeDataset("jobs")
-sample = ds[0]
-batch = CCSDAmplitudeDataset.collate_fn([sample])
+ds = CCSDAmplitudeDataset("rhf_dataset", n_reps=2)
+batch = CCSDAmplitudeDataset.collate_fn([ds[0]])
 
-# Predict
 with torch.no_grad():
-    outputs = model(batch)
+    out = model(batch)
 
-j_pred = outputs["j_pred"]       # (1, n_reps, 2, norb, norb)
-u_real = outputs["u_real_pred"]  # (1, n_reps, norb, norb)
-u_imag = outputs["u_imag_pred"]  # (1, n_reps, norb, norb)
-
-# Reconstruct complex U
-U = u_real + 1j * u_imag  # (1, n_reps, norb, norb)
+# Build U = expm(kappa) and Z per repetition
+kr = out["kappa_real_pred"]   # (1, n_reps, norb, norb)  anti-symmetric
+ki = out["kappa_imag_pred"]   # (1, n_reps, norb, norb)  symmetric
+Z  = out["j_pred"][:, :, 0]   # (1, n_reps, norb, norb)  diagonal-Coulomb
+U  = torch.linalg.matrix_exp(torch.complex(kr, ki))   # (1, n_reps, norb, norb)
 ```
+
+Note: the predicted $U$ lives in the network's own (smooth) gauge — it
+reconstructs $t_2$ but will not match any particular ffsim solution entry-wise.
 
 ## Model Configuration
 
@@ -326,9 +389,13 @@ Default config (`ModelConfig`):
 | `attention_dropout` | 0.1 | Attention dropout |
 | `max_norb` | 96 | Max orbital count for positional embeddings |
 | `n_reps` | 2 | Number of LUCJ circuit layers |
+| `kappa_scale` | $\pi$ | Bound on generator entries (`tanh` scaled) |
+| `z_scale` | 3.0 | Bound on diagonal-Coulomb entries |
 
-For the current dataset (norb up to 88, batch_size=4), a reduced config
-(embed_dim=128, num_layers=4) fits in ~40GB GPU memory.
+For the current dataset (norb up to 44), `embed_dim=192, num_layers=6,
+batch_size=8` fits comfortably in a 40GB GPU (~18 GB used). The positional
+slice encoder's 5-D intermediate is the main memory driver — reduce batch size
+for very large molecules.
 
 ## Experiments
 

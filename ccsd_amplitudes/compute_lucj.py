@@ -101,19 +101,24 @@ def main():
     start = time.time()
     print(f"START {job_dir.name} (n_reps={args.n_reps}, maxiter={args.maxiter})")
 
-    t1_raw = load_amplitude_file(t1_path)
-    t2_raw = load_amplitude_file(t2_path)
+    t1_spinorb = load_amplitude_file(t1_path)
+    t2_spinorb = load_amplitude_file(t2_path)
 
-    nocc, nvirt = t1_raw.shape
+    nocc_spin, nvirt_spin = t1_spinorb.shape
+    nocc = nocc_spin // 2
+    nvirt = nvirt_spin // 2
     norb = nocc + nvirt
+
+    t1 = t1_spinorb[:nocc, :nvirt]
+    t2 = t2_spinorb[:nocc, :nocc, :nvirt, :nvirt]
 
     pairs_aa = [(p, p + 1) for p in range(norb - 1)]
     pairs_ab = [(p, p) for p in range(norb)]
 
     try:
         lucj_op = ffsim.UCJOpSpinBalanced.from_t_amplitudes(
-            t2=t2_raw,
-            t1=t1_raw,
+            t2=t2,
+            t1=t1,
             n_reps=args.n_reps,
             interaction_pairs=(pairs_aa, pairs_ab),
             optimize=True,
@@ -139,6 +144,9 @@ def main():
         "n_reps": int(lucj_op.n_reps),
         "nocc": int(nocc),
         "nvirt": int(nvirt),
+        "nocc_spin": int(nocc_spin),
+        "nvirt_spin": int(nvirt_spin),
+        "basis": "spatial",
         "n_params": int(len(lucj_op.to_parameters())),
         "diag_coulomb_mats_shape": list(lucj_op.diag_coulomb_mats.shape),
         "orbital_rotations_shape": list(lucj_op.orbital_rotations.shape),

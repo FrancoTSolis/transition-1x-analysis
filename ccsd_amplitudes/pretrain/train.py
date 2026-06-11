@@ -35,87 +35,116 @@ logger = logging.getLogger(__name__)
 # ---------------------------------------------------------------------------
 
 
-def build_j_sparsity_mask(norb: int, device: torch.device) -> torch.Tensor:
-    """Build the sparsity mask for J matrices.
-
-    J_aa has tridiagonal structure: pairs (p, p+1) for p in [0, norb-1).
-    J_ab has diagonal structure: pairs (p, p) for p in [0, norb).
-
-    Returns a (2, norb, norb) boolean mask where dim 0 indexes [aa, ab].
-    """
-    mask = torch.zeros(2, norb, norb, dtype=torch.bool, device=device)
-    # J_aa: tridiagonal (nearest-neighbor)
-    for p in range(norb - 1):
-        mask[0, p, p + 1] = True
-        mask[0, p + 1, p] = True
-    # J_ab: diagonal
-    for p in range(norb):
-        mask[1, p, p] = True
-    return mask
-
-
 class LUCJLoss(nn.Module):
-    """Combined loss for J (diag Coulomb) and U (orbital rotation) prediction.
+    """LUCJ pretraining loss with a selectable U/kappa objective.
 
-    L = (1/K) * sum_k [ sum_mu ||J_hat - J*||_F^2 (masked)
-                       + alpha * sum_mu (||U_re_hat - U_re*||_F^2
-                                       + ||U_im_hat - U_im*||_F^2) ]
+    The model predicts, per repetition, an anti-Hermitian generator
+    kappa = kappa_real + i*kappa_imag (=> U = expm(kappa)) and a symmetric
+    diagonal-Coulomb matrix Z (= j_pred[:, :, 0]). The diagonal-Coulomb J/Z is
+    directly learnable from t2 (R^2 ~ 0.79); the orbital rotation U/kappa is
+    gauge-scrambled across diverse molecules and is therefore a weak head
+    (acceptable for a pretraining stage).
+
+    mode='supervised' (default, robust):
+        L = ||Z - Z*||^2 + kappa_weight * (||kr - kr*||^2 + ||ki - ki*||^2)
+        Direct regression to the ffsim double-factorization targets. No saddle.
+        Inference: U = expm(kappa_pred).
+
+    mode='reconstruction' (gauge-invariant, experimental):
+        L = ||t2_rec - t2|| / ||t2||  +  z_anchor_weight * ||Z - Z*||^2
+        where t2_rec = i * sum_k,pq Z U U* U U* and U = U_base @ expm(kappa) with
+        a FIXED complex base rotation U_base (breaks the (U=I, Z=0) saddle; it
+        must be applied at inference too, so it is saved in the checkpoint). The
+        Z anchor prevents the Z->0 collapse. This objective is invariant to U's
+        gauge, but on heterogeneous data it escapes the saddle only slowly.
+
+    Variable-size molecules: per sample we gather the active orbital slots
+    [0..nocc) ∪ [max_nocc..max_nocc+nvirt). ffsim targets are stored in native
+    occ-then-virt order, which matches the gathered prediction order.
+
+    Returns (total, recon_val, z_val, kappa_val); the last three are detached
+    component values for logging.
     """
 
-    def __init__(self, alpha: float = 1.0):
+    def __init__(self, mode: str = "supervised", kappa_weight: float = 1.0,
+                 z_anchor_weight: float = 1.0, recon_relative: bool = True,
+                 n_reps: int = 2, max_norb: int = 96, base_scale: float = 0.3):
         super().__init__()
-        self.alpha = alpha
-        self._j_mask_cache: dict[int, torch.Tensor] = {}
-
-    def _get_j_mask(self, norb: int, device: torch.device) -> torch.Tensor:
-        if norb not in self._j_mask_cache:
-            self._j_mask_cache[norb] = build_j_sparsity_mask(norb, device)
-        cached = self._j_mask_cache[norb]
-        if cached.device != device:
-            cached = cached.to(device)
-            self._j_mask_cache[norb] = cached
-        return cached
+        assert mode in ("supervised", "reconstruction")
+        self.mode = mode
+        self.kappa_weight = kappa_weight
+        self.z_anchor_weight = z_anchor_weight
+        self.recon_relative = recon_relative
+        # Fixed complex base rotation for reconstruction mode (see class docstring).
+        g = torch.Generator().manual_seed(0)
+        re = base_scale * torch.randn(n_reps, max_norb, max_norb, generator=g)
+        im = base_scale * torch.randn(n_reps, max_norb, max_norb, generator=g)
+        self.register_buffer("base_re", re - re.transpose(1, 2))   # real antisym
+        self.register_buffer("base_im", im + im.transpose(1, 2))   # real sym
 
     def forward(
         self,
-        j_pred: torch.Tensor,
-        j_target: torch.Tensor,
-        kappa_real_pred: torch.Tensor,
-        kappa_real_target: torch.Tensor,
-        kappa_imag_pred: torch.Tensor,
-        kappa_imag_target: torch.Tensor,
-        norbs: torch.Tensor,
-        max_norb: int,
-    ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
-        """Compute loss on J and kappa with masking for variable-size molecules.
+        kappa_real_pred: torch.Tensor,   # (B, reps, N, N) anti-symmetric
+        kappa_imag_pred: torch.Tensor,   # (B, reps, N, N) symmetric
+        j_pred: torch.Tensor,            # (B, reps, 2, N, N) symmetric (Z = block 0)
+        t2: torch.Tensor,                # (B, max_nocc, max_nocc, max_nvirt, max_nvirt)
+        noccs: torch.Tensor,
+        nvirts: torch.Tensor,
+        max_nocc: int,
+        z_target: torch.Tensor | None = None,    # (B, reps, N, N) ffsim DF Z
+        kr_target: torch.Tensor | None = None,   # (B, reps, N, N) ffsim Re log U
+        ki_target: torch.Tensor | None = None,   # (B, reps, N, N) ffsim Im log U
+    ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
+        B = kappa_real_pred.shape[0]
+        device = kappa_real_pred.device
+        total = torch.zeros((), device=device)
+        recon_acc = torch.zeros((), device=device)
+        z_acc = torch.zeros((), device=device)
+        kappa_acc = torch.zeros((), device=device)
 
-        Returns:
-            (total_loss, j_loss, kappa_loss)
-        """
-        batch_size = j_pred.shape[0]
-        device = j_pred.device
+        for i in range(B):
+            no = int(noccs[i]); nv = int(nvirts[i]); n = no + nv
+            idx = torch.cat([
+                torch.arange(no, device=device),
+                max_nocc + torch.arange(nv, device=device),
+            ])
+            kr = kappa_real_pred[i][:, idx][:, :, idx]    # (reps, n, n)
+            ki = kappa_imag_pred[i][:, idx][:, :, idx]
+            Z = j_pred[i, :, 0][:, idx][:, :, idx]
 
-        j_loss_total = torch.tensor(0.0, device=device)
-        kappa_loss_total = torch.tensor(0.0, device=device)
+            if self.mode == "supervised":
+                zt = z_target[i][:, :n, :n]
+                krt = kr_target[i][:, :n, :n]
+                kit = ki_target[i][:, :n, :n]
+                z_l = (Z - zt).pow(2).mean()
+                k_l = (kr - krt).pow(2).mean() + (ki - kit).pow(2).mean()
+                total = total + z_l + self.kappa_weight * k_l
+                z_acc = z_acc + z_l.detach()
+                kappa_acc = kappa_acc + k_l.detach()
+            else:  # reconstruction
+                U_head = torch.linalg.matrix_exp(torch.complex(kr, ki))
+                b_re = self.base_re[:, idx][:, :, idx]
+                b_im = self.base_im[:, idx][:, :, idx]
+                U_base = torch.linalg.matrix_exp(torch.complex(b_re, b_im))
+                U = U_base @ U_head
+                full = 1j * torch.einsum(
+                    "kpq,kap,kip,kcq,kjq->ijac",
+                    Z.to(U.dtype), U, U.conj(), U, U.conj())
+                rec = full[:no, :no, no:, no:].real
+                tgt = t2[i, :no, :no, :nv, :nv]
+                resid = (rec - tgt).norm()
+                if self.recon_relative:
+                    resid = resid / tgt.norm().clamp_min(1e-8)
+                loss_i = resid
+                z_l = torch.zeros((), device=device)
+                if z_target is not None and self.z_anchor_weight > 0:
+                    z_l = (Z - z_target[i][:, :n, :n]).pow(2).mean()
+                    loss_i = loss_i + self.z_anchor_weight * z_l
+                total = total + loss_i
+                recon_acc = recon_acc + resid.detach()
+                z_acc = z_acc + z_l.detach()
 
-        for i in range(batch_size):
-            n = norbs[i].item()
-
-            j_mask = self._get_j_mask(n, device)
-            j_diff = j_pred[i, :, :, :n, :n] - j_target[i, :, :, :n, :n]
-            masked_diff = j_diff * j_mask.unsqueeze(0).float()
-            j_loss_total = j_loss_total + masked_diff.pow(2).sum()
-
-            kr_diff = kappa_real_pred[i, :, :n, :n] - kappa_real_target[i, :, :n, :n]
-            ki_diff = kappa_imag_pred[i, :, :n, :n] - kappa_imag_target[i, :, :n, :n]
-            kappa_loss_total = kappa_loss_total + kr_diff.pow(2).sum()
-            kappa_loss_total = kappa_loss_total + ki_diff.pow(2).sum()
-
-        j_loss = j_loss_total / batch_size
-        kappa_loss = kappa_loss_total / batch_size
-        total_loss = j_loss + self.alpha * kappa_loss
-
-        return total_loss, j_loss, kappa_loss
+        return total / B, recon_acc / B, z_acc / B, kappa_acc / B
 
 
 # ---------------------------------------------------------------------------
@@ -199,79 +228,77 @@ def get_cosine_schedule_with_warmup(
 # ---------------------------------------------------------------------------
 
 
+def _compute_loss(model, batch, criterion, device):
+    outputs = model(batch)
+    total, recon_v, z_v, kappa_v = criterion(
+        kappa_real_pred=outputs["kappa_real_pred"],
+        kappa_imag_pred=outputs["kappa_imag_pred"],
+        j_pred=outputs["j_pred"],
+        t2=batch["t2"],
+        noccs=batch["noccs"],
+        nvirts=batch["nvirts"],
+        max_nocc=batch["max_nocc"],
+        z_target=batch.get("z_target"),
+        kr_target=batch.get("kappa_real_target"),
+        ki_target=batch.get("kappa_imag_target"),
+    )
+    return total, recon_v, z_v, kappa_v
+
+
 def train_one_epoch(
     model: nn.Module,
     loader,
     criterion: LUCJLoss,
     optimizer: torch.optim.Optimizer,
     scheduler: torch.optim.lr_scheduler.LambdaLR,
-    scaler: torch.amp.GradScaler | None,
     device: torch.device,
     max_grad_norm: float,
     global_step: int,
     log_interval: int,
+    accum_steps: int = 1,
     json_log_file=None,
 ) -> tuple[float, int]:
-    """Run one training epoch. Returns (avg_loss, updated_global_step)."""
+    """Run one training epoch with gradient accumulation.
+
+    Returns (avg_total_loss, updated_global_step).
+    """
     model.train()
     total_loss = 0.0
-    total_j_loss = 0.0
-    total_kappa_loss = 0.0
     num_batches = 0
+    optimizer.zero_grad(set_to_none=True)
 
-    for batch in loader:
+    for bi, batch in enumerate(loader):
         batch = {k: v.to(device) if isinstance(v, torch.Tensor) else v
                  for k, v in batch.items()}
 
-        optimizer.zero_grad(set_to_none=True)
-
-        use_amp = scaler is not None
-        with torch.amp.autocast("cuda", enabled=use_amp):
-            outputs = model(batch)
-            loss, j_loss, kappa_loss = criterion(
-                j_pred=outputs["j_pred"],
-                j_target=batch["j_target"],
-                kappa_real_pred=outputs["kappa_real_pred"],
-                kappa_real_target=batch["kappa_real_target"],
-                kappa_imag_pred=outputs["kappa_imag_pred"],
-                kappa_imag_target=batch["kappa_imag_target"],
-                norbs=batch["norbs"],
-                max_norb=outputs["j_pred"].shape[-1],
-            )
-
-        if use_amp:
-            scaler.scale(loss).backward()
-            scaler.unscale_(optimizer)
-            nn.utils.clip_grad_norm_(model.parameters(), max_grad_norm)
-            scaler.step(optimizer)
-            scaler.update()
-        else:
-            loss.backward()
-            nn.utils.clip_grad_norm_(model.parameters(), max_grad_norm)
-            optimizer.step()
-
-        scheduler.step()
-        global_step += 1
+        loss, recon_v, z_v, kappa_v = _compute_loss(model, batch, criterion, device)
+        (loss / accum_steps).backward()
 
         total_loss += loss.item()
-        total_j_loss += j_loss.item()
-        total_kappa_loss += kappa_loss.item()
         num_batches += 1
 
-        if global_step % log_interval == 0:
-            lr = scheduler.get_last_lr()[0]
-            logger.info(
-                f"step={global_step:6d}  loss={loss.item():.6f}  "
-                f"j_loss={j_loss.item():.6f}  kappa_loss={kappa_loss.item():.6f}  "
-                f"lr={lr:.2e}"
-            )
-            if json_log_file is not None:
-                json_log_file.write(json_mod.dumps({
-                    "type": "train_step", "step": global_step,
-                    "loss": loss.item(), "j_loss": j_loss.item(),
-                    "kappa_loss": kappa_loss.item(), "lr": lr,
-                }) + "\n")
-                json_log_file.flush()
+        if (bi + 1) % accum_steps == 0:
+            nn.utils.clip_grad_norm_(model.parameters(), max_grad_norm)
+            optimizer.step()
+            scheduler.step()
+            optimizer.zero_grad(set_to_none=True)
+            global_step += 1
+
+            if global_step % log_interval == 0:
+                lr = scheduler.get_last_lr()[0]
+                logger.info(
+                    f"step={global_step:6d}  loss={loss.item():.6f}  "
+                    f"z={z_v.item():.6f}  kappa={kappa_v.item():.6f}  "
+                    f"recon={recon_v.item():.6f}  lr={lr:.2e}"
+                )
+                if json_log_file is not None:
+                    json_log_file.write(json_mod.dumps({
+                        "type": "train_step", "step": global_step,
+                        "loss": loss.item(), "z_loss": z_v.item(),
+                        "kappa_loss": kappa_v.item(), "recon_loss": recon_v.item(),
+                        "lr": lr,
+                    }) + "\n")
+                    json_log_file.flush()
 
     avg_loss = total_loss / max(num_batches, 1)
     return avg_loss, global_step
@@ -283,37 +310,27 @@ def validate(
     loader,
     criterion: LUCJLoss,
     device: torch.device,
-) -> tuple[float, float, float]:
-    """Run validation. Returns (avg_total_loss, avg_j_loss, avg_kappa_loss)."""
+) -> tuple[float, float, float, float]:
+    """Run validation. Returns (total, z, kappa, recon) averages."""
     model.eval()
     total_loss = 0.0
-    total_j_loss = 0.0
-    total_kappa_loss = 0.0
     num_batches = 0
 
+    total_z = 0.0
+    total_kappa = 0.0
+    total_recon = 0.0
     for batch in loader:
         batch = {k: v.to(device) if isinstance(v, torch.Tensor) else v
                  for k, v in batch.items()}
-
-        outputs = model(batch)
-        loss, j_loss, kappa_loss = criterion(
-            j_pred=outputs["j_pred"],
-            j_target=batch["j_target"],
-            kappa_real_pred=outputs["kappa_real_pred"],
-            kappa_real_target=batch["kappa_real_target"],
-            kappa_imag_pred=outputs["kappa_imag_pred"],
-            kappa_imag_target=batch["kappa_imag_target"],
-            norbs=batch["norbs"],
-            max_norb=outputs["j_pred"].shape[-1],
-        )
-
+        loss, recon_v, z_v, kappa_v = _compute_loss(model, batch, criterion, device)
         total_loss += loss.item()
-        total_j_loss += j_loss.item()
-        total_kappa_loss += kappa_loss.item()
+        total_z += z_v.item()
+        total_kappa += kappa_v.item()
+        total_recon += recon_v.item()
         num_batches += 1
 
     n = max(num_batches, 1)
-    return total_loss / n, total_j_loss / n, total_kappa_loss / n
+    return total_loss / n, total_z / n, total_kappa / n, total_recon / n
 
 
 def save_checkpoint(
@@ -376,8 +393,9 @@ def parse_args() -> argparse.Namespace:
         description="Train the LUCJ pretraining model",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
-    parser.add_argument("--jobs-dir", type=str, required=True,
-                        help="Directory containing job subdirectories with LUCJ data")
+    parser.add_argument("--data-dir", type=str, default="rhf_dataset",
+                        help="Directory of per-molecule RHF-CCSD .npz files "
+                             "(from generate_rhf_dataset.py)")
     parser.add_argument("--epochs", type=int, default=200,
                         help="Number of training epochs")
     parser.add_argument("--batch-size", type=int, default=32,
@@ -390,8 +408,21 @@ def parse_args() -> argparse.Namespace:
                         help="Linear warmup steps for LR schedule")
     parser.add_argument("--max-grad-norm", type=float, default=1.0,
                         help="Max gradient norm for clipping")
-    parser.add_argument("--alpha", type=float, default=1.0,
-                        help="Weight for U (orbital rotation) loss term")
+    parser.add_argument("--accum-steps", type=int, default=1,
+                        help="Gradient accumulation steps (effective batch = "
+                             "batch-size * accum-steps; cuts gradient noise)")
+    parser.add_argument("--targets-dir", type=str, default="rhf_targets",
+                        help="Directory of ffsim DF (Z, kappa) targets")
+    parser.add_argument("--loss-mode", type=str, default="supervised",
+                        choices=["supervised", "reconstruction"],
+                        help="U/kappa objective: 'supervised' = direct regression "
+                             "to ffsim (Z, kappa) targets (robust; J/Z learns well, "
+                             "kappa head is weak); 'reconstruction' = gauge-invariant "
+                             "t2 reconstruction + Z anchor (experimental).")
+    parser.add_argument("--kappa-weight", type=float, default=1.0,
+                        help="[supervised] weight of the kappa regression term")
+    parser.add_argument("--z-anchor-weight", type=float, default=1.0,
+                        help="[reconstruction] weight of the Z anchor term")
     parser.add_argument("--val-split", type=float, default=0.1,
                         help="Fraction of data for validation")
     parser.add_argument("--seed", type=int, default=42,
@@ -404,8 +435,6 @@ def parse_args() -> argparse.Namespace:
                         help="Log training metrics every N steps")
     parser.add_argument("--num-workers", type=int, default=4,
                         help="DataLoader worker count")
-    parser.add_argument("--no-amp", action="store_true",
-                        help="Disable automatic mixed precision")
 
     # Model config overrides
     parser.add_argument("--embed-dim", type=int, default=192,
@@ -445,20 +474,24 @@ def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     logger.info(f"Using device: {device}")
 
-    use_amp = torch.cuda.is_available() and not args.no_amp
-    if use_amp:
-        logger.info("Mixed precision training enabled (torch.amp)")
+    # AMP is disabled: the reconstruction loss uses complex matrix_exp, which
+    # requires float32 precision.
+    scaler = None
 
     # -----------------------------------------------------------------------
     # Data
     # -----------------------------------------------------------------------
-    jobs_dir = Path(args.jobs_dir)
-    if not jobs_dir.is_dir():
-        logger.error(f"Jobs directory not found: {jobs_dir}")
+    data_dir = Path(args.data_dir)
+    if not data_dir.is_dir():
+        logger.error(f"Data directory not found: {data_dir}")
         sys.exit(1)
 
-    dataset = CCSDAmplitudeDataset(jobs_dir, species_filter=args.species_filter)
-    logger.info(f"Dataset size: {len(dataset)} molecules")
+    dataset = CCSDAmplitudeDataset(
+        data_dir, species_filter=args.species_filter, n_reps=args.n_reps,
+        targets_dir=args.targets_dir,
+    )
+    logger.info(f"Dataset size: {len(dataset)} molecules"
+                + (f" (with Z targets from {args.targets_dir})" if args.targets_dir else ""))
 
     n_val = int(len(dataset) * args.val_split)
     n_train = len(dataset) - n_val
@@ -521,13 +554,19 @@ def main():
         model.parameters(), lr=args.lr, weight_decay=args.weight_decay
     )
 
-    num_training_steps = args.epochs * len(train_loader)
+    num_training_steps = args.epochs * (len(train_loader) // args.accum_steps)
     scheduler = get_cosine_schedule_with_warmup(
         optimizer, args.warmup_steps, num_training_steps
     )
 
-    scaler = torch.amp.GradScaler("cuda") if use_amp else None
-    criterion = LUCJLoss(alpha=args.alpha)
+    criterion = LUCJLoss(
+        mode=args.loss_mode,
+        kappa_weight=args.kappa_weight,
+        z_anchor_weight=args.z_anchor_weight,
+        n_reps=args.n_reps,
+        max_norb=model_config.max_norb,
+    ).to(device)
+    logger.info(f"Loss mode: {args.loss_mode}")
 
     # -----------------------------------------------------------------------
     # Resume
@@ -584,32 +623,30 @@ def main():
                 criterion=criterion,
                 optimizer=optimizer,
                 scheduler=scheduler,
-                scaler=scaler,
                 device=device,
                 max_grad_norm=args.max_grad_norm,
                 global_step=global_step,
                 log_interval=args.log_interval,
+                accum_steps=args.accum_steps,
                 json_log_file=json_log_file,
             )
             epoch_time = time.time() - epoch_start
 
             # Validation
-            val_loss, val_j_loss, val_kappa_loss = validate(
-                model, val_loader, criterion, device
-            )
+            val_loss, val_z, val_kappa, val_recon = validate(
+                model, val_loader, criterion, device)
 
             logger.info(
                 f"Epoch {epoch+1}/{args.epochs}  "
-                f"train_loss={train_loss:.6f}  "
-                f"val_loss={val_loss:.6f}  "
-                f"val_j={val_j_loss:.6f}  val_kappa={val_kappa_loss:.6f}  "
-                f"time={epoch_time:.1f}s"
+                f"train_loss={train_loss:.6f}  val_loss={val_loss:.6f}  "
+                f"val_z={val_z:.6f}  val_kappa={val_kappa:.6f}  "
+                f"val_recon={val_recon:.6f}  time={epoch_time:.1f}s"
             )
             json_log_file.write(json_mod.dumps({
                 "type": "val_epoch", "epoch": epoch + 1,
                 "train_loss": train_loss, "val_loss": val_loss,
-                "val_j_loss": val_j_loss, "val_kappa_loss": val_kappa_loss,
-                "time": epoch_time,
+                "val_z_loss": val_z, "val_kappa_loss": val_kappa,
+                "val_recon_loss": val_recon, "time": epoch_time,
             }) + "\n")
             json_log_file.flush()
 
@@ -636,12 +673,15 @@ def main():
     except KeyboardInterrupt:
         logger.warning("KeyboardInterrupt caught")
     finally:
-        save_checkpoint(
-            checkpoint_dir / "last.pt",
-            model, optimizer, scheduler, scaler,
-            epoch + 1 if "epoch" in dir() else start_epoch,
-            global_step, best_val_loss,
-        )
+        try:
+            save_checkpoint(
+                checkpoint_dir / "last.pt",
+                model, optimizer, scheduler, scaler,
+                epoch + 1 if "epoch" in dir() else start_epoch,
+                global_step, best_val_loss,
+            )
+        except Exception as e:
+            logger.error(f"Could not save final checkpoint: {e}")
         json_log_file.close()
         logger.info(f"Training finished. Best val loss: {best_val_loss:.6f}")
 

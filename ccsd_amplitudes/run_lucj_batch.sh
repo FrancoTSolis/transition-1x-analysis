@@ -29,6 +29,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 COMPUTE_SCRIPT="$SCRIPT_DIR/compute_lucj.py"
+VENV_PYTHON="$SCRIPT_DIR/.lucj_venv/bin/python3"
 
 JOBS_DIR="$SCRIPT_DIR/jobs"
 PARALLEL_JOBS=6
@@ -132,13 +133,13 @@ run_lucj_job() {
     export JAX_NUM_THREADS="$THREADS_PER_JOB"
 
     cd /tmp
-    python3 "$COMPUTE_SCRIPT" "$job_dir" \
+    "$VENV_PYTHON" "$COMPUTE_SCRIPT" "$job_dir" \
         --n-reps "$N_REPS" \
         --maxiter "$MAXITER" \
         2>&1
 }
 export -f run_lucj_job
-export COMPUTE_SCRIPT THREADS_PER_JOB N_REPS MAXITER
+export COMPUTE_SCRIPT THREADS_PER_JOB N_REPS MAXITER VENV_PYTHON
 
 printf '%s\n' "${PENDING_JOBS[@]}" | \
     xargs -P "$PARALLEL_JOBS" -I {} bash -c 'run_lucj_job "$@"' _ {} \

@@ -18,3 +18,26 @@ ccsd_amplitudes/*.out.files/
 # Stale Q-Chem scratch artifacts
 *.dat
 !ccsd_amplitudes/extract_geometries.py
+
+ccsd_amplitudes/pretrain/.train_venv/
+gt-transformer-reference/
+ccsd_amplitudes/.lucj_venv/
+
+# Generated RHF datasets & ffsim DF targets (large, regenerable)
+ccsd_amplitudes/rhf_dataset/
+ccsd_amplitudes/rhf_targets/
+ccsd_amplitudes/rhf_cache/
+ccsd_amplitudes/rhf_t2_cache/
+ccsd_amplitudes/rhf_dataset_n29/
+
+# Archived stale (UHF/spin-orbital era) results
+ccsd_amplitudes/stale_*/
+
+# Model checkpoints and training/generation logs
+ccsd_amplitudes/checkpoints*/
+ccsd_amplitudes/gen_logs/
+ccsd_amplitudes/df_target_logs/
+
+# External / vendored checkouts (used for reference, not project source)
+ffsim/
+wan-hsuan-lucj/

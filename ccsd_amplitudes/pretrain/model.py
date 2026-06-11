@@ -21,6 +21,10 @@ class ModelConfig:
     n_reps: int = 2
     use_hf_energies: bool = False
     use_mo_coeffs: bool = False
+    # Output bounds (prevent matrix_exp blow-up; learned in experiments).
+    # kappa generator entries in [-kappa_scale, kappa_scale]; Z in [-z_scale, z_scale].
+    kappa_scale: float = math.pi
+    z_scale: float = 3.0
 
 
 # ---------------------------------------------------------------------------
@@ -47,6 +51,44 @@ class DeepSetsEncoder(nn.Module):
         h = self.phi(x.unsqueeze(-1))  # (..., L, hidden)
         h = h.mean(dim=-2)  # (..., hidden)
         return self.rho(h)  # (..., output_dim)
+
+
+class PositionalSliceEncoder(nn.Module):
+    """Encode a 2-D t2 slice while preserving positional structure.
+
+    A plain DeepSets mean-pool over slice elements is permutation-invariant and
+    discards *which* (r, s) element holds *which* amplitude — far too lossy for
+    reconstructing t2. Here each element value is tagged with learned positional
+    embeddings for its two within-slice indices before pooling, so the encoder
+    can represent (nonlinear) structured functions of the full slice.
+    """
+
+    def __init__(self, hidden_dim: int, output_dim: int, max_pos: int, pe_dim: int = 8):
+        super().__init__()
+        self.pos_emb = nn.Embedding(max_pos, pe_dim)
+        self.phi = nn.Sequential(
+            nn.Linear(1 + 2 * pe_dim, hidden_dim),
+            nn.GELU(),
+        )
+        self.rho = nn.Sequential(
+            nn.Linear(hidden_dim, output_dim),
+            nn.GELU(),
+        )
+
+    def forward(self, slc: Tensor) -> Tensor:
+        """slc: (B, P, Q, R, S) -> (B, P, Q, output_dim)."""
+        B, P, Q, R, S = slc.shape
+        if R == 0 or S == 0:
+            return slc.new_zeros(B, P, Q, self.rho[0].out_features)
+        device = slc.device
+        pr = self.pos_emb(torch.arange(R, device=device))  # (R, pe)
+        ps = self.pos_emb(torch.arange(S, device=device))  # (S, pe)
+        val = slc.unsqueeze(-1)                              # (B,P,Q,R,S,1)
+        pr_e = pr[None, None, None, :, None, :].expand(B, P, Q, R, S, -1)
+        ps_e = ps[None, None, None, None, :, :].expand(B, P, Q, R, S, -1)
+        feat = self.phi(torch.cat([val, pr_e, ps_e], dim=-1))  # (B,P,Q,R,S,hidden)
+        pooled = feat.sum(dim=(3, 4))                          # (B,P,Q,hidden)
+        return self.rho(pooled)                                # (B,P,Q,output_dim)
 
 
 # ---------------------------------------------------------------------------
@@ -125,8 +167,15 @@ class Tokenizer(nn.Module):
         # (b) Pair-type embedding: {occ-occ, occ-virt, virt-occ, virt-virt}
         self.pair_type_embed = nn.Embedding(4, d)
 
-        # (c) t2-slice encoder (DeepSets)
-        self.slice_encoder = DeepSetsEncoder(hidden_dim=d // 2, output_dim=d)
+        # (c) t2-slice encoder (positional, preserves slice structure)
+        self.slice_encoder = PositionalSliceEncoder(
+            hidden_dim=d // 2, output_dim=d, max_pos=config.max_norb
+        )
+        # The t2 slice is the ONLY molecule-specific token component (orbital/pair
+        # type/global features are identical across same-size molecules). Normalize
+        # and emphasize it so it is not drowned out by those structural priors.
+        self.slice_norm = nn.LayerNorm(d)
+        self.slice_gate = nn.Parameter(torch.tensor(4.0))
 
         # (d) Global features: [nocc, nvirt, n_reps] → d
         self.global_proj = nn.Linear(3, d)
@@ -184,8 +233,9 @@ class Tokenizer(nn.Module):
         pair_type_feats = self.pair_type_embed(pair_type_idx)  # (norb, norb, d)
         pair_type_feats = pair_type_feats.unsqueeze(0).expand(B, -1, -1, -1)
 
-        # --- (c) t2-slice features ---
+        # --- (c) t2-slice features (the molecule-specific signal) ---
         slice_feats = self._encode_t2_slices(t2, nocc, nvirt, norb)
+        slice_feats = self.slice_gate * self.slice_norm(slice_feats)
 
         # --- (d) Global features ---
         global_vec = torch.tensor(
@@ -212,20 +262,19 @@ class Tokenizer(nn.Module):
 
         result = torch.zeros(B, norb, norb, d, device=device)
 
-        # occ-occ: slice = t2[p, q, :, :] ∈ R^{nvirt×nvirt}
-        oo = t2.reshape(B, nocc, nocc, nvirt * nvirt)
-        result[:, :nocc, :nocc] = self.slice_encoder(oo)
+        # occ-occ pair (p,q): slice t2[p,q,:,:] over (a,b) ∈ virt×virt
+        result[:, :nocc, :nocc] = self.slice_encoder(t2)
 
-        # occ-virt: slice = t2[p, :, q-nocc, :] ∈ R^{nocc×nvirt}
-        ov = t2.permute(0, 1, 3, 2, 4).reshape(B, nocc, nvirt, nocc * nvirt)
+        # occ-virt pair (p,a): slice t2[p,:,a,:] over (j,b) ∈ occ×virt
+        ov = t2.permute(0, 1, 3, 2, 4)  # (B, nocc, nvirt, nocc, nvirt)
         result[:, :nocc, nocc:norb] = self.slice_encoder(ov)
 
-        # virt-virt: slice = t2[:, :, p-nocc, q-nocc] ∈ R^{nocc×nocc}
-        vv = t2.permute(0, 3, 4, 1, 2).reshape(B, nvirt, nvirt, nocc * nocc)
+        # virt-virt pair (a,b): slice t2[:,:,a,b] over (i,j) ∈ occ×occ
+        vv = t2.permute(0, 3, 4, 1, 2)  # (B, nvirt, nvirt, nocc, nocc)
         result[:, nocc:norb, nocc:norb] = self.slice_encoder(vv)
 
-        # virt-occ: slice = t2[:, q, p-nocc, :] ∈ R^{nocc×nvirt}
-        vo = t2.permute(0, 3, 2, 1, 4).reshape(B, nvirt, nocc, nocc * nvirt)
+        # virt-occ pair (a,p): slice t2[:,p,a,:] over (i,b) ∈ occ×virt
+        vo = t2.permute(0, 3, 2, 1, 4)  # (B, nvirt, nocc, nocc, nvirt)
         result[:, nocc:norb, :nocc] = self.slice_encoder(vo)
 
         return result
@@ -336,6 +385,8 @@ class DecodeHeads(nn.Module):
         super().__init__()
         d = config.embed_dim
         n_reps = config.n_reps
+        self.kappa_scale = config.kappa_scale
+        self.z_scale = config.z_scale
 
         n_j_heads = 2 * n_reps
         self.j_mlps = nn.ModuleList([
@@ -371,15 +422,18 @@ class DecodeHeads(nn.Module):
                 mlp = self.j_mlps[rep * 2 + spin]
                 g_pq = mlp(z_active).squeeze(-1)
                 g_qp = mlp(z_T).squeeze(-1)
-                j_out[:, rep, spin, :norb, :norb] = g_pq + g_qp
+                # symmetric, single tanh bound (no saturating base)
+                j_out[:, rep, spin, :norb, :norb] = torch.tanh(g_pq + g_qp) * self.z_scale
 
             f_pq = self.kappa_real_mlps[rep](z_active).squeeze(-1)
             f_qp = self.kappa_real_mlps[rep](z_T).squeeze(-1)
-            kr_out[:, rep, :norb, :norb] = f_pq - f_qp
+            # anti-symmetric (tanh is odd, so the f_pq-f_qp structure is preserved)
+            kr_out[:, rep, :norb, :norb] = torch.tanh(f_pq - f_qp) * self.kappa_scale
 
             h_pq = self.kappa_imag_mlps[rep](z_active).squeeze(-1)
             h_qp = self.kappa_imag_mlps[rep](z_T).squeeze(-1)
-            ki_out[:, rep, :norb, :norb] = h_pq + h_qp
+            # symmetric
+            ki_out[:, rep, :norb, :norb] = torch.tanh(h_pq + h_qp) * self.kappa_scale
 
         return {
             "j_pred": j_out,
