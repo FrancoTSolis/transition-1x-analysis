@@ -68,12 +68,15 @@ class LUCJLoss(nn.Module):
 
     def __init__(self, mode: str = "supervised", kappa_weight: float = 1.0,
                  z_anchor_weight: float = 1.0, recon_relative: bool = True,
+                 z_reg: str = "anchor",
                  n_reps: int = 2, max_norb: int = 96, base_scale: float = 0.3):
         super().__init__()
         assert mode in ("supervised", "reconstruction")
+        assert z_reg in ("anchor", "floor", "none")
         self.mode = mode
         self.kappa_weight = kappa_weight
         self.z_anchor_weight = z_anchor_weight
+        self.z_reg = z_reg
         self.recon_relative = recon_relative
         # Fixed complex base rotation for reconstruction mode (see class docstring).
         g = torch.Generator().manual_seed(0)
@@ -137,8 +140,17 @@ class LUCJLoss(nn.Module):
                     resid = resid / tgt.norm().clamp_min(1e-8)
                 loss_i = resid
                 z_l = torch.zeros((), device=device)
-                if z_target is not None and self.z_anchor_weight > 0:
-                    z_l = (Z - z_target[i][:, :n, :n]).pow(2).mean()
+                if z_target is not None and self.z_anchor_weight > 0 and self.z_reg != "none":
+                    zt = z_target[i][:, :n, :n]
+                    if self.z_reg == "anchor":
+                        # pin Z to ffsim's Z (imposes ffsim's gauge on Z)
+                        z_l = (Z - zt).pow(2).mean()
+                    else:  # "floor": gauge-free magnitude floor
+                        # keep ||Z|| from collapsing to 0 without pinning direction,
+                        # so U and Z can co-adapt to a consistent reconstructing pair
+                        zt_norm = zt.flatten(1).norm(dim=1)
+                        z_norm = Z.flatten(1).norm(dim=1)
+                        z_l = torch.relu(zt_norm - z_norm).pow(2).mean()
                     loss_i = loss_i + self.z_anchor_weight * z_l
                 total = total + loss_i
                 recon_acc = recon_acc + resid.detach()
@@ -422,7 +434,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--kappa-weight", type=float, default=1.0,
                         help="[supervised] weight of the kappa regression term")
     parser.add_argument("--z-anchor-weight", type=float, default=1.0,
-                        help="[reconstruction] weight of the Z anchor term")
+                        help="[reconstruction] weight of the Z regularization term")
+    parser.add_argument("--z-reg", type=str, default="anchor",
+                        choices=["anchor", "floor", "none"],
+                        help="[reconstruction] Z regularizer: 'anchor' pins Z to "
+                             "ffsim's Z (imposes its gauge); 'floor' is a gauge-free "
+                             "magnitude floor (prevents Z->0 collapse, lets U,Z "
+                             "co-adapt); 'none' = pure reconstruction")
     parser.add_argument("--val-split", type=float, default=0.1,
                         help="Fraction of data for validation")
     parser.add_argument("--seed", type=int, default=42,
@@ -430,7 +448,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--checkpoint-dir", type=str, default="checkpoints",
                         help="Directory for saving checkpoints")
     parser.add_argument("--resume", type=str, default=None,
-                        help="Path to checkpoint to resume from")
+                        help="Path to checkpoint to resume from (restores optimizer/epoch)")
+    parser.add_argument("--init-from", type=str, default=None,
+                        help="Warm-start: load ONLY model weights from this checkpoint "
+                             "(fresh optimizer/epoch). Use to init a reconstruction run "
+                             "from a supervised checkpoint so Z starts nonzero/structured "
+                             "and the model is out of the Z=0 trap.")
     parser.add_argument("--log-interval", type=int, default=50,
                         help="Log training metrics every N steps")
     parser.add_argument("--num-workers", type=int, default=4,
@@ -563,10 +586,23 @@ def main():
         mode=args.loss_mode,
         kappa_weight=args.kappa_weight,
         z_anchor_weight=args.z_anchor_weight,
+        z_reg=args.z_reg,
         n_reps=args.n_reps,
         max_norb=model_config.max_norb,
     ).to(device)
-    logger.info(f"Loss mode: {args.loss_mode}")
+    logger.info(f"Loss mode: {args.loss_mode}"
+                + (f" (z_reg={args.z_reg})" if args.loss_mode == "reconstruction" else ""))
+
+    # Warm-start: load only model weights (fresh optimizer/epoch).
+    if args.init_from:
+        ipath = Path(args.init_from)
+        if not ipath.exists():
+            logger.error(f"--init-from checkpoint not found: {ipath}")
+            sys.exit(1)
+        sd = torch.load(ipath, map_location=device, weights_only=False)["model_state_dict"]
+        missing, unexpected = model.load_state_dict(sd, strict=False)
+        logger.info(f"Warm-started model weights from {ipath} "
+                    f"(missing={len(missing)}, unexpected={len(unexpected)})")
 
     # -----------------------------------------------------------------------
     # Resume

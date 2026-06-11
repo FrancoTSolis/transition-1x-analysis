@@ -397,39 +397,29 @@ batch_size=8` fits comfortably in a 40GB GPU (~18 GB used). The positional
 slice encoder's 5-D intermediate is the main memory driver — reduce batch size
 for very large molecules.
 
-## Experiments
+## Results (RHF dataset, 30,205 molecules)
 
-### Orbital Encoding Ablation
+Edge Transformer (d=192, 6 layers, 8 heads, `n_reps=2`), 90/10 train/val split,
+default positional encoding on all species.
 
-Three orbital encoding modes run in parallel on separate GPUs:
+| Run | Flags | Outcome |
+|:----|:------|:--------|
+| **Supervised** (default) | `--loss-mode supervised` | **J/Z $R^2 = 0.63$** (full val, 3,020 mols; rel. err 0.54; MSE 2.2e-5 vs 6.0e-5 zero-baseline). kappa term **flat at ~0.10 from epoch 1** (gauge wall). 40 epochs. |
+| Reconstruction, **cold** start | `--loss-mode reconstruction` | val recon pinned at **exactly 1.000** — collapses into the $Z{=}0$ local minimum. |
+| Reconstruction, **warm-started + Z-floor** | `--loss-mode reconstruction --z-reg floor --init-from <supervised ckpt>` | **Escapes the trap**: val recon **0.999 → 0.976** over 25 epochs (train 0.935). $Z$ stays nonzero; U descent is slow (the gauge-limited part). |
 
-| Experiment | GPU | Flag | Checkpoint dir |
-|:-----------|:----|:-----|:---------------|
-| Positional (baseline) | 0 | (none) | `checkpoints/` |
-| HF orbital energies | 1 | `--use-hf-energies` | `checkpoints_hf/` |
-| MO coefficient pooling | 2 | `--use-mo-coeffs` | `checkpoints_mo/` |
+**Takeaways**
+- The diagonal-Coulomb **J/Z is genuinely learnable** ($R^2 \approx 0.63$ full set, ~0.75 on a uniform-size subset) — this is the usable head.
+- **kappa/U is not** learnable as a regression target (gauge); the kappa loss never moves in supervised mode. It is also orthogonal to J by construction (anti-symmetric vs symmetric) and uncorrelated with orbital energies/gaps — see `docs/FINDINGS.md`.
+- The **warm-start + gauge-free Z floor** removes the $Z{=}0$ reconstruction trap, but learning a consistent U is rate-limiting and pure reconstruction plateaus high. Cracking U needs a **predict-then-refine / energy-aligned** approach (borrow the compressed-DF optimizer for a per-molecule polish) rather than more epochs — see `docs/FINDINGS.md` §8.
 
-Launch: `bash launch_all_training.sh`
+Evaluate any checkpoint's J/Z $R^2$ with `python -m pretrain.eval_zpred <ckpt> rhf_dataset`.
 
-### Species-Filtered Experiments
+### Available ablation flags (not yet swept on RHF data)
 
-Test whether the model benefits from seeing only transition states (which
-have distinct electronic structure) or only equilibrium geometries (reactants
-+ products). The Transition1x dataset has ~10k reactants, ~10k TS, ~10k
-products.
-
-| Experiment | GPU | Flag | Checkpoint dir | Data size |
-|:-----------|:----|:-----|:---------------|:----------|
-| TS only | 3 | `--species-filter TS` | `checkpoints_ts/` | ~10k |
-| R+P only | 4 | `--species-filter RP` | `checkpoints_rp/` | ~20k |
-
-Launch: `bash launch_species_experiments.sh`
-
-**Motivation**: Transition states have qualitatively different coupled-cluster
-amplitudes than equilibrium structures (stronger multi-reference character,
-larger T1 diagnostics). Training on TS alone tests whether the model can
-specialize; training on R+P tests generalization from equilibrium to
-non-equilibrium.
+`--use-hf-energies`, `--use-mo-coeffs` (orbital encodings) and
+`--species-filter {TS,RP}` remain available; the results above use the default
+positional encoding on all species. Sweeping these on the RHF dataset is future work.
 
 ## References
 
