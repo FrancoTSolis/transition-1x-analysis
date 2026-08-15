@@ -28,11 +28,15 @@ class CCSDAmplitudeDataset(Dataset):
     """
 
     def __init__(self, data_dir: str | Path, species_filter: str | None = None,
-                 n_reps: int = 2, targets_dir: str | Path | None = None) -> None:
+                 n_reps: int = 2, targets_dir: str | Path | None = None,
+                 inv_targets_dir: str | Path | None = None) -> None:
         self.data_dir = Path(data_dir)
         self.n_reps = n_reps
         # Optional DF (Z, kappa) targets for the warm-start / anti-collapse term.
         self.targets_dir = Path(targets_dir) if targets_dir is not None else None
+        # Optional invariant (lam0, v0) targets for the deck_v3 retargeted head.
+        self.inv_targets_dir = (
+            Path(inv_targets_dir) if inv_targets_dir is not None else None)
 
         allowed: set[str] | None = None
         if species_filter == "TS":
@@ -53,6 +57,9 @@ class CCSDAmplitudeDataset(Dataset):
                     continue
             # if using targets, require the target file to exist
             if self.targets_dir is not None and not (self.targets_dir / f"{name}.npz").exists():
+                continue
+            if (self.inv_targets_dir is not None
+                    and not (self.inv_targets_dir / f"{name}.npz").exists()):
                 continue
             norb, nocc, nvirt = index[name]
             self.names.append(name)
@@ -114,6 +121,11 @@ class CCSDAmplitudeDataset(Dataset):
             sample["z_target"] = torch.from_numpy(tg["Z"].astype(np.float32))
             sample["kappa_real_target"] = torch.from_numpy(tg["kappa_real"].astype(np.float32))
             sample["kappa_imag_target"] = torch.from_numpy(tg["kappa_imag"].astype(np.float32))
+        if self.inv_targets_dir is not None:
+            it = np.load(self.inv_targets_dir / f"{name}.npz")
+            sample["v_target"] = torch.from_numpy(it["v0"].astype(np.float32))
+            sample["lam_target"] = float(it["lam0"])
+            sample["gap"] = float(it["gap"])
         return sample
 
     def __repr__(self) -> str:
@@ -142,6 +154,14 @@ class CCSDAmplitudeDataset(Dataset):
         else:
             z_target = kr_target = ki_target = None
 
+        has_inv = "v_target" in batch[0]
+        if has_inv:
+            v_target = torch.zeros(B, max_nocc, max_nvirt)
+            lam_target = torch.zeros(B)
+            gap = torch.zeros(B)
+        else:
+            v_target = lam_target = gap = None
+
         nocc_list, nvirt_list, norb_list, n_reps_list, names = [], [], [], [], []
 
         for i, s in enumerate(batch):
@@ -155,6 +175,10 @@ class CCSDAmplitudeDataset(Dataset):
                 z_target[i, :, :nb, :nb] = s["z_target"]
                 kr_target[i, :, :nb, :nb] = s["kappa_real_target"]
                 ki_target[i, :, :nb, :nb] = s["kappa_imag_target"]
+            if has_inv:
+                v_target[i, :no, :nv] = s["v_target"]
+                lam_target[i] = s["lam_target"]
+                gap[i] = s["gap"]
             nocc_list.append(no)
             nvirt_list.append(nv)
             norb_list.append(nb)
@@ -181,4 +205,8 @@ class CCSDAmplitudeDataset(Dataset):
             out["z_target"] = z_target
             out["kappa_real_target"] = kr_target
             out["kappa_imag_target"] = ki_target
+        if has_inv:
+            out["v_target"] = v_target
+            out["lam_target"] = lam_target
+            out["gap"] = gap
         return out

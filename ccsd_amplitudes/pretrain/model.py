@@ -25,6 +25,10 @@ class ModelConfig:
     # kappa generator entries in [-kappa_scale, kappa_scale]; Z in [-z_scale, z_scale].
     kappa_scale: float = math.pi
     z_scale: float = 3.0
+    # Invariant retarget (deck_v3): predict the gauge-free sufficient statistic
+    # (lam0, v0) of the exact-DF label instead of regressing kappa. v0 is read
+    # out from the occ-virt pair tokens; lam0 from a masked mean pool.
+    predict_invariant: bool = False
 
 
 # ---------------------------------------------------------------------------
@@ -403,8 +407,18 @@ class DecodeHeads(nn.Module):
             for _ in range(n_reps)
         ])
 
+        # Invariant retarget heads (deck_v3): v0 is a scalar per occ-virt pair
+        # token; lam0 is a masked mean pool of per-pair features -> scalar.
+        self.predict_invariant = config.predict_invariant
+        if self.predict_invariant:
+            self.v_mlp = nn.Sequential(
+                nn.Linear(d, d // 2), nn.GELU(), nn.Linear(d // 2, 1))
+            self.lam_pair = nn.Sequential(
+                nn.Linear(d, d // 4), nn.GELU())
+            self.lam_out = nn.Linear(d // 4, 1)
+
     def forward(
-        self, z: Tensor, norb: int
+        self, z: Tensor, norb: int, ov_mask: Tensor | None = None
     ) -> dict[str, Tensor]:
         B = z.shape[0]
         z_active = z[:, :norb, :norb]
@@ -435,11 +449,26 @@ class DecodeHeads(nn.Module):
             # symmetric
             ki_out[:, rep, :norb, :norb] = torch.tanh(h_pq + h_qp) * self.kappa_scale
 
-        return {
+        out = {
             "j_pred": j_out,
             "kappa_real_pred": kr_out,
             "kappa_imag_pred": ki_out,
         }
+
+        if self.predict_invariant:
+            # v0 readout: raw scalar on every pair token; the loss slices the
+            # active occ-virt block per sample (sign handled by the loss).
+            out["v_pred"] = self.v_mlp(z).squeeze(-1)          # (B, N, N)
+            # lam0 readout: masked mean pool over active occ-virt pair tokens.
+            feat = self.lam_pair(z)                            # (B, N, N, h)
+            if ov_mask is None:
+                pooled = feat.mean(dim=(1, 2))
+            else:
+                m = ov_mask.unsqueeze(-1).to(feat.dtype)
+                pooled = (feat * m).sum(dim=(1, 2)) / m.sum(dim=(1, 2)).clamp_min(1.0)
+            out["lam_pred"] = self.lam_out(pooled).squeeze(-1)  # (B,)
+
+        return out
 
 
 # ---------------------------------------------------------------------------
@@ -508,7 +537,32 @@ class PretrainingModel(nn.Module):
             x = layer(x, mask=mask, t2_bias=t2_bias)
 
         x = self.final_norm(x)
-        return self.decode_heads(x, norb)
+
+        ov_mask = None
+        if self.config.predict_invariant:
+            noccs = batch.get("noccs")
+            nvirts = batch.get("nvirts")
+            if noccs is not None and nvirts is not None:
+                ov_mask = self._compute_ov_mask(
+                    noccs.to(x.device), nvirts.to(x.device), nocc, norb)
+        return self.decode_heads(x, norb, ov_mask=ov_mask)
+
+    @staticmethod
+    def _compute_ov_mask(
+        noccs: Tensor, nvirts: Tensor, max_nocc: int, N: int
+    ) -> Tensor:
+        """True on each sample's active occ-virt pair block.
+
+        Token layout is occ slots [0, max_nocc) then virt slots
+        [max_nocc, max_nocc + max_nvirt); sample i is active on rows
+        [0, nocc_i) and cols [max_nocc, max_nocc + nvirt_i).
+        """
+        device = noccs.device
+        idx = torch.arange(N, device=device)
+        row_ok = idx.unsqueeze(0) < noccs.unsqueeze(1)                       # (B, N)
+        col_ok = (idx.unsqueeze(0) >= max_nocc) & (
+            idx.unsqueeze(0) < max_nocc + nvirts.unsqueeze(1))               # (B, N)
+        return row_ok[:, :, None] & col_ok[:, None, :]
 
     def _compute_t2_bias(self, t2: Tensor, nocc: int, nvirt: int, N: int) -> Tensor:
         """Build attention bias from t2 amplitudes.

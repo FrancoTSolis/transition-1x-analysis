@@ -58,6 +58,18 @@ class LUCJLoss(nn.Module):
         Z anchor prevents the Z->0 collapse. This objective is invariant to U's
         gauge, but on heterogeneous data it escapes the saddle only slowly.
 
+    mode='invariant' (deck_v3 retarget — the gauge fix):
+        Do not regress kappa at all. Predict the gauge-free sufficient statistic
+        of the exact-DF label: lam0 (scalar) and v0 (occ x virt matrix, unit,
+        defined up to sign), from which (U, Z) is rebuilt at inference with the
+        same deterministic quadrature+eigh construction ffsim uses
+        (gauge_study.common.exact_df_t2 / build_from_v).
+        L = ||Z - Z*||^2                       (unchanged J/Z head)
+          + min(||m - v0||^2, ||m + v0||^2)    (sign is the only residual gauge)
+          + lam_weight * (lam - lam0)^2
+        Logging channels in this mode: kappa slot = v0 loss, recon slot = lam0
+        loss (names kept for compatibility with existing plotting scripts).
+
     Variable-size molecules: per sample we gather the active orbital slots
     [0..nocc) ∪ [max_nocc..max_nocc+nvirt). ffsim targets are stored in native
     occ-then-virt order, which matches the gathered prediction order.
@@ -68,13 +80,14 @@ class LUCJLoss(nn.Module):
 
     def __init__(self, mode: str = "supervised", kappa_weight: float = 1.0,
                  z_anchor_weight: float = 1.0, recon_relative: bool = True,
-                 z_reg: str = "anchor",
+                 z_reg: str = "anchor", lam_weight: float = 1.0,
                  n_reps: int = 2, max_norb: int = 96, base_scale: float = 0.3):
         super().__init__()
-        assert mode in ("supervised", "reconstruction")
+        assert mode in ("supervised", "reconstruction", "invariant")
         assert z_reg in ("anchor", "floor", "none")
         self.mode = mode
         self.kappa_weight = kappa_weight
+        self.lam_weight = lam_weight
         self.z_anchor_weight = z_anchor_weight
         self.z_reg = z_reg
         self.recon_relative = recon_relative
@@ -97,6 +110,10 @@ class LUCJLoss(nn.Module):
         z_target: torch.Tensor | None = None,    # (B, reps, N, N) ffsim DF Z
         kr_target: torch.Tensor | None = None,   # (B, reps, N, N) ffsim Re log U
         ki_target: torch.Tensor | None = None,   # (B, reps, N, N) ffsim Im log U
+        v_pred: torch.Tensor | None = None,      # (B, N, N) invariant-mode v0 head
+        lam_pred: torch.Tensor | None = None,    # (B,) invariant-mode lam0 head
+        v_target: torch.Tensor | None = None,    # (B, max_nocc, max_nvirt) unit v0
+        lam_target: torch.Tensor | None = None,  # (B,)
     ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
         B = kappa_real_pred.shape[0]
         device = kappa_real_pred.device
@@ -124,6 +141,19 @@ class LUCJLoss(nn.Module):
                 total = total + z_l + self.kappa_weight * k_l
                 z_acc = z_acc + z_l.detach()
                 kappa_acc = kappa_acc + k_l.detach()
+            elif self.mode == "invariant":
+                zt = z_target[i][:, :n, :n]
+                z_l = (Z - zt).pow(2).mean()
+                # active occ-virt block of the pair-token map
+                m_hat = v_pred[i][:no, max_nocc:max_nocc + nv]
+                y = v_target[i][:no, :nv]
+                v_l = torch.minimum(
+                    (m_hat - y).pow(2).sum(), (m_hat + y).pow(2).sum())
+                lam_l = (lam_pred[i] - lam_target[i]).pow(2)
+                total = total + z_l + v_l + self.lam_weight * lam_l
+                z_acc = z_acc + z_l.detach()
+                kappa_acc = kappa_acc + v_l.detach()   # kappa slot = v0 loss
+                recon_acc = recon_acc + lam_l.detach()  # recon slot = lam0 loss
             else:  # reconstruction
                 U_head = torch.linalg.matrix_exp(torch.complex(kr, ki))
                 b_re = self.base_re[:, idx][:, :, idx]
@@ -240,7 +270,7 @@ def get_cosine_schedule_with_warmup(
 # ---------------------------------------------------------------------------
 
 
-def _compute_loss(model, batch, criterion, device):
+def _compute_loss(model, batch, criterion, device, return_outputs=False):
     outputs = model(batch)
     total, recon_v, z_v, kappa_v = criterion(
         kappa_real_pred=outputs["kappa_real_pred"],
@@ -253,8 +283,42 @@ def _compute_loss(model, batch, criterion, device):
         z_target=batch.get("z_target"),
         kr_target=batch.get("kappa_real_target"),
         ki_target=batch.get("kappa_imag_target"),
+        v_pred=outputs.get("v_pred"),
+        lam_pred=outputs.get("lam_pred"),
+        v_target=batch.get("v_target"),
+        lam_target=batch.get("lam_target"),
     )
+    if return_outputs:
+        return total, recon_v, z_v, kappa_v, outputs
     return total, recon_v, z_v, kappa_v
+
+
+@torch.no_grad()
+def _invariant_batch_metrics(outputs, batch):
+    """Per-sample gauge-aware metrics for the invariant mode.
+
+    Returns lists of (cosine, B_rel_err, lam_pred, lam_true) where
+    cosine = |<v_hat/||v_hat||, v0>| and
+    B_rel_err = ||lam_hat vh vh^T - lam0 v0 v0^T||_F / |lam0| (v's unit).
+    """
+    cos_l, berr_l, lam_p, lam_t = [], [], [], []
+    max_nocc = batch["max_nocc"]
+    for i in range(outputs["v_pred"].shape[0]):
+        no = int(batch["noccs"][i]); nv = int(batch["nvirts"][i])
+        m_hat = outputs["v_pred"][i][:no, max_nocc:max_nocc + nv]
+        nrm = m_hat.norm().clamp_min(1e-12)
+        vh = m_hat / nrm
+        y = batch["v_target"][i][:no, :nv]
+        cos = (vh * y).sum().abs().clamp(max=1.0)
+        lam_h = outputs["lam_pred"][i]
+        lam0 = batch["lam_target"][i]
+        # ||B_hat - B||^2 = lam_h^2 + lam0^2 - 2 lam_h lam0 cos^2 (unit v's)
+        b2 = (lam_h ** 2 + lam0 ** 2
+              - 2.0 * lam_h * lam0 * cos ** 2).clamp_min(0.0)
+        berr = b2.sqrt() / lam0.abs().clamp_min(1e-12)
+        cos_l.append(cos.item()); berr_l.append(berr.item())
+        lam_p.append(lam_h.item()); lam_t.append(lam0.item())
+    return cos_l, berr_l, lam_p, lam_t
 
 
 def train_one_epoch(
@@ -322,8 +386,13 @@ def validate(
     loader,
     criterion: LUCJLoss,
     device: torch.device,
-) -> tuple[float, float, float, float]:
-    """Run validation. Returns (total, z, kappa, recon) averages."""
+) -> tuple[float, float, float, float, dict]:
+    """Run validation.
+
+    Returns (total, z, kappa, recon) averages plus a dict of extra
+    gauge-aware metrics (populated in invariant mode: median |cos(v0)|,
+    median relative B error, lam0 R^2).
+    """
     model.eval()
     total_loss = 0.0
     num_batches = 0
@@ -331,18 +400,36 @@ def validate(
     total_z = 0.0
     total_kappa = 0.0
     total_recon = 0.0
+    cos_all, berr_all, lam_p_all, lam_t_all = [], [], [], []
     for batch in loader:
         batch = {k: v.to(device) if isinstance(v, torch.Tensor) else v
                  for k, v in batch.items()}
-        loss, recon_v, z_v, kappa_v = _compute_loss(model, batch, criterion, device)
+        loss, recon_v, z_v, kappa_v, outputs = _compute_loss(
+            model, batch, criterion, device, return_outputs=True)
         total_loss += loss.item()
         total_z += z_v.item()
         total_kappa += kappa_v.item()
         total_recon += recon_v.item()
         num_batches += 1
+        if criterion.mode == "invariant" and "v_pred" in outputs:
+            c, b, lp, lt = _invariant_batch_metrics(outputs, batch)
+            cos_all += c; berr_all += b; lam_p_all += lp; lam_t_all += lt
 
     n = max(num_batches, 1)
-    return total_loss / n, total_z / n, total_kappa / n, total_recon / n
+    extras: dict = {}
+    if cos_all:
+        import numpy as _np
+        lam_p = _np.array(lam_p_all); lam_t = _np.array(lam_t_all)
+        ss_res = ((lam_p - lam_t) ** 2).sum()
+        ss_tot = ((lam_t - lam_t.mean()) ** 2).sum()
+        extras = {
+            "val_cos_median": float(_np.median(cos_all)),
+            "val_cos_mean": float(_np.mean(cos_all)),
+            "val_Berr_median": float(_np.median(berr_all)),
+            "val_Berr_mean": float(_np.mean(berr_all)),
+            "val_lam_r2": float(1.0 - ss_res / max(ss_tot, 1e-12)),
+        }
+    return total_loss / n, total_z / n, total_kappa / n, total_recon / n, extras
 
 
 def save_checkpoint(
@@ -426,13 +513,22 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--targets-dir", type=str, default="rhf_targets",
                         help="Directory of ffsim DF (Z, kappa) targets")
     parser.add_argument("--loss-mode", type=str, default="supervised",
-                        choices=["supervised", "reconstruction"],
+                        choices=["supervised", "reconstruction", "invariant"],
                         help="U/kappa objective: 'supervised' = direct regression "
                              "to ffsim (Z, kappa) targets (robust; J/Z learns well, "
                              "kappa head is weak); 'reconstruction' = gauge-invariant "
-                             "t2 reconstruction + Z anchor (experimental).")
+                             "t2 reconstruction + Z anchor (experimental); "
+                             "'invariant' = deck_v3 retarget: predict (lam0, v0) "
+                             "with a sign-invariant loss, rebuild (U, Z) at "
+                             "inference via quadratures+eigh (no gauge in the "
+                             "objective).")
     parser.add_argument("--kappa-weight", type=float, default=1.0,
                         help="[supervised] weight of the kappa regression term")
+    parser.add_argument("--inv-targets-dir", type=str, default="rhf_inv_targets",
+                        help="[invariant] directory of (lam0, v0) targets from "
+                             "build_invariant_targets.py")
+    parser.add_argument("--lam-weight", type=float, default=1.0,
+                        help="[invariant] weight of the lam0 regression term")
     parser.add_argument("--z-anchor-weight", type=float, default=1.0,
                         help="[reconstruction] weight of the Z regularization term")
     parser.add_argument("--z-reg", type=str, default="anchor",
@@ -512,6 +608,8 @@ def main():
     dataset = CCSDAmplitudeDataset(
         data_dir, species_filter=args.species_filter, n_reps=args.n_reps,
         targets_dir=args.targets_dir,
+        inv_targets_dir=(args.inv_targets_dir
+                         if args.loss_mode == "invariant" else None),
     )
     logger.info(f"Dataset size: {len(dataset)} molecules"
                 + (f" (with Z targets from {args.targets_dir})" if args.targets_dir else ""))
@@ -564,6 +662,7 @@ def main():
         dropout=args.dropout,
         use_hf_energies=args.use_hf_energies,
         use_mo_coeffs=args.use_mo_coeffs,
+        predict_invariant=(args.loss_mode == "invariant"),
     )
     model = PretrainingModel(model_config).to(device)
 
@@ -587,6 +686,7 @@ def main():
         kappa_weight=args.kappa_weight,
         z_anchor_weight=args.z_anchor_weight,
         z_reg=args.z_reg,
+        lam_weight=args.lam_weight,
         n_reps=args.n_reps,
         max_norb=model_config.max_norb,
     ).to(device)
@@ -669,20 +769,23 @@ def main():
             epoch_time = time.time() - epoch_start
 
             # Validation
-            val_loss, val_z, val_kappa, val_recon = validate(
+            val_loss, val_z, val_kappa, val_recon, val_extras = validate(
                 model, val_loader, criterion, device)
 
+            extra_str = "".join(
+                f"  {k}={v:.4f}" for k, v in sorted(val_extras.items()))
             logger.info(
                 f"Epoch {epoch+1}/{args.epochs}  "
                 f"train_loss={train_loss:.6f}  val_loss={val_loss:.6f}  "
                 f"val_z={val_z:.6f}  val_kappa={val_kappa:.6f}  "
-                f"val_recon={val_recon:.6f}  time={epoch_time:.1f}s"
+                f"val_recon={val_recon:.6f}{extra_str}  time={epoch_time:.1f}s"
             )
             json_log_file.write(json_mod.dumps({
                 "type": "val_epoch", "epoch": epoch + 1,
                 "train_loss": train_loss, "val_loss": val_loss,
                 "val_z_loss": val_z, "val_kappa_loss": val_kappa,
                 "val_recon_loss": val_recon, "time": epoch_time,
+                **val_extras,
             }) + "\n")
             json_log_file.flush()
 
