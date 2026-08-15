@@ -390,6 +390,19 @@ the rank-K truncation Σ λ_k v_k v_kᵀ of the t2 matrix (a "denoised t2" — t
 same object the J-head's success already proves is partially predictable),
 splitting into eigenpairs at inference.
 
+> **Postscript — implemented and validated.** The retarget above was
+> implemented (`--loss-mode invariant`; targets from
+> `pretrain/build_invariant_targets.py`, heads/loss in `pretrain/model.py` /
+> `pretrain/train.py`, evaluation in `pretrain/eval_invariant.py`) and trained
+> with the v2 recipe (40 epochs, batch 12, same split; lr 5e-4). Where the v2
+> κ objective was flat from epoch 1 and its predictions carried exactly zero
+> invariant content (B error 1.000 — its near-real U zeroes the
+> reconstruction), the retargeted run reaches median |⟨v̂₀,v₀⟩| = 0.908,
+> λ₀ R² = 0.960, median B error = 0.600 on the 3,020-molecule val set —
+> 0.433 / 0.953 on the spectrally stable stratum (gap > 0.2), degrading only
+> where Davis–Kahan says the eigenpair itself is ill-conditioned (gap < 0.05).
+> See `slides/deck_v3.md` and `docs/fig_v3_results.png`.
+
 ### 6.2 The reconstruction loss's J=0 trap disappears in these coordinates
 
 FINDINGS §5 found pure reconstruction collapses to Z=0 (loss pinned at 1.0):

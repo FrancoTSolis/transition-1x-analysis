@@ -180,15 +180,30 @@ a Burer–Monteiro landscape: m=0 is a *strict saddle* (escape curvature ∝ |λ
 
 ## Retargeted pretraining: results
 
-*(this slide is filled by the v3 run — `checkpoints_invariant/`, `pretrain/eval_invariant.py`)*
+<div class="columns">
+<div class="col">
+
+![v3](fig_v3_results.png)
+
+Same model, data, split, epochs, batch size as v2's run; **only the objective changed** (lr 5e-4 vs 1.5e-3 — the invariant loss is ~10× larger in scale). 40 epochs on 1× V100 (scai1), ~8 min/epoch.
+
+</div>
+<div class="col">
 
 | Metric (3,020 val molecules) | v2 baseline (κ heads) | **v3 (invariant heads)** |
 |:--|:--|:--|
-| val loss curve | κ MSE **flat from epoch 1** (0.1028) | *(training)* |
-| invariant-content error $\|\hat B - B\|/\|B\|$ (median) | *(eval of old ckpt)* | *(training)* |
-| sign-aligned cosine (median) | — | *(training)* |
-| λ₀ $R^2$ | — | *(training)* |
-| Z MSE (unchanged head, sanity) | 2.6e-5 | *(training)* |
+| objective trains at all? | κ MSE <span class="bad">flat from epoch 1</span> (0.1028) | <span class="ok">v₀ loss 1.00 → 0.26</span> |
+| invariant-content error (median) | <span class="bad">1.000</span> = zero content¹ | <span class="ok">**0.600**</span> |
+| sign-aligned cosine $\lvert\langle\hat v_0, v_0\rangle\rvert$ (median) | — (κ→U carries none) | **0.908** |
+| λ₀ $R^2$ | — | **0.960** |
+| Z MSE (unchanged head) | 2.6e-5 | 4.0e-5 |
+
+¹ the v2 model's κ_im head learned ≈ the mean ≈ 0 ⇒ its U is essentially real ⇒ reconstructed t̂2 has zero real part: the old pipeline carried **no** invariant rotation information.
+
+**Stratified by outer gap** (Davis–Kahan in action): gap>0.2 (43% of val): B err **0.433**, cos **0.953** · gap 0.05–0.2: 0.700 / 0.874 · gap<0.05 (15%): 0.978 / 0.731 — errors concentrate exactly where the eigenpair is physically ill-conditioned; flaggable at inference.
+
+</div>
+</div>
 
 ---
 
