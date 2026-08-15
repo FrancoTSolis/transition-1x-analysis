@@ -1,0 +1,42 @@
+1410 molecules loaded (12s), nocc=16 nvirt=13
+
+--- spectral statistics (n29, exact-DF labels) ---
+outer relative gap (|lam0|-|lam1|)/|lam0|: median=0.160  q10=0.056  frac<0.05: 0.084  frac<0.01: 0.006
+inner zero modes per molecule: expected 3, observed median=3 (min=3, max=3)
+inner min adjacent sigma-gap (rel): median=0.0023  frac<0.01: 0.956
+
+993345 total pairs; aligning 60457 (41404 in closest decile, 20000 baseline, 1410 same-reaction)
+  aligned 20000/60457 pairs (13s)
+  aligned 40000/60457 pairs (27s)
+  aligned 60000/60457 pairs (41s)
+
+--- closest-decile / random-pair ratio (lower = smoother) ---
+  t2 (input, sanity)                     ratio=0.869   corr(d_t2, .)=+1.000
+  kappa RAW (deck's metric)              ratio=0.985   corr(d_t2, .)=+0.652
+  U RAW                                  ratio=0.982   corr(d_t2, .)=+0.621
+  U phase-aligned                        ratio=0.967   corr(d_t2, .)=+0.803
+  U phase+perm aligned (orbit)           ratio=0.965   corr(d_t2, .)=+0.817
+  lam0*v0, sign-aligned (invariant)      ratio=0.743   corr(d_t2, .)=+0.847
+  B = lam0 v0 v0^T  (full invariant)     ratio=0.780   corr(d_t2, .)=+0.893
+  inner eigenvalues w (sorted)           ratio=0.655   corr(d_t2, .)=+0.427
+  Z RAW (deck's J control)               ratio=0.478   corr(d_t2, .)=+0.597
+  Z perm-aligned                         ratio=0.775   corr(d_t2, .)=+0.754
+
+--- same-reaction pairs (n=1410): mean distance / random-pair mean ---
+  t2 (input, sanity)                     0.981
+  kappa RAW (deck's metric)              1.000
+  U RAW                                  1.000
+  U phase-aligned                        0.988
+  U phase+perm aligned (orbit)           0.980
+  lam0*v0, sign-aligned (invariant)      0.958
+  B = lam0 v0 v0^T  (full invariant)     0.970
+  inner eigenvalues w (sorted)           0.775
+  Z RAW (deck's J control)               0.793
+  Z perm-aligned                         0.950
+
+--- orbit/invariant ratio conditioned on outer-gap stability ---
+  gap in [0.0,0.05):  n_close=  4532  U-orbit ratio=0.987  B ratio=0.814  kappa-raw ratio=0.997
+  gap in [0.05,0.2):  n_close= 34080  U-orbit ratio=0.968  B ratio=0.792  kappa-raw ratio=0.988
+  gap in [0.2,1.0):  n_close=  2792  U-orbit ratio=0.890  B ratio=0.656  kappa-raw ratio=0.930
+
+saved pair data -> gauge_study/figs/exp2_pairs.npz  (41s total)

@@ -1,0 +1,14 @@
+42 molecules (norb=22, nocc=13, nvirt=9), compressed LUCJ labels
+
+optimizer moved U from exact-DF init by (aligned, rel): median=0.617
+reconstruction residual of stored labels: median=0.956
+
+--- closest-decile / all-pair ratio (lower = smoother) ---
+  kappa RAW  (deck: 0.98)                ratio=0.976   corr=+0.345
+  U RAW                                  ratio=0.968   corr=+0.433
+  U phase-aligned                        ratio=0.876   corr=+0.782
+  U phase+reversal+swap (true gauge)     ratio=0.870   corr=+0.808
+  U + Hungarian perm (upper bound)       ratio=0.837   corr=+0.810
+  Z RAW  (deck's J: 0.60)                ratio=0.601   corr=+0.369
+  Z aligned                              ratio=0.608   corr=+0.389
+  t2hat  (gauge-invariant content)       ratio=0.568   corr=+0.536

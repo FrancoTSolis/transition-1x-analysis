@@ -1,0 +1,16 @@
+lam0 ridge R^2 = +0.877
+v0   ridge R^2 (pooled) = +0.445
+|<v0_hat, v0>| : median=0.776  q25=0.423  q75=0.977
+baseline (train-mean v0) overlap: median=0.383
+
+--- invariant-content error ||B_hat - B|| / ||B|| (median) ---
+  ridge->reconstruct : 0.926
+  train-mean baseline: 1.370
+  random-label       : 1.361
+
+--- U orbit distance (rel), rep 0 (median) ---
+  ridge->eigh pipeline: 1.004
+  random-label        : 1.049
+  (recall: relabeling the SAME molecule with a different LAPACK gives ~0.24 aligned -- that is the floor set by degenerate columns)
+
+total 53s

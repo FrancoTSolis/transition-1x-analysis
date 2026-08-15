@@ -38,6 +38,12 @@ ccsd_amplitudes/checkpoints*/
 ccsd_amplitudes/gen_logs/
 ccsd_amplitudes/df_target_logs/
 
+# Gauge study: keep code/logs/figures, ignore bulky regenerable pair data
+ccsd_amplitudes/gauge_study/figs/*.npz
+
+# Invariant (lam0, v0) targets for the retargeted pretraining (regenerable)
+ccsd_amplitudes/rhf_inv_targets/
+
 # External / vendored checkouts (used for reference, not project source)
 ffsim/
 wan-hsuan-lucj/

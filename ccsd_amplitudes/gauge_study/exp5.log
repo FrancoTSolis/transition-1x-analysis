@@ -1,0 +1,5 @@
+pair1 (generic):  C3H5N3_rxn0062_R -> C3H5N3_rxn0062_TS
+pair2 (near-degenerate, gap=0.0021): C4H5NO_rxn9033_P -> C4H5NO_rxn0161_R
+  C3H5N3_rxn0062_R->C3H5N3_rxn0062_TS: raw dU median 7.585, orbit dU median 0.7929, dB median 0.0019, min gap 0.0717
+  C4H5NO_rxn9033_P->C4H5NO_rxn0161_R: raw dU median 7.605, orbit dU median 0.5220, dB median 0.0013, min gap 0.0020
+saved gauge_study/figs/exp5_interpolation.png
