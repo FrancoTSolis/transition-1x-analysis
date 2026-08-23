@@ -142,7 +142,8 @@ def main():
 
     # supplied transparent artwork: use as-is, just trimmed
     supplied = Path(__file__).resolve().parent / "image_sources_gates_presentation"
-    for name in ("quantum_branch.png", "ai_branch.png", "pic1.png"):
+    for name in ("quantum_branch.png", "ai_branch.png",
+                 "ai_arm_v2.png", "pic1.png"):
         src = supplied / name
         if src.exists():
             out = trim_alpha(Image.open(src))

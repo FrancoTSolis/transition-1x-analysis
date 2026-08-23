@@ -15,7 +15,7 @@ ART = HERE / "art"
 
 IMAGES = {
     "{{QUANTUM_BRANCH}}": "quantum_branch.png",
-    "{{AI_BRANCH}}": "ai_branch.png",
+    "{{AI_BRANCH}}": "ai_arm_v2.png",
     "{{MOLECULE}}": "pic1.png",
     "{{PARITY}}": "parity.png",
 }
