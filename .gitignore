@@ -47,3 +47,6 @@ ccsd_amplitudes/rhf_inv_targets/
 # External / vendored checkouts (used for reference, not project source)
 ffsim/
 wan-hsuan-lucj/
+# Gates deck: intermediate pptx capture frames (regenerable)
+gates_slides/art/_pptx/
+gates_slides/*.log

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI–Quantum Co-Design</title>
+<style>
+  :root {
+    --navy:  #10344d;
+    --ink:   #1d2b36;
+    --gray:  #566673;
+    --line:  #d5dee5;
+    --blue:  #1f6fb2;
+    --gold:  #d98014;
+    --teal:  #0f8f83;
+    --panel-bg: #f6f8fa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 100%; height: 100%; overflow: hidden; background: #171d23;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; color: var(--ink);
+  }
+  #stage { position: absolute; inset: 0; display: flex;
+    align-items: center; justify-content: center; }
+  .slide {
+    display: none; width: 1280px; height: 720px; background: #fff;
+    padding: 34px 52px 26px; position: absolute;
+    flex-direction: column; transform-origin: center center;
+  }
+  .slide.active { display: flex; }
+
+  h1 { font-size: 34px; line-height: 1.06; font-weight: 700;
+    letter-spacing: -.5px; color: var(--navy); }
+  .sub { font-size: 17px; color: var(--gray); margin-top: 8px; }
+
+  .stage-svg { flex: 1; min-height: 0; position: relative; }
+  .stage-svg svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  /* bottom summary band (slide 1) */
+  .foot {
+    margin-top: 12px; border: 1px solid var(--line); border-radius: 3px;
+    background: var(--panel-bg); padding: 13px 20px 15px; text-align: center;
+  }
+  .foot h3 { font-size: 19px; color: var(--navy); font-weight: 700; }
+  .cells {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    margin-top: 12px; border-top: 1px solid var(--line); padding-top: 12px;
+  }
+  .cell { padding: 0 16px; border-left: 1px solid var(--line); }
+  .cell:first-child { border-left: 0; }
+  .cell b { display: block; font-size: 17px; color: var(--navy); }
+  .cell span { display: block; font-size: 14px; color: var(--gray);
+    margin-top: 5px; line-height: 1.3; }
+
+  /* slide 2: pipeline + single proof panel */
+  .work { flex: 1; min-height: 0; margin-top: 10px;
+    display: grid; grid-template-columns: 1fr 356px; gap: 30px; }
+  .work .diagram { position: relative; min-height: 0; }
+  .work .diagram svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .proof { border: 1px solid var(--line); border-radius: 3px;
+    padding: 14px 18px 10px; display: flex; flex-direction: column;
+    min-height: 0; }
+  .proof h4 { font-size: 18px; color: var(--navy); font-weight: 700;
+    line-height: 1.25; }
+  .proof img { flex: 1; min-height: 0; width: 100%; object-fit: contain;
+    margin-top: 6px; }
+
+  @media print {
+    html, body { overflow: visible; background: #fff; }
+    #stage { display: block; position: static; }
+    .slide, .slide.active { display: flex; position: relative;
+      transform: none !important; page-break-after: always; }
+  }
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <!-- =========================================================== SLIDE 1 -->
+  <section class="slide active">
+    <h1>AI–Quantum Co-Design</h1>
+    <div class="sub">Two tools with opposite strengths. Run as a loop, each one covers the other's weakness.</div>
+
+    <div class="stage-svg">
+      <svg viewBox="0 0 1176 388" font-family="inherit">
+        <defs>
+          <marker id="mBlue" viewBox="0 0 10 10" refX="7" refY="5"
+                  markerWidth="6.5" markerHeight="6.5" orient="auto">
+            <path d="M0,0 L10,5 L0,10 Z" fill="#1f6fb2"/>
+          </marker>
+          <marker id="mGold" viewBox="0 0 10 10" refX="7" refY="5"
+                  markerWidth="6.5" markerHeight="6.5" orient="auto">
+            <path d="M0,0 L10,5 L0,10 Z" fill="#d98014"/>
+          </marker>
+        </defs>
+
+        <path d="M366 96 C 474 22, 702 22, 810 96" fill="none"
+              stroke="#1f6fb2" stroke-width="6" stroke-linecap="round"
+              marker-end="url(#mBlue)"/>
+        <path d="M810 286 C 702 360, 474 360, 366 286" fill="none"
+              stroke="#d98014" stroke-width="6" stroke-linecap="round"
+              marker-end="url(#mGold)"/>
+
+        <text x="588" y="26" text-anchor="middle" font-size="20"
+              font-weight="700" fill="#10344d">exact results become training data</text>
+        <text x="588" y="374" text-anchor="middle" font-size="20"
+              font-weight="700" fill="#10344d">AI designs and configures the next run</text>
+
+        <text x="588" y="196" text-anchor="middle" font-size="17.5"
+              fill="#44545f">each cycle: better training data, fewer quantum runs</text>
+
+        <!-- quantum engine -->
+        <rect x="8" y="34" width="352" height="4" rx="2" fill="#1f6fb2"/>
+        <rect x="8" y="58" width="352" height="238" rx="3"
+              fill="#eff6fb" stroke="#bcd8ec"/>
+        <image href="{{QUANTUM_BRANCH}}" x="34" y="76" width="300" height="174"
+               preserveAspectRatio="xMidYMid meet"/>
+        <text x="184" y="284" text-anchor="middle" font-size="22"
+              font-weight="700" fill="#10344d">Quantum simulation</text>
+        <text x="184" y="332" text-anchor="middle" font-size="16.5"
+              fill="#44545f">Near-exact answers for the hardest chemistry.</text>
+        <text x="184" y="356" text-anchor="middle" font-size="16.5"
+              fill="#44545f">One molecule at a time, on small, costly machines.</text>
+
+        <!-- AI engine -->
+        <rect x="816" y="34" width="352" height="4" rx="2" fill="#d98014"/>
+        <rect x="816" y="58" width="352" height="238" rx="3"
+              fill="#fdf3e9" stroke="#ecd0ac"/>
+        <image href="{{AI_BRANCH}}" x="836" y="70" width="312" height="182"
+               preserveAspectRatio="xMidYMid meet"/>
+        <text x="992" y="284" text-anchor="middle" font-size="22"
+              font-weight="700" fill="#10344d">AI models</text>
+        <text x="992" y="332" text-anchor="middle" font-size="16.5"
+              fill="#44545f">Thousands of molecules, quickly.</text>
+        <text x="992" y="356" text-anchor="middle" font-size="16.5"
+              fill="#44545f">Only as accurate as the data they learn from.</text>
+      </svg>
+    </div>
+
+    <div class="foot">
+      <h3>Why we build the two together</h3>
+      <div class="cells">
+        <div class="cell"><b>Better training data</b>
+          <span>Quantum results replace approximate data in AI training sets</span></div>
+        <div class="cell"><b>Less overhead</b>
+          <span>AI removes the setup work in front of every quantum run</span></div>
+        <div class="cell"><b>Larger systems</b>
+          <span>Quantum is used only on the part the AI finds hardest</span></div>
+        <div class="cell"><b>Each cycle helps the next</b>
+          <span>Every exact result becomes training data for the next model</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================== SLIDE 2 -->
+  <section class="slide">
+    <h1>Co-design in practice: chemistry on a quantum computer</h1>
+    <div class="sub">A quantum computer cannot simulate a molecule until a circuit is built for it. Our AI writes that circuit.</div>
+
+    <div class="work">
+      <div class="diagram">
+        <svg viewBox="0 0 820 400" font-family="inherit">
+          <defs>
+            <marker id="mGrey" viewBox="0 0 10 10" refX="7" refY="5"
+                    markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M0,0 L10,5 L0,10 Z" fill="#98a7b3"/>
+            </marker>
+            <marker id="mGold" viewBox="0 0 10 10" refX="7" refY="5"
+                    markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M0,0 L10,5 L0,10 Z" fill="#d98014"/>
+            </marker>
+            <marker id="mTeal" viewBox="0 0 10 10" refX="7" refY="5"
+                    markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M0,0 L10,5 L0,10 Z" fill="#0f8f83"/>
+            </marker>
+          </defs>
+
+          <text x="400" y="26" text-anchor="middle" font-size="18"
+                font-weight="700" fill="#10344d">
+            the LUCJ circuit: the quantum recipe for this molecule
+          </text>
+          <text x="400" y="52" text-anchor="middle" font-size="15.5" fill="#44545f">
+            <tspan font-weight="700" fill="#1f6fb2">U</tspan> rotate the orbitals
+            <tspan dx="14" font-weight="700" fill="#d98014">J</tspan> let the electrons interact
+          </text>
+
+          <!-- molecule -->
+          <image href="{{MOLECULE}}" x="2" y="58" width="154" height="162"
+                 preserveAspectRatio="xMidYMid meet"/>
+          <text x="76" y="232" text-anchor="middle" font-size="17"
+                font-weight="700" fill="#10344d">the molecule</text>
+          <line x1="158" y1="144" x2="182" y2="144" stroke="#98a7b3"
+                stroke-width="3" marker-end="url(#mGrey)"/>
+
+          <!-- circuit -->
+          <text x="190" y="150" font-size="17" fill="#10344d">|HF⟩</text>
+          <g stroke="#8b9aa6" stroke-width="2">
+            <line x1="228" y1="96" x2="608" y2="96"/>
+            <line x1="228" y1="120" x2="608" y2="120"/>
+            <line x1="228" y1="144" x2="608" y2="144"/>
+            <line x1="228" y1="168" x2="608" y2="168"/>
+            <line x1="228" y1="192" x2="608" y2="192"/>
+          </g>
+          <g font-size="19" font-weight="700" text-anchor="middle">
+            <rect x="238" y="84" width="44" height="120" rx="4"
+                  fill="#eff6fb" stroke="#1f6fb2" stroke-width="2"/>
+            <text x="260" y="151" fill="#10344d">U</text>
+            <rect x="290" y="84" width="44" height="120" rx="4"
+                  fill="#fdf3e9" stroke="#d98014" stroke-width="2"/>
+            <text x="312" y="151" fill="#10344d">J</text>
+            <rect x="342" y="84" width="48" height="120" rx="4"
+                  fill="#eff6fb" stroke="#1f6fb2" stroke-width="2"/>
+            <text x="366" y="151" fill="#10344d">U†</text>
+
+            <rect x="420" y="84" width="44" height="120" rx="4"
+                  fill="#eff6fb" stroke="#1f6fb2" stroke-width="2"/>
+            <text x="442" y="151" fill="#10344d">U</text>
+            <rect x="472" y="84" width="44" height="120" rx="4"
+                  fill="#fdf3e9" stroke="#d98014" stroke-width="2"/>
+            <text x="494" y="151" fill="#10344d">J</text>
+            <rect x="524" y="84" width="48" height="120" rx="4"
+                  fill="#eff6fb" stroke="#1f6fb2" stroke-width="2"/>
+            <text x="548" y="151" fill="#10344d">U†</text>
+          </g>
+          <text x="314" y="76" text-anchor="middle" font-size="14" fill="#66757f">layer 1</text>
+          <text x="496" y="76" text-anchor="middle" font-size="14" fill="#66757f">layer 2</text>
+
+          <line x1="616" y1="144" x2="640" y2="144" stroke="#98a7b3"
+                stroke-width="3" marker-end="url(#mGrey)"/>
+
+          <!-- energy -->
+          <rect x="650" y="96" width="170" height="96" rx="4"
+                fill="#ecf7f5" stroke="#0f8f83" stroke-width="2"/>
+          <text x="735" y="132" text-anchor="middle" font-size="19"
+                font-weight="700" fill="#0f8f83">molecular energy</text>
+          <text x="735" y="160" text-anchor="middle" font-size="14.5"
+                fill="#44545f">from quantum hardware</text>
+
+          <!-- the AI, writing the circuit -->
+          <rect x="72" y="288" width="534" height="78" rx="6"
+                fill="#fdf3e9" stroke="#d98014" stroke-width="2.5"/>
+          <text x="339" y="320" text-anchor="middle" font-size="20"
+                font-weight="700" fill="#9a6700">our AI model</text>
+          <text x="339" y="348" text-anchor="middle" font-size="16" fill="#44545f">
+            writes every number in those boxes, in one pass
+          </text>
+          <line x1="401" y1="288" x2="401" y2="216" stroke="#d98014"
+                stroke-width="3.5" marker-end="url(#mGold)"/>
+          <text x="339" y="394" text-anchor="middle" font-size="16.5"
+                fill="#10344d">a good starting point means
+            <tspan font-weight="700">fewer quantum runs to converge</tspan>
+          </text>
+
+          <!-- feedback: the quantum answer grades the AI -->
+          <path d="M 790 192 V 327 H 618" fill="none" stroke="#0f8f83"
+                stroke-width="3" stroke-dasharray="8 5"
+                marker-end="url(#mTeal)"/>
+          <text x="704" y="313" text-anchor="middle" font-size="16"
+                font-weight="700" fill="#0f8f83">energy as reward</text>
+        </svg>
+      </div>
+
+      <div class="proof">
+        <h4>Predicted vs exact strength of the electron interactions,
+          on molecules never seen in training</h4>
+        <img src="{{PARITY}}" alt="Predicted versus exact interaction strength">
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+  const slides = Array.from(document.querySelectorAll(".slide"));
+  let current = 0;
+  function fit() {
+    const scale = Math.min(innerWidth / 1300, innerHeight / 745);
+    slides.forEach(s => s.style.transform = `scale(${scale})`);
+  }
+  function showSlide(i) {
+    current = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach((s, k) => s.classList.toggle("active", k === current));
+    fit();
+  }
+  addEventListener("keydown", e => {
+    if (["ArrowRight", "ArrowDown", " ", "PageDown"].includes(e.key)) {
+      e.preventDefault(); showSlide(current + 1);
+    } else if (["ArrowLeft", "ArrowUp", "PageUp"].includes(e.key)) {
+      e.preventDefault(); showSlide(current - 1);
+    }
+  });
+  addEventListener("click", () => showSlide(current + 1));
+  addEventListener("resize", fit);
+  showSlide(0);
+</script>
+</body>
+</html>
