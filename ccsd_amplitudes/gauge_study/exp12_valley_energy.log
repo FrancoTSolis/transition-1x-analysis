@@ -1,0 +1,29 @@
+  [1/20] C2H3N_rxn2857_TS seed=  0 resid=0.250 |Z|=0.90 corr%=  68.8 (320s, 321s)
+  [2/20] C2H3N_rxn2857_TS seed= -1 resid=0.850 |Z|=0.20 corr%=  19.5 (321s, 322s)
+  [3/20] C2H3N_rxn2857_TS seed=  5 resid=0.264 |Z|=0.89 corr%=  68.7 (322s, 324s)
+  [4/20] C2H3N_rxn2857_TS seed=  2 resid=0.246 |Z|=0.90 corr%=  70.2 (323s, 325s)
+  [5/20] C2H3N_rxn2857_TS seed=  1 resid=0.267 |Z|=0.90 corr%=  68.5 (324s, 325s)
+  [6/20] C2H3N_rxn2857_TS seed=  7 resid=0.253 |Z|=0.89 corr%=  65.6 (325s, 326s)
+  [7/20] C2H3N_rxn2857_TS seed=  8 resid=0.244 |Z|=0.90 corr%=  72.5 (325s, 326s)
+  [8/20] C2H3N_rxn2857_TS seed=  6 resid=0.251 |Z|=0.90 corr%=  67.4 (325s, 327s)
+  [9/20] C2H3N_rxn2857_TS seed=  3 resid=0.267 |Z|=0.90 corr%=  68.9 (329s, 330s)
+  [10/20] C2H3N_rxn2857_TS seed=  4 resid=0.261 |Z|=0.88 corr%=  71.7 (420s, 422s)
+  [11/20] C2H3N_rxn2858_P seed= -1 resid=0.876 |Z|=0.20 corr%=  13.1 (290s, 611s)
+  [12/20] C2H3N_rxn2858_P seed=  1 resid=0.269 |Z|=0.95 corr%=  60.4 (309s, 632s)
+  [13/20] C2H3N_rxn2858_P seed=  0 resid=0.270 |Z|=0.97 corr%=  61.8 (311s, 633s)
+  [14/20] C2H3N_rxn2858_P seed=  3 resid=0.278 |Z|=0.96 corr%=  59.5 (312s, 637s)
+  [15/20] C2H3N_rxn2858_P seed=  4 resid=0.261 |Z|=0.96 corr%=  69.8 (311s, 637s)
+  [16/20] C2H3N_rxn2858_P seed=  5 resid=0.267 |Z|=0.95 corr%=  59.1 (312s, 638s)
+  [17/20] C2H3N_rxn2858_P seed=  6 resid=0.259 |Z|=0.96 corr%=  67.0 (312s, 639s)
+  [18/20] C2H3N_rxn2858_P seed=  7 resid=0.266 |Z|=0.96 corr%=  60.8 (309s, 639s)
+  [19/20] C2H3N_rxn2858_P seed=  8 resid=0.272 |Z|=0.96 corr%=  60.8 (245s, 667s)
+  [20/20] C2H3N_rxn2858_P seed=  2 resid=0.262 |Z|=0.97 corr%=  62.2 (386s, 710s)
+
+=== valley energies (square, lambda=0.005, 9 restarts) ===
+  C2H3N_rxn2857_TS: init resid 0.850 corr% 19.5
+     restarts: resid 0.244-0.267 (median 0.253); corr% min 65.6 median 68.8 max 72.5 (spread 6.9 points); pairwise dt2hat median 0.188
+     corr(resid, corr%) = -0.17
+  C2H3N_rxn2858_P: init resid 0.876 corr% 13.1
+     restarts: resid 0.259-0.278 (median 0.267); corr% min 59.1 median 60.8 max 69.8 (spread 10.7 points); pairwise dt2hat median 0.193
+     corr(resid, corr%) = -0.70
+total 710s

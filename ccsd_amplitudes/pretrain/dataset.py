@@ -29,9 +29,17 @@ class CCSDAmplitudeDataset(Dataset):
 
     def __init__(self, data_dir: str | Path, species_filter: str | None = None,
                  n_reps: int = 2, targets_dir: str | Path | None = None,
-                 inv_targets_dir: str | Path | None = None) -> None:
+                 inv_targets_dir: str | Path | None = None,
+                 comp_dir: str | Path | None = None, connectivity: str = "square",
+                 with_init: bool = False) -> None:
         self.data_dir = Path(data_dir)
         self.n_reps = n_reps
+        # Residual modes (Sep 2026): canonical exact-DF init computed on the fly
+        # (deterministic numpy, ~ms) and, optionally, canonical-gauge compressed
+        # labels from generate_compressed_targets.py (<comp_dir>/<name>.npz).
+        self.comp_dir = Path(comp_dir) if comp_dir is not None else None
+        self.connectivity = connectivity
+        self.with_init = with_init or self.comp_dir is not None
         # Optional DF (Z, kappa) targets for the warm-start / anti-collapse term.
         self.targets_dir = Path(targets_dir) if targets_dir is not None else None
         # Optional invariant (lam0, v0) targets for the deck_v3 retargeted head.
@@ -60,6 +68,8 @@ class CCSDAmplitudeDataset(Dataset):
                 continue
             if (self.inv_targets_dir is not None
                     and not (self.inv_targets_dir / f"{name}.npz").exists()):
+                continue
+            if self.comp_dir is not None and not (self.comp_dir / f"{name}.npz").exists():
                 continue
             norb, nocc, nvirt = index[name]
             self.names.append(name)
@@ -126,6 +136,24 @@ class CCSDAmplitudeDataset(Dataset):
             sample["v_target"] = torch.from_numpy(it["v0"].astype(np.float32))
             sample["lam_target"] = float(it["lam0"])
             sample["gap"] = float(it["gap"])
+        if self.with_init:
+            from gauge_study.compressed_canonical import canonical_exact_init, z_mask
+            init = canonical_exact_init(d["t2"].astype(np.float64))
+            mask = z_mask(self.connectivity, norb)
+            sample["u_init_re"] = torch.from_numpy(init.U.real.astype(np.float32))
+            sample["u_init_im"] = torch.from_numpy(init.U.imag.astype(np.float32))
+            sample["z_init"] = torch.from_numpy((init.Z * mask[None]).astype(np.float32))
+            sample["z_mask"] = torch.from_numpy(mask.astype(np.float32))
+            sample["znorm_full"] = float(init.znorm_full)
+            sample["gap"] = float(init.gap)
+        if self.comp_dir is not None:
+            c = np.load(self.comp_dir / f"{name}.npz")
+            sample["u_opt_re"] = torch.from_numpy(c["U_re"].astype(np.float32))
+            sample["u_opt_im"] = torch.from_numpy(c["U_im"].astype(np.float32))
+            sample["z_opt"] = torch.from_numpy(c["Z"].astype(np.float32))
+            sample["dk_re"] = torch.from_numpy(c["dkappa_re"].astype(np.float32))
+            sample["dk_im"] = torch.from_numpy(c["dkappa_im"].astype(np.float32))
+            sample["comp_resid"] = float(c["resid"])
         return sample
 
     def __repr__(self) -> str:
@@ -162,6 +190,20 @@ class CCSDAmplitudeDataset(Dataset):
         else:
             v_target = lam_target = gap = None
 
+        has_init = "u_init_re" in batch[0]
+        has_comp = "u_opt_re" in batch[0]
+        mats = {}
+        if has_init:
+            for k in ("u_init_re", "u_init_im", "z_init"):
+                mats[k] = torch.zeros(B, n_reps0, max_norb, max_norb)
+            mats["z_mask"] = torch.zeros(B, max_norb, max_norb)
+            znorm_full = torch.zeros(B)
+            gap_init = torch.zeros(B)
+        if has_comp:
+            for k in ("u_opt_re", "u_opt_im", "z_opt", "dk_re", "dk_im"):
+                mats[k] = torch.zeros(B, n_reps0, max_norb, max_norb)
+            comp_resid = torch.zeros(B)
+
         nocc_list, nvirt_list, norb_list, n_reps_list, names = [], [], [], [], []
 
         for i, s in enumerate(batch):
@@ -179,6 +221,16 @@ class CCSDAmplitudeDataset(Dataset):
                 v_target[i, :no, :nv] = s["v_target"]
                 lam_target[i] = s["lam_target"]
                 gap[i] = s["gap"]
+            if has_init:
+                for k in ("u_init_re", "u_init_im", "z_init"):
+                    mats[k][i, :, :nb, :nb] = s[k]
+                mats["z_mask"][i, :nb, :nb] = s["z_mask"]
+                znorm_full[i] = s["znorm_full"]
+                gap_init[i] = s["gap"]
+            if has_comp:
+                for k in ("u_opt_re", "u_opt_im", "z_opt", "dk_re", "dk_im"):
+                    mats[k][i, :, :nb, :nb] = s[k]
+                comp_resid[i] = s["comp_resid"]
             nocc_list.append(no)
             nvirt_list.append(nv)
             norb_list.append(nb)
@@ -209,4 +261,10 @@ class CCSDAmplitudeDataset(Dataset):
             out["v_target"] = v_target
             out["lam_target"] = lam_target
             out["gap"] = gap
+        if has_init:
+            out.update(mats)
+            out["znorm_full"] = znorm_full
+            out.setdefault("gap", gap_init)
+        if has_comp:
+            out["comp_resid"] = comp_resid
         return out

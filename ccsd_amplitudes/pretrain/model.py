@@ -29,6 +29,22 @@ class ModelConfig:
     # (lam0, v0) of the exact-DF label instead of regressing kappa. v0 is read
     # out from the occ-virt pair tokens; lam0 from a masked mean pool.
     predict_invariant: bool = False
+    # Residual heads (Sep 2026): predict (dkappa, dZ) relative to the canonical
+    # exact-DF init of the input t2:  U = U_init expm(dkappa), Z = Z_init + dZ.
+    # Used by --loss-mode compressed_sup / compressed_recon and by the RL policy.
+    predict_residual: bool = False
+    residual_kappa_scale: float = 1.0
+    residual_z_scale: float = 1.0
+    residual_zero_init: bool = True
+    # K > 1: multiple-hypothesis (winner-takes-all) residual heads -- the
+    # compressed-DF argmin is set-valued (several basins at equal objective),
+    # so K heads learn K smooth branches; the loss takes the best head and
+    # inference picks the head with the lowest reconstruction residual.
+    residual_hyps: int = 1
+    # entry-std of a fixed random (learnable) offset on each extra hypothesis
+    # head, so that heads start in different regions of the minimum valley
+    # (exp10: random kappa kicks of this size land in different basins)
+    residual_hyp_kick: float = 0.0
 
 
 # ---------------------------------------------------------------------------
@@ -376,6 +392,57 @@ class TransformerLayer(nn.Module):
 # ---------------------------------------------------------------------------
 
 
+class ResidualHeads(nn.Module):
+    """dkappa (anti-Hermitian: real anti-symmetric + i real symmetric) and dZ
+    (real symmetric) read out from pair tokens; zero-init => residual = 0."""
+
+    def __init__(self, d: int, n_reps: int, kappa_scale: float = 1.0,
+                 z_scale: float = 1.0, zero_init: bool = True, kick: float = 0.0,
+                 max_norb: int = 96):
+        super().__init__()
+        self.n_reps = n_reps
+        self.kappa_scale = kappa_scale
+        self.z_scale = z_scale
+        self.kick = kick
+        if kick > 0:
+            # raw (R, N, N) parameters; anti-symmetrized / symmetrized in forward
+            self.kick_kr = nn.Parameter(kick * torch.randn(n_reps, max_norb, max_norb))
+            self.kick_ki = nn.Parameter(kick * torch.randn(n_reps, max_norb, max_norb))
+            self.kick_dz = nn.Parameter(0.5 * kick * torch.randn(n_reps, max_norb, max_norb))
+
+        def mk():
+            return nn.Sequential(nn.Linear(d, d // 2), nn.GELU(), nn.Linear(d // 2, 1))
+
+        self.kr = nn.ModuleList([mk() for _ in range(n_reps)])
+        self.ki = nn.ModuleList([mk() for _ in range(n_reps)])
+        self.dz = nn.ModuleList([mk() for _ in range(n_reps)])
+        if zero_init:
+            for m in list(self.kr) + list(self.ki) + list(self.dz):
+                nn.init.zeros_(m[-1].weight)
+                nn.init.zeros_(m[-1].bias)
+
+    def forward(self, z: Tensor, norb: int) -> dict[str, Tensor]:
+        B, N = z.shape[0], z.shape[1]
+        za = z[:, :norb, :norb]
+        zt = za.transpose(1, 2)
+        R = self.n_reps
+        kr = z.new_zeros(B, R, N, N)
+        ki = z.new_zeros(B, R, N, N)
+        dz = z.new_zeros(B, R, N, N)
+        for r in range(R):
+            f, g = self.kr[r](za).squeeze(-1), self.kr[r](zt).squeeze(-1)
+            kr[:, r, :norb, :norb] = torch.tanh(f - g) * self.kappa_scale      # anti-symmetric
+            h, hh = self.ki[r](za).squeeze(-1), self.ki[r](zt).squeeze(-1)
+            ki[:, r, :norb, :norb] = torch.tanh(h + hh) * self.kappa_scale     # symmetric
+            u, uu = self.dz[r](za).squeeze(-1), self.dz[r](zt).squeeze(-1)
+            dz[:, r, :norb, :norb] = torch.tanh(u + uu) * self.z_scale         # symmetric
+        if self.kick > 0:
+            a = self.kick_kr[:, :norb, :norb]; kr[:, :, :norb, :norb] = kr[:, :, :norb, :norb] + (a - a.transpose(1, 2)) / 2
+            b = self.kick_ki[:, :norb, :norb]; ki[:, :, :norb, :norb] = ki[:, :, :norb, :norb] + (b + b.transpose(1, 2)) / 2
+            c = self.kick_dz[:, :norb, :norb]; dz[:, :, :norb, :norb] = dz[:, :, :norb, :norb] + (c + c.transpose(1, 2)) / 2
+        return {"dkappa_re": kr, "dkappa_im": ki, "dz": dz}
+
+
 class DecodeHeads(nn.Module):
     """Predict LUCJ J and kappa matrices from final pair embeddings.
 
@@ -416,6 +483,22 @@ class DecodeHeads(nn.Module):
             self.lam_pair = nn.Sequential(
                 nn.Linear(d, d // 4), nn.GELU())
             self.lam_out = nn.Linear(d // 4, 1)
+
+        self.predict_residual = config.predict_residual
+        self.residual_hyps = config.residual_hyps
+        if self.predict_residual:
+            self.residual = ResidualHeads(
+                d, n_reps, kappa_scale=config.residual_kappa_scale,
+                z_scale=config.residual_z_scale, zero_init=config.residual_zero_init)
+            if self.residual_hyps > 1:
+                # extra hypotheses start at small random residuals so that the
+                # heads are distinguishable from the first step (zero-init would
+                # make all K identical and the min-loss could never separate them)
+                self.residual_extra = nn.ModuleList([
+                    ResidualHeads(d, n_reps, kappa_scale=config.residual_kappa_scale,
+                                  z_scale=config.residual_z_scale, zero_init=False,
+                                  kick=config.residual_hyp_kick, max_norb=config.max_norb)
+                    for _ in range(self.residual_hyps - 1)])
 
     def forward(
         self, z: Tensor, norb: int, ov_mask: Tensor | None = None
@@ -467,6 +550,13 @@ class DecodeHeads(nn.Module):
                 m = ov_mask.unsqueeze(-1).to(feat.dtype)
                 pooled = (feat * m).sum(dim=(1, 2)) / m.sum(dim=(1, 2)).clamp_min(1.0)
             out["lam_pred"] = self.lam_out(pooled).squeeze(-1)  # (B,)
+
+        if self.predict_residual:
+            out.update(self.residual(z, norb))
+            if self.residual_hyps > 1:
+                out["residual_hyps"] = [
+                    {k: out[k] for k in ("dkappa_re", "dkappa_im", "dz")}
+                ] + [h(z, norb) for h in self.residual_extra]
 
         return out
 

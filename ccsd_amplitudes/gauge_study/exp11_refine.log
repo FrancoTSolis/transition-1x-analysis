@@ -1,0 +1,30 @@
+8 molecules x 2 starts
+  C4H5NO_rxn4664_TS        network init   resid0=0.748 -> [0.545, 0.423, 0.334, 0.307, 0.291] final 0.288 (nit 384, 56s)
+  C4H5NO_rxn3561_R         network init   resid0=0.721 -> [0.492, 0.398, 0.331, 0.303, 0.279] final 0.270 (nit 452, 64s)
+  C4H5NO_rxn3873_P         network init   resid0=0.775 -> [0.549, 0.432, 0.36, 0.309, 0.291] final 0.285 (nit 484, 69s)
+  C4H5NO_rxn3873_P         exact-DF init  resid0=0.912 -> [0.713, 0.564, 0.444, 0.401, 0.38] final 0.286 (nit 500, 70s)
+  C4H5NO_rxn0155_P         network init   resid0=0.827 -> [0.641, 0.537, 0.471, 0.424, 0.379] final 0.370 (nit 500, 70s)
+  C4H5NO_rxn3561_R         exact-DF init  resid0=0.892 -> [0.685, 0.587, 0.444, 0.388, 0.341] final 0.267 (nit 500, 70s)
+  C4H5NO_rxn3833_R         exact-DF init  resid0=0.892 -> [0.682, 0.584, 0.446, 0.388, 0.377] final 0.266 (nit 500, 70s)
+  C4H5NO_rxn3833_R         network init   resid0=0.727 -> [0.517, 0.402, 0.352, 0.314, 0.294] final 0.272 (nit 500, 70s)
+  C3H5N3_rxn2003_P         exact-DF init  resid0=0.907 -> [0.67, 0.496, 0.436, 0.412, 0.343] final 0.293 (nit 500, 71s)
+  C4H5NO_rxn3314_R         network init   resid0=0.884 -> [0.61, 0.481, 0.424, 0.375, 0.354] final 0.353 (nit 500, 71s)
+  C4H5NO_rxn4664_TS        exact-DF init  resid0=0.904 -> [0.675, 0.57, 0.468, 0.409, 0.348] final 0.278 (nit 500, 71s)
+  C3H5N3_rxn2266_TS        network init   resid0=0.868 -> [0.724, 0.561, 0.466, 0.393, 0.355] final 0.344 (nit 500, 71s)
+  C4H5NO_rxn0155_P         exact-DF init  resid0=0.942 -> [0.776, 0.662, 0.554, 0.507, 0.398] final 0.383 (nit 500, 72s)
+  C3H5N3_rxn2003_P         network init   resid0=0.736 -> [0.507, 0.408, 0.368, 0.333, 0.305] final 0.283 (nit 500, 75s)
+  C4H5NO_rxn3314_R         exact-DF init  resid0=0.964 -> [0.86, 0.73, 0.575, 0.504, 0.47] final 0.361 (nit 500, 104s)
+  C3H5N3_rxn2266_TS        exact-DF init  resid0=0.943 -> [0.813, 0.689, 0.569, 0.512, 0.433] final 0.362 (nit 500, 110s)
+
+=== median residual vs L-BFGS iterations (square, lambda=0.005) ===
+  exact-DF init  it0=0.909  it10=0.699  it25=0.585  it50=0.457  it100=0.411  it200=0.378  it500=0.289
+  network init   it0=0.761  it10=0.547  it25=0.427  it50=0.364  it100=0.323  it200=0.299  it500=0.286
+  iterations to reach resid<=0.6: exact-DF init  median 23.0  (reached by 8/8)
+  iterations to reach resid<=0.6: network init   median 7.0  (reached by 8/8)
+  iterations to reach resid<=0.5: exact-DF init  median 38.0  (reached by 8/8)
+  iterations to reach resid<=0.5: network init   median 14.0  (reached by 8/8)
+  iterations to reach resid<=0.45: exact-DF init  median 53.0  (reached by 8/8)
+  iterations to reach resid<=0.45: network init   median 21.5  (reached by 8/8)
+  iterations to reach resid<=0.4: exact-DF init  median 132.0  (reached by 8/8)
+  iterations to reach resid<=0.4: network init   median 32.5  (reached by 8/8)
+total 114s

@@ -50,3 +50,10 @@ wan-hsuan-lucj/
 # Gates deck: intermediate pptx capture frames (regenerable)
 gates_slides/art/_pptx/
 gates_slides/*.log
+
+# optimize=True study: canonical compressed-DF labels and cached active-space
+# Hamiltonians (large, regenerable by generate_compressed_targets.py /
+# pretrain/rl/hamiltonian.py); RL policy checkpoints (keep logs and args)
+ccsd_amplitudes/rhf_targets_compressed/
+ccsd_amplitudes/rhf_hamiltonians/
+ccsd_amplitudes/rl_runs/**/*.pt

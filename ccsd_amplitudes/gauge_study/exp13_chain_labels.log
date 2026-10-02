@@ -1,0 +1,66 @@
+6 chains x 8 molecules
+optimizations done (492s)
+
+=== per chain: consecutive-molecule distances (phase-aligned dU / ||U||, dt2hat / ||t2||) ===
+chain 0:
+  k=0 C4H5NO_rxn3365_R       resid init 0.900 | chained 0.266 | fresh 0.266 | nit 500
+  k=1 C4H5NO_rxn3356_R       resid init 0.900 | chained 0.257 | fresh 0.266 | nit 500 || dt2 0.000 | chained dU 0.375 dZ 0.369 dt2hat 0.130 | fresh dU 0.000 dZ 0.000 dt2hat 0.000
+  k=2 C4H5NO_rxn3357_R       resid init 0.900 | chained 0.252 | fresh 0.266 | nit 317 || dt2 0.000 | chained dU 0.377 dZ 0.259 dt2hat 0.101 | fresh dU 0.000 dZ 0.000 dt2hat 0.000
+  k=3 C4H5NO_rxn3358_R       resid init 0.900 | chained 0.252 | fresh 0.266 | nit 25 || dt2 0.000 | chained dU 0.007 dZ 0.003 dt2hat 0.003 | fresh dU 0.000 dZ 0.000 dt2hat 0.000
+  k=4 C4H5NO_rxn3359_R       resid init 0.900 | chained 0.252 | fresh 0.266 | nit 0 || dt2 0.000 | chained dU 0.000 dZ 0.000 dt2hat 0.000 | fresh dU 0.000 dZ 0.000 dt2hat 0.000
+  k=5 C4H5NO_rxn3360_R       resid init 0.900 | chained 0.252 | fresh 0.266 | nit 0 || dt2 0.000 | chained dU 0.000 dZ 0.000 dt2hat 0.000 | fresh dU 0.000 dZ 0.000 dt2hat 0.000
+  k=6 C4H5NO_rxn3361_R       resid init 0.900 | chained 0.252 | fresh 0.266 | nit 0 || dt2 0.000 | chained dU 0.000 dZ 0.000 dt2hat 0.000 | fresh dU 0.000 dZ 0.000 dt2hat 0.000
+  k=7 C4H5NO_rxn3362_R       resid init 0.900 | chained 0.252 | fresh 0.266 | nit 0 || dt2 0.000 | chained dU 0.000 dZ 0.000 dt2hat 0.000 | fresh dU 0.000 dZ 0.000 dt2hat 0.000
+chain 1:
+  k=0 C3H5N3_rxn1248_P       resid init 0.936 | chained 0.368 | fresh 0.368 | nit 500
+  k=1 C3H5N3_rxn2967_P       resid init 0.905 | chained 0.340 | fresh 0.314 | nit 500 || dt2 1.231 | chained dU 1.108 dZ 0.654 dt2hat 1.039 | fresh dU 1.274 dZ 0.685 dt2hat 1.050
+  k=2 C3H5N3_rxn2962_P       resid init 0.909 | chained 0.348 | fresh 0.333 | nit 500 || dt2 1.214 | chained dU 1.122 dZ 0.820 dt2hat 1.026 | fresh dU 1.265 dZ 0.584 dt2hat 1.030
+  k=3 C3H5N3_rxn4069_P       resid init 0.931 | chained 0.372 | fresh 0.387 | nit 500 || dt2 1.281 | chained dU 1.180 dZ 0.779 dt2hat 1.084 | fresh dU 1.292 dZ 0.701 dt2hat 1.083
+  k=4 C3H5N3_rxn4074_P       resid init 0.937 | chained 0.365 | fresh 0.388 | nit 500 || dt2 1.205 | chained dU 1.150 dZ 0.750 dt2hat 1.014 | fresh dU 1.306 dZ 0.706 dt2hat 0.993
+  k=5 C3H5N3_rxn0728_R       resid init 0.937 | chained 0.354 | fresh 0.393 | nit 500 || dt2 1.032 | chained dU 0.983 dZ 0.694 dt2hat 0.880 | fresh dU 1.192 dZ 0.760 dt2hat 0.863
+  k=6 C3H5N3_rxn0725_R       resid init 0.937 | chained 0.352 | fresh 0.380 | nit 350 || dt2 0.000 | chained dU 0.298 dZ 0.144 dt2hat 0.069 | fresh dU 0.936 dZ 0.594 dt2hat 0.150
+  k=7 C3H5N3_rxn0726_R       resid init 0.937 | chained 0.352 | fresh 0.380 | nit 17 || dt2 0.000 | chained dU 0.006 dZ 0.002 dt2hat 0.003 | fresh dU 0.000 dZ 0.000 dt2hat 0.000
+chain 2:
+  k=0 C3H5N3_rxn2961_TS      resid init 0.931 | chained 0.340 | fresh 0.340 | nit 500
+  k=1 C3H5N3_rxn1381_P       resid init 0.923 | chained 0.365 | fresh 0.388 | nit 500 || dt2 1.345 | chained dU 1.187 dZ 0.757 dt2hat 1.140 | fresh dU 1.282 dZ 0.771 dt2hat 1.131
+  k=2 C3H5N3_rxn0072_P       resid init 0.909 | chained 0.332 | fresh 0.329 | nit 500 || dt2 1.235 | chained dU 1.144 dZ 0.712 dt2hat 1.046 | fresh dU 1.298 dZ 0.593 dt2hat 1.037
+  k=3 C3H5N3_rxn0072_TS      resid init 0.918 | chained 0.356 | fresh 0.369 | nit 500 || dt2 1.309 | chained dU 1.165 dZ 0.725 dt2hat 1.117 | fresh dU 1.291 dZ 0.728 dt2hat 1.108
+  k=4 C4H5NO_rxn3270_P       resid init 0.952 | chained 0.377 | fresh 0.375 | nit 500 || dt2 1.327 | chained dU 1.180 dZ 0.838 dt2hat 1.122 | fresh dU 1.296 dZ 0.739 dt2hat 1.119
+  k=5 C4H5NO_rxn3139_P       resid init 0.952 | chained 0.369 | fresh 0.362 | nit 500 || dt2 1.082 | chained dU 0.909 dZ 0.459 dt2hat 0.895 | fresh dU 1.188 dZ 0.556 dt2hat 0.908
+  k=6 C4H5NO_rxn3133_P       resid init 0.944 | chained 0.350 | fresh 0.368 | nit 500 || dt2 1.203 | chained dU 1.027 dZ 0.529 dt2hat 1.004 | fresh dU 1.270 dZ 0.664 dt2hat 1.004
+  k=7 C4H5NO_rxn4749_P       resid init 0.944 | chained 0.354 | fresh 0.359 | nit 500 || dt2 0.999 | chained dU 0.926 dZ 0.549 dt2hat 0.837 | fresh dU 1.133 dZ 0.572 dt2hat 0.843
+chain 3:
+  k=0 C3H5N3_rxn4071_P       resid init 0.911 | chained 0.290 | fresh 0.290 | nit 500
+  k=1 C4H5NO_rxn2703_P       resid init 0.906 | chained 0.322 | fresh 0.316 | nit 500 || dt2 1.283 | chained dU 1.181 dZ 0.731 dt2hat 1.118 | fresh dU 1.279 dZ 0.706 dt2hat 1.124
+  k=2 C4H5NO_rxn2711_P       resid init 0.908 | chained 0.315 | fresh 0.319 | nit 500 || dt2 1.269 | chained dU 1.153 dZ 0.665 dt2hat 1.098 | fresh dU 1.270 dZ 0.677 dt2hat 1.096
+  k=3 C4H5NO_rxn2995_TS      resid init 0.926 | chained 0.381 | fresh 0.382 | nit 500 || dt2 1.331 | chained dU 1.172 dZ 0.739 dt2hat 1.136 | fresh dU 1.282 dZ 0.693 dt2hat 1.139
+  k=4 C3H5N3_rxn0737_TS      resid init 0.918 | chained 0.370 | fresh 0.371 | nit 500 || dt2 1.228 | chained dU 1.127 dZ 0.794 dt2hat 1.031 | fresh dU 1.280 dZ 0.801 dt2hat 1.023
+  k=5 C3H5N3_rxn0737_P       resid init 0.932 | chained 0.357 | fresh 0.379 | nit 500 || dt2 1.247 | chained dU 1.157 dZ 0.747 dt2hat 1.050 | fresh dU 1.289 dZ 0.883 dt2hat 1.035
+  k=6 C4H5NO_rxn2995_P       resid init 0.953 | chained 0.358 | fresh 0.361 | nit 500 || dt2 1.270 | chained dU 1.151 dZ 0.781 dt2hat 1.075 | fresh dU 1.299 dZ 0.774 dt2hat 1.065
+  k=7 C4H5NO_rxn3003_P       resid init 0.956 | chained 0.348 | fresh 0.375 | nit 500 || dt2 1.261 | chained dU 1.108 dZ 0.697 dt2hat 1.067 | fresh dU 1.284 dZ 0.739 dt2hat 1.055
+chain 4:
+  k=0 C3H5N3_rxn2962_R       resid init 0.916 | chained 0.331 | fresh 0.331 | nit 500
+  k=1 C3H5N3_rxn2958_R       resid init 0.916 | chained 0.314 | fresh 0.326 | nit 500 || dt2 0.000 | chained dU 0.555 dZ 0.279 dt2hat 0.191 | fresh dU 0.695 dZ 0.511 dt2hat 0.214
+  k=2 C3H5N3_rxn2959_R       resid init 0.916 | chained 0.314 | fresh 0.331 | nit 78 || dt2 0.000 | chained dU 0.041 dZ 0.012 dt2hat 0.013 | fresh dU 0.695 dZ 0.514 dt2hat 0.214
+  k=3 C3H5N3_rxn2963_R       resid init 0.916 | chained 0.314 | fresh 0.326 | nit 0 || dt2 0.000 | chained dU 0.000 dZ 0.000 dt2hat 0.000 | fresh dU 0.695 dZ 0.511 dt2hat 0.214
+  k=4 C3H5N3_rxn2960_R       resid init 0.916 | chained 0.314 | fresh 0.331 | nit 0 || dt2 0.000 | chained dU 0.000 dZ 0.000 dt2hat 0.000 | fresh dU 0.695 dZ 0.514 dt2hat 0.214
+  k=5 C3H5N3_rxn2964_R       resid init 0.916 | chained 0.314 | fresh 0.326 | nit 0 || dt2 0.000 | chained dU 0.000 dZ 0.000 dt2hat 0.000 | fresh dU 0.695 dZ 0.511 dt2hat 0.214
+  k=6 C3H5N3_rxn2961_R       resid init 0.916 | chained 0.314 | fresh 0.331 | nit 0 || dt2 0.000 | chained dU 0.000 dZ 0.000 dt2hat 0.000 | fresh dU 0.695 dZ 0.514 dt2hat 0.214
+  k=7 C3H5N3_rxn2965_R       resid init 0.916 | chained 0.314 | fresh 0.326 | nit 0 || dt2 0.000 | chained dU 0.000 dZ 0.000 dt2hat 0.000 | fresh dU 0.695 dZ 0.511 dt2hat 0.214
+chain 5:
+  k=0 C4H5NO_rxn3361_P       resid init 0.903 | chained 0.239 | fresh 0.239 | nit 500
+  k=1 C4H5NO_rxn1589_P       resid init 0.903 | chained 0.240 | fresh 0.244 | nit 500 || dt2 1.042 | chained dU 0.875 dZ 0.551 dt2hat 0.923 | fresh dU 1.108 dZ 0.632 dt2hat 0.917
+  k=2 C4H5NO_rxn2335_P       resid init 0.903 | chained 0.240 | fresh 0.243 | nit 500 || dt2 1.070 | chained dU 0.948 dZ 0.644 dt2hat 0.958 | fresh dU 1.175 dZ 0.687 dt2hat 0.946
+  k=3 C4H5NO_rxn2298_P       resid init 0.892 | chained 0.260 | fresh 0.266 | nit 500 || dt2 1.236 | chained dU 1.118 dZ 0.654 dt2hat 1.103 | fresh dU 1.242 dZ 0.682 dt2hat 1.092
+  k=4 C4H5NO_rxn1111_P       resid init 0.892 | chained 0.256 | fresh 0.280 | nit 500 || dt2 1.213 | chained dU 0.994 dZ 0.693 dt2hat 1.074 | fresh dU 1.252 dZ 0.525 dt2hat 1.052
+  k=5 C4H5NO_rxn3833_TS      resid init 0.893 | chained 0.278 | fresh 0.280 | nit 500 || dt2 1.233 | chained dU 1.145 dZ 0.712 dt2hat 1.101 | fresh dU 1.276 dZ 0.545 dt2hat 1.088
+  k=6 C4H5NO_rxn4319_TS      resid init 0.894 | chained 0.280 | fresh 0.295 | nit 500 || dt2 1.215 | chained dU 1.059 dZ 0.535 dt2hat 1.070 | fresh dU 1.298 dZ 0.466 dt2hat 1.066
+  k=7 C4H5NO_rxn0697_P       resid init 0.898 | chained 0.289 | fresh 0.272 | nit 500 || dt2 1.205 | chained dU 1.038 dZ 0.541 dt2hat 1.054 | fresh dU 1.273 dZ 0.500 dt2hat 1.049
+
+=== medians over consecutive pairs ===
+  input dt2/||t2||               1.143
+  residual: init 0.916  chained 0.315  fresh 0.327
+  dU  (phase-aligned, rel):  chained 0.989   fresh 1.217
+  dZ  (rel):                 chained 0.550   fresh 0.578
+  dt2hat (rel):              chained 0.981   fresh 0.970
+total 493s

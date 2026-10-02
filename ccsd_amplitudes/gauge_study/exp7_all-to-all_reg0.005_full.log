@@ -1,0 +1,46 @@
+config=all-to-all_reg0.005: 1408 molecules with labels  (1s)
+loaded (56s)  nocc=16 nvirt=13
+
+--- A. label facts ---
+  residual  init median 0.862  ->  opt median 0.240  (q25 0.225, q75 0.254)
+  L-BFGS: nit median 500  success frac 0.00  time/mol median 106.0s
+  |dkappa|_F/sqrt(2n): median 1.020  q90 1.138
+  max eigenphase of U_init^dag U_opt: median 2.18 rad,  frac > 0.9*pi: 0.002  (branch-cut risk of log)
+  ||Z_opt||: median 1.085   ||Z_init(masked)||: 0.338   ||dZ||: 1.014
+
+--- B. closest-decile / all-pairs ratio (lower = smoother) ---
+  t2 (input)                       ratio=0.881   corr=+1.000
+  U_init canonical RAW             ratio=0.967   corr=+0.361
+  U_init phase-aligned             ratio=0.965   corr=+0.363
+  U_opt RAW                        ratio=0.977   corr=+0.355
+  U_opt phase-aligned              ratio=0.976   corr=+0.365
+  H(U_opt) phase-free              ratio=0.968   corr=+0.267
+  dkappa (rel. to init)            ratio=0.976   corr=+0.161
+  Z_opt                            ratio=0.929   corr=+0.749
+  dZ = Z_opt - Z_init              ratio=0.945   corr=+0.428
+  Z_init (masked)                  ratio=0.499   corr=+0.838
+  t2hat_opt (invariant content)    ratio=0.870   corr=+0.996
+  B = lam0 v0 v0^T                 ratio=0.797   corr=+0.950
+  (93s)
+
+--- C. pooled test R^2, ridge on t2-PCA256 (80/20 split) ---
+  target                                R2 pooled  R2 mol-specific
+  kappa_opt canonical (log U_opt)          +0.224           +0.217   (alpha=1.0, dim=1682)
+  dkappa (log U_init^dag U_opt)            +0.212           +0.211   (alpha=1.0, dim=1682)
+  H(U_opt) phase-free entries              +0.883           +0.260   (alpha=1.0, dim=1682)
+  Z_opt (allowed entries)                  +0.746           +0.228   (alpha=1.0, dim=870)
+  dZ = Z_opt - Z_init                      +0.694           +0.192   (alpha=1.0, dim=870)
+  t2hat_opt (500 entries)                  +0.398           +0.381   (alpha=0.1, dim=500)
+  Z_init masked (exact-DF control)         +0.954           +0.812   (alpha=0.1, dim=870)
+  lam0*v0 (invariant baseline)             +0.620           +0.576   (alpha=0.1, dim=208)
+
+  U from predicted H (eigh) -> phase-aligned rel. distance to U_opt: median 1.257   [train-mean H: 1.273;  canonical exact init: 0.868]
+  1-NN transfer of U_opt: RAW   1-NN 7.461 vs random 10.693 (ratio 0.698)
+                          ORBIT 1-NN 6.850 vs random 9.810 (ratio 0.698)
+
+--- learnability of kappa_opt stratified by outer gap (test set) ---
+  gap in [0,0.05): n=  25  R^2=+0.144
+  gap in [0.05,0.2): n= 159  R^2=+0.264
+  gap in [0.2,10): n=  98  R^2=+0.181
+
+total 101s

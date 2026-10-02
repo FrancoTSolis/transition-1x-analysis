@@ -20,6 +20,7 @@ import sys
 import time
 from pathlib import Path
 
+import numpy as np
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader, Subset
@@ -81,11 +82,19 @@ class LUCJLoss(nn.Module):
     def __init__(self, mode: str = "supervised", kappa_weight: float = 1.0,
                  z_anchor_weight: float = 1.0, recon_relative: bool = True,
                  z_reg: str = "anchor", lam_weight: float = 1.0,
-                 n_reps: int = 2, max_norb: int = 96, base_scale: float = 0.3):
+                 n_reps: int = 2, max_norb: int = 96, base_scale: float = 0.3,
+                 dz_weight: float = 1.0, recon_reg: float = 0.005):
         super().__init__()
-        assert mode in ("supervised", "reconstruction", "invariant")
+        assert mode in ("supervised", "reconstruction", "invariant",
+                        "compressed_sup", "compressed_recon")
         assert z_reg in ("anchor", "floor", "none")
         self.mode = mode
+        # compressed modes (Sep 2026): residual (dkappa, dZ) on the canonical
+        # exact-DF init.  compressed_sup regresses canonical-gauge compressed
+        # labels; compressed_recon minimizes ffsim's compressed-DF objective
+        # itself (amortized optimizer): resid^2 + recon_reg*|sum Z^2 - ref|.
+        self.dz_weight = dz_weight
+        self.recon_reg = recon_reg
         self.kappa_weight = kappa_weight
         self.lam_weight = lam_weight
         self.z_anchor_weight = z_anchor_weight
@@ -114,6 +123,7 @@ class LUCJLoss(nn.Module):
         lam_pred: torch.Tensor | None = None,    # (B,) invariant-mode lam0 head
         v_target: torch.Tensor | None = None,    # (B, max_nocc, max_nvirt) unit v0
         lam_target: torch.Tensor | None = None,  # (B,)
+        res: dict | None = None,                 # compressed modes: predictions + batch mats
     ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
         B = kappa_real_pred.shape[0]
         device = kappa_real_pred.device
@@ -141,6 +151,52 @@ class LUCJLoss(nn.Module):
                 total = total + z_l + self.kappa_weight * k_l
                 z_acc = z_acc + z_l.detach()
                 kappa_acc = kappa_acc + k_l.detach()
+            elif self.mode.startswith("compressed"):
+                m = res["z_mask"][i][:n, :n]
+                U0 = torch.complex(res["u_init_re"][i][:, :n, :n], res["u_init_im"][i][:, :n, :n])
+                Z0 = res["z_init"][i][:, :n, :n]
+                tgt = t2[i, :no, :no, :nv, :nv]
+                tnorm2 = tgt.pow(2).sum().clamp_min(1e-12)
+                hyps = res.get("residual_hyps") or [res]
+
+                def _rebuild(h):
+                    kr_h = h["dkappa_re"][i][:, idx][:, :, idx]
+                    ki_h = h["dkappa_im"][i][:, idx][:, :, idx]
+                    dz_h = h["dz"][i][:, idx][:, :, idx] * m
+                    U_h = U0 @ torch.linalg.matrix_exp(torch.complex(kr_h, ki_h))
+                    Z_h = Z0 + dz_h
+                    full_h = 1j * torch.einsum(
+                        "kpq,kap,kip,kcq,kjq->ijac", Z_h.to(U_h.dtype), U_h, U_h.conj(), U_h, U_h.conj())
+                    rec_h = full_h[:no, :no, no:, no:].real
+                    resid_h = ((rec_h - tgt).pow(2).sum() / tnorm2).sqrt()
+                    return kr_h, ki_h, dz_h, U_h, Z_h, resid_h
+
+                built = [_rebuild(h) for h in hyps]
+                resids = torch.stack([b[5] for b in built])
+                best = int(torch.argmin(resids.detach()))
+                kr_r, ki_r, dz_r, U, Z, resid = built[best]
+                if self.mode == "compressed_sup":
+                    dk_l = ((kr_r - res["dk_re"][i][:, :n, :n]).pow(2).mean()
+                            + (ki_r - res["dk_im"][i][:, :n, :n]).pow(2).mean())
+                    dz_t = (res["z_opt"][i][:, :n, :n] - Z0) * m
+                    dz_l = (dz_r - dz_t).pow(2).mean()
+                    total = total + dk_l + self.dz_weight * dz_l
+                    kappa_acc = kappa_acc + dk_l.detach()   # kappa slot = dkappa MSE
+                    z_acc = z_acc + dz_l.detach()           # z slot = dZ MSE
+                else:  # compressed_recon: ffsim objective / (0.5 ||t2||^2)
+                    def _obj(b):
+                        reg_b = (b[4].pow(2).sum() - res["znorm_full"][i]).abs()
+                        return b[5].pow(2) + 2.0 * self.recon_reg * reg_b / tnorm2
+                    objs = torch.stack([_obj(b) for b in built])
+                    if len(built) > 1:
+                        # winner-takes-all with a small relaxation so no head dies
+                        loss_i = 0.95 * objs.min() + 0.05 * objs.mean()
+                    else:
+                        loss_i = objs[0]
+                    total = total + loss_i
+                    reg = (Z.pow(2).sum() - res["znorm_full"][i]).abs()
+                    z_acc = z_acc + (2.0 * self.recon_reg * reg / tnorm2).detach()
+                recon_acc = recon_acc + resid.detach()      # recon slot = residual
             elif self.mode == "invariant":
                 zt = z_target[i][:, :n, :n]
                 z_l = (Z - zt).pow(2).mean()
@@ -287,6 +343,11 @@ def _compute_loss(model, batch, criterion, device, return_outputs=False):
         lam_pred=outputs.get("lam_pred"),
         v_target=batch.get("v_target"),
         lam_target=batch.get("lam_target"),
+        res=({**{k: outputs[k] for k in ("dkappa_re", "dkappa_im", "dz", "residual_hyps") if k in outputs},
+              **{k: batch[k] for k in ("u_init_re", "u_init_im", "z_init", "z_mask",
+                                        "znorm_full", "u_opt_re", "u_opt_im", "z_opt",
+                                        "dk_re", "dk_im") if k in batch}}
+             if criterion.mode.startswith("compressed") else None),
     )
     if return_outputs:
         return total, recon_v, z_v, kappa_v, outputs
@@ -319,6 +380,48 @@ def _invariant_batch_metrics(outputs, batch):
         cos_l.append(cos.item()); berr_l.append(berr.item())
         lam_p.append(lam_h.item()); lam_t.append(lam0.item())
     return cos_l, berr_l, lam_p, lam_t
+
+
+@torch.no_grad()
+def _compressed_batch_metrics(outputs, batch):
+    """Per-sample gauge-aware metrics for the compressed modes:
+    residual of predicted (U, Z), of the canonical init, of the label (if any),
+    phase-aligned relative distance ||U_pred - U_opt D|| / sqrt(2n), dZ MSE."""
+    from scipy.linalg import expm
+    from gauge_study.compressed_canonical import phase_dist, rel_residual
+    max_nocc = batch["max_nocc"]
+    out = dict(resid_pred=[], resid_init=[], resid_label=[], u_dist=[], u_dist_init=[])
+    B = outputs["dkappa_re"].shape[0]
+    has_lab = "u_opt_re" in batch
+    hyps = outputs.get("residual_hyps") or [outputs]
+    if len(hyps) > 1:
+        out["resid_hyp0"] = []
+    for i in range(B):
+        no = int(batch["noccs"][i]); nv = int(batch["nvirts"][i]); n = no + nv
+        idx = np.r_[np.arange(no), max_nocc + np.arange(nv)]
+        m = batch["z_mask"][i][:n, :n].cpu().numpy()
+        U0 = (batch["u_init_re"][i][:, :n, :n] + 1j * batch["u_init_im"][i][:, :n, :n]).cpu().numpy().astype(complex)
+        Z0 = batch["z_init"][i][:, :n, :n].cpu().numpy().astype(np.float64)
+        t2 = batch["t2"][i, :no, :no, :nv, :nv].cpu().numpy().astype(np.float64)
+        cands = []
+        for h in hyps:
+            kr = h["dkappa_re"][i].cpu().numpy().astype(np.float64)[:, idx][:, :, idx]
+            ki = h["dkappa_im"][i].cpu().numpy().astype(np.float64)[:, idx][:, :, idx]
+            dz = h["dz"][i].cpu().numpy().astype(np.float64)[:, idx][:, :, idx] * m
+            U_h = np.stack([U0[k] @ expm(kr[k] + 1j * ki[k]) for k in range(U0.shape[0])])
+            Z_h = Z0 + dz
+            cands.append((rel_residual(t2, Z_h, U_h), U_h, Z_h))
+        if len(cands) > 1:
+            out["resid_hyp0"].append(cands[0][0])
+        r_best, U, Z = min(cands, key=lambda c: c[0])
+        out["resid_pred"].append(r_best)
+        out["resid_init"].append(rel_residual(t2, Z0, U0))
+        if has_lab:
+            Uo = (batch["u_opt_re"][i][:, :n, :n] + 1j * batch["u_opt_im"][i][:, :n, :n]).cpu().numpy().astype(complex)
+            out["resid_label"].append(float(batch["comp_resid"][i]))
+            out["u_dist"].append(np.sqrt(sum(phase_dist(Uo[k], U[k]) ** 2 for k in range(2))) / np.sqrt(2 * n))
+            out["u_dist_init"].append(np.sqrt(sum(phase_dist(Uo[k], U0[k]) ** 2 for k in range(2))) / np.sqrt(2 * n))
+    return out
 
 
 def train_one_epoch(
@@ -401,6 +504,7 @@ def validate(
     total_kappa = 0.0
     total_recon = 0.0
     cos_all, berr_all, lam_p_all, lam_t_all = [], [], [], []
+    comp_all: dict = {}
     for batch in loader:
         batch = {k: v.to(device) if isinstance(v, torch.Tensor) else v
                  for k, v in batch.items()}
@@ -414,9 +518,17 @@ def validate(
         if criterion.mode == "invariant" and "v_pred" in outputs:
             c, b, lp, lt = _invariant_batch_metrics(outputs, batch)
             cos_all += c; berr_all += b; lam_p_all += lp; lam_t_all += lt
+        if criterion.mode.startswith("compressed"):
+            cm = _compressed_batch_metrics(outputs, batch)
+            for k, v in cm.items():
+                comp_all.setdefault(k, []).extend(v)
 
     n = max(num_batches, 1)
     extras: dict = {}
+    if comp_all:
+        for k, v in comp_all.items():
+            if v:
+                extras[f"val_{k}_median"] = float(np.median(v))
     if cos_all:
         import numpy as _np
         lam_p = _np.array(lam_p_all); lam_t = _np.array(lam_t_all)
@@ -513,7 +625,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--targets-dir", type=str, default="rhf_targets",
                         help="Directory of ffsim DF (Z, kappa) targets")
     parser.add_argument("--loss-mode", type=str, default="supervised",
-                        choices=["supervised", "reconstruction", "invariant"],
+                        choices=["supervised", "reconstruction", "invariant",
+                                 "compressed_sup", "compressed_recon"],
                         help="U/kappa objective: 'supervised' = direct regression "
                              "to ffsim (Z, kappa) targets (robust; J/Z learns well, "
                              "kappa head is weak); 'reconstruction' = gauge-invariant "
@@ -537,6 +650,26 @@ def parse_args() -> argparse.Namespace:
                              "ffsim's Z (imposes its gauge); 'floor' is a gauge-free "
                              "magnitude floor (prevents Z->0 collapse, lets U,Z "
                              "co-adapt); 'none' = pure reconstruction")
+    parser.add_argument("--comp-dir", type=str, default=None,
+                        help="[compressed_*] directory of canonical-gauge compressed labels "
+                             "(generate_compressed_targets.py <out>/<config>); required for "
+                             "compressed_sup, optional reference for compressed_recon")
+    parser.add_argument("--connectivity", type=str, default="square",
+                        help="[compressed_*] LUCJ interaction pattern for the Z mask")
+    parser.add_argument("--dz-weight", type=float, default=1.0,
+                        help="[compressed_sup] weight of the dZ regression term")
+    parser.add_argument("--recon-reg", type=float, default=0.005,
+                        help="[compressed_recon] ffsim diagonal-Coulomb norm regularizer lambda")
+    parser.add_argument("--residual-hyps", type=int, default=1,
+                        help="[compressed_recon] K winner-takes-all residual hypotheses")
+    parser.add_argument("--residual-hyp-kick", type=float, default=0.0,
+                        help="[compressed_recon] entry-std of the random offset on extra hypothesis heads")
+    parser.add_argument("--residual-kappa-scale", type=float, default=1.0)
+    parser.add_argument("--residual-z-scale", type=float, default=1.0)
+    parser.add_argument("--names-file", type=str, default=None,
+                        help="restrict to molecules listed in this file (one name per line)")
+    parser.add_argument("--eval-only", action="store_true",
+                        help="load --init-from / --resume weights, run validation once, exit")
     parser.add_argument("--val-split", type=float, default=0.1,
                         help="Fraction of data for validation")
     parser.add_argument("--seed", type=int, default=42,
@@ -605,11 +738,17 @@ def main():
         logger.error(f"Data directory not found: {data_dir}")
         sys.exit(1)
 
+    comp_mode = args.loss_mode.startswith("compressed")
+    if args.loss_mode == "compressed_sup" and not args.comp_dir:
+        logger.error("--comp-dir is required for --loss-mode compressed_sup")
+        sys.exit(1)
     dataset = CCSDAmplitudeDataset(
         data_dir, species_filter=args.species_filter, n_reps=args.n_reps,
-        targets_dir=args.targets_dir,
+        targets_dir=(None if comp_mode else args.targets_dir),
         inv_targets_dir=(args.inv_targets_dir
                          if args.loss_mode == "invariant" else None),
+        comp_dir=(args.comp_dir if comp_mode else None),
+        connectivity=args.connectivity, with_init=comp_mode,
     )
     logger.info(f"Dataset size: {len(dataset)} molecules"
                 + (f" (with Z targets from {args.targets_dir})" if args.targets_dir else ""))
@@ -619,6 +758,12 @@ def main():
 
     generator = torch.Generator().manual_seed(args.seed)
     indices = torch.randperm(len(dataset), generator=generator).tolist()
+    if args.names_file:
+        allowed = {ln.strip() for ln in open(args.names_file) if ln.strip()}
+        indices = [i for i in indices if dataset.names[i] in allowed]
+        n_val = int(len(indices) * args.val_split)
+        n_train = len(indices) - n_val
+        logger.info(f"Restricted to {len(indices)} molecules from {args.names_file}")
     train_indices = indices[:n_train]
     val_indices = indices[n_train:]
 
@@ -663,6 +808,11 @@ def main():
         use_hf_energies=args.use_hf_energies,
         use_mo_coeffs=args.use_mo_coeffs,
         predict_invariant=(args.loss_mode == "invariant"),
+        predict_residual=comp_mode,
+        residual_kappa_scale=args.residual_kappa_scale,
+        residual_z_scale=args.residual_z_scale,
+        residual_hyps=args.residual_hyps,
+        residual_hyp_kick=args.residual_hyp_kick,
     )
     model = PretrainingModel(model_config).to(device)
 
@@ -689,6 +839,8 @@ def main():
         lam_weight=args.lam_weight,
         n_reps=args.n_reps,
         max_norb=model_config.max_norb,
+        dz_weight=args.dz_weight,
+        recon_reg=args.recon_reg,
     ).to(device)
     logger.info(f"Loss mode: {args.loss_mode}"
                 + (f" (z_reg={args.z_reg})" if args.loss_mode == "reconstruction" else ""))
@@ -746,6 +898,18 @@ def main():
 
     json_log_path = checkpoint_dir / "train_log.jsonl"
     json_log_file = open(json_log_path, "a")
+
+    if args.eval_only:
+        val_loss, val_z, val_kappa, val_recon, val_extras = validate(
+            model, val_loader, criterion, device)
+        extra_str = "".join(f"  {k}={v:.4f}" for k, v in sorted(val_extras.items()))
+        logger.info(f"EVAL-ONLY  val_loss={val_loss:.6f}  val_z={val_z:.6f}  "
+                    f"val_kappa={val_kappa:.6f}  val_recon={val_recon:.6f}{extra_str}")
+        json_log_file.write(json_mod.dumps({
+            "type": "eval_only", "val_loss": val_loss, "val_z_loss": val_z,
+            "val_kappa_loss": val_kappa, "val_recon_loss": val_recon, **val_extras}) + "\n")
+        json_log_file.close()
+        return
 
     try:
         for epoch in range(start_epoch, args.epochs):

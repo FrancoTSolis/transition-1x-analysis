@@ -1,0 +1,69 @@
+56 jobs (8 molecules x 7 variants), connectivity=square, maxiter=500
+  [1/56] C3H5N3_rxn1245_R prox1e-2  resid 0.943->0.800 |Z| 0.63 nit 13 disp 0.06 | gauge dU 0.045 dZ 0.702 dt2hat 0.028 | perturb dU 0.035 dZ 0.192 dt2hat 0.054 (73s)
+  [2/56] C4H5NO_rxn0429_R prox1e-2  resid 0.910->0.816 |Z| 0.64 nit 15 disp 0.06 | gauge dU 0.049 dZ 0.788 dt2hat 0.036 | perturb dU 0.088 dZ 0.285 dt2hat 0.066 (81s)
+  [3/56] C3H5N3_rxn0069_TS prox1e-2  resid 0.941->0.773 |Z| 0.76 nit 55 disp 0.08 | gauge dU 0.132 dZ 1.156 dt2hat 0.153 | perturb dU 0.062 dZ 0.540 dt2hat 0.113 (87s)
+  [4/56] C4H5NO_rxn3872_TS prox1e-2  resid 0.927->0.828 |Z| 0.72 nit 74 disp 0.08 | gauge dU 0.129 dZ 1.436 dt2hat 0.072 | perturb dU 0.069 dZ 0.593 dt2hat 0.135 (91s)
+  [5/56] C4H5NO_rxn1668_R prox1e-2  resid 0.939->0.772 |Z| 0.62 nit 15 disp 0.07 | gauge dU 0.092 dZ 1.043 dt2hat 0.125 | perturb dU 0.061 dZ 0.050 dt2hat 0.021 (92s)
+  [6/56] C4H5NO_rxn1668_R prox1e-3  resid 0.939->0.585 |Z| 0.93 nit 126 disp 0.45 | gauge dU 0.506 dZ 0.743 dt2hat 0.302 | perturb dU 0.197 dZ 0.219 dt2hat 0.158 (121s)
+  [7/56] C4H5NO_rxn3872_TS prox1e-3  resid 0.927->0.576 |Z| 1.00 nit 112 disp 0.57 | gauge dU 0.693 dZ 1.036 dt2hat 0.270 | perturb dU 0.489 dZ 0.665 dt2hat 0.262 (151s)
+  [8/56] C3H5N3_rxn1245_R prox1e-3  resid 0.943->0.519 |Z| 1.14 nit 308 disp 0.48 | gauge dU 0.635 dZ 0.858 dt2hat 0.267 | perturb dU 0.466 dZ 0.497 dt2hat 0.312 (159s)
+  [9/56] C3H5N3_rxn9177_R prox1e-2  resid 0.937->0.857 |Z| 0.63 nit 15 disp 0.05 | gauge dU 0.121 dZ 1.223 dt2hat 0.252 | perturb dU 0.058 dZ 0.589 dt2hat 0.119 (166s)
+  [10/56] C4H5NO_rxn0429_R prox1e-3  resid 0.910->0.458 |Z| 1.18 nit 387 disp 0.53 | gauge dU 0.631 dZ 0.854 dt2hat 0.212 | perturb dU 0.597 dZ 0.634 dt2hat 0.283 (183s)
+  [11/56] C3H5N3_rxn0069_TS prox1e-3  resid 0.941->0.525 |Z| 1.13 nit 293 disp 0.46 | gauge dU 0.588 dZ 0.890 dt2hat 0.240 | perturb dU 0.638 dZ 0.874 dt2hat 0.005 (201s)
+  [12/56] C3H5N3_rxn0615_P prox1e-2  resid 0.913->0.729 |Z| 0.91 nit 49 disp 0.14 | gauge dU 0.162 dZ 1.188 dt2hat 0.116 | perturb dU 0.114 dZ 0.553 dt2hat 0.072 (238s)
+  [13/56] C4H5NO_rxn1668_R reg       resid 0.939->0.374 |Z| 1.16 nit 500 disp 0.96 | gauge dU 1.078 dZ 0.657 dt2hat 0.236 | perturb dU 1.099 dZ 0.703 dt2hat 0.204 (283s)
+  [14/56] C3H5N3_rxn0069_TS base      resid 0.941->0.381 |Z| 5.60 nit 500 disp 0.93 | gauge dU 1.092 dZ 1.470 dt2hat 0.317 | perturb dU 0.689 dZ 0.356 dt2hat 0.240 (295s)
+  [15/56] C3H5N3_rxn1245_R reg       resid 0.943->0.385 |Z| 1.15 nit 500 disp 1.05 | gauge dU 1.107 dZ 0.843 dt2hat 0.264 | perturb dU 0.997 dZ 0.588 dt2hat 0.279 (296s)
+  [16/56] C4H5NO_rxn1668_R prox1e-4  resid 0.939->0.413 |Z| 1.13 nit 500 disp 0.75 | gauge dU 0.863 dZ 0.645 dt2hat 0.253 | perturb dU 0.841 dZ 0.515 dt2hat 0.202 (297s)
+  [17/56] C3H5N3_rxn0069_TS reg       resid 0.941->0.380 |Z| 1.17 nit 500 disp 1.06 | gauge dU 1.116 dZ 0.753 dt2hat 0.266 | perturb dU 1.070 dZ 0.642 dt2hat 0.254 (299s)
+  [18/56] C4H5NO_rxn1668_R base      resid 0.939->0.365 |Z| 5.85 nit 500 disp 0.92 | gauge dU 1.047 dZ 1.283 dt2hat 0.308 | perturb dU 0.763 dZ 0.525 dt2hat 0.241 (300s)
+  [19/56] C3H5N3_rxn9177_R reg       resid 0.937->0.350 |Z| 1.19 nit 500 disp 1.07 | gauge dU 1.143 dZ 0.694 dt2hat 0.256 | perturb dU 0.846 dZ 0.467 dt2hat 0.248 (301s)
+  [20/56] C3H5N3_rxn1245_R prox1e-4  resid 0.943->0.388 |Z| 1.16 nit 500 disp 0.85 | gauge dU 1.021 dZ 0.719 dt2hat 0.302 | perturb dU 0.882 dZ 0.618 dt2hat 0.300 (303s)
+  [21/56] C3H5N3_rxn9177_R prox1e-3  resid 0.937->0.511 |Z| 1.14 nit 426 disp 0.53 | gauge dU 0.555 dZ 0.690 dt2hat 0.220 | perturb dU 0.655 dZ 1.030 dt2hat 0.225 (304s)
+  [22/56] C4H5NO_rxn3872_TS reg       resid 0.927->0.361 |Z| 1.15 nit 500 disp 0.99 | gauge dU 1.138 dZ 0.736 dt2hat 0.259 | perturb dU 0.805 dZ 0.608 dt2hat 0.233 (308s)
+  [23/56] C3H5N3_rxn9177_R prox1e-4  resid 0.937->0.377 |Z| 1.19 nit 500 disp 0.90 | gauge dU 1.030 dZ 0.714 dt2hat 0.279 | perturb dU 0.861 dZ 0.607 dt2hat 0.207 (308s)
+  [24/56] C4H5NO_rxn0429_R prox1e-4  resid 0.910->0.330 |Z| 1.15 nit 500 disp 0.87 | gauge dU 0.967 dZ 0.569 dt2hat 0.233 | perturb dU 1.051 dZ 0.626 dt2hat 0.226 (313s)
+  [25/56] C4H5NO_rxn3872_TS base      resid 0.927->0.347 |Z| 4.82 nit 500 disp 0.99 | gauge dU 1.105 dZ 1.389 dt2hat 0.317 | perturb dU 1.028 dZ 0.946 dt2hat 0.310 (314s)
+  [26/56] C3H5N3_rxn0069_TS prox1e-4  resid 0.941->0.413 |Z| 1.17 nit 462 disp 0.84 | gauge dU 0.910 dZ 0.731 dt2hat 0.287 | perturb dU 0.835 dZ 0.666 dt2hat 0.259 (318s)
+  [27/56] C4H5NO_rxn0429_R base      resid 0.910->0.300 |Z| 4.75 nit 500 disp 0.99 | gauge dU 1.126 dZ 1.346 dt2hat 0.256 | perturb dU 0.977 dZ 1.050 dt2hat 0.250 (322s)
+  [28/56] C3H5N3_rxn1245_R base      resid 0.943->0.390 |Z| 6.46 nit 500 disp 0.95 | gauge dU 1.196 dZ 1.294 dt2hat 0.346 | perturb dU 0.993 dZ 1.304 dt2hat 0.292 (322s)
+  [29/56] C3H5N3_rxn9177_R base      resid 0.937->0.319 |Z| 6.93 nit 500 disp 1.04 | gauge dU 1.213 dZ 1.150 dt2hat 0.276 | perturb dU 0.589 dZ 0.575 dt2hat 0.198 (322s)
+  [30/56] C4H5NO_rxn0429_R reg       resid 0.910->0.318 |Z| 1.15 nit 500 disp 1.01 | gauge dU 1.069 dZ 0.477 dt2hat 0.211 | perturb dU 1.137 dZ 0.629 dt2hat 0.233 (327s)
+  [31/56] C4H5NO_rxn3872_TS prox1e-4  resid 0.927->0.378 |Z| 1.15 nit 500 disp 0.88 | gauge dU 1.002 dZ 0.696 dt2hat 0.245 | perturb dU 0.836 dZ 0.547 dt2hat 0.234 (328s)
+  [32/56] C4H5NO_rxn2992_P prox1e-2  resid 0.920->0.690 |Z| 0.97 nit 54 disp 0.14 | gauge dU 0.156 dZ 1.058 dt2hat 0.103 | perturb dU 0.445 dZ 1.040 dt2hat 0.130 (351s)
+  [33/56] C3H5N3_rxn0615_P prox1e-3  resid 0.913->0.474 |Z| 1.22 nit 500 disp 0.49 | gauge dU 0.543 dZ 0.842 dt2hat 0.193 | perturb dU 0.453 dZ 0.524 dt2hat 0.178 (366s)
+  [34/56] C3H5N3_rxn0615_P base      resid 0.913->0.340 |Z| 5.34 nit 500 disp 1.01 | gauge dU 1.100 dZ 1.115 dt2hat 0.283 | perturb dU 0.923 dZ 1.245 dt2hat 0.320 (379s)
+  [35/56] C3H5N3_rxn0615_P reg       resid 0.913->0.370 |Z| 1.23 nit 500 disp 0.97 | gauge dU 0.983 dZ 0.491 dt2hat 0.169 | perturb dU 0.905 dZ 0.596 dt2hat 0.215 (383s)
+  [36/56] C4H5NO_rxn2992_P prox1e-3  resid 0.920->0.506 |Z| 1.06 nit 145 disp 0.48 | gauge dU 0.539 dZ 0.710 dt2hat 0.244 | perturb dU 0.617 dZ 0.606 dt2hat 0.254 (400s)
+  [37/56] C3H5N3_rxn0615_P prox1e-4  resid 0.913->0.369 |Z| 1.24 nit 500 disp 0.83 | gauge dU 0.980 dZ 0.568 dt2hat 0.235 | perturb dU 0.908 dZ 0.526 dt2hat 0.238 (434s)
+  [38/56] C4H5NO_rxn3872_TS reg_long  resid 0.927->0.357 |Z| 1.16 nit 914 disp 1.02 | gauge dU 1.170 dZ 0.730 dt2hat 0.247 | perturb dU 0.846 dZ 0.629 dt2hat 0.216 (443s)
+  [39/56] C4H5NO_rxn2992_P base      resid 0.920->0.337 |Z| 5.90 nit 500 disp 0.82 | gauge dU 1.054 dZ 1.083 dt2hat 0.295 | perturb dU 0.886 dZ 0.566 dt2hat 0.234 (450s)
+  [40/56] C4H5NO_rxn0429_R reg_long  resid 0.910->0.313 |Z| 1.15 nit 835 disp 1.03 | gauge dU 1.077 dZ 0.486 dt2hat 0.200 | perturb dU 1.141 dZ 0.642 dt2hat 0.236 (455s)
+  [41/56] C4H5NO_rxn1668_R reg_long  resid 0.939->0.359 |Z| 1.17 nit 1085 disp 0.97 | gauge dU 1.100 dZ 0.668 dt2hat 0.254 | perturb dU 1.158 dZ 0.755 dt2hat 0.249 (466s)
+  [42/56] C3H5N3_rxn9177_R reg_long  resid 0.937->0.348 |Z| 1.15 nit 988 disp 1.11 | gauge dU 1.136 dZ 0.712 dt2hat 0.264 | perturb dU 0.896 dZ 0.513 dt2hat 0.249 (479s)
+  [43/56] C4H5NO_rxn2992_P reg       resid 0.920->0.338 |Z| 1.22 nit 500 disp 0.96 | gauge dU 0.972 dZ 0.632 dt2hat 0.201 | perturb dU 1.063 dZ 0.689 dt2hat 0.245 (479s)
+  [44/56] C3H5N3_rxn1245_R reg_long  resid 0.943->0.373 |Z| 1.17 nit 1208 disp 1.08 | gauge dU 1.127 dZ 0.818 dt2hat 0.257 | perturb dU 1.051 dZ 0.644 dt2hat 0.258 (481s)
+  [45/56] C4H5NO_rxn2992_P prox1e-4  resid 0.920->0.354 |Z| 1.19 nit 500 disp 0.77 | gauge dU 0.840 dZ 0.572 dt2hat 0.214 | perturb dU 0.948 dZ 0.725 dt2hat 0.226 (495s)
+  [46/56] C3H5N3_rxn0069_TS reg_long  resid 0.941->0.373 |Z| 1.18 nit 970 disp 1.07 | gauge dU 1.156 dZ 0.734 dt2hat 0.261 | perturb dU 1.117 dZ 0.651 dt2hat 0.263 (502s)
+  [47/56] C3H5N3_rxn0615_P reg_long  resid 0.913->0.368 |Z| 1.22 nit 718 disp 0.99 | gauge dU 0.999 dZ 0.470 dt2hat 0.171 | perturb dU 0.992 dZ 0.628 dt2hat 0.219 (509s)
+  [48/56] C4H5NO_rxn2992_P reg_long  resid 0.920->0.320 |Z| 1.21 nit 869 disp 0.99 | gauge dU 1.008 dZ 0.597 dt2hat 0.203 | perturb dU 1.093 dZ 0.774 dt2hat 0.217 (570s)
+  [49/56] C3H5N3_rxn1245_R long      resid 0.943->0.346 |Z| 19.55 nit 4000 disp 1.01 | gauge dU 1.178 dZ 1.223 dt2hat 0.307 | perturb dU 1.126 dZ 1.191 dt2hat 0.301 (985s)
+  [50/56] C4H5NO_rxn3872_TS long      resid 0.927->0.323 |Z| 17.49 nit 4000 disp 1.08 | gauge dU 1.156 dZ 1.312 dt2hat 0.308 | perturb dU 1.116 dZ 0.992 dt2hat 0.309 (1082s)
+  [51/56] C3H5N3_rxn9177_R long      resid 0.937->0.304 |Z| 20.13 nit 4000 disp 1.09 | gauge dU 1.264 dZ 1.161 dt2hat 0.263 | perturb dU 0.778 dZ 0.869 dt2hat 0.235 (1099s)
+  [52/56] C4H5NO_rxn0429_R long      resid 0.910->0.276 |Z| 12.07 nit 4000 disp 1.03 | gauge dU 1.189 dZ 2.043 dt2hat 0.236 | perturb dU 1.100 dZ 1.263 dt2hat 0.219 (1109s)
+  [53/56] C3H5N3_rxn0069_TS long      resid 0.941->0.347 |Z| 13.83 nit 4000 disp 1.01 | gauge dU 1.162 dZ 1.219 dt2hat 0.290 | perturb dU 0.975 dZ 0.696 dt2hat 0.297 (1114s)
+  [54/56] C4H5NO_rxn1668_R long      resid 0.939->0.334 |Z| 13.86 nit 4000 disp 1.00 | gauge dU 1.135 dZ 1.219 dt2hat 0.272 | perturb dU 0.989 dZ 0.898 dt2hat 0.263 (1124s)
+  [55/56] C3H5N3_rxn0615_P long      resid 0.913->0.327 |Z| 12.91 nit 4000 disp 1.04 | gauge dU 1.178 dZ 1.269 dt2hat 0.291 | perturb dU 1.090 dZ 1.188 dt2hat 0.253 (1136s)
+  [56/56] C4H5NO_rxn2992_P long      resid 0.920->0.304 |Z| 14.06 nit 4000 disp 0.95 | gauge dU 1.110 dZ 1.441 dt2hat 0.255 | perturb dU 1.063 dZ 0.909 dt2hat 0.246 (1151s)
+
+=== summary over 8 molecules (medians), connectivity=square ===
+variant     resid    |Z| |Zfull|   nit  conv  disp | gauge dU     dZ  dt2hat | perturb dU     dZ  dt2hat (dt2 in)  dinit
+base        0.344   5.73    0.63   500  0.00  0.97 |    1.103  1.289   0.302 |      0.904  0.760   0.245    0.007  0.046
+long        0.325  13.96    0.63  4000  0.00  1.02 |    1.170  1.246   0.281 |      1.076  0.951   0.258    0.007  0.046
+reg         0.366   1.16    0.63   500  0.00  1.00 |    1.092  0.676   0.246 |      1.030  0.619   0.239    0.007  0.046
+reg_long    0.358   1.17    0.63   942  1.00  1.02 |    1.114  0.690   0.251 |      1.072  0.643   0.242    0.007  0.046
+prox1e-4    0.378   1.16    0.63   500  0.12  0.84 |    0.973  0.670   0.249 |      0.872  0.612   0.230    0.007  0.046
+prox1e-3    0.515   1.13    0.63   300  0.88  0.49 |    0.571  0.848   0.242 |      0.543  0.620   0.240    0.007  0.046
+prox1e-2    0.786   0.68    0.63    32  1.00  0.08 |    0.125  1.107   0.109 |      0.066  0.547   0.093    0.007  0.046
+  init residual (masked exact DF): 0.932
+total 1151s
