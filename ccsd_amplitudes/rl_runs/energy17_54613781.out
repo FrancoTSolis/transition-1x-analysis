@@ -1,0 +1,18 @@
+node exp-3-06 job 54613781 Fri Oct  2 22:40:09 PDT 2026
+  C2HNO_rxn4439_R        rl1                      corr%    69.7  resid 0.346  (1664s)
+  C2HNO_rxn4439_P        rl1                      corr%    62.2  resid 0.382  (1682s)
+  C2HNO_rxn4439_TS       rl1                      corr%    63.0  resid 0.395  (1693s)
+  C2HNO_rxn4440_P        rl1                      corr%    64.2  resid 0.378  (1728s)
+  C2HNO_rxn4440_R        rl1                      corr%    69.7  resid 0.346  (1741s)
+  C2HNO_rxn4440_TS       rl1                      corr%    49.1  resid 0.432  (1656s)
+  C2HNO_rxn4441_R        rl1                      corr%    69.7  resid 0.346  (1645s)
+  C2HNO_rxn4441_P        rl1                      corr%    67.3  resid 0.383  (1660s)
+  C2HNO_rxn4441_TS       rl1                      corr%    61.6  resid 0.428  (1642s)
+  C2HNO_rxn4442_P        rl1                      corr%    64.3  resid 0.385  (1639s)
+  C2HNO_rxn4442_R        rl1                      corr%    69.7  resid 0.346  (1574s)
+  C2HNO_rxn4442_TS       rl1                      corr%    52.6  resid 0.470  (1578s)
+
+=== median over molecules: % CCSD correlation energy recovered (t2 residual) ===
+  rl1                          median   64.3  mean   63.6  min    49.1  resid 0.382  vs label: median  +nan, better on 0/12
+-> pretrain/opt_true/results/energy_n17_rl1.json  (4920s)
+done Sat Oct  3 00:02:12 PDT 2026
