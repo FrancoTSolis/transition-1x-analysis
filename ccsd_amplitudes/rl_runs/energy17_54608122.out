@@ -24,3 +24,4 @@ node exp-4-36 job 54608122 Fri Oct  2 20:12:12 PDT 2026
   C2HNO_rxn4442_TS       all1_t1                  corr%    29.4  resid 0.414  (1680s)
   C2HNO_rxn4442_R        all1_t1                  corr%    54.7  resid 0.306  (1723s)
   C3HN_rxn2586_P         label                    corr%    44.5  resid 0.317  (2656s)
+slurmstepd: error: *** JOB 54608122 ON exp-4-36 CANCELLED AT 2026-10-02T22:51:47 ***
