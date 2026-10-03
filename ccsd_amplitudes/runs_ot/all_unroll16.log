@@ -1,0 +1,6 @@
+{"type": "start", "n_train": 30034, "n_buckets": 83, "steps_per_epoch": 4721, "total_steps": 94420, "n_params": 3248757, "time": 1790983059.88582}
+{"type": "eval", "step": 0, "val29_resid": 0.75741, "val29_imag": 0.07394, "val29_obj": 0.58013, "train29_resid": 0.73616, "train29_imag": 0.07238, "train29_obj": 0.54879, "small_resid": 0.65399, "time": 1790983064.09653}
+{"type": "eval", "step": 1500, "val29_resid": 0.6952, "val29_imag": 0.11325, "val29_obj": 0.49806, "train29_resid": 0.68125, "train29_imag": 0.11, "train29_obj": 0.47978, "small_resid": 0.55948, "epoch": 1, "train_loss_running": 0.59063, "time": 1790983775.98889}
+{"type": "eval", "step": 3000, "val29_resid": 0.64756, "val29_imag": 0.10357, "val29_obj": 0.43329, "train29_resid": 0.63327, "train29_imag": 0.09855, "train29_obj": 0.41485, "small_resid": 0.53209, "epoch": 1, "train_loss_running": 0.55584, "time": 1790984466.12604}
+{"type": "eval", "step": 4500, "val29_resid": 0.63503, "val29_imag": 0.10383, "val29_obj": 0.41748, "train29_resid": 0.62424, "train29_imag": 0.10307, "train29_obj": 0.40515, "small_resid": 0.52842, "epoch": 1, "train_loss_running": 0.53296, "time": 1790985150.84657}
+{"type": "epoch", "epoch": 1, "loss": 0.53043, "time": 1790985252.71097, "step": 4721}

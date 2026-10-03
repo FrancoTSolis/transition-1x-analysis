@@ -1,0 +1,23 @@
+1410 molecules (8s)
+
+--- A. closest-decile / all-pairs ratio of label U distances (input t2 ratio 0.881) ---
+  phase only                           ratio=0.981 corr=+0.351 median pair dist=9.868
+  phase+swap                           ratio=0.981 corr=+0.363 median pair dist=9.772
+  phase+conj                           ratio=0.981 corr=+0.360 median pair dist=9.778
+  phase+swap+conj                      ratio=0.979 corr=+0.372 median pair dist=9.750
+  phase+swap+conj+rev                  ratio=0.979 corr=+0.373 median pair dist=9.718
+  phase+full (swap,conj,rev,gamma)     ratio=0.979 corr=+0.372 median pair dist=9.708
+
+--- B. align all labels to a template (iterated medoid), ridge R^2 ---
+  iter 0: mean dist to template 9.559; group-element usage [56, 96, 63, 40, 145, 154, 134, 99, 148, 113, 97, 87, 45, 44, 47, 42]
+  iter 1: mean dist to template 9.559; group-element usage [56, 96, 63, 40, 145, 154, 134, 99, 148, 113, 97, 87, 45, 44, 47, 42]
+  iter 2: mean dist to template 9.559; group-element usage [56, 96, 63, 40, 145, 154, 134, 99, 148, 113, 97, 87, 45, 44, 47, 42]
+  iter 3: mean dist to template 9.559; group-element usage [56, 96, 63, 40, 145, 154, 134, 99, 148, 113, 97, 87, 45, 44, 47, 42]
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/gauge_study/exp14_orbit_aligned_labels.py", line 162, in <module>
+    main()
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/gauge_study/exp14_orbit_aligned_labels.py", line 120, in main
+    from sklearn.decomposition import PCA
+ModuleNotFoundError: No module named 'sklearn'

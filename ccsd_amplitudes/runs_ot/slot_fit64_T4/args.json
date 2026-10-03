@@ -1,0 +1,19 @@
+{
+ "out": "runs_ot/slot_fit64_T4",
+ "T": 4,
+ "T_eval": 0,
+ "fixed_T": true,
+ "d": 128,
+ "layers": 4,
+ "heads": 8,
+ "kscale": 1.0,
+ "lam": 0.005,
+ "lr": 0.0003,
+ "warmup": 20,
+ "epochs": 60,
+ "bs": 16,
+ "clip": 1.0,
+ "train_subset": 64,
+ "eval_every": 10,
+ "seed": 0
+}

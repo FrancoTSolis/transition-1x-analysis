@@ -83,7 +83,7 @@ class LUCJLoss(nn.Module):
                  z_anchor_weight: float = 1.0, recon_relative: bool = True,
                  z_reg: str = "anchor", lam_weight: float = 1.0,
                  n_reps: int = 2, max_norb: int = 96, base_scale: float = 0.3,
-                 dz_weight: float = 1.0, recon_reg: float = 0.005):
+                 dz_weight: float = 1.0, recon_reg: float = 0.005, complex_obj: bool = True):
         super().__init__()
         assert mode in ("supervised", "reconstruction", "invariant",
                         "compressed_sup", "compressed_recon")
@@ -95,6 +95,7 @@ class LUCJLoss(nn.Module):
         # itself (amortized optimizer): resid^2 + recon_reg*|sum Z^2 - ref|.
         self.dz_weight = dz_weight
         self.recon_reg = recon_reg
+        self.complex_obj = complex_obj
         self.kappa_weight = kappa_weight
         self.lam_weight = lam_weight
         self.z_anchor_weight = z_anchor_weight
@@ -167,14 +168,18 @@ class LUCJLoss(nn.Module):
                     Z_h = Z0 + dz_h
                     full_h = 1j * torch.einsum(
                         "kpq,kap,kip,kcq,kjq->ijac", Z_h.to(U_h.dtype), U_h, U_h.conj(), U_h, U_h.conj())
-                    rec_h = full_h[:no, :no, no:, no:].real
+                    blk = full_h[:no, :no, no:, no:]
+                    rec_h = blk.real
                     resid_h = ((rec_h - tgt).pow(2).sum() / tnorm2).sqrt()
-                    return kr_h, ki_h, dz_h, U_h, Z_h, resid_h
+                    # ffsim's objective uses the COMPLEX reconstruction (|rec - t2|^2 incl. Im(rec)^2);
+                    # the real-part-only loss admits large Im(rec) and stays on the conj-pair manifold.
+                    cres_h = ((blk - tgt).abs().pow(2).sum() / tnorm2).sqrt() if self.complex_obj else resid_h
+                    return kr_h, ki_h, dz_h, U_h, Z_h, resid_h, cres_h
 
                 built = [_rebuild(h) for h in hyps]
-                resids = torch.stack([b[5] for b in built])
+                resids = torch.stack([b[6] for b in built])
                 best = int(torch.argmin(resids.detach()))
-                kr_r, ki_r, dz_r, U, Z, resid = built[best]
+                kr_r, ki_r, dz_r, U, Z, resid, _cres = built[best]
                 if self.mode == "compressed_sup":
                     dk_l = ((kr_r - res["dk_re"][i][:, :n, :n]).pow(2).mean()
                             + (ki_r - res["dk_im"][i][:, :n, :n]).pow(2).mean())
@@ -186,7 +191,7 @@ class LUCJLoss(nn.Module):
                 else:  # compressed_recon: ffsim objective / (0.5 ||t2||^2)
                     def _obj(b):
                         reg_b = (b[4].pow(2).sum() - res["znorm_full"][i]).abs()
-                        return b[5].pow(2) + 2.0 * self.recon_reg * reg_b / tnorm2
+                        return b[6].pow(2) + 2.0 * self.recon_reg * reg_b / tnorm2
                     objs = torch.stack([_obj(b) for b in built])
                     if len(built) > 1:
                         # winner-takes-all with a small relaxation so no head dies
@@ -660,6 +665,8 @@ def parse_args() -> argparse.Namespace:
                         help="[compressed_sup] weight of the dZ regression term")
     parser.add_argument("--recon-reg", type=float, default=0.005,
                         help="[compressed_recon] ffsim diagonal-Coulomb norm regularizer lambda")
+    parser.add_argument("--real-only-obj", action="store_true",
+                        help="[compressed_recon] legacy real-part-only reconstruction loss (NOT ffsim's objective)")
     parser.add_argument("--residual-hyps", type=int, default=1,
                         help="[compressed_recon] K winner-takes-all residual hypotheses")
     parser.add_argument("--residual-hyp-kick", type=float, default=0.0,
@@ -805,6 +812,7 @@ def main():
         num_heads=args.num_heads,
         n_reps=args.n_reps,
         dropout=args.dropout,
+        attention_dropout=args.dropout,   # was left at the ModelConfig default 0.1 (found Oct 2026)
         use_hf_energies=args.use_hf_energies,
         use_mo_coeffs=args.use_mo_coeffs,
         predict_invariant=(args.loss_mode == "invariant"),
@@ -841,6 +849,7 @@ def main():
         max_norb=model_config.max_norb,
         dz_weight=args.dz_weight,
         recon_reg=args.recon_reg,
+        complex_obj=not args.real_only_obj,
     ).to(device)
     logger.info(f"Loss mode: {args.loss_mode}"
                 + (f" (z_reg={args.z_reg})" if args.loss_mode == "reconstruction" else ""))

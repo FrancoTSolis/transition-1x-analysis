@@ -1,0 +1,6 @@
+  C2H3N_rxn2857_P        init:0.844 label:0.225 frame:0.421 frame+adam300:0.221
+  C2H3N_rxn2857_R        init:0.803 label:0.225 frame:0.410 frame+adam300:0.211
+  C2H3N_rxn2857_TS       init:0.850 label:0.250 frame:0.489 frame+adam300:0.245
+  C2H3N_rxn2858_P        init:0.876 label:0.270 frame:0.433 frame+adam300:0.254
+  C2H3N_rxn2858_R        init:0.803 label:0.225 frame:0.410 frame+adam300:0.211
+  C2H3N_rxn2858_TS       init:0.765 label:0.241 frame:0.436 frame+adam300:0.222

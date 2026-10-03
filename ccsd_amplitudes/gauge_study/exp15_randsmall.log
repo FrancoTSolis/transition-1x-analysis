@@ -1,0 +1,40 @@
+frame=randsmall zinit=0: optimizing 1410 molecules (13s)
+  chunk 0:470
+    step     0: resid_real median 1.0000  resid_imag 0.0000
+    step   500: resid_real median 0.3593  resid_imag 0.0703
+    step  1000: resid_real median 0.3567  resid_imag 0.0661
+    step  1500: resid_real median 0.3552  resid_imag 0.0659
+    step  2000: resid_real median 0.3553  resid_imag 0.0653
+    step  2500: resid_real median 0.3548  resid_imag 0.0651
+    step  3000: resid_real median 0.3547  resid_imag 0.0652
+  chunk 470:940
+    step     0: resid_real median 1.0000  resid_imag 0.0000
+    step   500: resid_real median 0.3352  resid_imag 0.0591
+    step  1000: resid_real median 0.3325  resid_imag 0.0570
+    step  1500: resid_real median 0.3322  resid_imag 0.0569
+    step  2000: resid_real median 0.3324  resid_imag 0.0575
+    step  2500: resid_real median 0.3317  resid_imag 0.0573
+    step  3000: resid_real median 0.3320  resid_imag 0.0573
+  chunk 940:1410
+    step     0: resid_real median 1.0000  resid_imag 0.0000
+    step   500: resid_real median 0.3242  resid_imag 0.0624
+    step  1000: resid_real median 0.3210  resid_imag 0.0590
+    step  1500: resid_real median 0.3206  resid_imag 0.0589
+    step  2000: resid_real median 0.3207  resid_imag 0.0588
+    step  2500: resid_real median 0.3210  resid_imag 0.0593
+    step  3000: resid_real median 0.3206  resid_imag 0.0588
+
+quality: fixed-frame resid median 0.3358 (val 0.3373) imag 0.0609 | canonical labels 0.3282 (val 0.3337)
+  smoothness U raw (shared frame)   ratio=0.977 corr=+0.374
+  smoothness U phase-aligned        ratio=0.978 corr=+0.365
+  smoothness Z                      ratio=0.906 corr=+0.656
+  smoothness t2hat                  ratio=0.861 corr=+0.993
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/gauge_study/exp15_fixed_frame_labels.py", line 193, in <module>
+    main()
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/gauge_study/exp15_fixed_frame_labels.py", line 175, in main
+    Zpred[:, torch.as_tensor(keep, device=dev)] = torch.as_tensor(Pz, device=dev)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Index put requires the source and destination dtypes match, got Double for the destination and Float for the source.

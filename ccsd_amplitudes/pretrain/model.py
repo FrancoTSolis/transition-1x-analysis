@@ -578,6 +578,13 @@ class PretrainingModel(nn.Module):
         self.decode_heads = DecodeHeads(config)
 
         self.apply(self._init_weights)
+        # _init_weights re-draws every Linear, which silently undid the zero-init of the residual heads
+        # (found Oct 2026): restore it so that the predicted residual is exactly 0 at step 0.
+        if config.predict_residual and config.residual_zero_init:
+            r = self.decode_heads.residual
+            for m in list(r.kr) + list(r.ki) + list(r.dz):
+                nn.init.zeros_(m[-1].weight)
+                nn.init.zeros_(m[-1].bias)
 
     def _init_weights(self, module: nn.Module) -> None:
         if isinstance(module, nn.Linear):

@@ -1,0 +1,2 @@
+{"type": "start", "n_train": 30034, "n_buckets": 83, "steps_per_epoch": 3001, "total_steps": 12004, "n_params": 923272, "load_s": 44.754, "time": 1790986615.0908}
+{"type": "eval", "step": 0, "val29_t0": 0.5006, "val29_t1": 0.5006, "val29_t4": 0.5006, "val29_t8": 0.5006, "train29_t0": 0.4926, "train29_t1": 0.4926, "train29_t4": 0.4926, "train29_t8": 0.4926, "small_t0": 0.439, "small_t1": 0.439, "small_t4": 0.439, "small_t8": 0.439, "time": 1790986623.56}

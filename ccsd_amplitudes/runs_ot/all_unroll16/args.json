@@ -1,0 +1,21 @@
+{
+ "out": "runs_ot/all_unroll16",
+ "unroll": 16,
+ "unroll_eta": 0.05,
+ "unroll_deep": 0.1,
+ "lam": 0.005,
+ "kscale": 3.0,
+ "zscale": 1.0,
+ "embed_dim": 192,
+ "layers": 6,
+ "heads": 8,
+ "lr": 0.0005,
+ "warmup": 500,
+ "epochs": 20,
+ "token_budget": 2099136,
+ "max_norb": 44,
+ "clip": 1.0,
+ "eval_every_steps": 1500,
+ "init_from": null,
+ "seed": 0
+}

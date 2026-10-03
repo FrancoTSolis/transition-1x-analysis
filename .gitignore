@@ -57,3 +57,9 @@ gates_slides/*.log
 ccsd_amplitudes/rhf_targets_compressed/
 ccsd_amplitudes/rhf_hamiltonians/
 ccsd_amplitudes/rl_runs/**/*.pt
+ccsd_amplitudes/rhf_inits_canonical/
+ccsd_amplitudes/runs_ot/**/*.pt
+# chemistry frames (regenerable: python3 -m pretrain.opt_true.frames), small-molecule labels, label logs
+ccsd_amplitudes/rhf_frames/
+ccsd_amplitudes/rhf_targets_compressed_small/
+ccsd_amplitudes/logs_small_labels/

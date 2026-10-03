@@ -1,0 +1,21 @@
+{
+ "out": "runs_ot/slotall_T4",
+ "T": 4,
+ "fixed_T": false,
+ "d": 128,
+ "layers": 4,
+ "heads": 8,
+ "kscale": 1.0,
+ "lam": 0.005,
+ "lr": 0.0003,
+ "warmup": 500,
+ "epochs": 4,
+ "budget": 390224,
+ "max_bs": 64,
+ "max_norb": 44,
+ "clip": 1.0,
+ "eval_every_steps": 1500,
+ "init_from": null,
+ "variant": "hyb_oao",
+ "seed": 0
+}
