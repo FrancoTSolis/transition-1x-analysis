@@ -1,0 +1,15 @@
+{"type": "start", "n_train": 30034, "n_buckets": 83, "steps_per_epoch": 1495, "total_steps": 8970, "n_params": 3022666, "load_s": 240.7854, "time": 1790989733.0167}
+{"type": "eval", "step": 0, "val29_t0": 0.5006, "val29_t1": 0.5006, "train29_t0": 0.4926, "train29_t1": 0.4926, "small_t0": 0.439, "small_t1": 0.439, "time": 1790989734.608}
+{"type": "epoch", "epoch": 1, "train_obj": 0.1897, "time": 1790990037.9334, "step": 1495}
+{"type": "eval", "step": 1500, "val29_t0": 0.5006, "val29_t1": 0.3921, "train29_t0": 0.4926, "train29_t1": 0.3859, "small_t0": 0.439, "small_t1": 0.3431, "epoch": 2, "train_obj_running": 0.1654, "time": 1790990040.0473}
+{"type": "epoch", "epoch": 2, "train_obj": 0.1669, "time": 1790990308.9122, "step": 2990}
+{"type": "eval", "step": 3000, "val29_t0": 0.5006, "val29_t1": 0.3866, "train29_t0": 0.4926, "train29_t1": 0.378, "small_t0": 0.439, "small_t1": 0.3376, "epoch": 3, "train_obj_running": 0.1637, "time": 1790990311.9038}
+{"type": "epoch", "epoch": 3, "train_obj": 0.1613, "time": 1790990604.467, "step": 4485}
+{"type": "eval", "step": 4500, "val29_t0": 0.5006, "val29_t1": 0.3796, "train29_t0": 0.4926, "train29_t1": 0.3714, "small_t0": 0.439, "small_t1": 0.3265, "epoch": 4, "train_obj_running": 0.157, "time": 1790990608.1316}
+{"type": "epoch", "epoch": 4, "train_obj": 0.1578, "time": 1790990900.1793, "step": 5980}
+{"type": "eval", "step": 6000, "val29_t0": 0.5006, "val29_t1": 0.3743, "train29_t0": 0.4926, "train29_t1": 0.3635, "small_t0": 0.439, "small_t1": 0.3237, "epoch": 5, "train_obj_running": 0.1589, "time": 1790990904.9781}
+{"type": "epoch", "epoch": 5, "train_obj": 0.1547, "time": 1790991164.6972, "step": 7475}
+{"type": "eval", "step": 7500, "val29_t0": 0.5006, "val29_t1": 0.3703, "train29_t0": 0.4926, "train29_t1": 0.3596, "small_t0": 0.439, "small_t1": 0.3207, "epoch": 6, "train_obj_running": 0.1553, "time": 1790991170.2271}
+{"type": "epoch", "epoch": 6, "train_obj": 0.1532, "time": 1790991462.4234, "step": 8970}
+{"type": "eval", "step": 8970, "val29_t0": 0.5006, "val29_t1": 0.3671, "train29_t0": 0.4926, "train29_t1": 0.3588, "small_t0": 0.439, "small_t1": 0.321, "time": 1790991463.5487}
+{"type": "done", "best_val29": 0.3671, "time": 1790991463.7079}

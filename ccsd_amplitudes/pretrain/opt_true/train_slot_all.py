@@ -100,6 +100,9 @@ def main():
     ap.add_argument("--eval-every-steps", type=int, default=1500)
     ap.add_argument("--init-from", default=None)
     ap.add_argument("--variant", default="hyb_oao")
+    ap.add_argument("--teacher", default=None, help="slot checkpoint whose T-recycle output the student imitates")
+    ap.add_argument("--teacher-T", type=int, default=4)
+    ap.add_argument("--w-distill", type=float, default=1.0, help="weight of ||U_student - U_teacher||^2 / (2n)")
     ap.add_argument("--seed", type=int, default=0)
     args = ap.parse_args()
     torch.manual_seed(args.seed)
@@ -146,6 +149,12 @@ def main():
     if args.init_from:
         sd = torch.load(args.init_from, map_location=dev, weights_only=False)
         print("init:", model.load_state_dict(sd["model"], strict=False))
+    teacher = None
+    if args.teacher:
+        from pretrain.opt_true.eval_slot import load_slot
+        teacher = load_slot(args.teacher, dev)[0]
+        for p_ in teacher.parameters():
+            p_.requires_grad_(False)
     opt = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=0.0)
     sched = torch.optim.lr_scheduler.LambdaLR(opt, lambda s: min(1.0, (s + 1) / args.warmup) * 0.5 *
                                               (1 + math.cos(math.pi * min(1.0, s / max(1, total)))))
@@ -177,6 +186,12 @@ def main():
             objs = [D.normalized_objective(Z.detach(), U, x["t2"], args.lam, x["zref"]) for (U, Z, _) in traj[1:]]
             w = [1.0] * (len(objs) - 1) + [2.0]
             loss = sum(wi * o.mean() for wi, o in zip(w, objs)) / sum(w)
+            if teacher is not None:
+                with torch.no_grad():
+                    Ut = teacher(x["U0"], x["t2"], x["mask"], args.lam, x["zref"], T=args.teacher_T, chem=x["chem"])[-1][0]
+                Us = traj[-1][0]
+                ld = (Us - Ut).abs().pow(2).flatten(1).sum(1) / (2 * Us.shape[-1])
+                loss = loss + args.w_distill * ld.mean()
             opt.zero_grad(set_to_none=True)
             loss.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), args.clip)

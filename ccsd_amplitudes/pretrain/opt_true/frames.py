@@ -170,7 +170,24 @@ def atom_hybrids(A, nbs, Rc, axes_c, heavy_nb):
     return [(pt, V[:, j]) for j, pt in enumerate(parts)]
 
 
-def build_frame(name, bond_scale=1.25):
+def mayer_bonds(mol, C, nocc, sym, thresh):
+    """Mayer bond orders from the valence part of the RHF density (active occupied MOs)."""
+    S = mol.intor("int1e_ovlp")
+    Cocc = C[:, :nocc]
+    PS = 2.0 * Cocc @ Cocc.T @ S
+    labs = mol.ao_labels(fmt=False)
+    ao_atom = np.array([l[0] for l in labs])
+    nat = len(sym)
+    BO = np.zeros((nat, nat))
+    for A in range(nat):
+        ia = ao_atom == A
+        for B in range(A + 1, nat):
+            ib = ao_atom == B
+            BO[A, B] = BO[B, A] = float((PS[np.ix_(ia, ib)] * PS[np.ix_(ib, ia)].T).sum())
+    return BO > thresh, BO
+
+
+def build_frame(name, bond_scale=1.25, bond_mode="distance", bo_thresh=0.3):
     from pyscf import gto
     sym, R = read_xyz(name)
     mol = gto.M(atom=[(s, tuple(r)) for s, r in zip(sym, R)], basis="sto-3g", unit="Angstrom", verbose=0)
@@ -200,6 +217,10 @@ def build_frame(name, bond_scale=1.25):
             p_lab = O[:, p_i]                                                 # px, py, pz
             cols[A] = np.concatenate([O[:, s_i], p_lab @ ax], 1)              # s, p1, p2, p3 (canonical)
     bond, D = bonds(sym, R, bond_scale)
+    if bond_mode in ("mayer", "either"):
+        nocc = int(z["nocc"]) if "nocc" in z.files else None
+        mb, _ = mayer_bonds(mol, C, nocc, sym, bo_thresh)
+        bond = mb if bond_mode == "mayer" else (bond | mb)
     heavy = [A for A in range(len(sym)) if sym[A] != "H"]
     heavy_nb = {A: [B for B in heavy if bond[A, B]] for A in heavy}
     # H atoms: attach each H to its closest bonded heavy atom (or closest heavy atom if none bonded)
@@ -286,9 +307,12 @@ def build_frame(name, bond_scale=1.25):
             "atom_Z": np.array([ZNUM[s] for s in sym], np.int8), "coords": Rc.astype(np.float32), "bond": bond}
 
 
+_OPTS = {}
+
+
 def _one(name):
     try:
-        return name, build_frame(name)
+        return name, build_frame(name, **_OPTS)
     except Exception as e:  # noqa: BLE001
         return name, repr(e)
 
@@ -298,7 +322,10 @@ def main():
     ap.add_argument("--n-procs", type=int, default=24)
     ap.add_argument("--shapes", nargs="*", default=None, help="e.g. 16_13; default all")
     ap.add_argument("--out-dir", default="rhf_frames")
+    ap.add_argument("--bond-mode", default="distance", choices=["distance", "mayer", "either"])
+    ap.add_argument("--bo-thresh", type=float, default=0.3)
     args = ap.parse_args()
+    _OPTS.update(bond_mode=args.bond_mode, bo_thresh=args.bo_thresh)
     idx = json.load(open(ROOT / "rhf_dataset" / "_index.json"))
     groups = defaultdict(list)
     for k, (n, no, nv) in idx.items():

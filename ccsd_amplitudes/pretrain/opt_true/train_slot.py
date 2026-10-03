@@ -71,6 +71,9 @@ def main():
     ap.add_argument("--no-chem-feats", action="store_true")
     ap.add_argument("--gen-support", default="full", choices=["full", "bonded", "same"])
     ap.add_argument("--init-from", default=None)
+    ap.add_argument("--teacher", default=None, help="slot checkpoint whose T-recycle output the student imitates")
+    ap.add_argument("--teacher-T", type=int, default=4)
+    ap.add_argument("--w-distill", type=float, default=1.0)
     args = ap.parse_args()
     torch.manual_seed(args.seed)
     dev = "cuda"
@@ -108,6 +111,12 @@ def main():
     if args.init_from:
         sd = torch.load(args.init_from, map_location=dev, weights_only=False)
         print("init:", model.load_state_dict(sd["model"], strict=False))
+    teacher = None
+    if args.teacher:
+        from pretrain.opt_true.eval_slot import load_slot
+        teacher = load_slot(args.teacher, dev)[0]
+        for p_ in teacher.parameters():
+            p_.requires_grad_(False)
     opt = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=0.0)
     spe = math.ceil(len(itr) / args.bs); total = args.epochs * spe
     sched = torch.optim.lr_scheduler.LambdaLR(opt, lambda s: min(1.0, (s + 1) / args.warmup) * 0.5 *
@@ -138,6 +147,12 @@ def main():
             objs = [D.normalized_objective(Z.detach(), U, d.t2[b], args.lam, d.znorm_full[b]) for (U, Z, _) in traj[1:]]
             w = torch.ones(len(objs), device=dev); w[-1] = 2.0
             loss = sum(wi * o.mean() for wi, o in zip(w, objs)) / w.sum()
+            if teacher is not None:
+                with torch.no_grad():
+                    Ut = teacher(ctx["U0"][b], d.t2[b], mask, args.lam, d.znorm_full[b], T=args.teacher_T,
+                                 chem=ctx["chem"](b), gen_mask=ctx["gm"](b))[-1][0]
+                Us = traj[-1][0]
+                loss = loss + args.w_distill * ((Us - Ut).abs().pow(2).flatten(1).sum(1) / (2 * Us.shape[-1])).mean()
             opt.zero_grad(set_to_none=True)
             loss.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), args.clip)

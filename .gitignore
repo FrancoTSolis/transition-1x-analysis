@@ -63,3 +63,5 @@ ccsd_amplitudes/runs_ot/**/*.pt
 ccsd_amplitudes/rhf_frames/
 ccsd_amplitudes/rhf_targets_compressed_small/
 ccsd_amplitudes/logs_small_labels/
+ccsd_amplitudes/rhf_targets_compressed_n17/
+ccsd_amplitudes/runs_ot/energy_tasks/

@@ -50,6 +50,15 @@ def build_one(args) -> str:
             return "hf_unconverged"
         nfrozen = n_frozen_core(xyz)
         active = list(range(nfrozen, mol.nao))
+        # align MO signs with the dataset's MOs (the LUCJ parameters live in that basis); a different
+        # BLAS could flip signs of a fresh SCF solution
+        ref = Path(jobs_dir).parent / "rhf_dataset" / f"{name}.npz"
+        if ref.exists():
+            Cd = np.load(ref)["mo_coeff"].astype(np.float64)
+            ov = np.einsum("mi,mn,ni->i", Cd, mol.intor("int1e_ovlp"), mf.mo_coeff[:, nfrozen:])
+            if np.abs(np.abs(ov) - 1).max() > 1e-6:
+                return f"err:MOMismatch:{np.abs(np.abs(ov) - 1).max():.2e}"
+            mf.mo_coeff[:, nfrozen:] *= np.sign(ov)[None, :]
         mol_data = ffsim.MolecularData.from_scf(mf, active_space=active)
         ham = mol_data.hamiltonian
         mycc = cc.CCSD(mf, frozen=nfrozen).run()

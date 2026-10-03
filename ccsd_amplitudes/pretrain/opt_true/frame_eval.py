@@ -39,8 +39,8 @@ def u_from_real(B, A, phases):
     return phases[None, :, :, None] * O.to(phases.dtype)
 
 
-def load_frames(names, device, dtype=torch.float64, shape="16_13"):
-    f = np.load(ROOT / "rhf_frames" / f"{shape}.npz")
+def load_frames(names, device, dtype=torch.float64, shape="16_13", frames_dir="rhf_frames"):
+    f = np.load(ROOT / frames_dir / f"{shape}.npz")
     pos = {str(k): i for i, k in enumerate(f["names"])}
     sel = [pos[k] for k in names]
     keys = [k for k in ("B", "slot_atom", "slot_type", "slot_partner", "slot_dir", "atom_Z", "coords", "bond", "natm")

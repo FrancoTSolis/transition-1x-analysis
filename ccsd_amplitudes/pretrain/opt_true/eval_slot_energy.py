@@ -35,7 +35,9 @@ ROOT = Path(__file__).resolve().parents[2]
 
 def energy_job(task):
     key, name, U, Z, t1 = task
-    os.environ.setdefault("OMP_NUM_THREADS", "1")
+    nt = os.environ.get("ENERGY_THREADS", "1")   # per-worker threads (large norb: few workers, many threads)
+    for v in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "RAYON_NUM_THREADS", "NUMBA_NUM_THREADS"):
+        os.environ[v] = nt                    # ffsim's own thread pool ignores OMP_NUM_THREADS
     from pretrain.rl.energy import exact_energy, make_ucj_op
     from pretrain.rl.hamiltonian import load_hamiltonian
     ham, norb, nelec, e_hf, e_ccsd = load_hamiltonian(ROOT / "rhf_hamiltonians", name)
@@ -70,7 +72,24 @@ def main():
     ap.add_argument("--out", default="pretrain/opt_true/results/energy_slot_small.json")
     ap.add_argument("--skip-energy", action="store_true")
     ap.add_argument("--no-baselines", action="store_true", help="only the network candidates")
+    ap.add_argument("--dump", default=None, help="build candidates (GPU) and pickle the energy tasks; no energies")
+    ap.add_argument("--from-dump", action="append", default=[], help="compute energies for pickled tasks (CPU only)")
+    ap.add_argument("--skip-keys", nargs="*", default=[], help="candidate keys not to compute (e.g. label)")
     args = ap.parse_args()
+    import pickle
+    if args.from_dump:
+        tasks, meta = [], {}
+        for f in args.from_dump:
+            dd = pickle.load(open(f, "rb"))
+            tasks += dd["tasks"]
+            for n, m in dd["meta"].items():
+                meta.setdefault(n, {"resid": {}, "norb": m["norb"]})["resid"].update(m["resid"])
+        names = list(meta)
+        keys = list(dict.fromkeys(k for n in meta for k in meta[n]["resid"]))
+        tasks = list({t[0]: t for t in tasks}.values())                   # dedupe (label appears in several dumps)
+        tasks = [t for t in tasks if t[0][1] not in args.skip_keys]
+        keys = [k for k in keys if k not in args.skip_keys]
+        return run_energies(args, tasks, meta, names, keys, time.time())
     dev = "cuda"
     names = [ln.strip() for ln in open(ROOT / args.names_file) if ln.strip()]
     idx = json.load(open(ROOT / "rhf_dataset" / "_index.json"))
@@ -116,10 +135,17 @@ def main():
         print(f"  {name:22s} " + " ".join(f"{k}:{v:.3f}" for k, v in resid.items()), flush=True)
     print(f"{len(tasks)} energies for {len(names)} molecules ({time.time()-t0:.0f}s to build)", flush=True)
     keys = list(next(iter(meta.values()))["resid"].keys())
-    if args.skip_energy:
+    if args.skip_energy or args.dump:
         for k in keys:
             print(f"  {k:28s} resid {np.median([meta[n]['resid'][k] for n in meta]):.3f}")
+        if args.dump:
+            pickle.dump({"tasks": tasks, "meta": meta}, open(args.dump, "wb"))
+            print(f"-> {args.dump}")
         return
+    return run_energies(args, tasks, meta, names, keys, t0)
+
+
+def run_energies(args, tasks, meta, names, keys, t0):
     res = {}
     with get_context("spawn").Pool(args.n_procs) as pool:
         for (name, k), E, cf, dt in pool.imap_unordered(energy_job, tasks):
@@ -127,11 +153,12 @@ def main():
             print(f"  {name:22s} {k:24s} corr% {100*cf:7.1f}  resid {meta[name]['resid'][k]:.3f}  ({dt:.0f}s)", flush=True)
     print("\n=== median over molecules: % CCSD correlation energy recovered (t2 residual) ===")
     summ = {}
-    lab_cf = np.array([100 * res[n]["label"]["corr_frac"] for n in names])
+    has_lab = all("label" in res[n] for n in names)
+    lab_cf = np.array([100 * res[n]["label"]["corr_frac"] for n in names]) if has_lab else None
     for k in keys:
         cf = np.array([100 * res[n][k]["corr_frac"] for n in names])
         rs = np.array([meta[n]["resid"][k] for n in names])
-        diff = cf - lab_cf
+        diff = cf - lab_cf if has_lab else np.full_like(cf, np.nan)
         summ[k] = {"median_corr_pct": float(np.median(cf)), "mean_corr_pct": float(cf.mean()), "min_corr_pct": float(cf.min()),
                    "median_resid": float(np.median(rs)), "median_diff_vs_label": float(np.median(diff)),
                    "wins_vs_label": int((diff > 0).sum()), "n": len(cf)}

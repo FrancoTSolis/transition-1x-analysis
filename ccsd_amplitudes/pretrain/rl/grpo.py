@@ -54,7 +54,9 @@ _HAM_CACHE: dict = {}
 
 
 def _worker_init(ham_dir: str, n_threads: int):
-    for _v in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS"):
+    # RAYON/NUMBA too: ffsim's compiled kernels use their own thread pool (measured on scai1: unpinned workers
+    # take ~22 cores each, 31 s/energy vs 199 s single-threaded -> 3.5x worse core-efficiency, and oversubscription)
+    for _v in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "RAYON_NUM_THREADS", "NUMBA_NUM_THREADS"):
         os.environ[_v] = str(n_threads)
     try:
         import torch as _t

@@ -1,0 +1,4 @@
+C2H3N_rxn2857_P (label): corr% 70.9
+  MO (energy order)      interleaved: max S 0.64, max chi(1e-3) 119, max chi(1e-4) 456, mid-cut {'S': 0.601, 'chi_1e-3': 106, 'chi_1e-4': 423} | blocked alpha|beta cut: {'S': 0.387, 'chi_1e-3': 29, 'chi_1e-4': 93}
+  frame rep0 (hybrids)   interleaved: max S 3.98, max chi(1e-3) 164, max chi(1e-4) 186, mid-cut {'S': 1.683, 'chi_1e-3': 69, 'chi_1e-4': 186} | blocked alpha|beta cut: {'S': 0.387, 'chi_1e-3': 29, 'chi_1e-4': 93}
+  frame rep1 (OAOs)      interleaved: max S 3.98, max chi(1e-3) 235, max chi(1e-4) 404, mid-cut {'S': 1.683, 'chi_1e-3': 69, 'chi_1e-4': 186} | blocked alpha|beta cut: {'S': 0.387, 'chi_1e-3': 29, 'chi_1e-4': 93}
