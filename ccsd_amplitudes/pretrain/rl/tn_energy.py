@@ -23,12 +23,14 @@ Method
     optimal truncation of the exact factor product, no intermediate truncation.  Sweep directions alternate, so no
     canonical moves are needed between factors.  info["discarded_sum"] = sum of the discarded rho weights of all
     truncations, a genuine truncation measure (~ 1 - fidelity to first order).  It is NOT a calibrated energy error,
-    but on 15 norb-15/16 tasks err(E) / discarded_sum = 1.1-6.2 Ha (median 2.6 Ha) across chi 32-128.
+    but on 32 norb-15..18 tasks (95 runs with err > 0.1 mHa, chi 32-256) err(E) / discarded_sum = 0.9-6.2 Ha (median
+    2.2, 10-90 % 1.5-3.7): a usable a-posteriori error bar and a flag for hard cases (raise chi).
   * method="zipup" (legacy; default on the CPU, where the dense environments of "dm" cost far more than the zip-up):
     zip-up with bond <= zip_margin * chi (the Gram of a non-orthonormal right basis -> not an optimal truncation),
     then canonical compression.  Its zip-up truncation weight is reported separately (info["discarded_zip_sum"],
     not Schmidt weights); info["discarded_sum"] then covers the compression sweeps only.  zip_margin is an accuracy
-    knob (1.5 -> 3 roughly halves the error at chi 64-128).  At equal chi it is 2-8x less accurate than "dm".
+    knob (1.5 -> 3 roughly halves the error at chi 64-128).  With zip_margin 1.5 its error at equal chi was 2-20x
+    (median ~5x) that of "dm" on the same 10 tasks (chi 64-256).
   * The t1 rotation and S are absorbed into the Hamiltonian (integrals rotated by final(t1) @ S, real); <H> is the
     block2 quantum-chemistry MPO expectation (SZ, complex MPS, converter verified to 1e-13), on the CPU.
   * Engines: GpuSymMPS (torch; complex64 on CUDA by default, complex128 on CPU) runs both methods; NpSymMPS (numpy
@@ -2019,8 +2021,10 @@ class LUCJEnergyTN(LUCJEnergySplitTN):
       one_body, two_body, constant : active-space integrals (MO basis of the ffsim Hamiltonian, chemists' notation)
       norb, nelec                  : closed shell (nelec[0] == nelec[1])
       max_bond                     : MPS bond dimension chi (accuracy/cost knob; energy(..., max_bond=) overrides)
-      method                       : "dm" (default; density-matrix factor application, optimal truncation of every
-                                     exact factor product) or "zipup" (legacy; zip_margin * chi intermediate bond)
+      method                       : None (default) -> "dm" on CUDA, "zipup" on the CPU.  "dm": density-matrix factor
+                                     application, optimal truncation of every exact factor product (GPU: n29 chi 64
+                                     ~1 min state build; on one CPU core it was 40x slower than on the GPU).  "zipup":
+                                     legacy zip_margin * chi intermediate bond, 2-8x larger error at equal chi.
       device                       : "cuda" (torch engine, complex64 default) or "cpu" (complex128; "dm" runs the
                                      torch engine on the CPU, "zipup" the numpy engine)
       dtype                        : torch.complex64 / torch.complex128 (default: complex64 on CUDA, complex128 on CPU)

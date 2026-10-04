@@ -1,0 +1,8 @@
+gpu c128 nocc>nvirt          n=7 nelec=(4, 4) reps=2 dev=cuda dt=complex128 basis=er: E_ref -318.9288161227  dE(default) +8.28e-07  dE(cutoff0) +2.64e-11  maxbond 64 imag -2.5e-14
+gpu c128 nvirt=1             n=6 nelec=(5, 5) reps=2 dev=cuda dt=complex128 basis=er: E_ref -189.7095094333  dE(default) -5.40e-13  dE(cutoff0) -6.54e-13  maxbond 8 imag -5.4e-15
+gpu c128 random basis        n=7 nelec=(3, 3) reps=3 dev=cuda dt=complex128 basis=random: E_ref -140.8906124644  dE(default) -3.75e-06  dE(cutoff0) -9.95e-13  maxbond 64 imag -4.7e-15
+gpu c64 N2                   n=8 nelec=(5, 5) reps=2 dev=cuda dt=None basis=er: E_ref -105.7451568594  dE(default) -5.77e-07  dE(cutoff0) -2.55e-06  maxbond 130 imag +5.2e-15
+gpu c64 nocc>nvirt           n=7 nelec=(4, 4) reps=2 dev=cuda dt=None basis=er: E_ref -318.9288161227  dE(default) +3.10e-04  dE(cutoff0) -3.89e-05  maxbond 64 imag -2.8e-14
+worst |dE| (cutoff 0, c128): 2.6432189770275727e-11
+worst |dE| (default cutoff, c128): 3.751780553784556e-06
+no failures (1e-8) []

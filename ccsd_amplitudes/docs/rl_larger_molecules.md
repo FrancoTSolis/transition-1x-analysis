@@ -154,10 +154,21 @@ None was used in any RL run or for picking a checkpoint.
 
 `LUCJEnergyTN` gives the same LUCJ energy from an MPS that conserves $N_\alpha$ and $N_\beta$ separately. All numbers
 in this section and below use the original zip-up engine, frozen as `tn_energy_v1.py`
-(`reward_queue worker --kind tn --tn-impl v1`). `tn_energy.py` has since been replaced by a density-matrix engine
-that is more accurate at equal χ (see its docstring and `pretrain/rl/tests/results/tn_v2/`); the evaluations here
-were not re-run with it. As a control, three label energies recomputed with the frozen engine on other GPUs matched
-the earlier values to ≤ 0.09 mHa.
+(`reward_queue worker --kind tn --tn-impl v1`). As a control, three label energies recomputed with the frozen
+engine on other GPUs matched the earlier values to ≤ 0.09 mHa.
+
+`tn_energy.py` has since been replaced by a density-matrix engine (`method="dm"`, the default on CUDA). It applies
+each factor exactly and truncates with the exact reduced density matrix. The evaluations here were not re-run with
+it. Its validation (`pretrain/rl/tests/results/tn_v2/`, `tn_v2_report.py`) was re-verified independently and passed,
+with minor issues:
+
+* Errors at norb 15–18: median 1.9 / 0.41 mHa at χ 64 / 128, worst 12 / 6.2 mHa. The worst cases are all C4H2 at
+  norb 18, and its larger `discarded_sum` flags them.
+* At norb 29, χ 256 is within ~0.1–0.4 mHa of convergence. The zip-up engine's χ 256 was 1.7 mHa above it.
+* Spearman inside 28 GRPO groups at χ 64: median 0.983, minimum 0.95.
+* The CPU path (`zipup`, used by the Expanse RL) is bit-identical to `tn_energy_v1.py`.
+* Rewards in the next runs should use "dm" at χ 128 on GPUs.
+* Size workers by the real GPU footprint: 2–3× torch's allocated memory, e.g. 6–8 GB per χ-256 worker at n29.
 
 * **Basis.** Split-localized orbitals: occupied and virtual MOs are localized separately (Boys from the geometry,
   or Edmiston–Ruedenberg from the integrals), and sites are put in Fiedler order. HF is an exact product state in

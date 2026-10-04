@@ -1,0 +1,46 @@
+  dm cpu n=4 nelec=(2, 2) reps=2 t1=no cutoff=0: E 76.2780804625 ffsim 76.2780804625 diff +0.00e+00 maxbond 16 n_dm 20
+  dm cpu n=5 nelec=(2, 2) reps=2 t1=yes cutoff=0: E 41.3647186575 ffsim 41.3647186575 diff +2.91e-13 maxbond 16 n_dm 26
+  dm cpu n=6 nelec=(3, 3) reps=2 t1=yes cutoff=0: E -82.2346536180 ffsim -82.2346536145 diff -3.46e-09 maxbond 64 n_dm 32
+  dm cpu n=6 nelec=(1, 1) reps=2 t1=yes cutoff=0: E 87.2519587418 ffsim 87.2519587418 diff +2.13e-13 maxbond 8 n_dm 32
+  dm cpu n=6 nelec=(5, 5) reps=2 t1=no cutoff=0: E -386.6355276353 ffsim -386.6355276353 diff +5.40e-12 maxbond 8 n_dm 32
+  dm cpu n=6 nelec=(3, 3) reps=1 t1=yes cutoff=0: E 387.2443922064 ffsim 387.2443922064 diff -6.25e-13 maxbond 1 n_dm 0
+  dm cpu n=6 nelec=(2, 2) reps=3 t1=yes cutoff=0: E 0.3736848913 ffsim 0.3736848913 diff +9.50e-14 maxbond 29 n_dm 48
+  dm cpu n=7 nelec=(3, 3) reps=2 t1=no cutoff=1e-14: E 5.3035929350 ffsim 5.3035929350 diff -2.03e-11 maxbond 64 n_dm 38
+  dm cpu n=7 nelec=(4, 4) reps=2 t1=yes cutoff=1e-14: E -298.6569265904 ffsim -298.6569265901 diff -2.88e-10 maxbond 64 n_dm 38
+  dm cpu n=7 nelec=(2, 2) reps=2 t1=no cutoff=1e-14: E 132.6984026333 ffsim 132.6984026333 diff +2.22e-12 maxbond 31 n_dm 38
+random systems (cpu): worst |dE| without cutoff 3.46e-09
+  H2O cpu complex128: E -73.6693335852 ffsim -73.6693335852 diff +7.67e-13
+  move_center(5) cpu: max|psi - psi0| 1.9e-16, isometry error 8.9e-16, bonds [4, 16, 64, 16, 4]
+  move_center(0) cpu: max|psi - psi0| 3.4e-16, isometry error 1.1e-15, bonds [4, 16, 64, 16, 4]
+  move_center(3) cpu: max|psi - psi0| 3.7e-16, isometry error 8.9e-16, bonds [4, 16, 64, 16, 4]
+  local windows cpu n=6 nelec=(3, 3): E 65.8809918387 ffsim 65.8809918387 diff -4.26e-14 maxbond 64 n_dm 32 t_qr 0.04s
+  local windows cpu n=7 nelec=(2, 2): E 305.3327918646 ffsim 305.3327918646 diff -4.55e-13 maxbond 31 n_dm 38 t_qr 0.02s
+  chi 12 dm cpu: err +7.037e+00  discarded_sum 1.39e+00 zip 0.00e+00 maxbond 12
+  chi 12 zipup cpu: err -1.373e+02  discarded_sum 4.66e-01 zip 3.47e+00 maxbond 12
+  dm cuda n=4 nelec=(2, 2) reps=2 t1=no cutoff=0: E 76.2780804625 ffsim 76.2780804625 diff -2.13e-13 maxbond 16 n_dm 20
+  dm cuda n=5 nelec=(2, 2) reps=2 t1=yes cutoff=0: E 41.3647186575 ffsim 41.3647186575 diff +7.11e-14 maxbond 16 n_dm 26
+  dm cuda n=6 nelec=(3, 3) reps=2 t1=yes cutoff=0: E -82.2346536187 ffsim -82.2346536145 diff -4.14e-09 maxbond 64 n_dm 32
+  dm cuda n=6 nelec=(1, 1) reps=2 t1=yes cutoff=0: E 87.2519587418 ffsim 87.2519587418 diff +3.27e-13 maxbond 8 n_dm 32
+  dm cuda n=6 nelec=(5, 5) reps=2 t1=no cutoff=0: E -386.6355276353 ffsim -386.6355276353 diff +5.17e-12 maxbond 8 n_dm 32
+  dm cuda n=6 nelec=(3, 3) reps=1 t1=yes cutoff=0: E 387.2443922064 ffsim 387.2443922064 diff -6.25e-13 maxbond 1 n_dm 0
+  dm cuda n=6 nelec=(2, 2) reps=3 t1=yes cutoff=0: E 0.3736848913 ffsim 0.3736848913 diff -2.58e-14 maxbond 29 n_dm 48
+  dm cuda n=7 nelec=(3, 3) reps=2 t1=no cutoff=1e-14: E 5.3035929350 ffsim 5.3035929350 diff -1.29e-12 maxbond 64 n_dm 38
+  dm cuda n=7 nelec=(4, 4) reps=2 t1=yes cutoff=1e-14: E -298.6569265895 ffsim -298.6569265901 diff +6.73e-10 maxbond 64 n_dm 38
+  dm cuda n=7 nelec=(2, 2) reps=2 t1=no cutoff=1e-14: E 132.6984026333 ffsim 132.6984026333 diff +2.36e-12 maxbond 31 n_dm 38
+random systems (cuda): worst |dE| without cutoff 4.14e-09
+  N2 cuda complex128: E -95.6640840974 ffsim -95.6640840974 diff +9.81e-13
+  N2 cuda complex64: E -95.6640986716 ffsim -95.6640840974 diff -1.46e-05
+  H2O cuda complex128: E -73.6693335852 ffsim -73.6693335852 diff +8.10e-13
+  H2O cuda complex64: E -73.6693392881 ffsim -73.6693335852 diff -5.70e-06
+  move_center(5) cuda: max|psi - psi0| 1.4e-16, isometry error 8.9e-16, bonds [4, 16, 64, 16, 4]
+  move_center(0) cuda: max|psi - psi0| 3.4e-16, isometry error 8.9e-16, bonds [4, 16, 64, 16, 4]
+  move_center(3) cuda: max|psi - psi0| 2.9e-16, isometry error 8.9e-16, bonds [4, 16, 64, 16, 4]
+  local windows cuda n=6 nelec=(3, 3): E 65.8809918387 ffsim 65.8809918387 diff -7.11e-14 maxbond 64 n_dm 32 t_qr 0.12s
+  local windows cuda n=7 nelec=(2, 2): E 305.3327918646 ffsim 305.3327918646 diff -3.98e-13 maxbond 31 n_dm 38 t_qr 0.11s
+  chi 12 dm cuda: err +7.037e+00  discarded_sum 1.39e+00 zip 0.00e+00 maxbond 12
+  chi 12 zipup cuda: err -1.373e+02  discarded_sum 4.66e-01 zip 3.47e+00 maxbond 12
+  public API dm (ER basis, cpu): E -67.9691682544 ffsim -67.9691682544 diff +4.34e-11  settings {'method': 'dm', 'zip_margin': None, 'cutoff': 0.0, 'dtype': 'complex128', 'device': 'cpu', 'engine': 'GpuSymMPS', 'mode_tol': 1e-08, 'basis': 'er/fiedler', 'unitarize': True, 'block2_threads': 1, 'stack_mem_gb': 0.25, 'max_bond_default': 1000000}
+  public API zipup (ER basis, cpu): E -67.9691683409 ffsim -67.9691682544 diff -8.65e-08  settings {'method': 'zipup', 'zip_margin': 1.0, 'cutoff': 0.0, 'dtype': 'complex128', 'device': 'cpu', 'engine': 'NpSymMPS', 'mode_tol': 1e-08, 'basis': 'er/fiedler', 'unitarize': True, 'block2_threads': 1, 'stack_mem_gb': 0.25, 'max_bond_default': 1000000}
+  default method on cpu: zipup
+  default method on cuda: dm
+all ok
