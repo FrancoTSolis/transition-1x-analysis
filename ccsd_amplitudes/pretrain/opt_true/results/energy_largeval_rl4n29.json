@@ -1,0 +1,523 @@
+{
+ "per_molecule": {
+  "C2HNO_rxn4439_P": {
+   "rl4n29": {
+    "E": -203.01849429545487,
+    "corr_frac": 0.7007750948507396,
+    "t": 7.73132061958313,
+    "worker": "local-gpu6",
+    "error": null
+   },
+   "rl4n29f": {
+    "E": -203.01503207305717,
+    "corr_frac": 0.6874881067717243,
+    "t": 7.541248798370361,
+    "worker": "local-gpu6",
+    "error": null
+   }
+  },
+  "C2HNO_rxn4439_R": {
+   "rl4n29": {
+    "E": -203.10583641037,
+    "corr_frac": 0.7097324915866925,
+    "t": 7.748307943344116,
+    "worker": "local-gpu6",
+    "error": null
+   },
+   "rl4n29f": {
+    "E": -203.1071835171254,
+    "corr_frac": 0.7144123423602547,
+    "t": 7.744636535644531,
+    "worker": "local-gpu6",
+    "error": null
+   }
+  },
+  "C2HNO_rxn4439_TS": {
+   "rl4n29": {
+    "E": -202.92146490717698,
+    "corr_frac": 0.685619452356014,
+    "t": 7.142822027206421,
+    "worker": "local-gpu7",
+    "error": null
+   },
+   "rl4n29f": {
+    "E": -202.9212616071054,
+    "corr_frac": 0.6849594452536587,
+    "t": 7.729881286621094,
+    "worker": "local-gpu7",
+    "error": null
+   }
+  },
+  "C2HNO_rxn4440_P": {
+   "rl4n29": {
+    "E": -203.10675024093885,
+    "corr_frac": 0.6914876055089801,
+    "t": 6.762216329574585,
+    "worker": "local-gpu6",
+    "error": null
+   },
+   "rl4n29f": {
+    "E": -203.09818536099007,
+    "corr_frac": 0.6623877320110613,
+    "t": 6.366003036499023,
+    "worker": "local-gpu7",
+    "error": null
+   }
+  },
+  "C2HNO_rxn4440_R": {
+   "rl4n29": {
+    "E": -203.10583641037,
+    "corr_frac": 0.7097324915866925,
+    "t": 7.786702394485474,
+    "worker": "local-gpu7",
+    "error": null
+   },
+   "rl4n29f": {
+    "E": -203.1071835171254,
+    "corr_frac": 0.7144123423602547,
+    "t": 7.644351005554199,
+    "worker": "local-gpu6",
+    "error": null
+   }
+  },
+  "C2HNO_rxn4440_TS": {
+   "rl4n29": {
+    "E": -202.92432218286646,
+    "corr_frac": 0.6738509784439437,
+    "t": 7.552414417266846,
+    "worker": "local-gpu7",
+    "error": null
+   },
+   "rl4n29f": {
+    "E": -202.92607463101731,
+    "corr_frac": 0.6794315862779019,
+    "t": 7.437864303588867,
+    "worker": "local-gpu6",
+    "error": null
+   }
+  },
+  "C2HNO_rxn4441_P": {
+   "rl4n29": {
+    "E": -203.05005929446344,
+    "corr_frac": 0.6512501097668367,
+    "t": 7.740968465805054,
+    "worker": "local-gpu7",
+    "error": null
+   },
+   "rl4n29f": {
+    "E": -203.04587670353158,
+    "corr_frac": 0.635455672987499,
+    "t": 7.54723048210144,
+    "worker": "local-gpu6",
+    "error": null
+   }
+  },
+  "C2HNO_rxn4441_R": {
+   "rl4n29": {
+    "E": -203.10583641037,
+    "corr_frac": 0.7097324915866925,
+    "t": 7.4320228099823,
+    "worker": "local-gpu6",
+    "error": null
+   },
+   "rl4n29f": {
+    "E": -203.1071835171254,
+    "corr_frac": 0.7144123423602547,
+    "t": 7.646559238433838,
+    "worker": "local-gpu7",
+    "error": null
+   }
+  },
+  "C2HNO_rxn4441_TS": {
+   "rl4n29": {
+    "E": -202.98661998350315,
+    "corr_frac": 0.6845123767829892,
+    "t": 7.5821404457092285,
+    "worker": "local-gpu6",
+    "error": null
+   },
+   "rl4n29f": {
+    "E": -202.98515416463863,
+    "corr_frac": 0.6792430214741045,
+    "t": 7.864209413528442,
+    "worker": "local-gpu7",
+    "error": null
+   }
+  },
+  "C2HNO_rxn4442_P": {
+   "rl4n29": {
+    "E": -202.9842778330331,
+    "corr_frac": 0.6980205877785971,
+    "t": 26.940791130065918,
+    "worker": "local-gpu6",
+    "error": null
+   },
+   "rl4n29f": {
+    "E": -202.97974079532506,
+    "corr_frac": 0.6804759475011726,
+    "t": 7.637722492218018,
+    "worker": "local-gpu7",
+    "error": null
+   }
+  },
+  "C2HNO_rxn4442_R": {
+   "rl4n29": {
+    "E": -203.10583641037,
+    "corr_frac": 0.7097324915866925,
+    "t": 7.634105682373047,
+    "worker": "local-gpu7",
+    "error": null
+   },
+   "rl4n29f": {
+    "E": -203.1071835171254,
+    "corr_frac": 0.7144123423602547,
+    "t": 26.880945682525635,
+    "worker": "local-gpu7",
+    "error": null
+   }
+  },
+  "C2HNO_rxn4442_TS": {
+   "rl4n29": {
+    "E": -202.89735526909266,
+    "corr_frac": 0.6221804859491594,
+    "t": 8.09809684753418,
+    "worker": "local-gpu7",
+    "error": null
+   },
+   "rl4n29f": {
+    "E": -202.90307770708904,
+    "corr_frac": 0.641908687096209,
+    "t": 7.898176431655884,
+    "worker": "local-gpu6",
+    "error": null
+   }
+  },
+  "C2H2O2_rxn3279_P": {
+   "rl4n29": {
+    "E": -223.6689477658972,
+    "corr_frac": 0.657113969864875,
+    "t": 46.851898193359375,
+    "worker": "scai3-gpu5-x",
+    "error": null
+   },
+   "rl4n29f": {
+    "E": -223.6650897867058,
+    "corr_frac": 0.6410577820606898,
+    "t": 29.845067977905273,
+    "worker": "scai3-gpu5-x",
+    "error": null
+   }
+  },
+  "C2H2O2_rxn3279_R": {
+   "rl4n29": {
+    "E": -223.76760618505668,
+    "corr_frac": 0.7004002082268912,
+    "t": 47.685059547424316,
+    "worker": "scai3-gpu4-x",
+    "error": null
+   },
+   "rl4n29f": {
+    "E": -223.7656660624969,
+    "corr_frac": 0.6931218809596471,
+    "t": 48.45913362503052,
+    "worker": "scai3-gpu4-x",
+    "error": null
+   }
+  },
+  "C2H2O2_rxn3279_TS": {
+   "rl4n29": {
+    "E": -223.62454313396313,
+    "corr_frac": 0.6508210145490289,
+    "t": 46.20445728302002,
+    "worker": "scai3-gpu5-x",
+    "error": null
+   },
+   "rl4n29f": {
+    "E": -223.6242219683459,
+    "corr_frac": 0.6496079858018846,
+    "t": 23.46743416786194,
+    "worker": "scai3-gpu4-x",
+    "error": null
+   }
+  },
+  "C2H6O_rxn4702_P": {
+   "rl4n29": {
+    "E": NaN,
+    "corr_frac": NaN,
+    "t": null,
+    "worker": "scai3-gpu5-x",
+    "error": "OutOfMemoryError: CUDA out of memory. Tried to allocate 2.67 GiB. GPU 0 has a total capacity of 39.49 GiB of which 2.06 GiB is free. Including non-PyTorch memory, this process has 17.76 GiB memory in use. Process 3795083 has 3.24 GiB memory in use. Process 3795278 has 5.14 GiB memory in use. Process 3795482 has 4.87 GiB memory in use. Process 3795621 has 4.93 GiB memory in use. Process 3795765 has 1.47 GiB memory in use. Of the allocated memory 17.26 GiB is allocated by PyTorch, and 9.53 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)"
+   },
+   "rl4n29f": {
+    "E": NaN,
+    "corr_frac": NaN,
+    "t": null,
+    "worker": "scai3-gpu5-x",
+    "error": "OutOfMemoryError: CUDA out of memory. Tried to allocate 2.67 GiB. GPU 0 has a total capacity of 39.49 GiB of which 2.06 GiB is free. Including non-PyTorch memory, this process has 17.76 GiB memory in use. Process 3795083 has 3.24 GiB memory in use. Process 3795278 has 5.14 GiB memory in use. Process 3795482 has 4.87 GiB memory in use. Process 3795621 has 4.93 GiB memory in use. Process 3795765 has 1.47 GiB memory in use. Of the allocated memory 17.26 GiB is allocated by PyTorch, and 9.53 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)"
+   }
+  },
+  "C2H6O_rxn4702_R": {
+   "rl4n29": {
+    "E": NaN,
+    "corr_frac": NaN,
+    "t": null,
+    "worker": "scai3-gpu5-x",
+    "error": "OutOfMemoryError: CUDA out of memory. Tried to allocate 2.67 GiB. GPU 0 has a total capacity of 39.49 GiB of which 2.06 GiB is free. Including non-PyTorch memory, this process has 17.76 GiB memory in use. Process 3795083 has 3.24 GiB memory in use. Process 3795278 has 5.14 GiB memory in use. Process 3795482 has 4.87 GiB memory in use. Process 3795621 has 4.93 GiB memory in use. Process 3795765 has 1.47 GiB memory in use. Of the allocated memory 17.26 GiB is allocated by PyTorch, and 9.53 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)"
+   },
+   "rl4n29f": {
+    "E": NaN,
+    "corr_frac": NaN,
+    "t": null,
+    "worker": "scai3-gpu5-x",
+    "error": "OutOfMemoryError: CUDA out of memory. Tried to allocate 2.67 GiB. GPU 0 has a total capacity of 39.49 GiB of which 1.80 GiB is free. Including non-PyTorch memory, this process has 17.76 GiB memory in use. Process 3795083 has 3.49 GiB memory in use. Process 3795278 has 5.14 GiB memory in use. Process 3795482 has 4.87 GiB memory in use. Process 3795621 has 4.93 GiB memory in use. Process 3795765 has 1.47 GiB memory in use. Of the allocated memory 17.26 GiB is allocated by PyTorch, and 9.53 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)"
+   }
+  },
+  "C2H6O_rxn4702_TS": {
+   "rl4n29": {
+    "E": NaN,
+    "corr_frac": NaN,
+    "t": null,
+    "worker": "scai3-gpu5-x",
+    "error": "OutOfMemoryError: CUDA out of memory. Tried to allocate 2.69 GiB. GPU 0 has a total capacity of 39.49 GiB of which 2.66 GiB is free. Including non-PyTorch memory, this process has 17.77 GiB memory in use. Process 3795083 has 3.96 GiB memory in use. Process 3795278 has 5.00 GiB memory in use. Process 3795482 has 4.59 GiB memory in use. Process 3795621 has 4.93 GiB memory in use. Process 3795765 has 574.00 MiB memory in use. Of the allocated memory 17.27 GiB is allocated by PyTorch, and 7.59 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)"
+   },
+   "rl4n29f": {
+    "E": NaN,
+    "corr_frac": NaN,
+    "t": null,
+    "worker": "scai3-gpu5-x",
+    "error": "OutOfMemoryError: CUDA out of memory. Tried to allocate 2.69 GiB. GPU 0 has a total capacity of 39.49 GiB of which 2.05 GiB is free. Including non-PyTorch memory, this process has 17.77 GiB memory in use. Process 3795083 has 3.24 GiB memory in use. Process 3795278 has 5.14 GiB memory in use. Process 3795482 has 4.87 GiB memory in use. Process 3795621 has 4.93 GiB memory in use. Process 3795765 has 1.47 GiB memory in use. Of the allocated memory 17.27 GiB is allocated by PyTorch, and 7.59 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)"
+   }
+  },
+  "C3H2O_rxn1391_P": {
+   "rl4n29": {
+    "E": -187.29747006977053,
+    "corr_frac": 0.7272519796623961,
+    "t": 73.82728815078735,
+    "worker": "scai3-gpu5-x",
+    "error": null
+   },
+   "rl4n29f": {
+    "E": -187.29409417369678,
+    "corr_frac": 0.716041454850437,
+    "t": 80.92124128341675,
+    "worker": "scai3-gpu4-x",
+    "error": null
+   }
+  },
+  "C3H2O_rxn1391_TS": {
+   "rl4n29": {
+    "E": -187.09421087482426,
+    "corr_frac": 0.6721388270233166,
+    "t": 88.78588533401489,
+    "worker": "scai3-gpu4-x",
+    "error": null
+   },
+   "rl4n29f": {
+    "E": -187.09805380831207,
+    "corr_frac": 0.6839100126512413,
+    "t": 77.01311588287354,
+    "worker": "scai3-gpu5-x",
+    "error": null
+   }
+  },
+  "C4H2_rxn9389_P": {
+   "rl4n29": {
+    "E": -150.63491771432558,
+    "corr_frac": 0.6330995468034115,
+    "t": 23.553712606430054,
+    "worker": "scai3-gpu4-x",
+    "error": null
+   },
+   "rl4n29f": {
+    "E": -150.6350663233901,
+    "corr_frac": 0.633652402413157,
+    "t": 23.63283085823059,
+    "worker": "scai3-gpu5-x",
+    "error": null
+   }
+  },
+  "C4H2_rxn9389_TS": {
+   "rl4n29": {
+    "E": -150.5828904883154,
+    "corr_frac": 0.653850879022963,
+    "t": 23.849183559417725,
+    "worker": "scai3-gpu4-x",
+    "error": null
+   },
+   "rl4n29f": {
+    "E": -150.5851421780204,
+    "corr_frac": 0.6614888546936385,
+    "t": 23.764394760131836,
+    "worker": "scai3-gpu5-x",
+    "error": null
+   }
+  }
+ },
+ "meta": {
+  "C2HNO_rxn4439_P": {
+   "resid": {
+    "rl4n29": 0.34456495073617105,
+    "rl4n29f": 0.3423165298558244
+   },
+   "norb": 17
+  },
+  "C2HNO_rxn4439_R": {
+   "resid": {
+    "rl4n29": 0.32604369541261785,
+    "rl4n29f": 0.32215435454004554
+   },
+   "norb": 17
+  },
+  "C2HNO_rxn4439_TS": {
+   "resid": {
+    "rl4n29": 0.34280851388269507,
+    "rl4n29f": 0.3372162525130718
+   },
+   "norb": 17
+  },
+  "C2HNO_rxn4440_P": {
+   "resid": {
+    "rl4n29": 0.3019651424501064,
+    "rl4n29f": 0.30520641956264627
+   },
+   "norb": 17
+  },
+  "C2HNO_rxn4440_R": {
+   "resid": {
+    "rl4n29": 0.32604369541261785,
+    "rl4n29f": 0.32215435454004554
+   },
+   "norb": 17
+  },
+  "C2HNO_rxn4440_TS": {
+   "resid": {
+    "rl4n29": 0.3387393956282084,
+    "rl4n29f": 0.3345285356309417
+   },
+   "norb": 17
+  },
+  "C2HNO_rxn4441_P": {
+   "resid": {
+    "rl4n29": 0.34961031692669287,
+    "rl4n29f": 0.3509723998223056
+   },
+   "norb": 17
+  },
+  "C2HNO_rxn4441_R": {
+   "resid": {
+    "rl4n29": 0.32604369541261785,
+    "rl4n29f": 0.32215435454004554
+   },
+   "norb": 17
+  },
+  "C2HNO_rxn4441_TS": {
+   "resid": {
+    "rl4n29": 0.36543263838765166,
+    "rl4n29f": 0.3658736061181651
+   },
+   "norb": 17
+  },
+  "C2HNO_rxn4442_P": {
+   "resid": {
+    "rl4n29": 0.3265038202859525,
+    "rl4n29f": 0.32545626680539413
+   },
+   "norb": 17
+  },
+  "C2HNO_rxn4442_R": {
+   "resid": {
+    "rl4n29": 0.32604369541261785,
+    "rl4n29f": 0.32215435454004554
+   },
+   "norb": 17
+  },
+  "C2HNO_rxn4442_TS": {
+   "resid": {
+    "rl4n29": 0.37276361767715865,
+    "rl4n29f": 0.37348102991460325
+   },
+   "norb": 17
+  },
+  "C2H2O2_rxn3279_P": {
+   "resid": {
+    "rl4n29": 0.3567685967499253,
+    "rl4n29f": 0.35881844933337126
+   },
+   "norb": 18
+  },
+  "C2H2O2_rxn3279_R": {
+   "resid": {
+    "rl4n29": 0.3286170315702159,
+    "rl4n29f": 0.3226526820174239
+   },
+   "norb": 18
+  },
+  "C2H2O2_rxn3279_TS": {
+   "resid": {
+    "rl4n29": 0.40453818813666215,
+    "rl4n29f": 0.39389690111607245
+   },
+   "norb": 18
+  },
+  "C2H6O_rxn4702_P": {
+   "resid": {
+    "rl4n29": 0.33297535422028823,
+    "rl4n29f": 0.33086388396686744
+   },
+   "norb": 18
+  },
+  "C2H6O_rxn4702_R": {
+   "resid": {
+    "rl4n29": 0.28502882996086776,
+    "rl4n29f": 0.2886027039521376
+   },
+   "norb": 18
+  },
+  "C2H6O_rxn4702_TS": {
+   "resid": {
+    "rl4n29": 0.32711239845901924,
+    "rl4n29f": 0.3260838248545209
+   },
+   "norb": 18
+  },
+  "C3H2O_rxn1391_P": {
+   "resid": {
+    "rl4n29": 0.27620554542913317,
+    "rl4n29f": 0.2699098324846031
+   },
+   "norb": 18
+  },
+  "C3H2O_rxn1391_TS": {
+   "resid": {
+    "rl4n29": 0.3398120609174787,
+    "rl4n29f": 0.33233223058596095
+   },
+   "norb": 18
+  },
+  "C4H2_rxn9389_P": {
+   "resid": {
+    "rl4n29": 0.40677197004824606,
+    "rl4n29f": 0.40482792723662847
+   },
+   "norb": 18
+  },
+  "C4H2_rxn9389_TS": {
+   "resid": {
+    "rl4n29": 0.3724790151450833,
+    "rl4n29f": 0.3729913956147977
+   },
+   "norb": 18
+  }
+ },
+ "args": {
+  "dump": [
+   "runs_ot/energy_tasks/largeval_rl4n29.pkl"
+  ],
+  "queue_root": "rl_queue/main",
+  "out": "pretrain/opt_true/results/energy_largeval_rl4n29.json",
+  "skip_keys": [],
+  "only_names": null,
+  "kind": "exact"
+ },
+ "wall_s": 402.6133737564087
+}

@@ -21,6 +21,8 @@ for k, v in sorted(idx.items()):
         print(f"rhf_dataset/{k}.npz")
 EOF
   ls rhf_hamiltonians/*.npz
+  # persistent extras (e.g. n29 RL molecules, checkpoints): every sync keeps them in the remote index
+  [ -f "$HERE/sync_extra.txt" ] && grep -v '^#' "$HERE/sync_extra.txt" | while read -r x; do [ -e "$x" ] && echo "$x"; done
   for x in "$@"; do echo "$x"; done
 } | sort -u > "$LIST"
 python3 - "$LIST" <<'EOF'

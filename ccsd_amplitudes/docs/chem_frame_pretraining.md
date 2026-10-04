@@ -4,6 +4,9 @@
 (`frames.py`, `varpro.py`, `slotnet.py`, `train_slot*.py`, `eval_slot*.py`, `frame_eval.py`, `entanglement.py`),
 `pretrain/rl/grpo_slot.py`, `expanse/`. Logs: `runs_ot/`, results JSON: `pretrain/opt_true/results/`.*
 
+*Continued in `rl_larger_molecules.md`: exact GPU energy rewards up to norb 19, RL on norb 15–18, and RL at norb 29
+(58 qubits) with tensor-network rewards.*
+
 ## 0. Summary
 
 | Question | Answer |

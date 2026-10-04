@@ -1,0 +1,12 @@
+C2N2_rxn3923_R label eig_tol=1e-12 complex128 nq=120 npos=120: E -182.394146073301  E - fresh_norm -5.168e-10  E - fresh -1.562e-09  (29.1s) tile 736
+C2N2_rxn3923_R label eig_tol=1e-12 complex64 nq=120 npos=120: E -182.394146071121  E - fresh_norm +1.663e-09  E - fresh +6.180e-10  (6.2s) tile 1024
+C2N2_rxn3923_R label eig_tol=1e-14 complex128 nq=130 npos=130: E -182.394146073297  E - fresh_norm -5.124e-10  E - fresh -1.557e-09  (26.5s) tile 704
+C2N2_rxn3923_R label eig_tol=1e-14 complex64 nq=130 npos=130: E -182.394146071117  E - fresh_norm +1.668e-09  E - fresh +6.225e-10  (2.5s) tile 1024
+C2N2_rxn3923_R label eig_tol=0 complex128 nq=136 npos=134: E -182.394146073297  E - fresh_norm -5.123e-10  E - fresh -1.557e-09  (31.3s) tile 672
+C2N2_rxn3923_R label eig_tol=0 complex64 nq=136 npos=134: E -182.394146071117  E - fresh_norm +1.668e-09  E - fresh +6.225e-10  (4.2s) tile 1024
+C2H3N_rxn2858_P frame eig_tol=1e-12 complex128 nq=118 npos=118: E -130.276889168477  E - fresh_norm +2.487e-11  E - fresh -4.391e-10  (9.2s) tile 928
+C2H3N_rxn2858_P frame eig_tol=1e-12 complex64 nq=118 npos=118: E -130.276889219742  E - fresh_norm -5.124e-08  E - fresh -5.170e-08  (1.0s) tile 1024
+C2H3N_rxn2858_P frame eig_tol=1e-14 complex128 nq=120 npos=120: E -130.276889168476  E - fresh_norm +2.561e-11  E - fresh -4.384e-10  (8.8s) tile 928
+C2H3N_rxn2858_P frame eig_tol=1e-14 complex64 nq=120 npos=120: E -130.276889219741  E - fresh_norm -5.124e-08  E - fresh -5.170e-08  (0.7s) tile 1024
+C2H3N_rxn2858_P frame eig_tol=0 complex128 nq=120 npos=120: E -130.276889168476  E - fresh_norm +2.561e-11  E - fresh -4.384e-10  (4.6s) tile 928
+C2H3N_rxn2858_P frame eig_tol=0 complex64 nq=120 npos=120: E -130.276889219741  E - fresh_norm -5.124e-08  E - fresh -5.170e-08  (0.6s) tile 1024

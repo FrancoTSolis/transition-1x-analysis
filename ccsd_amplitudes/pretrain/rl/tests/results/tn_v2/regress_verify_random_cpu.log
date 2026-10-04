@@ -1,0 +1,18 @@
+nocc>nvirt                   n=7 nelec=(4, 4) reps=2 dev=cpu dt=None basis=er: E_ref -290.4242328530  dE(default) +8.70e-12  dE(cutoff0) +7.80e-11  maxbond 64 imag +7.1e-15
+nocc<nvirt                   n=7 nelec=(2, 2) reps=2 dev=cpu dt=None basis=er: E_ref 102.7101981107  dE(default) +4.03e-11  dE(cutoff0) +7.59e-12  maxbond 31 imag -1.2e-14
+nocc=1                       n=6 nelec=(1, 1) reps=2 dev=cpu dt=None basis=er: E_ref 102.0560103069  dE(default) +3.18e-12  dE(cutoff0) -3.72e-12  maxbond 8 imag +3.5e-15
+nvirt=1                      n=6 nelec=(5, 5) reps=2 dev=cpu dt=None basis=er: E_ref -541.8496465613  dE(default) +1.12e-10  dE(cutoff0) -4.77e-12  maxbond 8 imag -1.4e-14
+reps=1                       n=6 nelec=(3, 3) reps=1 dev=cpu dt=None basis=er: E_ref 42.1797150287  dE(default) +2.89e-07  dE(cutoff0) -1.12e-08  maxbond 64 imag -8.0e-15
+reps=3                       n=6 nelec=(2, 2) reps=3 dev=cpu dt=None basis=er: E_ref 47.3049599097  dE(default) +2.36e-11  dE(cutoff0) -5.88e-11  maxbond 29 imag +6.2e-15
+t1=None                      n=7 nelec=(3, 3) reps=2 dev=cpu dt=None basis=er: E_ref -67.3055382273  dE(default) -1.08e-10  dE(cutoff0) -3.97e-11  maxbond 64 imag -3.6e-15
+random split basis           n=7 nelec=(4, 4) reps=2 dev=cpu dt=None basis=random: E_ref -225.5274230531  dE(default) +1.93e-09  dE(cutoff0) +1.92e-09  maxbond 64 imag +1.4e-14
+identity basis               n=7 nelec=(4, 4) reps=2 dev=cpu dt=None basis=identity: E_ref -19.6439841332  dE(default) -1.83e-11  dE(cutoff0) +2.01e-12  maxbond 64 imag -1.5e-14
+non-unitary U (polar)        n=6 nelec=(3, 3) reps=2 dev=cpu dt=None basis=er: E_ref -50.9419158620  dE(default) +4.97e-14  dE(cutoff0) +1.28e-13  maxbond 64 imag -7.1e-15
+real U                       n=6 nelec=(3, 3) reps=2 dev=cpu dt=None basis=er: E_ref -8.1853476474  dE(default) +1.13e-06  dE(cutoff0) -1.45e-11  maxbond 64 imag -2.7e-15
+big Z (|z|>pi)               n=6 nelec=(3, 3) reps=2 dev=cpu dt=None basis=er: E_ref 19.5109911825  dE(default) +3.91e-14  dE(cutoff0) -4.83e-13  maxbond 64 imag -1.3e-15
+Z=0                          n=6 nelec=(3, 3) reps=2 dev=cpu dt=None basis=er: E_ref 291.4832330072  dE(default) +1.14e-13  dE(cutoff0) +1.14e-13  maxbond 1 imag +0.0e+00
+big t1                       n=7 nelec=(3, 3) reps=2 dev=cpu dt=None basis=er: E_ref 30.0731130032  dE(default) +3.07e-12  dE(cutoff0) -2.93e-11  maxbond 64 imag +2.8e-14
+n8 (5,5)                     n=8 nelec=(5, 5) reps=2 dev=cpu dt=None basis=er: E_ref -580.2660586864  dE(default) -3.10e-06  dE(cutoff0) +3.11e-10  maxbond 130 imag -3.9e-14
+worst |dE| (cutoff 0, c128): 1.1229801089029934e-08
+worst |dE| (default cutoff, c128): 3.096116756751144e-06
+FAILURES: [('cpu reps=1', (2.8885462199923495e-07, -1.1229801089029934e-08))]

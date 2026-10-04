@@ -150,11 +150,26 @@ def main():
     ap = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     ap.add_argument("--init", required=True, help="slot-model checkpoint (train_slot_all)")
     ap.add_argument("--prefix-T", type=int, default=0, help="frozen recycles before the trainable final step")
+    ap.add_argument("--init-policy", default=None,
+                    help="resume from a GRPO policy checkpoint (policy_*.pt); --init must be the slot checkpoint it "
+                         "was built from (the frozen recycle prefix is taken from --init, i.e. stays pretrained)")
     ap.add_argument("--train-names", required=True)
     ap.add_argument("--val-names", required=True)
     ap.add_argument("--ham-dir", default="rhf_hamiltonians")
-    ap.add_argument("--reward", choices=["exact", "mps_sqd", "resid"], default="exact",
-                    help="resid: 1 - t2 residual (instant; for testing the RL loop mechanics)")
+    ap.add_argument("--driver-threads", type=int, default=0,
+                    help="torch threads for the policy in the driver (0 = leave default); run the job with "
+                         "OMP_NUM_THREADS=1 so spawned reward workers start single-threaded")
+    ap.add_argument("--tn-chi", type=int, default=64, help="MPS bond dimension for --reward tn")
+    ap.add_argument("--tn-basis-cache", default=None, help="shared directory for cached localized bases (--reward tn)")
+    ap.add_argument("--tn-stack-mem-gb", type=float, default=1.0)
+    ap.add_argument("--tn-cache-items", type=int, default=1, help="TN engines (molecules) cached per reward worker")
+    ap.add_argument("--tn-impl", default="current", choices=["current", "v1"],
+                    help="v1 = frozen zip-up engine (tn_energy_v1.py) of the Oct-3 n29 run")
+    ap.add_argument("--reward", choices=["exact", "mps_sqd", "resid", "queue", "tn"], default="exact",
+                    help="resid: 1 - t2 residual (instant; for testing the RL loop mechanics); "
+                         "queue: exact energies from GPU workers through pretrain.rl.reward_queue")
+    ap.add_argument("--queue-root", default=None, help="shared-FS queue directory for --reward queue")
+    ap.add_argument("--queue-timeout", type=float, default=3600.0)
     ap.add_argument("--max-bond", type=int, default=32)
     ap.add_argument("--shots", type=int, default=2000)
     ap.add_argument("--samples-per-batch", type=int, default=300)
@@ -183,6 +198,8 @@ def main():
     ap.add_argument("--seed", type=int, default=0)
     args = ap.parse_args()
     torch.manual_seed(args.seed)
+    if args.driver_threads:
+        torch.set_num_threads(args.driver_threads)
     rng = np.random.default_rng(args.seed)
     dev = args.device
     out = Path(args.out)
@@ -203,14 +220,27 @@ def main():
     frozen = copy.deepcopy(slot).eval() if args.prefix_T else None
     mols = {n: Mol(n, idx, dev, args.lam, frozen, args.prefix_T) for n in train_names + val_names}
     policy = Policy(slot, a_["d"]).to(dev)
+    if args.init_policy:
+        ck = torch.load(ROOT / args.init_policy, map_location=dev, weights_only=False)
+        assert ck["args"].get("prefix_T", 0) == args.prefix_T, "prefix-T must match the resumed policy"
+        policy.load_state_dict(ck["policy"])
+        print(f"resumed policy from {args.init_policy} (step {ck.get('step')})", flush=True)
     ref = copy.deepcopy(policy).eval()
     for p in ref.parameters():
         p.requires_grad_(False)
     opt = torch.optim.AdamW([{"params": policy.slot.parameters(), "lr": args.lr},
                              {"params": policy.zhead.parameters(), "lr": args.zhead_lr}], weight_decay=0.0)
-    pool = get_context("spawn").Pool(args.n_workers, initializer=_worker_init,
-                                     initargs=(str(ROOT / args.ham_dir), args.worker_threads))
+    pool = None
+    if args.reward in ("exact", "mps_sqd", "tn"):
+        pool = get_context("spawn").Pool(args.n_workers, initializer=_worker_init,
+                                         initargs=(str(ROOT / args.ham_dir), args.worker_threads))
+    if args.reward == "queue":
+        from pretrain.rl import reward_queue as RQ
+        assert args.queue_root, "--queue-root is required with --reward queue"
     rkw = dict(shots=args.shots, max_bond=args.max_bond, samples_per_batch=args.samples_per_batch)
+    if args.reward == "tn":
+        rkw = dict(max_bond=args.tn_chi, basis_cache=args.tn_basis_cache, stack_mem=int(args.tn_stack_mem_gb * (1 << 30)),
+                   block2_threads=1, tn_cache_items=args.tn_cache_items, impl=args.tn_impl)
 
     def energies(tasks):
         if args.reward == "resid":            # pseudo-energy with corr fraction = 1 - residual
@@ -220,6 +250,12 @@ def main():
                 r = float(D.rel_residual(torch.as_tensor(Z)[None], torch.as_tensor(U)[None], m.x["t2"].double().cpu())[0])
                 out[k] = (m.e_hf - (1.0 - r) * (m.e_hf - m.e_ccsd), {})
             return out
+        if args.reward == "queue":
+            sub = [{"name": n, "U": U, "Z": Z, "t1": t1, "norb": mols[n].n, "nelec": (mols[n].no, mols[n].no),
+                    "kind": "exact"} for (k, n, U, Z, t1) in tasks]
+            ids = RQ.submit(args.queue_root, sub)
+            res = RQ.collect(args.queue_root, ids, timeout=args.queue_timeout)
+            return {k: res[i] for (k, *_), i in zip(tasks, ids)}
         jobs = [(k, n, U, Z, t1, "square", args.reward, rkw) for (k, n, U, Z, t1) in tasks]
         return {key: (E, info) for key, E, info in pool.imap_unordered(_reward_job, jobs)}
 
@@ -330,8 +366,9 @@ def main():
                 best = v
                 torch.save({"policy": policy.state_dict(), "args": vars(args), "step": step}, out / "policy_best.pt")
     evaluate(train_names, "train", args.steps)
-    pool.close()
-    pool.join()
+    if pool is not None:
+        pool.close()
+        pool.join()
     log({"type": "done", "best_val_corr_mean": best})
 
 

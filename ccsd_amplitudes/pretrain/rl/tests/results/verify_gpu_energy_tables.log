@@ -1,0 +1,57 @@
+(15,8) itemsize 8: t=3 R=5 nch=8 max_len=924 smem=48064 ok=True  low pairs checked 18876
+(15,8) itemsize 16: t=3 R=2 nch=8 max_len=924 smem=40672 ok=True  low pairs checked 18876
+(15,8) extra t=4: nch=16 ok=True pairs 17160
+(15,7) itemsize 8: t=3 R=5 nch=8 max_len=924 smem=48064 ok=True  low pairs checked 18876
+(15,7) itemsize 16: t=3 R=2 nch=8 max_len=924 smem=40672 ok=True  low pairs checked 18876
+(15,7) extra t=4: nch=16 ok=True pairs 17160
+(16,8) itemsize 8: t=4 R=5 nch=16 max_len=924 smem=48064 ok=True  low pairs checked 37752
+(16,8) itemsize 16: t=4 R=2 nch=16 max_len=924 smem=40672 ok=True  low pairs checked 37752
+(16,8) extra t=5: nch=32 ok=True pairs 34320
+(16,9) itemsize 8: t=4 R=5 nch=16 max_len=924 smem=48064 ok=True  low pairs checked 33033
+(16,9) itemsize 16: t=4 R=2 nch=16 max_len=924 smem=40672 ok=True  low pairs checked 33033
+(16,9) extra t=5: nch=32 ok=True pairs 30030
+(16,7) itemsize 8: t=4 R=5 nch=16 max_len=924 smem=48064 ok=True  low pairs checked 33033
+(16,7) itemsize 16: t=4 R=2 nch=16 max_len=924 smem=40672 ok=True  low pairs checked 33033
+(16,7) extra t=5: nch=32 ok=True pairs 30030
+(17,9) itemsize 8: t=5 R=5 nch=32 max_len=924 smem=48064 ok=True  low pairs checked 70785
+(17,9) itemsize 16: t=5 R=2 nch=32 max_len=924 smem=40672 ok=True  low pairs checked 70785
+(17,9) extra t=6: nch=64 ok=True pairs 64350
+(17,10) itemsize 8: t=5 R=5 nch=32 max_len=924 smem=48064 ok=True  low pairs checked 55055
+(17,10) itemsize 16: t=5 R=2 nch=32 max_len=924 smem=40672 ok=True  low pairs checked 55055
+(17,10) extra t=6: nch=64 ok=True pairs 50050
+(17,8) itemsize 8: t=5 R=5 nch=32 max_len=924 smem=48064 ok=True  low pairs checked 70785
+(17,8) itemsize 16: t=5 R=2 nch=32 max_len=924 smem=40672 ok=True  low pairs checked 70785
+(17,8) extra t=6: nch=64 ok=True pairs 64350
+(18,9) itemsize 8: t=6 R=5 nch=64 max_len=924 smem=48064 ok=True  low pairs checked 141570
+(18,9) itemsize 16: t=6 R=2 nch=64 max_len=924 smem=40672 ok=True  low pairs checked 141570
+(18,9) extra t=7: nch=128 ok=True pairs 128700
+(18,10) itemsize 8: t=6 R=5 nch=64 max_len=924 smem=48064 ok=True  low pairs checked 125840
+(18,10) itemsize 16: t=6 R=2 nch=64 max_len=924 smem=40672 ok=True  low pairs checked 125840
+(18,10) extra t=7: nch=128 ok=True pairs 114400
+(18,11) itemsize 8: t=6 R=5 nch=64 max_len=924 smem=48064 ok=True  low pairs checked 88088
+(18,11) itemsize 16: t=6 R=2 nch=64 max_len=924 smem=40672 ok=True  low pairs checked 88088
+(18,11) extra t=7: nch=128 ok=True pairs 80080
+(18,8) itemsize 8: t=6 R=5 nch=64 max_len=924 smem=48064 ok=True  low pairs checked 125840
+(18,8) itemsize 16: t=6 R=2 nch=64 max_len=924 smem=40672 ok=True  low pairs checked 125840
+(18,8) extra t=7: nch=128 ok=True pairs 114400
+(12,6) itemsize 8: t=1 R=11 nch=2 max_len=462 smem=45712 ok=True  low pairs checked 2520
+(12,6) itemsize 16: t=1 R=5 nch=2 max_len=462 smem=42016 ok=True  low pairs checked 2520
+(12,6) extra t=2: nch=4 ok=True pairs 2268
+(13,5) itemsize 8: t=1 R=6 nch=2 max_len=792 smem=47272 ok=True  low pairs checked 3630
+(13,5) itemsize 16: t=1 R=3 nch=2 max_len=792 smem=47272 ok=True  low pairs checked 3630
+(13,5) extra t=2: nch=4 ok=True pairs 3300
+(14,8) itemsize 8: t=2 R=5 nch=4 max_len=924 smem=48064 ok=True  low pairs checked 8712
+(14,8) itemsize 16: t=2 R=2 nch=4 max_len=924 smem=40672 ok=True  low pairs checked 8712
+(14,8) extra t=3: nch=8 ok=True pairs 7920
+givens_clustered n=15: max |prod - W| = 9.5e-16
+givens_clustered n=16: max |prod - W| = 1.1e-15
+givens_clustered n=17: max |prod - W| = 1.0e-15
+givens_clustered n=18: max |prod - W| = 7.0e-16
+string action vs Lambda^k(W) minors: (6,3) t=2: 6.8e-16
+string action vs Lambda^k(W) minors: (7,2) t=3: 4.4e-16
+string action vs Lambda^k(W) minors: (7,5) t=1: 4.7e-16
+string action vs Lambda^k(W) minors: (8,4) t=3: 4.7e-16
+string action vs Lambda^k(W) minors: (8,3) t=5: 4.8e-16
+string action vs Lambda^k(W) minors: (9,4) t=4: 3.5e-16
+string action vs Lambda^k(W) minors: (9,6) t=2: 6.9e-16
+all structural checks passed -> /xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/rl/tests/results/verify_gpu_energy_tables.json

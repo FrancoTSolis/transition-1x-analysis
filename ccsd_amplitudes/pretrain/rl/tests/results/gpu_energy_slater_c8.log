@@ -1,0 +1,28 @@
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 100 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+C2H3N_rxn2857_P n=15 k=8 dim=6435 hf    : E -130.2325474081  analytic -130.2325474145  dE +6.33e-09  (E_HF npz -130.2325474145, d +0.0e+00)  |psi|^2-1 +0.0e+00  5.3s  peak 3.00 GB
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 100 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+C2H3N_rxn2857_P n=15 k=8 dim=6435 rand0 : E -124.7170393858  analytic -124.7170393478  dE -3.79e-08  |psi|^2-1 +6.9e-07  2.8s  peak 3.00 GB
+C2H3N_rxn2857_P n=15 k=8 dim=6435 rand1 : E -123.3970305206  analytic -123.3970305207  dE +4.22e-11  |psi|^2-1 -4.1e-07  0.7s  peak 3.00 GB
+C3H4_rxn2391_P n=16 k=8 dim=12870 hf    : E -114.4205635193  analytic -114.4205635123  dE -7.04e-09  (E_HF npz -114.4205635123, d +2.8e-14)  |psi|^2-1 +0.0e+00  2.1s  peak 4.65 GB
+C3H4_rxn2391_P n=16 k=8 dim=12870 rand0 : E -106.8651270294  analytic -106.8651270187  dE -1.07e-08  |psi|^2-1 +4.5e-07  3.0s  peak 4.65 GB
+C3H4_rxn2391_P n=16 k=8 dim=12870 rand1 : E -108.0051128871  analytic -108.0051127925  dE -9.46e-08  |psi|^2-1 -3.0e-08  2.9s  peak 4.65 GB
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 36 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+C2H4O_rxn0721_P n=16 k=9 dim=11440 hf    : E -150.7858736912  analytic -150.7858736760  dE -1.51e-08  (E_HF npz -150.7858736760, d -5.7e-14)  |psi|^2-1 +0.0e+00  1.5s  peak 4.37 GB
+C2H4O_rxn0721_P n=16 k=9 dim=11440 rand0 : E -142.0383330003  analytic -142.0383330564  dE +5.61e-08  |psi|^2-1 -1.3e-07  2.3s  peak 4.37 GB
+C2H4O_rxn0721_P n=16 k=9 dim=11440 rand1 : E -144.3191580195  analytic -144.3191580173  dE -2.19e-09  |psi|^2-1 +9.5e-07  2.3s  peak 4.37 GB
+C2HNO_rxn4439_P n=17 k=10 dim=19448 hf    : E -202.8358916412  analytic -202.8358916458  dE +4.64e-09  (E_HF npz -202.8358916458, d -8.5e-14)  |psi|^2-1 +0.0e+00  4.9s  peak 7.00 GB
+C2HNO_rxn4439_P n=17 k=10 dim=19448 rand0 : E -194.9536798571  analytic -194.9536798886  dE +3.15e-08  |psi|^2-1 -1.5e-07  7.3s  peak 7.00 GB
+C2HNO_rxn4439_P n=17 k=10 dim=19448 rand1 : E -196.8126783615  analytic -196.8126782963  dE -6.52e-08  |psi|^2-1 -9.8e-07  7.4s  peak 7.00 GB
+C3HN_rxn2586_P n=17 k=9 dim=24310 hf    : E -166.2797433579  analytic -166.2797433466  dE -1.12e-08  (E_HF npz -166.2797433466, d -1.4e-13)  |psi|^2-1 +0.0e+00  7.9s  peak 8.84 GB
+C3HN_rxn2586_P n=17 k=9 dim=24310 rand0 : E -156.7953011150  analytic -156.7953009599  dE -1.55e-07  |psi|^2-1 +5.6e-07  12.0s  peak 8.84 GB
+C3HN_rxn2586_P n=17 k=9 dim=24310 rand1 : E -159.8861297720  analytic -159.8861297464  dE -2.56e-08  |psi|^2-1 +2.6e-07  12.2s  peak 8.84 GB
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 64 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+C2H2O2_rxn3279_P n=18 k=11 dim=31824 hf    : E -223.5110564977  analytic -223.5110564873  dE -1.04e-08  (E_HF npz -223.5110564873, d +2.0e-13)  |psi|^2-1 +0.0e+00  14.9s  peak 11.64 GB
+C2H2O2_rxn3279_P n=18 k=11 dim=31824 rand0 : E -215.2805821912  analytic -215.2805822853  dE +9.41e-08  |psi|^2-1 -3.5e-08  24.0s  peak 11.64 GB
+C2H2O2_rxn3279_P n=18 k=11 dim=31824 rand1 : E -214.3806925515  analytic -214.3806925421  dE -9.32e-09  |psi|^2-1 +2.9e-07  24.3s  peak 11.64 GB
+max |dE| = 1.5508490491811244e-07
+-> pretrain/rl/tests/results/gpu_energy_slater_c8.json

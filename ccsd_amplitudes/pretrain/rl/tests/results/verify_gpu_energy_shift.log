@@ -1,0 +1,3 @@
+complex128 default: -182.394146073301 (+0.00e+00)  hf_rebuilt: -182.394146073301 (+0.00e+00)  noshift: -182.394146073301 (-5.68e-14)  half: -182.394146073301 (+2.84e-14)
+complex64 default: -182.394146071121 (+0.00e+00)  hf_rebuilt: -182.394146071121 (+0.00e+00)  noshift: -182.394146706668 (-6.36e-07)  half: -182.394145961597 (+1.10e-07)
+-> pretrain/rl/tests/results/verify_gpu_energy_shift.json

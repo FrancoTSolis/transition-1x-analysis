@@ -65,3 +65,9 @@ ccsd_amplitudes/rhf_targets_compressed_small/
 ccsd_amplitudes/logs_small_labels/
 ccsd_amplitudes/rhf_targets_compressed_n17/
 ccsd_amplitudes/runs_ot/energy_tasks/
+ccsd_amplitudes/rhf_targets_compressed_n18/
+ccsd_amplitudes/rhf_targets_compressed_n1718/
+ccsd_amplitudes/rl_queue/
+ccsd_amplitudes/rhf_targets_compressed_n19/
+ccsd_amplitudes/rl_runs/tn_basis_cache/
+ccsd_amplitudes/rhf_targets_compressed_n29test/

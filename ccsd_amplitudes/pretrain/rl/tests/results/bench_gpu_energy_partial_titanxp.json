@@ -1,0 +1,224 @@
+[
+ {
+  "name": "C3H4_rxn2391_P",
+  "norb": 16,
+  "k": 8,
+  "dim": 12870,
+  "t_top": 4,
+  "R_fused": 5,
+  "K": 65,
+  "NLp": 134,
+  "tile": 1024,
+  "tile_target": 2784,
+  "minor_rotation_s": 0.1872037869598494,
+  "rot_rows_timing": {
+   "1024": 0.021341736350829404,
+   "4096": 0.06435441737994552
+  },
+  "rot_launch_overhead_s": 0.007004176007790701,
+  "transpose_s": 0.008478191293155154,
+  "symmetrize_s": 0.010672586659590403,
+  "phase_pass_s": 0.061273724386410315,
+  "tile_pair_s": 0.02360726233261327,
+  "tile_diag_s": 0.015336073003709316,
+  "n_tile_pairs": 78,
+  "n_diag_tiles": 13,
+  "estimate": {
+   "rot": 0.7657715304257079,
+   "phases": 0.12254744877282063,
+   "symmetrize": 0.010672586659590403,
+   "energy": 1.8645447493843226,
+   "total": 2.7635363152424413
+  },
+  "mem": {
+   "psi_gb": 1.3250952,
+   "ctab_gb": 0.4483908
+  },
+  "gpu": "NVIDIA TITAN Xp"
+ },
+ {
+  "name": "C3HN_rxn2586_P",
+  "norb": 17,
+  "k": 9,
+  "dim": 24310,
+  "t_top": 5,
+  "R_fused": 5,
+  "K": 73,
+  "NLp": 136,
+  "tile": 1024,
+  "tile_target": 2560,
+  "minor_rotation_s": 0.7617686801108902,
+  "rot_rows_timing": {
+   "1024": 0.032437232633431755,
+   "4096": 0.12865411001257598
+  },
+  "rot_launch_overhead_s": 0.0003649401737170141,
+  "transpose_s": 0.02278444214346189,
+  "symmetrize_s": 0.0381655158478898,
+  "phase_pass_s": 0.20419938995625367,
+  "tile_pair_s": 0.03333596729983886,
+  "tile_diag_s": 0.020002267012993496,
+  "n_tile_pairs": 276,
+  "n_diag_tiles": 24,
+  "estimate": {
+   "rot": 3.0926436047304846,
+   "phases": 0.40839877991250734,
+   "symmetrize": 0.0381655158478898,
+   "energy": 9.394054386418487,
+   "total": 12.933262286909368
+  },
+  "mem": {
+   "psi_gb": 4.7278088,
+   "ctab_gb": 0.96539872
+  },
+  "gpu": "NVIDIA TITAN Xp"
+ },
+ {
+  "name": "C2HNO_rxn4439_P",
+  "norb": 17,
+  "k": 10,
+  "dim": 19448,
+  "t_top": 5,
+  "R_fused": 5,
+  "K": 71,
+  "NLp": 143,
+  "tile": 1024,
+  "tile_target": 2592,
+  "minor_rotation_s": 0.5376968121027957,
+  "rot_rows_timing": {
+   "1024": 0.027416381674508255,
+   "4096": 0.1123508020148923
+  },
+  "rot_launch_overhead_s": 0.0,
+  "transpose_s": 0.01690127858348963,
+  "symmetrize_s": 0.014508833410924274,
+  "phase_pass_s": 0.1409108665166059,
+  "tile_pair_s": 0.030135886666054528,
+  "tile_diag_s": 0.02399908231260876,
+  "n_tile_pairs": 171,
+  "n_diag_tiles": 19,
+  "estimate": {
+   "rot": 2.1845898055781623,
+   "phases": 0.2818217330332118,
+   "symmetrize": 0.014508833410924274,
+   "energy": 5.435055167220126,
+   "total": 7.9159755392424245
+  },
+  "mem": {
+   "psi_gb": 3.025797632,
+   "ctab_gb": 0.789822176
+  },
+  "gpu": "NVIDIA TITAN Xp"
+ },
+ {
+  "name": "C2H2O2_rxn3279_P",
+  "norb": 18,
+  "k": 11,
+  "dim": 31824,
+  "t_top": 6,
+  "R_fused": 5,
+  "K": 78,
+  "NLp": 167,
+  "tile": 1024,
+  "tile_target": 2208,
+  "minor_rotation_s": 1.8492008795656147,
+  "rot_rows_timing": {
+   "1024": 0.05749250273220241,
+   "4096": 0.23599756501304606
+  },
+  "rot_launch_overhead_s": 0.0,
+  "transpose_s": 0.045269938396418574,
+  "symmetrize_s": 0.03877472143174776,
+  "phase_pass_s": 0.4619452966398967,
+  "tile_pair_s": 0.03211253470120331,
+  "tile_diag_s": 0.017267755698412657,
+  "n_tile_pairs": 496,
+  "n_diag_tiles": 32,
+  "estimate": {
+   "rot": 7.487343395055296,
+   "phases": 0.9238905932797934,
+   "symmetrize": 0.03877472143174776,
+   "energy": 15.507943468586321,
+   "total": 23.95795217835316
+  },
+  "mem": {
+   "psi_gb": 8.102135808,
+   "ctab_gb": 1.658157696
+  },
+  "gpu": "NVIDIA TITAN Xp"
+ },
+ {
+  "name": "C4H2_rxn9388_P",
+  "norb": 18,
+  "k": 9,
+  "dim": 48620,
+  "t_top": 6,
+  "R_fused": 5,
+  "K": 82,
+  "NLp": 152,
+  "tile": 1024,
+  "tile_target": 1760,
+  "minor_rotation_s": 3.633947207717332,
+  "rot_rows_timing": {
+   "1024": 0.07709978466543059,
+   "4096": 0.30667023772063357
+  },
+  "rot_launch_overhead_s": 0.0005763003136962652,
+  "transpose_s": 0.10566190190948997,
+  "symmetrize_s": 0.12144792329688049,
+  "phase_pass_s": 0.7575161770963253,
+  "tile_pair_s": 0.03580121067352593,
+  "tile_diag_s": 0.02533963796061774,
+  "n_tile_pairs": 1128,
+  "n_diag_tiles": 48,
+  "estimate": {
+   "rot": 14.747112634688307,
+   "phases": 1.5150323541926507,
+   "symmetrize": 0.12144792329688049,
+   "energy": 40.355033605802014,
+   "total": 56.73862651797985
+  },
+  "mem": {
+   "psi_gb": 18.9112352,
+   "ctab_gb": 2.42399872
+  },
+  "gpu": "NVIDIA TITAN Xp"
+ },
+ {
+  "name": "C2H6O_rxn2392_P",
+  "norb": 18,
+  "k": 10,
+  "dim": 43758,
+  "t_top": 6,
+  "R_fused": 5,
+  "K": 81,
+  "NLp": 166,
+  "tile": 1024,
+  "tile_target": 1888,
+  "minor_rotation_s": 3.006625069029622,
+  "rot_rows_timing": {
+   "1024": 0.07207181995424132,
+   "4096": 0.28302674065344036
+  },
+  "rot_launch_overhead_s": 0.0017535130545083127,
+  "transpose_s": 0.07351207077978156,
+  "symmetrize_s": 0.07328916096714418,
+  "phase_pass_s": 0.7121866472155034,
+  "tile_pair_s": 0.03468896960839629,
+  "tile_diag_s": 0.02133876201696694,
+  "n_tile_pairs": 903,
+  "n_diag_tiles": 43,
+  "estimate": {
+   "rot": 12.17352441767805,
+   "phases": 1.4243732944310068,
+   "symmetrize": 0.07328916096714418,
+   "energy": 31.672067828126412,
+   "total": 45.34325470120261
+  },
+  "mem": {
+   "psi_gb": 15.318100512,
+   "ctab_gb": 2.353480272
+  },
+  "gpu": "NVIDIA TITAN Xp"
+ }
+]

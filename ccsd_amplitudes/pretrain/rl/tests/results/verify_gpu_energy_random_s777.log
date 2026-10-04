@@ -1,0 +1,93 @@
+[ 0] n= 2 k= 1 dim=    2 square     sym8                   reps=2 t1=rand U=haar    E_ref -5.8206461276  max|dE| c16 8.9e-15 c8 2.5e-09  max dpsi(c16) 3.3e-16  (6 variants, ref 0.0s)
+[ 1] n= 3 k= 1 dim=    3 hex        psd                    reps=1 t1=none U=near    E_ref +7.9640094122  max|dE| c16 1.5e-14 c8 2.1e-08  max dpsi(c16) 5.6e-16  (6 variants, ref 0.0s)
+[ 2] n= 3 k= 2 dim=    3 heavy-hex  npz:C3H4_rxn2391_TS    reps=3 t1=rand U=nonunit E_ref -83.0585410278  max|dE| c16 1.6e-13 c8 2.6e-08  max dpsi(c16) 8.5e-16  (6 variants, ref 0.0s)
+[ 3] n= 4 k= 1 dim=    4 all-to-all npz:C2N2_rxn3923_R     reps=2 t1=rand U=haar    E_ref -128.4227236721  max|dE| c16 2.8e-14 c8 1.4e-08  max dpsi(c16) 1.1e-15  (6 variants, ref 0.0s)
+[ 4] n= 4 k= 3 dim=    4 square     sym8                   reps=2 t1=none U=near    E_ref -0.8360696223  max|dE| c16 8.9e-15 c8 2.0e-07  max dpsi(c16) 2.1e-15  (6 variants, ref 0.1s)
+[ 5] n= 5 k= 1 dim=    5 square     psd                    reps=1 t1=rand U=haar    E_ref -1.2662965592  max|dE| c16 6.2e-15 c8 1.8e-08  max dpsi(c16) 3.0e-15  (10 variants, ref 0.1s)
+[ 6] n= 5 k= 4 dim=    5 square     npz:C2H4O_rxn0724_R    reps=3 t1=rand U=near    E_ref -123.6876684202  max|dE| c16 1.2e-12 c8 2.9e-08  max dpsi(c16) 1.5e-15  (10 variants, ref 0.1s)
+[ 7] n= 6 k= 1 dim=    6 hex        npz:C3H4_rxn2391_TS    reps=2 t1=none U=nonunit E_ref -74.8149435757  max|dE| c16 2.8e-14 c8 6.6e-09  max dpsi(c16) 1.3e-15  (11 variants, ref 0.1s)
+[ 8] n= 6 k= 5 dim=    6 heavy-hex  sym8                   reps=2 t1=rand U=haar    E_ref -2.9304577308  max|dE| c16 2.0e-14 c8 3.1e-07  max dpsi(c16) 2.7e-15  (11 variants, ref 0.0s)
+[ 9] n= 7 k= 6 dim=    7 all-to-all psd                    reps=1 t1=rand U=near    E_ref +0.9012017946  max|dE| c16 4.4e-15 c8 3.5e-08  max dpsi(c16) 1.9e-15  (11 variants, ref 0.0s)
+[10] n= 8 k= 2 dim=   28 square     npz:C2H3N_rxn2857_P    reps=3 t1=none U=haar    E_ref -97.5460895281  max|dE| c16 6.7e-13 c8 5.1e-08  max dpsi(c16) 2.5e-15  (11 variants, ref 0.1s)
+[11] n= 8 k= 7 dim=    8 square     npz:C2H4O_rxn0724_R    reps=2 t1=rand U=near    E_ref -139.5184261635  max|dE| c16 5.7e-13 c8 2.8e-08  max dpsi(c16) 5.8e-15  (11 variants, ref 0.0s)
+[12] n= 9 k= 2 dim=   36 square     sym8                   reps=2 t1=rand U=nonunit E_ref -4.7446278781  max|dE| c16 3.4e-14 c8 2.6e-07  max dpsi(c16) 4.7e-16  (11 variants, ref 0.1s)
+[13] n= 9 k= 7 dim=   36 hex        psd                    reps=1 t1=none U=haar    E_ref -7.3367763400  max|dE| c16 6.9e-14 c8 1.8e-07  max dpsi(c16) 9.1e-16  (11 variants, ref 0.1s)
+[14] n=10 k= 2 dim=   45 heavy-hex  npz:C3HN_rxn2586_P     reps=3 t1=rand U=near    E_ref -124.0573588606  max|dE| c16 1.3e-12 c8 9.5e-10  max dpsi(c16) 9.0e-16  (11 variants, ref 0.1s)
+[15] n=10 k= 8 dim=   45 all-to-all npz:C2H3N_rxn2857_P    reps=2 t1=rand U=haar    E_ref -122.3448400308  max|dE| c16 7.2e-13 c8 1.6e-08  max dpsi(c16) 5.9e-16  (11 variants, ref 0.1s)
+[16] n=11 k= 3 dim=  165 square     sym8                   reps=2 t1=none U=near    E_ref -0.0622196729  max|dE| c16 1.6e-14 c8 4.4e-07  max dpsi(c16) 3.7e-15  (11 variants, ref 0.2s)
+[17] n=11 k= 8 dim=  165 square     psd                    reps=1 t1=rand U=nonunit E_ref -8.8147223729  max|dE| c16 2.8e-14 c8 2.4e-07  max dpsi(c16) 3.9e-15  (11 variants, ref 0.1s)
+[18] n=12 k= 4 dim=  495 square     npz:C2N2_rxn3923_R     reps=3 t1=rand U=haar    E_ref -156.7065039354  max|dE| c16 2.4e-12 c8 5.0e-08  max dpsi(c16) 1.2e-16  (11 variants, ref 1.1s)
+[19] n=12 k= 6 dim=  924 hex        npz:C3HN_rxn2586_P     reps=2 t1=none U=near    E_ref -155.7548221218  max|dE| c16 2.4e-12 c8 2.4e-08  max dpsi(c16) 2.1e-15  (11 variants, ref 16.2s)
+[20] n=12 k= 9 dim=  220 heavy-hex  sym8                   reps=2 t1=rand U=haar    E_ref -6.9080793826  max|dE| c16 6.4e-14 c8 1.2e-06  max dpsi(c16) 4.4e-16  (11 variants, ref 0.4s)
+[21] n=12 k= 3 dim=  220 all-to-all psd                    reps=1 t1=rand U=near    E_ref +3.3251096479  max|dE| c16 4.4e-14 c8 8.0e-08  max dpsi(c16) 1.7e-16  (11 variants, ref 0.3s)
+[22] n=13 k= 6 dim= 1716 square     npz:C3H4_rxn2391_TS    reps=3 t1=none U=nonunit E_ref -107.7522547471  max|dE| c16 1.3e-12 c8 6.1e-08  max dpsi(c16) 6.0e-15  (11 variants, ref 42.6s)
+[23] n=13 k= 9 dim=  715 square     npz:C2N2_rxn3923_R     reps=2 t1=rand U=haar    E_ref -172.0444589679  max|dE| c16 3.8e-12 c8 2.6e-08  max dpsi(c16) 7.8e-17  (11 variants, ref 24.1s)
+[24] n=14 k= 7 dim= 3432 square     sym8                   reps=2 t1=rand U=near    E_ref -10.0580182842  max|dE| c16 3.9e-13 c8 3.5e-07  max dpsi(c16) 1.3e-16  (11 variants, ref 67.9s)  ERR ['numba_c16_t1_smem6']
+       numba_c16_t1_smem6 CudaAPIError: [1] Call to cuLaunchKernel results in CUDA_ERROR_INVALID_VALUE
+[25] n=14 k= 5 dim= 2002 hex        psd                    reps=1 t1=none U=haar    E_ref -5.2098182952  max|dE| c16 5.9e-14 c8 2.8e-07  max dpsi(c16) 4.8e-15  (11 variants, ref 18.6s)
+[26] n=11 k= 6 dim=  462 heavy-hex  npz:C2H4O_rxn0724_R    reps=3 t1=rand U=near    E_ref -134.8628722953  max|dE| c16 2.8e-14 c8 1.8e-08  max dpsi(c16) 2.9e-16  (11 variants, ref 0.9s)
+[27] n=10 k= 5 dim=  252 all-to-all npz:C3H4_rxn2391_TS    reps=2 t1=rand U=nonunit E_ref -101.1544674078  max|dE| c16 7.1e-14 c8 1.1e-08  max dpsi(c16) 1.7e-16  (11 variants, ref 0.2s)
+[28] n= 2 k= 1 dim=    2 square     sym8                   reps=2 t1=none U=haar    E_ref -3.5671821799  max|dE| c16 7.1e-15 c8 1.3e-07  max dpsi(c16) 1.7e-15  (6 variants, ref 0.1s)
+[29] n= 3 k= 1 dim=    3 square     psd                    reps=1 t1=rand U=near    E_ref -0.2141789123  max|dE| c16 2.2e-15 c8 8.8e-08  max dpsi(c16) 9.4e-16  (6 variants, ref 0.1s)
+[30] n= 3 k= 2 dim=    3 square     npz:C2H3N_rxn2857_P    reps=3 t1=rand U=haar    E_ref -94.2840542389  max|dE| c16 8.5e-14 c8 2.0e-08  max dpsi(c16) 3.3e-15  (6 variants, ref 0.0s)
+[31] n= 4 k= 1 dim=    4 hex        npz:C2H4O_rxn0724_R    reps=2 t1=none U=near    E_ref -93.7984311335  max|dE| c16 2.0e-13 c8 6.3e-08  max dpsi(c16) 6.9e-16  (6 variants, ref 0.1s)
+[32] n= 4 k= 3 dim=    4 heavy-hex  sym8                   reps=2 t1=rand U=nonunit E_ref +2.8530605827  max|dE| c16 7.1e-15 c8 2.0e-07  max dpsi(c16) 9.0e-16  (6 variants, ref 0.1s)
+[33] n= 5 k= 1 dim=    5 all-to-all psd                    reps=1 t1=rand U=haar    E_ref -6.4703053401  max|dE| c16 1.6e-14 c8 1.5e-08  max dpsi(c16) 6.5e-16  (10 variants, ref 0.1s)
+[34] n= 5 k= 4 dim=    5 square     npz:C3HN_rxn2586_P     reps=3 t1=none U=near    E_ref -139.2681048259  max|dE| c16 7.7e-13 c8 3.0e-08  max dpsi(c16) 2.1e-15  (10 variants, ref 0.1s)
+[35] n= 6 k= 1 dim=    6 square     npz:C2H3N_rxn2857_P    reps=2 t1=rand U=haar    E_ref -87.7375847424  max|dE| c16 4.5e-13 c8 2.8e-08  max dpsi(c16) 1.2e-15  (11 variants, ref 0.1s)
+[36] n= 6 k= 5 dim=    6 square     sym8                   reps=2 t1=rand U=near    E_ref +4.7032268573  max|dE| c16 9.8e-15 c8 1.7e-07  max dpsi(c16) 1.4e-15  (11 variants, ref 0.0s)
+[37] n= 7 k= 6 dim=    7 hex        psd                    reps=1 t1=none U=nonunit E_ref -5.4932695016  max|dE| c16 3.0e-14 c8 1.5e-08  max dpsi(c16) 2.5e-15  (11 variants, ref 0.0s)
+[38] n= 8 k= 2 dim=   28 heavy-hex  npz:C2N2_rxn3923_R     reps=3 t1=rand U=haar    E_ref -139.8195018543  max|dE| c16 9.4e-13 c8 4.0e-08  max dpsi(c16) 3.2e-15  (11 variants, ref 0.1s)
+[39] n= 8 k= 7 dim=    8 all-to-all npz:C3HN_rxn2586_P     reps=2 t1=rand U=near    E_ref -153.8448252307  max|dE| c16 1.5e-12 c8 6.7e-08  max dpsi(c16) 2.0e-15  (11 variants, ref 0.0s)
+[40] n= 9 k= 2 dim=   36 square     sym8                   reps=2 t1=none U=haar    E_ref -2.0628739673  max|dE| c16 1.6e-14 c8 1.8e-08  max dpsi(c16) 2.5e-15  (11 variants, ref 0.0s)
+[41] n= 9 k= 7 dim=   36 square     psd                    reps=1 t1=rand U=near    E_ref -2.5240671895  max|dE| c16 8.9e-16 c8 5.3e-08  max dpsi(c16) 5.1e-16  (11 variants, ref 0.0s)
+[42] n=10 k= 2 dim=   45 square     npz:C3H4_rxn2391_TS    reps=3 t1=rand U=nonunit E_ref -83.1824415460  max|dE| c16 5.1e-13 c8 4.0e-08  max dpsi(c16) 7.3e-16  (11 variants, ref 0.1s)
+[43] n=10 k= 8 dim=   45 hex        npz:C2N2_rxn3923_R     reps=2 t1=none U=haar    E_ref -174.0025932685  max|dE| c16 2.6e-12 c8 3.2e-08  max dpsi(c16) 1.2e-15  (11 variants, ref 0.0s)
+[44] n=11 k= 3 dim=  165 heavy-hex  sym8                   reps=2 t1=rand U=near    E_ref +2.3678744721  max|dE| c16 4.9e-15 c8 1.9e-09  max dpsi(c16) 1.3e-16  (11 variants, ref 0.1s)
+[45] n=11 k= 8 dim=  165 all-to-all psd                    reps=1 t1=rand U=haar    E_ref -9.9488409070  max|dE| c16 6.9e-14 c8 7.0e-08  max dpsi(c16) 3.6e-16  (11 variants, ref 0.1s)
+[46] n=12 k= 4 dim=  495 square     npz:C2H4O_rxn0724_R    reps=3 t1=none U=near    E_ref -122.4808109936  max|dE| c16 1.6e-12 c8 1.3e-07  max dpsi(c16) 1.7e-16  (11 variants, ref 0.8s)
+[47] n=12 k= 6 dim=  924 square     npz:C3H4_rxn2391_TS    reps=2 t1=rand U=nonunit E_ref -105.7067821970  max|dE| c16 1.3e-12 c8 4.5e-09  max dpsi(c16) 4.9e-17  (11 variants, ref 7.9s)
+[48] n=12 k= 9 dim=  220 square     sym8                   reps=2 t1=rand U=haar    E_ref +23.0771773238  max|dE| c16 3.6e-13 c8 2.3e-07  max dpsi(c16) 1.2e-16  (11 variants, ref 0.3s)
+[49] n=12 k= 3 dim=  220 hex        psd                    reps=1 t1=none U=near    E_ref +2.3840751391  max|dE| c16 1.1e-14 c8 1.0e-07  max dpsi(c16) 4.3e-15  (11 variants, ref 0.2s)
+[50] n=13 k= 6 dim= 1716 heavy-hex  npz:C2H3N_rxn2857_P    reps=3 t1=rand U=haar    E_ref -118.7883674233  max|dE| c16 4.1e-12 c8 1.3e-08  max dpsi(c16) 3.8e-17  (11 variants, ref 30.6s)
+[51] n=13 k= 9 dim=  715 all-to-all npz:C2H4O_rxn0724_R    reps=2 t1=rand U=near    E_ref -139.7643817910  max|dE| c16 2.1e-12 c8 7.1e-08  max dpsi(c16) 4.5e-17  (11 variants, ref 3.6s)
+[52] n=14 k= 7 dim= 3432 square     sym8                   reps=2 t1=none U=nonunit E_ref -5.6945970469  max|dE| c16 2.4e-13 c8 7.8e-07  max dpsi(c16) 2.6e-17  (11 variants, ref 69.2s)  ERR ['numba_c16_t1_smem6']
+       numba_c16_t1_smem6 CudaAPIError: [1] Call to cuLaunchKernel results in CUDA_ERROR_INVALID_VALUE
+[53] n=14 k= 5 dim= 2002 square     psd                    reps=1 t1=rand U=haar    E_ref -5.8222871640  max|dE| c16 8.3e-14 c8 2.4e-07  max dpsi(c16) 1.3e-16  (11 variants, ref 26.6s)
+[54] n=11 k= 6 dim=  462 square     npz:C3HN_rxn2586_P     reps=3 t1=rand U=near    E_ref -150.8512260224  max|dE| c16 2.4e-12 c8 8.3e-08  max dpsi(c16) 6.8e-16  (11 variants, ref 1.0s)
+[55] n=10 k= 5 dim=  252 hex        npz:C2H3N_rxn2857_P    reps=2 t1=none U=haar    E_ref -117.1908153354  max|dE| c16 2.3e-12 c8 1.1e-08  max dpsi(c16) 1.0e-16  (11 variants, ref 0.3s)
+[gen 0] n=8 k=4 dim=70 E_ref -112.3296083302  c16_tile32: dE +1.4e-13 (T=32)  c16_default: dE +1.4e-13 (T=70)  c8_tile64: dE -3.9e-08 (T=64)  torch_c16_tile32: dE +1.4e-13 (T=32)
+[gen 1] n=10 k=3 dim=120 E_ref -0.3430842128  c16_tile32: dE -5.7e-15 (T=32)  c16_default: dE -2.8e-15 (T=120)  c8_tile64: dE +2.1e-09 (T=64)  torch_c16_tile32: dE -4.2e-15 (T=32)
+[gen 2] n=11 k=5 dim=462 E_ref -103.8658342014  c16_tile32: dE -1.6e-12 (T=32)  c16_default: dE -1.6e-12 (T=462)  c8_tile64: dE -3.3e-08 (T=64)  torch_c16_tile32: dE -1.6e-12 (T=32)
+[gen 3] n=12 k=7 dim=792 E_ref +6.8215233388  c16_tile32: dE -1.7e-14 (T=32)  c16_default: dE -2.8e-14 (T=792)  c8_tile64: dE +2.4e-09 (T=64)  torch_c16_tile32: dE -1.7e-14 (T=32)
+[gen 4] n=13 k=6 dim=1716 E_ref -154.8968327410  c16_tile32: dE -9.7e-13 (T=32)  c16_default: dE -9.7e-13 (T=800)  c8_tile64: dE -4.0e-08 (T=64)  torch_c16_tile32: dE -9.7e-13 (T=32)
+[gen 5] n=14 k=7 dim=3432 E_ref +4.8560429126  c16_tile32: dE -2.7e-14 (T=32)  c16_default: dE -7.1e-15 (T=704)  c8_tile64: dE +8.8e-08 (T=64)  torch_c16_tile32: dE -2.8e-14 (T=32)
+[gen 6] n=12 k=5 dim=792 E_ref -132.1531645474  c16_tile32: dE +2.3e-12 (T=32)  c16_default: dE +2.3e-12 (T=792)  c8_tile64: dE -5.3e-09 (T=64)  torch_c16_tile32: dE +2.3e-12 (T=32)
+[gen 7] n=9 k=6 dim=84 E_ref -8.7558848980  c16_tile32: dE -1.4e-14 (T=32)  c16_default: dE -1.6e-14 (T=84)  c8_tile64: dE -2.2e-08 (T=64)  torch_c16_tile32: dE -1.4e-14 (T=32)
+
+=== worst over 56 LUCJ cases ===
+  numba_c16                    n= 56  max|dE| 4.09e-12  max|dpsi| 4.19e-15
+  numba_c8                     n= 56  max|dE| 1.15e-06  max|dpsi| 1.82e-07
+  numba_c16_tile32             n= 56  max|dE| 4.09e-12  max|dpsi| 4.19e-15
+  numba_c8_tile32              n= 56  max|dE| 1.16e-06  max|dpsi| 1.82e-07
+  numba_c16_nofuse_tile64      n= 56  max|dE| 4.11e-12  max|dpsi| 5.59e-15
+  torch_c16_tile32             n= 56  max|dE| 4.11e-12  max|dpsi| 5.82e-15
+  numba_c16_t1_smem6           n= 44  max|dE| 4.09e-12  max|dpsi| 4.77e-15
+  numba_c16_t2_smem6           n= 46  max|dE| 4.09e-12  max|dpsi| 3.41e-15
+  numba_c16_t3_smem6           n=  8  max|dE| 1.24e-12  max|dpsi| 2.11e-15
+  numba_c8_smem3               n= 46  max|dE| 7.80e-07  max|dpsi| 2.34e-07
+  numba_c16_t4_smem6           n=  6  max|dE| 4.55e-13  max|dpsi| 2.23e-15
+  numba_c16_t5_smem6           n=  6  max|dE| 1.53e-12  max|dpsi| 3.24e-15
+  numba_c16_t6_smem6           n=  8  max|dE| 1.53e-12  max|dpsi| 2.90e-15
+  numba_c16_t7_smem6           n= 10  max|dE| 2.56e-12  max|dpsi| 1.80e-15
+  numba_c16_t8_smem6           n= 12  max|dE| 2.56e-12  max|dpsi| 3.16e-15
+  numba_c16_t9_smem6           n= 14  max|dE| 2.44e-12  max|dpsi| 4.26e-15
+  numba_c16_t10_smem6          n= 12  max|dE| 4.11e-12  max|dpsi| 4.34e-15
+  numba_c16_t11_smem6          n=  8  max|dE| 4.11e-12  max|dpsi| 5.95e-15
+  numba_c16_t12_smem6          n=  4  max|dE| 3.78e-13  max|dpsi| 1.16e-15
+=== generic states ===
+  c16_tile32           max|dE| 2.33e-12
+  c16_default          max|dE| 2.33e-12
+  c8_tile64            max|dE| 8.85e-08
+  torch_c16_tile32     max|dE| 2.33e-12
+-> pretrain/rl/tests/results/verify_gpu_energy_random_s777.json

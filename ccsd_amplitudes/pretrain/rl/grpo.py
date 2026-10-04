@@ -74,9 +74,46 @@ def _get_ham(name: str):
     return _HAM_CACHE[name]
 
 
+_TN_CACHE: dict = {}
+
+
+def _tn_energy(name, U, Z, t1, kw):
+    """MPS (tensor-network) LUCJ energy, pretrain.rl.tn_energy; engines cached per (molecule, chi) in this process.
+    kw["impl"] == "v1" selects the frozen zip-up engine (tn_energy_v1.py) that the Oct-3 n29 RL run used."""
+    import tempfile
+    if kw.get("impl", "current") == "v1":
+        from pretrain.rl.tn_energy_v1 import LUCJEnergyTN
+    else:
+        from pretrain.rl.tn_energy import LUCJEnergyTN
+    chi = int(kw.get("max_bond", 64))
+    key = (name, chi)
+    if key not in _TN_CACHE:
+        while len(_TN_CACHE) >= int(kw.get("tn_cache_items", 1)):
+            _TN_CACHE.pop(next(iter(_TN_CACHE)))
+            import gc
+            gc.collect()
+        d = np.load(Path(_HAM_DIR) / f"{name}.npz")
+        scratch = tempfile.mkdtemp(prefix=f"tn_{os.getpid()}_", dir=os.environ.get("TMPDIR", None))
+        _TN_CACHE[key] = LUCJEnergyTN(d["one_body"], d["two_body"], float(d["constant"]), int(d["norb"]),
+                                     (int(d["nelec_a"]), int(d["nelec_b"])), max_bond=chi, device="cpu", name=name,
+                                     block2_threads=int(kw.get("block2_threads", 1)), scratch=scratch,
+                                     stack_mem=int(kw.get("stack_mem", 1 << 30)), basis_cache=kw.get("basis_cache"))
+    E, info = _TN_CACHE[key].energy(U, Z, t1=t1)
+    return float(E), {k: (float(v) if isinstance(v, (int, float, np.floating)) else v)
+                      for k, v in info.items() if k in ("discarded_sum", "t_total", "max_bond")}
+
+
 def _reward_job(task):
     """task: (key, name, U, Z, t1, connectivity, kind, kwargs) -> (key, E, info)."""
     key, name, U, Z, t1, conn, kind, kw = task
+    if kind == "tn":
+        try:
+            t0 = time.time()
+            E, info = _tn_energy(name, U, Z, t1, kw)
+            info["t"] = time.time() - t0
+            return key, E, info
+        except Exception as e:  # noqa: BLE001
+            return key, float("nan"), {"error": f"{type(e).__name__}: {e}"}
     try:
         from pretrain.rl.energy import exact_energy, make_ucj_op, mps_sqd_energy
         ham, norb, nelec, e_hf, e_ccsd = _get_ham(name)

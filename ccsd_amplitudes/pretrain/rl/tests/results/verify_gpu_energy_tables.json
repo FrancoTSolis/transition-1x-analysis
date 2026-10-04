@@ -1,0 +1,740 @@
+{
+ "chunks": [
+  {
+   "norb": 15,
+   "k": 8,
+   "t": 3,
+   "itemsize": 8,
+   "nch": 8,
+   "max_len": 924,
+   "R": 5,
+   "smem_bytes": 48064,
+   "smem_ok": true,
+   "low_pairs_checked": 18876,
+   "plan_R": 5
+  },
+  {
+   "norb": 15,
+   "k": 8,
+   "t": 3,
+   "itemsize": 16,
+   "nch": 8,
+   "max_len": 924,
+   "R": 2,
+   "smem_bytes": 40672,
+   "smem_ok": true,
+   "low_pairs_checked": 18876,
+   "plan_R": 2
+  },
+  {
+   "norb": 15,
+   "k": 8,
+   "t": 4,
+   "itemsize": 8,
+   "nch": 16,
+   "max_len": 462,
+   "R": 11,
+   "smem_bytes": 45712,
+   "smem_ok": true,
+   "low_pairs_checked": 17160
+  },
+  {
+   "norb": 15,
+   "k": 7,
+   "t": 3,
+   "itemsize": 8,
+   "nch": 8,
+   "max_len": 924,
+   "R": 5,
+   "smem_bytes": 48064,
+   "smem_ok": true,
+   "low_pairs_checked": 18876,
+   "plan_R": 5
+  },
+  {
+   "norb": 15,
+   "k": 7,
+   "t": 3,
+   "itemsize": 16,
+   "nch": 8,
+   "max_len": 924,
+   "R": 2,
+   "smem_bytes": 40672,
+   "smem_ok": true,
+   "low_pairs_checked": 18876,
+   "plan_R": 2
+  },
+  {
+   "norb": 15,
+   "k": 7,
+   "t": 4,
+   "itemsize": 8,
+   "nch": 16,
+   "max_len": 462,
+   "R": 11,
+   "smem_bytes": 45712,
+   "smem_ok": true,
+   "low_pairs_checked": 17160
+  },
+  {
+   "norb": 16,
+   "k": 8,
+   "t": 4,
+   "itemsize": 8,
+   "nch": 16,
+   "max_len": 924,
+   "R": 5,
+   "smem_bytes": 48064,
+   "smem_ok": true,
+   "low_pairs_checked": 37752,
+   "plan_R": 5
+  },
+  {
+   "norb": 16,
+   "k": 8,
+   "t": 4,
+   "itemsize": 16,
+   "nch": 16,
+   "max_len": 924,
+   "R": 2,
+   "smem_bytes": 40672,
+   "smem_ok": true,
+   "low_pairs_checked": 37752,
+   "plan_R": 2
+  },
+  {
+   "norb": 16,
+   "k": 8,
+   "t": 5,
+   "itemsize": 8,
+   "nch": 32,
+   "max_len": 462,
+   "R": 11,
+   "smem_bytes": 45712,
+   "smem_ok": true,
+   "low_pairs_checked": 34320
+  },
+  {
+   "norb": 16,
+   "k": 9,
+   "t": 4,
+   "itemsize": 8,
+   "nch": 16,
+   "max_len": 924,
+   "R": 5,
+   "smem_bytes": 48064,
+   "smem_ok": true,
+   "low_pairs_checked": 33033,
+   "plan_R": 5
+  },
+  {
+   "norb": 16,
+   "k": 9,
+   "t": 4,
+   "itemsize": 16,
+   "nch": 16,
+   "max_len": 924,
+   "R": 2,
+   "smem_bytes": 40672,
+   "smem_ok": true,
+   "low_pairs_checked": 33033,
+   "plan_R": 2
+  },
+  {
+   "norb": 16,
+   "k": 9,
+   "t": 5,
+   "itemsize": 8,
+   "nch": 32,
+   "max_len": 462,
+   "R": 11,
+   "smem_bytes": 45712,
+   "smem_ok": true,
+   "low_pairs_checked": 30030
+  },
+  {
+   "norb": 16,
+   "k": 7,
+   "t": 4,
+   "itemsize": 8,
+   "nch": 16,
+   "max_len": 924,
+   "R": 5,
+   "smem_bytes": 48064,
+   "smem_ok": true,
+   "low_pairs_checked": 33033,
+   "plan_R": 5
+  },
+  {
+   "norb": 16,
+   "k": 7,
+   "t": 4,
+   "itemsize": 16,
+   "nch": 16,
+   "max_len": 924,
+   "R": 2,
+   "smem_bytes": 40672,
+   "smem_ok": true,
+   "low_pairs_checked": 33033,
+   "plan_R": 2
+  },
+  {
+   "norb": 16,
+   "k": 7,
+   "t": 5,
+   "itemsize": 8,
+   "nch": 32,
+   "max_len": 462,
+   "R": 11,
+   "smem_bytes": 45712,
+   "smem_ok": true,
+   "low_pairs_checked": 30030
+  },
+  {
+   "norb": 17,
+   "k": 9,
+   "t": 5,
+   "itemsize": 8,
+   "nch": 32,
+   "max_len": 924,
+   "R": 5,
+   "smem_bytes": 48064,
+   "smem_ok": true,
+   "low_pairs_checked": 70785,
+   "plan_R": 5
+  },
+  {
+   "norb": 17,
+   "k": 9,
+   "t": 5,
+   "itemsize": 16,
+   "nch": 32,
+   "max_len": 924,
+   "R": 2,
+   "smem_bytes": 40672,
+   "smem_ok": true,
+   "low_pairs_checked": 70785,
+   "plan_R": 2
+  },
+  {
+   "norb": 17,
+   "k": 9,
+   "t": 6,
+   "itemsize": 8,
+   "nch": 64,
+   "max_len": 462,
+   "R": 11,
+   "smem_bytes": 45712,
+   "smem_ok": true,
+   "low_pairs_checked": 64350
+  },
+  {
+   "norb": 17,
+   "k": 10,
+   "t": 5,
+   "itemsize": 8,
+   "nch": 32,
+   "max_len": 924,
+   "R": 5,
+   "smem_bytes": 48064,
+   "smem_ok": true,
+   "low_pairs_checked": 55055,
+   "plan_R": 5
+  },
+  {
+   "norb": 17,
+   "k": 10,
+   "t": 5,
+   "itemsize": 16,
+   "nch": 32,
+   "max_len": 924,
+   "R": 2,
+   "smem_bytes": 40672,
+   "smem_ok": true,
+   "low_pairs_checked": 55055,
+   "plan_R": 2
+  },
+  {
+   "norb": 17,
+   "k": 10,
+   "t": 6,
+   "itemsize": 8,
+   "nch": 64,
+   "max_len": 462,
+   "R": 11,
+   "smem_bytes": 45712,
+   "smem_ok": true,
+   "low_pairs_checked": 50050
+  },
+  {
+   "norb": 17,
+   "k": 8,
+   "t": 5,
+   "itemsize": 8,
+   "nch": 32,
+   "max_len": 924,
+   "R": 5,
+   "smem_bytes": 48064,
+   "smem_ok": true,
+   "low_pairs_checked": 70785,
+   "plan_R": 5
+  },
+  {
+   "norb": 17,
+   "k": 8,
+   "t": 5,
+   "itemsize": 16,
+   "nch": 32,
+   "max_len": 924,
+   "R": 2,
+   "smem_bytes": 40672,
+   "smem_ok": true,
+   "low_pairs_checked": 70785,
+   "plan_R": 2
+  },
+  {
+   "norb": 17,
+   "k": 8,
+   "t": 6,
+   "itemsize": 8,
+   "nch": 64,
+   "max_len": 462,
+   "R": 11,
+   "smem_bytes": 45712,
+   "smem_ok": true,
+   "low_pairs_checked": 64350
+  },
+  {
+   "norb": 18,
+   "k": 9,
+   "t": 6,
+   "itemsize": 8,
+   "nch": 64,
+   "max_len": 924,
+   "R": 5,
+   "smem_bytes": 48064,
+   "smem_ok": true,
+   "low_pairs_checked": 141570,
+   "plan_R": 5
+  },
+  {
+   "norb": 18,
+   "k": 9,
+   "t": 6,
+   "itemsize": 16,
+   "nch": 64,
+   "max_len": 924,
+   "R": 2,
+   "smem_bytes": 40672,
+   "smem_ok": true,
+   "low_pairs_checked": 141570,
+   "plan_R": 2
+  },
+  {
+   "norb": 18,
+   "k": 9,
+   "t": 7,
+   "itemsize": 8,
+   "nch": 128,
+   "max_len": 462,
+   "R": 11,
+   "smem_bytes": 45712,
+   "smem_ok": true,
+   "low_pairs_checked": 128700
+  },
+  {
+   "norb": 18,
+   "k": 10,
+   "t": 6,
+   "itemsize": 8,
+   "nch": 64,
+   "max_len": 924,
+   "R": 5,
+   "smem_bytes": 48064,
+   "smem_ok": true,
+   "low_pairs_checked": 125840,
+   "plan_R": 5
+  },
+  {
+   "norb": 18,
+   "k": 10,
+   "t": 6,
+   "itemsize": 16,
+   "nch": 64,
+   "max_len": 924,
+   "R": 2,
+   "smem_bytes": 40672,
+   "smem_ok": true,
+   "low_pairs_checked": 125840,
+   "plan_R": 2
+  },
+  {
+   "norb": 18,
+   "k": 10,
+   "t": 7,
+   "itemsize": 8,
+   "nch": 128,
+   "max_len": 462,
+   "R": 11,
+   "smem_bytes": 45712,
+   "smem_ok": true,
+   "low_pairs_checked": 114400
+  },
+  {
+   "norb": 18,
+   "k": 11,
+   "t": 6,
+   "itemsize": 8,
+   "nch": 64,
+   "max_len": 924,
+   "R": 5,
+   "smem_bytes": 48064,
+   "smem_ok": true,
+   "low_pairs_checked": 88088,
+   "plan_R": 5
+  },
+  {
+   "norb": 18,
+   "k": 11,
+   "t": 6,
+   "itemsize": 16,
+   "nch": 64,
+   "max_len": 924,
+   "R": 2,
+   "smem_bytes": 40672,
+   "smem_ok": true,
+   "low_pairs_checked": 88088,
+   "plan_R": 2
+  },
+  {
+   "norb": 18,
+   "k": 11,
+   "t": 7,
+   "itemsize": 8,
+   "nch": 128,
+   "max_len": 462,
+   "R": 11,
+   "smem_bytes": 45712,
+   "smem_ok": true,
+   "low_pairs_checked": 80080
+  },
+  {
+   "norb": 18,
+   "k": 8,
+   "t": 6,
+   "itemsize": 8,
+   "nch": 64,
+   "max_len": 924,
+   "R": 5,
+   "smem_bytes": 48064,
+   "smem_ok": true,
+   "low_pairs_checked": 125840,
+   "plan_R": 5
+  },
+  {
+   "norb": 18,
+   "k": 8,
+   "t": 6,
+   "itemsize": 16,
+   "nch": 64,
+   "max_len": 924,
+   "R": 2,
+   "smem_bytes": 40672,
+   "smem_ok": true,
+   "low_pairs_checked": 125840,
+   "plan_R": 2
+  },
+  {
+   "norb": 18,
+   "k": 8,
+   "t": 7,
+   "itemsize": 8,
+   "nch": 128,
+   "max_len": 462,
+   "R": 11,
+   "smem_bytes": 45712,
+   "smem_ok": true,
+   "low_pairs_checked": 114400
+  },
+  {
+   "norb": 12,
+   "k": 6,
+   "t": 1,
+   "itemsize": 8,
+   "nch": 2,
+   "max_len": 462,
+   "R": 11,
+   "smem_bytes": 45712,
+   "smem_ok": true,
+   "low_pairs_checked": 2520,
+   "plan_R": 11
+  },
+  {
+   "norb": 12,
+   "k": 6,
+   "t": 1,
+   "itemsize": 16,
+   "nch": 2,
+   "max_len": 462,
+   "R": 5,
+   "smem_bytes": 42016,
+   "smem_ok": true,
+   "low_pairs_checked": 2520,
+   "plan_R": 5
+  },
+  {
+   "norb": 12,
+   "k": 6,
+   "t": 2,
+   "itemsize": 8,
+   "nch": 4,
+   "max_len": 252,
+   "R": 16,
+   "smem_bytes": 34792,
+   "smem_ok": true,
+   "low_pairs_checked": 2268
+  },
+  {
+   "norb": 13,
+   "k": 5,
+   "t": 1,
+   "itemsize": 8,
+   "nch": 2,
+   "max_len": 792,
+   "R": 6,
+   "smem_bytes": 47272,
+   "smem_ok": true,
+   "low_pairs_checked": 3630,
+   "plan_R": 6
+  },
+  {
+   "norb": 13,
+   "k": 5,
+   "t": 1,
+   "itemsize": 16,
+   "nch": 2,
+   "max_len": 792,
+   "R": 3,
+   "smem_bytes": 47272,
+   "smem_ok": true,
+   "low_pairs_checked": 3630,
+   "plan_R": 3
+  },
+  {
+   "norb": 13,
+   "k": 5,
+   "t": 2,
+   "itemsize": 8,
+   "nch": 4,
+   "max_len": 462,
+   "R": 11,
+   "smem_bytes": 45712,
+   "smem_ok": true,
+   "low_pairs_checked": 3300
+  },
+  {
+   "norb": 14,
+   "k": 8,
+   "t": 2,
+   "itemsize": 8,
+   "nch": 4,
+   "max_len": 924,
+   "R": 5,
+   "smem_bytes": 48064,
+   "smem_ok": true,
+   "low_pairs_checked": 8712,
+   "plan_R": 5
+  },
+  {
+   "norb": 14,
+   "k": 8,
+   "t": 2,
+   "itemsize": 16,
+   "nch": 4,
+   "max_len": 924,
+   "R": 2,
+   "smem_bytes": 40672,
+   "smem_ok": true,
+   "low_pairs_checked": 8712,
+   "plan_R": 2
+  },
+  {
+   "norb": 14,
+   "k": 8,
+   "t": 3,
+   "itemsize": 8,
+   "nch": 8,
+   "max_len": 462,
+   "R": 11,
+   "smem_bytes": 45712,
+   "smem_ok": true,
+   "low_pairs_checked": 7920
+  }
+ ],
+ "givens": [
+  {
+   "n": 15,
+   "t": 0,
+   "max_abs_err": 9.485749680535094e-16
+  },
+  {
+   "n": 15,
+   "t": 1,
+   "max_abs_err": 6.139867439570945e-16
+  },
+  {
+   "n": 15,
+   "t": 3,
+   "max_abs_err": 5.585701844806365e-16
+  },
+  {
+   "n": 15,
+   "t": 5,
+   "max_abs_err": 6.905877292165184e-16
+  },
+  {
+   "n": 15,
+   "t": 6,
+   "max_abs_err": 8.005932084973443e-16
+  },
+  {
+   "n": 15,
+   "t": 7,
+   "max_abs_err": 5.302695275805846e-16
+  },
+  {
+   "n": 16,
+   "t": 0,
+   "max_abs_err": 6.497413668604471e-16
+  },
+  {
+   "n": 16,
+   "t": 1,
+   "max_abs_err": 8.196123257993793e-16
+  },
+  {
+   "n": 16,
+   "t": 3,
+   "max_abs_err": 5.79553433516819e-16
+  },
+  {
+   "n": 16,
+   "t": 5,
+   "max_abs_err": 6.713178136967714e-16
+  },
+  {
+   "n": 16,
+   "t": 6,
+   "max_abs_err": 6.77599954797753e-16
+  },
+  {
+   "n": 16,
+   "t": 7,
+   "max_abs_err": 1.0532500405730103e-15
+  },
+  {
+   "n": 17,
+   "t": 0,
+   "max_abs_err": 7.108895957933346e-16
+  },
+  {
+   "n": 17,
+   "t": 1,
+   "max_abs_err": 5.288602614808909e-16
+  },
+  {
+   "n": 17,
+   "t": 3,
+   "max_abs_err": 7.468261590855958e-16
+  },
+  {
+   "n": 17,
+   "t": 5,
+   "max_abs_err": 6.955527313080394e-16
+  },
+  {
+   "n": 17,
+   "t": 6,
+   "max_abs_err": 1.0026641665932502e-15
+  },
+  {
+   "n": 17,
+   "t": 7,
+   "max_abs_err": 7.065416064076989e-16
+  },
+  {
+   "n": 18,
+   "t": 0,
+   "max_abs_err": 6.871957671317179e-16
+  },
+  {
+   "n": 18,
+   "t": 1,
+   "max_abs_err": 5.0895734351719815e-16
+  },
+  {
+   "n": 18,
+   "t": 3,
+   "max_abs_err": 7.021666937153402e-16
+  },
+  {
+   "n": 18,
+   "t": 5,
+   "max_abs_err": 6.866350197783356e-16
+  },
+  {
+   "n": 18,
+   "t": 6,
+   "max_abs_err": 6.329245045284193e-16
+  },
+  {
+   "n": 18,
+   "t": 7,
+   "max_abs_err": 6.955527313080394e-16
+  }
+ ],
+ "string_action": [
+  {
+   "norb": 6,
+   "k": 3,
+   "t": 2,
+   "max_abs_err": 6.834017936133213e-16
+  },
+  {
+   "norb": 7,
+   "k": 2,
+   "t": 3,
+   "max_abs_err": 4.440945037744289e-16
+  },
+  {
+   "norb": 7,
+   "k": 5,
+   "t": 1,
+   "max_abs_err": 4.710277376051326e-16
+  },
+  {
+   "norb": 8,
+   "k": 4,
+   "t": 3,
+   "max_abs_err": 4.742874840267547e-16
+  },
+  {
+   "norb": 8,
+   "k": 3,
+   "t": 5,
+   "max_abs_err": 4.775249788392736e-16
+  },
+  {
+   "norb": 9,
+   "k": 4,
+   "t": 4,
+   "max_abs_err": 3.5327080320384943e-16
+  },
+  {
+   "norb": 9,
+   "k": 6,
+   "t": 2,
+   "max_abs_err": 6.86216351210183e-16
+  }
+ ]
+}

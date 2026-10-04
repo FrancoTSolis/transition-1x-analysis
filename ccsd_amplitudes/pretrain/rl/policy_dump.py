@@ -31,7 +31,8 @@ ROOT = Path(__file__).resolve().parents[2]
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--names-file", required=True)
-    ap.add_argument("--policy", action="append", default=[], help="GRPO policy checkpoint (policy_*.pt) or 'init:<slot ckpt>'")
+    ap.add_argument("--policy", action="append", default=[],
+                    help="GRPO policy checkpoint (policy_*.pt), 'init:<slot ckpt>' (one shot) or 'init4:<slot ckpt>' (4 recycles)")
     ap.add_argument("--tag", action="append", default=[])
     ap.add_argument("--labels-dir", default=None)
     ap.add_argument("--lam", type=float, default=0.005)
@@ -45,6 +46,8 @@ def main():
     for pol_path, tag in zip(args.policy, args.tag):
         if pol_path.startswith("init:"):
             init, prefix_T, sd = pol_path[5:], 0, None
+        elif pol_path.startswith("init4:"):           # pretrained 4-recycle model (3 frozen recycles + 4th step)
+            init, prefix_T, sd = pol_path[6:], 3, None
         else:
             ck = torch.load(ROOT / pol_path, map_location=dev, weights_only=False)
             init, prefix_T, sd = ck["args"]["init"], ck["args"].get("prefix_T", 0), ck["policy"]

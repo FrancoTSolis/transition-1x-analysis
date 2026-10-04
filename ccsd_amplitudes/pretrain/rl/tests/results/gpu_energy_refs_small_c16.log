@@ -1,0 +1,69 @@
+60 tasks on 30 molecules
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 100 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+  C2H3N_rxn2857_P      all1_t1                  c16 n=15 k=8  E -130.3502274034  dE -1.84e-09  corr%  57.2085 (ref  57.2085, d +8.9e-09)  |psi|^2-1 +1.2e-14  17.18s
+  C2H3N_rxn2857_P      all1_t1+adam100          c16 n=15 k=8  E -130.3691460829  dE -1.82e-09  corr%  66.4056 (ref  66.4056, d +8.8e-09)  |psi|^2-1 +4.0e-14  4.64s
+  C2H3N_rxn2857_R      all1_t1+adam100_swap     c16 n=15 k=8  E -130.4305809291  dE -1.88e-09  corr%  71.0296 (ref  71.0296, d +8.4e-09)  |psi|^2-1 +1.3e-15  4.53s
+  C2H3N_rxn2857_R      all1_t1_swap             c16 n=15 k=8  E -130.4299652889  dE -1.97e-09  corr%  70.7555 (ref  70.7555, d +8.8e-09)  |psi|^2-1 +2.8e-14  4.59s
+  C2H3N_rxn2857_TS     all4_t4                  c16 n=15 k=8  E -130.2658592810  dE -2.18e-09  corr%  59.0196 (ref  59.0196, d +1.0e-08)  |psi|^2-1 -6.4e-15  4.58s
+  C2H3N_rxn2857_TS     all4_t4+adam100          c16 n=15 k=8  E -130.2694842116  dE -2.05e-09  corr%  60.7403 (ref  60.7403, d +9.7e-09)  |psi|^2-1 +1.2e-14  4.60s
+  C2H3N_rxn2858_P      all8_t8                  c16 n=15 k=8  E -130.3312995693  dE -1.73e-09  corr%  68.4024 (ref  68.4024, d +7.8e-09)  |psi|^2-1 +1.8e-14  4.61s
+  C2H3N_rxn2858_P      frame                    c16 n=15 k=8  E -130.2768891685  dE -2.32e-09  corr%  43.9567 (ref  43.9567, d +1.0e-08)  |psi|^2-1 +3.8e-14  4.58s
+  C2H3N_rxn2858_R      frame+adam300            c16 n=15 k=8  E -130.4301661421  dE -1.93e-09  corr%  70.8449 (ref  70.8449, d +8.6e-09)  |psi|^2-1 +1.6e-14  4.73s
+  C2H3N_rxn2858_R      frame+adam300_swap       c16 n=15 k=8  E -130.4319688728  dE -1.92e-09  corr%  71.6475 (ref  71.6475, d +8.5e-09)  |psi|^2-1 +3.9e-14  4.70s
+  C2H3N_rxn2858_TS     init                     c16 n=15 k=8  E -130.0492012574  dE -8.91e-11  corr%  25.4011 (ref  25.4011, d +3.4e-10)  |psi|^2-1 +9.5e-15  4.65s
+  C2H3N_rxn2858_TS     label                    c16 n=15 k=8  E -130.1317717161  dE -1.69e-09  corr%  56.7131 (ref  56.7131, d +6.4e-09)  |psi|^2-1 +1.4e-14  4.71s
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 36 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+  C2H4O_rxn0721_P      label_swap               c16 n=16 k=9  E -150.9227588395  dE -7.13e-09  corr%  59.1923 (ref  59.1923, d +3.1e-08)  |psi|^2-1 +8.4e-15  20.35s
+  C2H4O_rxn0721_P      all1_t1                  c16 n=16 k=9  E -150.9248997563  dE -1.37e-08  corr%  60.1180 (ref  60.1180, d +5.9e-08)  |psi|^2-1 +3.6e-14  20.30s
+  C2H4O_rxn0721_R      all1_t1+adam100          c16 n=16 k=9  E -151.0299851225  dE -1.32e-08  corr%  54.3238 (ref  54.3238, d +7.0e-08)  |psi|^2-1 +1.7e-14  20.22s
+  C2H4O_rxn0721_R      all1_t1+adam100_swap     c16 n=16 k=9  E -151.0297820333  dE -1.37e-08  corr%  54.2163 (ref  54.2162, d +7.3e-08)  |psi|^2-1 -4.4e-15  20.29s
+  C2H4O_rxn0721_TS     all1_t1_swap             c16 n=16 k=9  E -150.8728661342  dE -8.27e-09  corr%  51.0577 (ref  51.0577, d +3.2e-08)  |psi|^2-1 -3.4e-15  20.29s
+  C2H4O_rxn0721_TS     all4_t4                  c16 n=16 k=9  E -150.8829828155  dE -8.21e-09  corr%  55.0040 (ref  55.0040, d +3.2e-08)  |psi|^2-1 +2.2e-14  20.25s
+  C2H4O_rxn0722_P      all4_t4+adam100          c16 n=16 k=9  E -150.9021743695  dE -1.32e-08  corr%  62.3947 (ref  62.3947, d +7.3e-08)  |psi|^2-1 +2.2e-14  20.30s
+  C2H4O_rxn0722_P      all8_t8                  c16 n=16 k=9  E -150.9042273837  dE -1.32e-08  corr%  63.5332 (ref  63.5332, d +7.3e-08)  |psi|^2-1 +1.0e-14  20.23s
+  C2H4O_rxn0722_R      frame                    c16 n=16 k=9  E -150.9891291875  dE -9.31e-09  corr%  32.6796 (ref  32.6795, d +4.9e-08)  |psi|^2-1 +4.6e-14  20.28s
+  C2H4O_rxn0722_R      frame+adam300            c16 n=16 k=9  E -151.0448644925  dE -1.37e-08  corr%  62.2065 (ref  62.2065, d +7.2e-08)  |psi|^2-1 +7.9e-14  20.46s
+  C2H4O_rxn0722_TS     frame+adam300_swap       c16 n=16 k=9  E -150.8763568439  dE -1.28e-08  corr%  56.7446 (ref  56.7446, d +6.4e-08)  |psi|^2-1 +5.8e-14  20.37s
+  C2H4O_rxn0722_TS     init                     c16 n=16 k=9  E -150.7920389781  dE -1.17e-09  corr%  14.4874 (ref  14.4874, d +5.9e-09)  |psi|^2-1 +7.1e-15  20.54s
+  C2H4O_rxn0723_P      label                    c16 n=16 k=9  E -150.9910253605  dE -1.30e-08  corr%  75.3629 (ref  75.3629, d +7.0e-08)  |psi|^2-1 +1.5e-14  20.45s
+  C2H4O_rxn0723_P      label_swap               c16 n=16 k=9  E -150.9897932542  dE -1.29e-08  corr%  74.6959 (ref  74.6959, d +7.0e-08)  |psi|^2-1 +1.8e-14  20.61s
+  C2H4O_rxn0723_R      all1_t1                  c16 n=16 k=9  E -151.0186648473  dE -1.27e-08  corr%  48.3267 (ref  48.3267, d +6.7e-08)  |psi|^2-1 -2.5e-14  20.50s
+  C2H4O_rxn0723_R      all1_t1+adam100          c16 n=16 k=9  E -151.0299851225  dE -1.32e-08  corr%  54.3238 (ref  54.3238, d +7.0e-08)  |psi|^2-1 +1.7e-14  20.65s
+  C2H4O_rxn0723_TS     all1_t1+adam100_swap     c16 n=16 k=9  E -150.8768706463  dE -1.30e-08  corr%  56.2997 (ref  56.2997, d +7.3e-08)  |psi|^2-1 +3.6e-14  20.45s
+  C2H4O_rxn0723_TS     all1_t1_swap             c16 n=16 k=9  E -150.8577218532  dE -1.33e-08  corr%  45.6444 (ref  45.6444, d +7.4e-08)  |psi|^2-1 +1.5e-14  20.71s
+  C2H4O_rxn0724_P      all4_t4                  c16 n=16 k=9  E -150.8786791046  dE -1.31e-08  corr%  41.7572 (ref  41.7572, d +6.2e-08)  |psi|^2-1 -2.1e-14  20.38s
+  C2H4O_rxn0724_P      all4_t4+adam100          c16 n=16 k=9  E -150.8978048182  dE -1.36e-08  corr%  50.7838 (ref  50.7838, d +6.4e-08)  |psi|^2-1 +6.4e-15  20.61s
+  C2H4O_rxn0724_R      all8_t8                  c16 n=16 k=9  E -151.0330851444  dE -1.38e-08  corr%  55.9661 (ref  55.9661, d +7.3e-08)  |psi|^2-1 -2.7e-14  20.50s
+  C2H4O_rxn0724_R      frame                    c16 n=16 k=9  E -150.9891291875  dE -9.31e-09  corr%  32.6796 (ref  32.6795, d +4.9e-08)  |psi|^2-1 +4.6e-14  20.64s
+  C2H4O_rxn0724_TS     frame+adam300            c16 n=16 k=9  E -150.8117960140  dE -1.38e-08  corr%  55.8927 (ref  55.8927, d +6.2e-08)  |psi|^2-1 +5.9e-14  20.49s
+  C2H4O_rxn0724_TS     frame+adam300_swap       c16 n=16 k=9  E -150.8112779451  dE -1.37e-08  corr%  55.6588 (ref  55.6588, d +6.2e-08)  |psi|^2-1 +5.9e-14  20.68s
+  C2H4O_rxn2506_P      init                     c16 n=16 k=9  E -150.8783763447  dE -1.45e-10  corr%  16.0398 (ref  16.0398, d +6.3e-10)  |psi|^2-1 +1.6e-14  20.47s
+  C2H4O_rxn2506_P      label                    c16 n=16 k=9  E -150.9819819367  dE -1.22e-08  corr%  61.0797 (ref  61.0797, d +5.3e-08)  |psi|^2-1 +2.8e-14  20.64s
+  C2H4O_rxn2506_R      label_swap               c16 n=16 k=9  E -151.0902293093  dE -1.34e-08  corr%  70.9381 (ref  70.9380, d +6.6e-08)  |psi|^2-1 +1.2e-14  20.42s
+  C2H4O_rxn2506_R      all1_t1                  c16 n=16 k=9  E -151.0664205401  dE -1.26e-08  corr%  59.3332 (ref  59.3332, d +6.1e-08)  |psi|^2-1 +3.6e-14  20.70s
+  C2H4O_rxn2506_TS     all1_t1+adam100          c16 n=16 k=9  E -150.7580855406  dE -1.32e-08  corr%  36.4541 (ref  36.4541, d +5.5e-08)  |psi|^2-1 -1.1e-14  20.48s
+  C2H4O_rxn2506_TS     all1_t1+adam100_swap     c16 n=16 k=9  E -150.7569047172  dE -1.32e-08  corr%  35.9578 (ref  35.9578, d +5.6e-08)  |psi|^2-1 -2.5e-14  20.61s
+  C2H4O_rxn2507_P      all1_t1_swap             c16 n=16 k=9  E -151.0258368602  dE -1.34e-08  corr%  56.5006 (ref  56.5006, d +6.8e-08)  |psi|^2-1 +2.7e-14  20.48s
+  C2H4O_rxn2507_P      all4_t4                  c16 n=16 k=9  E -151.0314719095  dE -1.31e-08  corr%  59.3491 (ref  59.3491, d +6.6e-08)  |psi|^2-1 -2.5e-14  20.64s
+  C2H4O_rxn2507_R      all4_t4+adam100          c16 n=16 k=9  E -151.0834269027  dE -1.33e-08  corr%  67.6224 (ref  67.6224, d +6.5e-08)  |psi|^2-1 +1.2e-14  20.50s
+  C2H4O_rxn2507_R      all8_t8                  c16 n=16 k=9  E -151.0737218217  dE -1.36e-08  corr%  62.8920 (ref  62.8920, d +6.6e-08)  |psi|^2-1 +0.0e+00  20.55s
+  C2H4O_rxn2507_TS     frame                    c16 n=16 k=9  E -150.7917384965  dE -7.47e-09  corr%  14.0383 (ref  14.0383, d +3.3e-08)  |psi|^2-1 +5.5e-14  20.53s
+  C2H4O_rxn2507_TS     frame+adam300            c16 n=16 k=9  E -150.9101594979  dE -1.33e-08  corr%  66.0755 (ref  66.0755, d +5.9e-08)  |psi|^2-1 +6.1e-14  20.75s
+  C2N2_rxn3923_P       frame+adam300_swap       c16 n=16 k=9  E -182.2753685898  dE -1.34e-08  corr%  64.4817 (ref  64.4817, d +5.1e-08)  |psi|^2-1 +3.0e-14  15.18s
+  C2N2_rxn3923_P       init                     c16 n=16 k=9  E -182.1179454858  dE -2.90e-11  corr%   4.8585 (ref   4.8585, d +1.1e-10)  |psi|^2-1 +2.2e-14  15.27s
+  C2N2_rxn3923_R       label                    c16 n=16 k=9  E -182.3941460733  dE -1.37e-08  corr%  57.0028 (ref  57.0028, d +4.5e-08)  |psi|^2-1 +2.4e-15  15.15s
+  C2N2_rxn3923_R       label_swap               c16 n=16 k=9  E -182.3975297843  dE -1.36e-08  corr%  58.1042 (ref  58.1042, d +4.4e-08)  |psi|^2-1 +1.2e-14  15.25s
+  C2N2_rxn3923_TS      all1_t1                  c16 n=16 k=9  E -182.1502728595  dE -1.30e-08  corr%  47.0625 (ref  47.0625, d +4.7e-08)  |psi|^2-1 +1.3e-14  20.50s
+  C2N2_rxn3923_TS      all1_t1+adam100          c16 n=16 k=9  E -182.1864159064  dE -1.29e-08  corr%  60.1796 (ref  60.1796, d +4.7e-08)  |psi|^2-1 -9.1e-15  20.66s
+  C3H4_rxn2391_P       all1_t1+adam100_swap     c16 n=16 k=8  E -114.5799037208  dE -9.20e-09  corr%  67.9721 (ref  67.9721, d +3.9e-08)  |psi|^2-1 -1.3e-15  28.38s
+  C3H4_rxn2391_P       all1_t1_swap             c16 n=16 k=8  E -114.5732625961  dE -9.31e-09  corr%  65.1391 (ref  65.1391, d +4.0e-08)  |psi|^2-1 -1.3e-14  28.52s
+  C3H4_rxn2391_R       all4_t4                  c16 n=16 k=8  E -114.6110853652  dE -8.78e-09  corr%  71.2298 (ref  71.2297, d +3.8e-08)  |psi|^2-1 -2.6e-14  28.37s
+  C3H4_rxn2391_R       all4_t4+adam100          c16 n=16 k=8  E -114.6014251331  dE -8.82e-09  corr%  67.0784 (ref  67.0784, d +3.8e-08)  |psi|^2-1 +3.3e-15  28.49s
+  C3H4_rxn2391_TS      all8_t8                  c16 n=16 k=8  E -114.3749473397  dE -8.59e-09  corr%  65.1635 (ref  65.1635, d +3.6e-08)  |psi|^2-1 +6.7e-15  28.34s
+  C3H4_rxn2391_TS      frame                    c16 n=16 k=8  E -114.2782208004  dE -7.37e-09  corr%  24.2448 (ref  24.2448, d +3.1e-08)  |psi|^2-1 +7.2e-14  28.49s
+
+=== summary ===
+  c16: {"n": 60, "n_full_precision": 60, "max_abs_dE": 1.383565972901124e-08, "max_abs_dcf": 7.380995559191916e-08, "mean_abs_dE": 9.368755371497173e-09, "mean_t": 17.966458286345006}
+-> pretrain/rl/tests/results/gpu_energy_refs_small_c16.json

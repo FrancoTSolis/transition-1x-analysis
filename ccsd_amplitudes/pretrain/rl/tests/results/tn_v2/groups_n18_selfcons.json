@@ -1,0 +1,33 @@
+{
+ "args": {
+  "spec": [
+   [
+    "largeval_pre4_rl4L",
+    "rl4L",
+    "C4H2_rxn9389_P"
+   ]
+  ],
+  "seed": 2028,
+  "sig_k": 0.01,
+  "sig_z": 0.005
+ },
+ "meta": {
+  "C4H2_rxn9389_P|rl4L": {
+   "stored_exact_centre": -150.62920351623367,
+   "note": "norb 18: no exact energies for the perturbed members (GPU exact needs > 12 GB); TN self-consistency only"
+  }
+ },
+ "per_group": {
+  "C4H2_rxn9389_P|rl4L": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null
+  ]
+ }
+}

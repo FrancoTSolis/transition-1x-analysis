@@ -1,0 +1,3 @@
+C2H2O2_rxn3279_P n=18 k=11 dim=31824 fuse=1 t=6: 23.79 s/energy  prepare=0.010 init+phase1=0.385 rotations=7.376 phases=0.374 energy=15.644 total=23.790  | batch 3: 73.39 s  | peak 11.79 GB (reserved 12.04)  setup 5.4s  tile 736
+-> pretrain/rl/tests/results/verify_gpu_energy_bench18_titanxp.json
+exit 0

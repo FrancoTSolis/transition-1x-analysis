@@ -1,0 +1,147 @@
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 4 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 2 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 2 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 1 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 2 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 4 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 1 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 1 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 4 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 2 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 1 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 2 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 2 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 1 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 2 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 4 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 1 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 1 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 4 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 2 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 1 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+[ 0] rand n=4 k=1 sym8 square                 E_ref +0.0981249806  numba_c16: dE -3.3e-15 dpsi 6.7e-16  numba_c8: dE +4.5e-07 dpsi 8.4e-08  torch_c16: dE -2.3e-15 dpsi 5.3e-16  torch_c8: dE +1.4e-07 dpsi 7.3e-08
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 6 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 3 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+[ 1] rand n=4 k=2 psd square                  E_ref +2.6786581335  numba_c16: dE +4.4e-15 dpsi 8.3e-16  numba_c8: dE +2.8e-07 dpsi 6.7e-08  torch_c16: dE +6.2e-15 dpsi 1.1e-15  torch_c8: dE -3.4e-07 dpsi 5.0e-08
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 10 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 5 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+[ 2] rand n=5 k=2 sym8 square                 E_ref +0.5085304925  numba_c16: dE +2.9e-15 dpsi 1.3e-15  numba_c8: dE +2.2e-08 dpsi 5.3e-08  torch_c16: dE -7.8e-16 dpsi 1.1e-15  torch_c8: dE +1.2e-07 dpsi 4.8e-08
+[ 3] rand n=5 k=3 psd all-to-all              E_ref +2.8519588267  numba_c16: dE +4.0e-15 dpsi 9.2e-16  numba_c8: dE -2.8e-08 dpsi 5.8e-08  torch_c16: dE +6.7e-15 dpsi 1.4e-15  torch_c8: dE +2.2e-07 dpsi 4.9e-08
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 15 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 8 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+[ 4] rand n=6 k=2 sym8 hex                    E_ref -3.4587349747  numba_c16: dE +1.5e-14 dpsi 2.5e-15  numba_c8: dE +5.8e-07 dpsi 4.3e-08  torch_c16: dE +1.6e-14 dpsi 2.4e-15  torch_c8: dE +3.5e-07 dpsi 8.2e-08
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 20 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+[ 5] rand n=6 k=3 psd square                  E_ref -4.3323452606  numba_c16: dE +3.0e-14 dpsi 3.9e-16  numba_c8: dE -8.8e-08 dpsi 5.0e-08  torch_c16: dE +2.8e-14 dpsi 4.4e-16  torch_c8: dE +1.1e-07 dpsi 4.8e-08
+[ 6] rand n=6 k=4 sym8 square                 E_ref +6.2677078730  numba_c16: dE -4.5e-14 dpsi 3.9e-16  numba_c8: dE +2.6e-07 dpsi 4.2e-08  torch_c16: dE -4.5e-14 dpsi 6.8e-16  torch_c8: dE +1.5e-08 dpsi 4.3e-08
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 21 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 11 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+[ 7] rand n=7 k=2 psd square                  E_ref -0.6999000053  numba_c16: dE +3.9e-15 dpsi 5.8e-16  numba_c8: dE +1.7e-07 dpsi 3.3e-08  torch_c16: dE +3.9e-15 dpsi 5.6e-16  torch_c8: dE +1.5e-07 dpsi 4.8e-08
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 18 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+[ 8] rand n=7 k=3 sym8 all-to-all             E_ref +6.9635824317  numba_c16: dE -3.6e-14 dpsi 2.9e-16  numba_c8: dE +1.9e-07 dpsi 3.4e-08  torch_c16: dE -4.0e-14 dpsi 2.7e-16  torch_c8: dE +2.9e-07 dpsi 2.8e-08
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 35 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+[ 9] rand n=7 k=4 psd hex                     E_ref -7.4417864662  numba_c16: dE +4.1e-14 dpsi 3.2e-16  numba_c8: dE -8.8e-08 dpsi 3.0e-08  torch_c16: dE +4.0e-14 dpsi 4.3e-16  torch_c8: dE +7.9e-08 dpsi 3.7e-08
+[10] rand n=7 k=5 sym8 square                 E_ref -14.3282171597  numba_c16: dE -1.2e-13 dpsi 1.1e-15  numba_c8: dE -1.8e-07 dpsi 3.7e-08  torch_c16: dE -1.2e-13 dpsi 1.7e-15  torch_c8: dE -1.1e-07 dpsi 5.9e-08
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 56 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 28 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+[11] rand n=8 k=3 psd square                  E_ref -0.2240434181  numba_c16: dE +6.1e-15 dpsi 3.1e-16  numba_c8: dE -9.0e-08 dpsi 2.6e-08  torch_c16: dE +4.3e-15 dpsi 2.7e-16  torch_c8: dE -8.4e-09 dpsi 2.5e-08
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 70 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 9 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+[12] rand n=8 k=4 sym8 square                 E_ref +0.1325471058  numba_c16: dE +9.7e-15 dpsi 7.8e-16  numba_c8: dE +7.8e-08 dpsi 1.9e-08  torch_c16: dE +1.0e-14 dpsi 5.8e-16  torch_c8: dE +4.6e-08 dpsi 2.8e-08
+[13] rand n=8 k=5 psd all-to-all              E_ref -9.4256561389  numba_c16: dE +5.3e-14 dpsi 3.4e-16  numba_c8: dE -2.8e-08 dpsi 3.0e-08  torch_c16: dE +5.3e-14 dpsi 2.0e-16  torch_c8: dE +1.4e-07 dpsi 1.7e-08
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 14 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+[14] rand n=8 k=6 sym8 hex                    E_ref +5.6785262257  numba_c16: dE -6.4e-14 dpsi 6.8e-16  numba_c8: dE -7.9e-08 dpsi 4.1e-08  torch_c16: dE -6.0e-14 dpsi 3.3e-16  torch_c8: dE -1.5e-07 dpsi 4.6e-08
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 84 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 12 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 42 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+[15] rand n=9 k=3 psd square                  E_ref -0.9927737884  numba_c16: dE -1.6e-14 dpsi 7.2e-16  numba_c8: dE +3.4e-09 dpsi 2.3e-08  torch_c16: dE -1.4e-14 dpsi 7.0e-16  torch_c8: dE -1.8e-07 dpsi 2.4e-08
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 126 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 16 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 63 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+[16] rand n=9 k=4 sym8 square                 E_ref -0.9308232546  numba_c16: dE +3.2e-15 dpsi 1.8e-16  numba_c8: dE -8.3e-08 dpsi 1.4e-08  torch_c16: dE +1.1e-14 dpsi 1.4e-16  torch_c8: dE -1.1e-07 dpsi 1.7e-08
+[17] rand n=9 k=5 psd square                  E_ref -6.4490959733  numba_c16: dE -2.0e-14 dpsi 2.5e-16  numba_c8: dE +8.9e-08 dpsi 1.2e-08  torch_c16: dE -2.0e-14 dpsi 4.1e-16  torch_c8: dE +2.4e-07 dpsi 1.5e-08
+[18] rand n=9 k=6 sym8 all-to-all             E_ref -3.4974971068  numba_c16: dE -3.0e-14 dpsi 3.2e-16  numba_c8: dE +2.9e-07 dpsi 1.6e-08  torch_c16: dE -2.8e-14 dpsi 2.6e-16  torch_c8: dE -6.2e-08 dpsi 2.0e-08
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 120 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 60 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+[19] rand n=10 k=3 psd hex                    E_ref +0.1571221326  numba_c16: dE -4.8e-15 dpsi 3.7e-16  numba_c8: dE -1.3e-08 dpsi 1.4e-07  torch_c16: dE -3.9e-15 dpsi 9.5e-16  torch_c8: dE +3.0e-07 dpsi 9.8e-08
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 105 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 49 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+[20] rand n=10 k=4 sym8 square                E_ref +2.3276762434  numba_c16: dE -2.2e-14 dpsi 1.1e-16  numba_c8: dE -8.3e-08 dpsi 1.5e-08  torch_c16: dE -2.4e-14 dpsi 2.0e-16  torch_c8: dE -4.5e-08 dpsi 1.1e-08
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 32 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 64 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+[21] rand n=10 k=5 psd square                 E_ref -5.4754689011  numba_c16: dE -1.2e-14 dpsi 1.1e-16  numba_c8: dE +1.2e-07 dpsi 7.2e-09  torch_c16: dE -8.9e-15 dpsi 1.3e-16  torch_c8: dE +1.2e-07 dpsi 7.4e-09
+[22] rand n=10 k=6 sym8 square                E_ref +12.1063701031  numba_c16: dE +2.3e-14 dpsi 1.5e-16  numba_c8: dE -1.6e-07 dpsi 1.3e-08  torch_c16: dE +2.0e-14 dpsi 1.0e-16  torch_c8: dE -1.7e-07 dpsi 1.1e-08
+[23] rand n=10 k=7 psd all-to-all             E_ref -4.6480539862  numba_c16: dE +2.5e-14 dpsi 1.3e-16  numba_c8: dE -5.0e-08 dpsi 1.4e-08  torch_c16: dE +2.2e-14 dpsi 1.9e-16  torch_c8: dE -5.5e-08 dpsi 2.1e-08
+[24] rand n=4 k=1 sym8 hex                    E_ref +2.2634573546  numba_c16: dE -7.5e-15 dpsi 9.3e-16  numba_c8: dE -1.6e-07 dpsi 8.8e-08  torch_c16: dE -5.8e-15 dpsi 1.0e-15  torch_c8: dE +1.2e-07 dpsi 5.7e-08
+[25] rand n=4 k=2 psd square                  E_ref -2.2991676642  numba_c16: dE +0.0e+00 dpsi 9.9e-16  numba_c8: dE +4.7e-08 dpsi 6.8e-08  torch_c16: dE -2.7e-15 dpsi 8.5e-16  torch_c8: dE +1.1e-07 dpsi 6.9e-08
+[26] rand n=5 k=2 sym8 square                 E_ref -0.5290618667  numba_c16: dE +8.2e-15 dpsi 6.5e-16  numba_c8: dE +2.3e-07 dpsi 8.0e-08  torch_c16: dE +6.0e-15 dpsi 9.2e-16  torch_c8: dE +3.6e-07 dpsi 1.1e-07
+[27] rand n=5 k=3 psd square                  E_ref +5.4345789969  numba_c16: dE -2.0e-14 dpsi 5.4e-16  numba_c8: dE -2.4e-07 dpsi 7.9e-08  torch_c16: dE -1.9e-14 dpsi 5.7e-16  torch_c8: dE -2.1e-07 dpsi 6.8e-08
+[28] rand n=6 k=2 sym8 all-to-all             E_ref +0.1749223700  numba_c16: dE +1.7e-15 dpsi 8.6e-16  numba_c8: dE -9.1e-08 dpsi 5.2e-08  torch_c16: dE +4.2e-16 dpsi 5.0e-16  torch_c8: dE -8.2e-08 dpsi 4.8e-08
+[29] rand n=6 k=3 psd hex                     E_ref -1.4059221273  numba_c16: dE +7.5e-15 dpsi 3.7e-16  numba_c8: dE -1.5e-07 dpsi 4.1e-08  torch_c16: dE +5.8e-15 dpsi 5.0e-16  torch_c8: dE +1.6e-07 dpsi 3.9e-08
+[30] rand n=6 k=4 sym8 square                 E_ref -5.6684761536  numba_c16: dE -4.5e-14 dpsi 2.0e-15  numba_c8: dE +2.6e-07 dpsi 4.2e-08  torch_c16: dE -4.5e-14 dpsi 1.5e-15  torch_c8: dE +1.0e-07 dpsi 4.4e-08
+[31] rand n=7 k=2 psd square                  E_ref -1.6350828519  numba_c16: dE +4.0e-15 dpsi 6.4e-16  numba_c8: dE +8.6e-08 dpsi 4.9e-08  torch_c16: dE +4.0e-15 dpsi 8.9e-16  torch_c8: dE -2.9e-07 dpsi 4.1e-08
+[32] rand n=7 k=3 sym8 square                 E_ref +2.4748146683  numba_c16: dE -2.1e-14 dpsi 5.9e-16  numba_c8: dE +2.1e-07 dpsi 3.7e-08  torch_c16: dE -2.1e-14 dpsi 7.5e-16  torch_c8: dE +3.5e-07 dpsi 3.7e-08
+[33] rand n=7 k=4 psd all-to-all              E_ref +1.8090721718  numba_c16: dE +1.3e-15 dpsi 6.6e-16  numba_c8: dE -1.7e-08 dpsi 2.4e-08  torch_c16: dE -4.4e-16 dpsi 7.5e-16  torch_c8: dE +1.1e-07 dpsi 3.5e-08
+[34] rand n=7 k=5 sym8 hex                    E_ref +0.0824941429  numba_c16: dE +2.9e-14 dpsi 6.0e-16  numba_c8: dE -3.2e-07 dpsi 3.1e-08  torch_c16: dE +1.8e-14 dpsi 6.3e-16  torch_c8: dE +5.4e-07 dpsi 3.7e-08
+[35] rand n=8 k=3 psd square                  E_ref -3.1987465686  numba_c16: dE +5.8e-15 dpsi 2.8e-16  numba_c8: dE +2.2e-07 dpsi 2.5e-08  torch_c16: dE +4.9e-15 dpsi 2.8e-16  torch_c8: dE -5.4e-08 dpsi 2.4e-08
+[36] pyscf H6 n=6 k=3 square                  E_ref -0.5962748872  numba_c16: dE -3.1e-13 dpsi 4.0e-16  numba_c8: dE +5.1e-08 dpsi 3.7e-08  torch_c16: dE -3.1e-13 dpsi 5.1e-16  torch_c8: dE -2.9e-08 dpsi 3.0e-08
+[37] pyscf H8 n=8 k=4 square                  E_ref -0.8069936670  numba_c16: dE -7.5e-13 dpsi 3.8e-16  numba_c8: dE +1.7e-09 dpsi 2.1e-08  torch_c16: dE -7.5e-13 dpsi 3.3e-16  torch_c8: dE +1.0e-08 dpsi 3.4e-08
+[38] pyscf LiH n=6 k=2 square                 E_ref -6.1455952410  numba_c16: dE +5.3e-15 dpsi 1.2e-15  numba_c8: dE +9.6e-08 dpsi 1.2e-07  torch_c16: dE +5.3e-15 dpsi 1.4e-15  torch_c8: dE -2.6e-07 dpsi 9.3e-08
+[39] pyscf BeH2 n=7 k=3 square                E_ref -9.3005060140  numba_c16: dE -5.0e-14 dpsi 4.0e-16  numba_c8: dE -1.5e-07 dpsi 2.9e-08  torch_c16: dE -5.3e-14 dpsi 3.3e-16  torch_c8: dE +1.9e-08 dpsi 2.7e-08
+[40] pyscf H2O n=7 k=5 square                 E_ref -64.9907512133  numba_c16: dE +6.5e-13 dpsi 3.6e-16  numba_c8: dE +2.9e-07 dpsi 4.2e-08  torch_c16: dE +6.4e-13 dpsi 3.7e-16  torch_c8: dE -7.4e-07 dpsi 3.8e-08
+[41] pyscf H10 n=10 k=5 square                E_ref -0.7328755071  numba_c16: dE -7.0e-13 dpsi 2.4e-16  numba_c8: dE +7.7e-08 dpsi 9.5e-09  torch_c16: dE -7.0e-13 dpsi 2.1e-16  torch_c8: dE +3.7e-08 dpsi 1.3e-08
+
+=== worst |dE| (Hartree) / max |dpsi| over 42 cases ===
+  numba_c16    max|dE| 7.49e-13   max|dpsi| 2.52e-15
+  numba_c8     max|dE| 5.79e-07   max|dpsi| 1.45e-07
+  torch_c16    max|dE| 7.49e-13   max|dpsi| 2.36e-15
+  torch_c8     max|dE| 7.36e-07   max|dpsi| 1.05e-07
+-> pretrain/rl/tests/results/gpu_energy_random.json

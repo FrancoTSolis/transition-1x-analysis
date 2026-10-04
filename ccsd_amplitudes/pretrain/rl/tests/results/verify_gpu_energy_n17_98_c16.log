@@ -1,0 +1,13 @@
+C4H2_rxn9388_P {"psi_gb": 18.9112352, "ctab_gb": 2.42399872, "budget_gb": 40.0, "free_gb": 12.489392128, "tile": 1024, "workspace_gb": 37.51200128, "nq": 151, "K": 82, "dim": 48620}
+C2H6O_rxn2392_P {"psi_gb": 15.318100512, "ctab_gb": 2.353480272, "budget_gb": 40.0, "free_gb": 12.256608256, "tile": 1024, "workspace_gb": 37.582519728, "nq": 165, "K": 81, "dim": 43758}
+C3HN_rxn2586_P label complex64: E -166.4027167670 corr% 44.46952  19.4s  tile 1024  peak alloc 8.95 GB
+C3HN_rxn2586_P all1_t1 complex64: E -166.4226016148 corr% 51.66026  11.3s  tile 1024  peak alloc 8.95 GB
+C3HN_rxn2586_P all4_t4 complex64: E -166.4299085354 corr% 54.30258  11.5s  tile 1024  peak alloc 8.95 GB
+C3HN_rxn2586_P label complex128: E -166.4027167606 corr% 44.46952  116.5s  tile 288  peak alloc 12.21 GB
+C3HN_rxn2586_P all1_t1 complex128: E -166.4226015383 corr% 51.66023  111.6s  tile 288  peak alloc 12.21 GB
+C3HN_rxn2586_P all4_t4 complex128: E -166.4299085417 corr% 54.30258  111.3s  tile 288  peak alloc 12.21 GB
+label: c8 - c16 = -6.35e-09
+all1_t1: c8 - c16 = -7.65e-08
+all4_t4: c8 - c16 = +6.33e-09
+done
+exit 0

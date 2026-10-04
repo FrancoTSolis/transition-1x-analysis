@@ -1,0 +1,85 @@
+50 tasks, 25 molecules, cands: ['all1_t1', 'all1_t1+adam100', 'all1_t1+adam100_swap', 'all1_t1_swap', 'all4_t4', 'all4_t4+adam100', 'all8_t8', 'frame', 'frame+adam300', 'frame+adam300_swap', 'init', 'label', 'label_swap']
+c16 done (874s)
+identity checks: {"name": "C3H4_rxn2391_TS", "batch_eq_single": true, "fresh_eq_reuse": true}
+  C2H3N_rxn2857_P    all8_t8                (15,8)  corr%  54.384  dE16 -1.76e-09  dE8 -6.93e-09  dE8-16 -5.17e-09  dcf8 +3.4e-08  t8 7.36s
+  C2H3N_rxn2857_R    label                  (15,8)  corr%  73.183  dE16 -1.72e-09  dE8 -1.06e-09  dE8-16 +6.67e-10  dcf8 +4.7e-09  t8 0.59s
+  C2H3N_rxn2857_TS   label                  (15,8)  corr%  68.849  dE16 -2.02e-09  dE8 +4.43e-09  dE8-16 +6.45e-09  dcf8 -2.1e-08  t8 0.61s
+  C2H3N_rxn2857_TS   all1_t1                (15,8)  corr%  58.694  dE16 -1.93e-09  dE8 -1.73e-08  dE8-16 -1.54e-08  dcf8 +8.2e-08  t8 0.66s
+  C2H3N_rxn2858_P    frame                  (15,8)  corr%  43.957  dE16 -2.32e-09  dE8 -5.36e-08  dE8-16 -5.13e-08  dcf8 +2.4e-07  t8 0.67s
+  C2H3N_rxn2858_P    all1_t1                (15,8)  corr%  61.285  dE16 -1.78e-09  dE8 -2.91e-08  dE8-16 -2.73e-08  dcf8 +1.3e-07  t8 0.67s
+  C2H3N_rxn2858_P    all1_t1_swap           (15,8)  corr%  60.866  dE16 -1.79e-09  dE8 -2.18e-08  dE8-16 -2.00e-08  dcf8 +9.8e-08  t8 0.68s
+  C2H3N_rxn2858_R    all1_t1                (15,8)  corr%  70.248  dE16 -1.94e-09  dE8 -3.59e-08  dE8-16 -3.40e-08  dcf8 +1.6e-07  t8 0.67s
+  C2H3N_rxn2858_R    all1_t1+adam100        (15,8)  corr%  71.077  dE16 -1.84e-09  dE8 +2.54e-08  dE8-16 +2.72e-08  dcf8 -1.1e-07  t8 0.64s
+  C2H3N_rxn2858_R    label_swap             (15,8)  corr%  73.040  dE16 -1.71e-09  dE8 +3.99e-08  dE8-16 +4.16e-08  dcf8 -1.8e-07  t8 0.66s
+  C2H3N_rxn2858_R    frame+adam300_swap     (15,8)  corr%  71.648  dE16 -1.92e-09  dE8 -1.90e-08  dE8-16 -1.71e-08  dcf8 +8.5e-08  t8 0.60s
+  C2H3N_rxn2858_TS   all4_t4+adam100        (15,8)  corr%  65.863  dE16 -1.89e-09  dE8 +4.37e-08  dE8-16 +4.56e-08  dcf8 -1.7e-07  t8 0.59s
+  C2H4O_rxn0721_P    frame+adam300          (16,9)  corr%  52.746  dE16 -1.29e-08  dE8 -7.24e-09  dE8-16 +5.62e-09  dcf8 +3.1e-08  t8 2.28s
+  C2H4O_rxn0721_P    all8_t8                (16,9)  corr%  55.263  dE16 -7.53e-09  dE8 +2.47e-08  dE8-16 +3.22e-08  dcf8 -1.1e-07  t8 2.32s
+  C2H4O_rxn0721_TS   frame+adam300          (16,9)  corr%  64.245  dE16 -9.47e-09  dE8 -6.59e-09  dE8-16 +2.87e-09  dcf8 +2.6e-08  t8 2.27s
+  C2H4O_rxn0722_R    frame+adam300          (16,9)  corr%  62.207  dE16 -1.37e-08  dE8 -2.52e-08  dE8-16 -1.15e-08  dcf8 +1.3e-07  t8 2.30s
+  C2H4O_rxn0722_R    all4_t4+adam100        (16,9)  corr%  54.242  dE16 -1.30e-08  dE8 -1.02e-07  dE8-16 -8.94e-08  dcf8 +5.4e-07  t8 2.44s
+  C2H4O_rxn0722_R    all8_t8                (16,9)  corr%  55.966  dE16 -1.38e-08  dE8 -1.09e-09  dE8-16 +1.27e-08  dcf8 +5.8e-09  t8 2.28s
+  C2H4O_rxn0722_R    all1_t1+adam100_swap   (16,9)  corr%  54.216  dE16 -1.37e-08  dE8 -6.31e-08  dE8-16 -4.94e-08  dcf8 +3.3e-07  t8 2.29s
+  C2H4O_rxn0722_TS   label_swap             (16,9)  corr%  63.234  dE16 -1.24e-08  dE8 -1.78e-08  dE8-16 -5.42e-09  dcf8 +8.9e-08  t8 2.29s
+  C2H4O_rxn0722_TS   frame+adam300_swap     (16,9)  corr%  56.745  dE16 -1.28e-08  dE8 -4.49e-08  dE8-16 -3.21e-08  dcf8 +2.3e-07  t8 2.33s
+  C2H4O_rxn0723_R    frame+adam300          (16,9)  corr%  62.207  dE16 -1.37e-08  dE8 -2.52e-08  dE8-16 -1.15e-08  dcf8 +1.3e-07  t8 2.31s
+  C2H4O_rxn0723_TS   frame+adam300          (16,9)  corr%  55.094  dE16 -1.33e-08  dE8 -4.02e-08  dE8-16 -2.69e-08  dcf8 +2.2e-07  t8 2.33s
+  C2H4O_rxn0724_P    init                   (16,9)  corr%  14.073  dE16 -6.23e-10  dE8 -2.28e-08  dE8-16 -2.22e-08  dcf8 +1.1e-07  t8 2.28s
+  C2H4O_rxn0724_P    label                  (16,9)  corr%  67.349  dE16 -1.32e-08  dE8 -2.25e-08  dE8-16 -9.30e-09  dcf8 +1.1e-07  t8 2.38s
+  C2H4O_rxn0724_P    frame+adam300          (16,9)  corr%  59.316  dE16 -1.35e-08  dE8 -1.94e-08  dE8-16 -5.88e-09  dcf8 +9.1e-08  t8 2.35s
+  C2H4O_rxn0724_TS   all8_t8                (16,9)  corr%  42.189  dE16 -1.33e-08  dE8 -3.06e-08  dE8-16 -1.73e-08  dcf8 +1.4e-07  t8 2.55s
+  C2H4O_rxn2506_R    label_swap             (16,9)  corr%  70.938  dE16 -1.34e-08  dE8 -2.75e-08  dE8-16 -1.40e-08  dcf8 +1.3e-07  t8 2.36s
+  C2H4O_rxn2506_TS   all4_t4+adam100        (16,9)  corr%  36.419  dE16 -1.32e-08  dE8 -7.82e-10  dE8-16 +1.24e-08  dcf8 +3.3e-09  t8 2.28s
+  C2H4O_rxn2507_P    frame                  (16,9)  corr%  37.222  dE16 -5.48e-09  dE8 -6.47e-08  dE8-16 -5.92e-08  dcf8 +3.3e-07  t8 2.32s
+  C2H4O_rxn2507_P    all1_t1                (16,9)  corr%  57.267  dE16 -1.33e-08  dE8 -3.24e-08  dE8-16 -1.91e-08  dcf8 +1.6e-07  t8 2.30s
+  C2H4O_rxn2507_P    all4_t4                (16,9)  corr%  59.349  dE16 -1.31e-08  dE8 -3.44e-08  dE8-16 -2.13e-08  dcf8 +1.7e-07  t8 2.36s
+  C2H4O_rxn2507_P    all1_t1+adam100_swap   (16,9)  corr%  67.599  dE16 -1.33e-08  dE8 -2.60e-08  dE8-16 -1.27e-08  dcf8 +1.3e-07  t8 2.36s
+  C2H4O_rxn2507_R    all4_t4+adam100        (16,9)  corr%  67.622  dE16 -1.33e-08  dE8 +4.83e-08  dE8-16 +6.16e-08  dcf8 -2.4e-07  t8 2.30s
+  C2H4O_rxn2507_TS   all1_t1                (16,9)  corr%  55.041  dE16 -1.33e-08  dE8 -3.58e-08  dE8-16 -2.25e-08  dcf8 +1.6e-07  t8 2.31s
+  C2N2_rxn3923_P     all1_t1                (16,9)  corr%  57.186  dE16 -1.43e-08  dE8 -1.63e-08  dE8-16 -2.08e-09  dcf8 +6.2e-08  t8 2.20s
+  C2N2_rxn3923_R     label                  (16,9)  corr%  57.003  dE16 -1.37e-08  dE8 -1.15e-08  dE8-16 +2.18e-09  dcf8 +3.7e-08  t8 2.04s
+  C2N2_rxn3923_R     frame+adam300          (16,9)  corr%  64.405  dE16 -1.41e-08  dE8 -5.47e-09  dE8-16 +8.64e-09  dcf8 +1.8e-08  t8 2.00s
+  C2N2_rxn3923_R     all8_t8                (16,9)  corr%  54.194  dE16 -1.37e-08  dE8 -6.67e-08  dE8-16 -5.30e-08  dcf8 +2.2e-07  t8 2.00s
+  C2N2_rxn3923_TS    init                   (16,9)  corr%   5.195  dE16 -6.10e-10  dE8 -2.34e-08  dE8-16 -2.28e-08  dcf8 +8.5e-08  t8 2.47s
+  C2N2_rxn3923_TS    label                  (16,9)  corr%  36.411  dE16 -1.26e-08  dE8 +5.60e-09  dE8-16 +1.82e-08  dcf8 -2.0e-08  t8 2.29s
+  C2N2_rxn3923_TS    frame+adam300          (16,9)  corr%  42.276  dE16 -1.22e-08  dE8 +2.76e-08  dE8-16 +3.98e-08  dcf8 -1.0e-07  t8 2.40s
+  C2N2_rxn3923_TS    all1_t1+adam100        (16,9)  corr%  60.180  dE16 -1.29e-08  dE8 -8.64e-10  dE8-16 +1.20e-08  dcf8 +3.1e-09  t8 2.32s
+  C2N2_rxn3923_TS    label_swap             (16,9)  corr%  37.516  dE16 -1.26e-08  dE8 -3.81e-08  dE8-16 -2.55e-08  dcf8 +1.4e-07  t8 2.48s
+  C3H4_rxn2391_P     all4_t4                (16,8)  corr%  66.684  dE16 -9.13e-09  dE8 -2.11e-08  dE8-16 -1.19e-08  dcf8 +9.0e-08  t8 3.12s
+  C3H4_rxn2391_P     all4_t4+adam100        (16,8)  corr%  71.582  dE16 -8.95e-09  dE8 -2.34e-08  dE8-16 -1.44e-08  dcf8 +1.0e-07  t8 3.10s
+  C3H4_rxn2391_P     all1_t1_swap           (16,8)  corr%  65.139  dE16 -9.31e-09  dE8 +1.90e-08  dE8-16 +2.83e-08  dcf8 -8.1e-08  t8 3.10s
+  C3H4_rxn2391_R     frame+adam300_swap     (16,8)  corr%  70.604  dE16 -8.77e-09  dE8 -2.33e-08  dE8-16 -1.46e-08  dcf8 +1.0e-07  t8 3.15s
+  C3H4_rxn2391_R     all1_t1+adam100_swap   (16,8)  corr%  69.390  dE16 -8.90e-09  dE8 +4.58e-09  dE8-16 +1.35e-08  dcf8 -2.0e-08  t8 3.04s
+  C3H4_rxn2391_TS    all1_t1_swap           (16,8)  corr%  58.924  dE16 -8.90e-09  dE8 -1.97e-08  dE8-16 -1.08e-08  dcf8 +8.3e-08  t8 3.04s
+{
+ "n": 50,
+ "max_abs_dE8": 1.0246984061268449e-07,
+ "max_abs_dcf8": 5.428555610587082e-07,
+ "max_abs_dE16": 1.426121798431268e-08,
+ "max_abs_dcf16": 7.376630539734919e-08,
+ "max_abs_dE8_vs16": 8.944917340159009e-08,
+ "max_abs_dcf8_vs16": 4.7387583423930124e-07,
+ "mean_dE16": -9.169872896563901e-09,
+ "shape_15_8": {
+  "n": 12,
+  "max_abs_dE8": 5.358185717341257e-08,
+  "max_abs_dE16": 2.3171367047325475e-09,
+  "mean_dE16": -1.8858396326019524e-09,
+  "max_abs_dE8_vs16": 5.1264720468680025e-08
+ },
+ "shape_16_8": {
+  "n": 6,
+  "max_abs_dE8": 2.336233251298836e-08,
+  "max_abs_dE16": 9.312159932051145e-09,
+  "mean_dE16": -8.993410460789164e-09,
+  "max_abs_dE8_vs16": 2.834484291724948e-08
+ },
+ "shape_16_9": {
+  "n": 32,
+  "max_abs_dE8": 1.0246984061268449e-07,
+  "max_abs_dE16": 1.426121798431268e-08,
+  "mean_dE16": -1.1934472077257396e-08,
+  "max_abs_dE8_vs16": 8.944917340159009e-08
+ }
+}
+-> pretrain/rl/tests/results/verify_gpu_energy_refs_s2026.json

@@ -1,0 +1,11 @@
+1. evA alone, t1 a                                           E -58.3448055942 ref -58.3448055942 diff -5.46e-12  OK
+2. evB created, evB t1 a                                     E -198.3884663327 ref -198.3884663327 diff -1.07e-11  OK
+3. evA again (cached MPO from own frame), t1 a               E -58.3448055942 ref -58.3448055942 diff -5.46e-12  OK
+4. evA new t1 b (MPO built while evB frame is global)        E -58.8544792448 ref -58.8544792448 diff -6.20e-12  OK
+5. evB deleted, evC created, evC t1 a                        E 82.4213487195 ref 82.4213487195 diff +1.39e-12  OK
+6. evA t1 b (cached MPO allocated in evB's freed frame?)     E -58.8544792448 ref -58.8544792448 diff -6.20e-12  OK
+7. evA t1 a (rebuild)                                        E -58.3448055942 ref -58.3448055942 diff -5.46e-12  OK
+8. evB2 (re-created) t1 b                                    E -249.1063223066 ref -249.1063223065 diff -1.63e-11  OK
+9. evC t1 b                                                  E 98.1882702160 ref 98.1882702160 diff +1.56e-12  OK
+10. evA t1 a                                                 E -58.3448055942 ref -58.3448055942 diff -5.46e-12  OK
+max |diff| 1.6342482922482304e-11

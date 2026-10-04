@@ -1,0 +1,7 @@
+C2H3N_rxn2857_P n=15 k=8 dim=6435 fuse=1 t=3: 0.60 s/energy  prepare=0.007 init+phase1=0.022 rotations=0.169 phases=0.019 energy=0.384 total=0.600  | batch 8: 4.98 s  | peak 3.00 GB (reserved 3.38)  setup 3.9s  tile 1024
+C3H4_rxn2391_P n=16 k=8 dim=12870 fuse=1 t=4: 2.90 s/energy  prepare=0.014 init+phase1=0.062 rotations=0.733 phases=0.059 energy=2.028 total=2.897  | batch 8: 23.41 s  | peak 4.65 GB (reserved 5.01)  setup 1.1s  tile 1024
+C2H4O_rxn0721_P n=16 k=9 dim=11440 fuse=1 t=4: 2.24 s/energy  prepare=0.017 init+phase1=0.068 rotations=0.582 phases=0.044 energy=1.525 total=2.236  | batch 8: 18.02 s  | peak 4.37 GB (reserved 4.73)  setup 1.0s  tile 1024
+C2HNO_rxn4439_P n=17 k=10 dim=19448 fuse=1 t=5: 7.68 s/energy  prepare=0.019 init+phase1=0.158 rotations=2.209 phases=0.145 energy=5.147 total=7.679  | batch 8: 61.97 s  | peak 7.00 GB (reserved 7.33)  setup 1.6s  tile 1024
+C3HN_rxn2586_P n=17 k=9 dim=24310 fuse=1 t=5: 12.21 s/energy  prepare=0.018 init+phase1=0.219 rotations=3.332 phases=0.207 energy=8.432 total=12.208  | batch 8: 98.18 s  | peak 8.84 GB (reserved 9.16)  setup 1.4s  tile 1024
+-> pretrain/rl/tests/results/verify_gpu_energy_bench_titanxp.json
+exit 0

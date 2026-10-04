@@ -1,0 +1,51 @@
+16 tasks, 12 molecules, cands: ['all1_t1', 'all1_t1+adam100_swap', 'all1_t1_swap', 'all4_t4', 'all4_t4+adam100', 'all8_t8', 'frame+adam300', 'frame+adam300_swap']
+c16 done (324s)
+identity checks: {"name": "C3H4_rxn2391_R", "batch_eq_single": true, "fresh_eq_reuse": true}
+  C2H3N_rxn2857_P    all1_t1                (15,8)  corr%  57.209  dE16 -1.84e-09  dE8 +2.35e-09  dE8-16 +4.19e-09  dcf8 -1.1e-08  t8 5.50s
+  C2H3N_rxn2858_TS   all4_t4                (15,8)  corr%  62.421  dE16 -1.87e-09  dE8 +1.66e-08  dE8-16 +1.85e-08  dcf8 -6.3e-08  t8 0.59s
+  C2H4O_rxn0721_R    all4_t4                (16,9)  corr%  50.940  dE16 -1.28e-08  dE8 -2.62e-08  dE8-16 -1.33e-08  dcf8 +1.4e-07  t8 2.24s
+  C2H4O_rxn0721_R    frame+adam300_swap     (16,9)  corr%  62.270  dE16 -1.37e-08  dE8 -3.24e-08  dE8-16 -1.87e-08  dcf8 +1.7e-07  t8 2.27s
+  C2H4O_rxn0722_TS   all8_t8                (16,9)  corr%  61.842  dE16 -1.30e-08  dE8 -5.42e-08  dE8-16 -4.12e-08  dcf8 +2.7e-07  t8 2.25s
+  C2H4O_rxn0723_TS   all1_t1_swap           (16,9)  corr%  45.644  dE16 -1.33e-08  dE8 +2.78e-08  dE8-16 +4.10e-08  dcf8 -1.5e-07  t8 2.20s
+  C2H4O_rxn0723_TS   all1_t1+adam100_swap   (16,9)  corr%  56.300  dE16 -1.30e-08  dE8 +7.80e-09  dE8-16 +2.08e-08  dcf8 -4.3e-08  t8 2.22s
+  C2H4O_rxn0724_R    frame+adam300          (16,9)  corr%  62.207  dE16 -1.37e-08  dE8 -2.52e-08  dE8-16 -1.15e-08  dcf8 +1.3e-07  t8 2.24s
+  C2H4O_rxn0724_R    all4_t4+adam100        (16,9)  corr%  54.242  dE16 -1.30e-08  dE8 -1.02e-07  dE8-16 -8.94e-08  dcf8 +5.4e-07  t8 2.25s
+  C2H4O_rxn2506_P    all4_t4                (16,9)  corr%  51.065  dE16 -1.12e-08  dE8 -4.66e-08  dE8-16 -3.55e-08  dcf8 +2.0e-07  t8 2.20s
+  C2H4O_rxn2506_R    all4_t4+adam100        (16,9)  corr%  67.622  dE16 -1.33e-08  dE8 +4.83e-08  dE8-16 +6.16e-08  dcf8 -2.4e-07  t8 2.20s
+  C2H4O_rxn2506_R    all1_t1+adam100_swap   (16,9)  corr%  62.038  dE16 -1.35e-08  dE8 -4.77e-09  dE8-16 +8.68e-09  dcf8 +2.3e-08  t8 2.23s
+  C2H4O_rxn2506_TS   all1_t1+adam100_swap   (16,9)  corr%  35.958  dE16 -1.32e-08  dE8 +1.59e-08  dE8-16 +2.91e-08  dcf8 -6.7e-08  t8 2.25s
+  C2H4O_rxn2507_R    all1_t1_swap           (16,9)  corr%  59.374  dE16 -1.25e-08  dE8 +7.37e-09  dE8-16 +1.99e-08  dcf8 -3.6e-08  t8 2.22s
+  C3H4_rxn2391_P     frame+adam300          (16,8)  corr%  67.253  dE16 -8.94e-09  dE8 -3.83e-08  dE8-16 -2.94e-08  dcf8 +1.6e-07  t8 3.30s
+  C3H4_rxn2391_R     all4_t4                (16,8)  corr%  71.230  dE16 -8.78e-09  dE8 -4.32e-09  dE8-16 +4.46e-09  dcf8 +1.9e-08  t8 2.90s
+{
+ "n": 16,
+ "max_abs_dE8": 1.0246984061268449e-07,
+ "max_abs_dcf8": 5.428555610587082e-07,
+ "max_abs_dE16": 1.3731892067880835e-08,
+ "max_abs_dcf16": 7.380995559191916e-08,
+ "max_abs_dE8_vs16": 8.944917340159009e-08,
+ "max_abs_dcf8_vs16": 4.7387583423930124e-07,
+ "mean_dE16": -1.1102044616961848e-08,
+ "shape_15_8": {
+  "n": 2,
+  "max_abs_dE8": 1.6649977396809845e-08,
+  "max_abs_dE16": 1.8733032902673585e-09,
+  "mean_dE16": -1.8560086800789577e-09,
+  "max_abs_dE8_vs16": 1.8523280687077204e-08
+ },
+ "shape_16_8": {
+  "n": 2,
+  "max_abs_dE8": 3.830082562217285e-08,
+  "max_abs_dE16": 8.935202799875697e-09,
+  "mean_dE16": -8.855302269239473e-09,
+  "max_abs_dE8_vs16": 2.9365622822297155e-08
+ },
+ "shape_16_9": {
+  "n": 12,
+  "max_abs_dE8": 1.0246984061268449e-07,
+  "max_abs_dE16": 1.3731892067880835e-08,
+  "mean_dE16": -1.3017507664396058e-08,
+  "max_abs_dE8_vs16": 8.944917340159009e-08
+ }
+}
+-> pretrain/rl/tests/results/verify_gpu_energy_refs_s99_v2.json

@@ -1,0 +1,12 @@
+givens reconstruction err 5.90e-16
+n=4 nelec=(2, 2) slater=False: E_mps 39.3374401140  E_ffsim 39.3374401140  diff 2.84e-14 | norm 1.000000000000 bonds [4, 16, 36] disc 3.3e-16
+n=4 nelec=(2, 2) slater=True: E_mps 39.3374401140  E_ffsim 39.3374401140  diff 7.11e-14 | norm 1.000000000000 bonds [4, 16, 36] disc 2.2e-16
+n=5 nelec=(2, 2) slater=False: E_mps 49.9464243207  E_ffsim 49.9464243207  diff 2.84e-13 | norm 1.000000000000 bonds [100, 49, 16, 4] disc 8.9e-16
+n=5 nelec=(2, 2) slater=True: E_mps 49.9464243207  E_ffsim 49.9464243207  diff 3.77e-13 | norm 1.000000000000 bonds [4, 16, 49, 100] disc 7.8e-16
+n=5 nelec=(3, 2) slater=False: E_mps 6.9734103464  E_ffsim 6.9734103464  diff -2.66e-14 | norm 1.000000000000 bonds [100, 49, 16, 4] disc 6.7e-16
+n=6 nelec=(3, 3) slater=False: E_mps -9.2144654411  E_ffsim -9.2144654411  diff -1.42e-14 | norm 1.000000000000 bonds [400, 196, 64, 16, 4] disc 1.0e-15
+n=6 nelec=(3, 3) slater=True: E_mps -9.2144654411  E_ffsim -9.2144654411  diff -4.09e-14 | norm 1.000000000000 bonds [400, 196, 64, 16, 4] disc 7.8e-16
+split n=6 nelec=(3, 3) chi=1000000: E -5.5483334195 ffsim -5.5483334194 diff -7.84e-12 maxbond 64 disc 3.3e-15
+split n=7 nelec=(3, 3) chi=1000000: E 4.2968245245 ffsim 4.2968245245 diff -1.50e-12 maxbond 64 disc 6.8e-15
+public API (ER basis, cpu) n=6: E -105.2370803143 ffsim -105.2370802390 diff -7.53e-08 maxbond 180
+all ok

@@ -1,0 +1,1 @@
+{"args": {"params_dir": "/tmp/claude-23917/-xuanwu-tank-east-fts-projects-transition-1x-analysis/f16f5d12-46a8-4d5b-8f5d-48bcb61a4c89/scratchpad", "names": "C3H5N3_rxn2003_P", "tag": "net", "group": 8, "seed": 4321, "out": "pretrain/rl/tests/results/perturbed_n29"}, "per_molecule": {"C3H5N3_rxn2003_P": [null, null, null, null, null, null, null, null, null]}}

@@ -1,0 +1,42 @@
+37 tasks on 13 molecules
+  C2HNO_rxn4439_P      rl1                      c8  n=17 k=10  E -202.9979579834  dE -1.87e-08  corr%  62.1963 (ref  62.1963, d +7.2e-08)  |psi|^2-1 +1.5e-06  18.94s
+  C2HNO_rxn4439_P      label                    c8  n=17 k=10  E -202.9784153027  dE +nan  corr%  54.6964 (ref  54.7000, d -3.6e-05)  |psi|^2-1 -2.0e-07  7.35s
+  C2HNO_rxn4439_P      all1_t1                  c8  n=17 k=10  E -202.9785569737  dE +nan  corr%  54.7507 (ref  54.8000, d -4.9e-04)  |psi|^2-1 +2.5e-08  7.28s
+  C2HNO_rxn4439_R      rl1                      c8  n=17 k=10  E -203.1020793170  dE -4.06e-08  corr%  69.6680 (ref  69.6680, d +1.4e-07)  |psi|^2-1 -5.8e-07  7.27s
+  C2HNO_rxn4439_R      label                    c8  n=17 k=10  E -203.0787312866  dE +nan  corr%  61.5569 (ref  61.6000, d -4.3e-04)  |psi|^2-1 -9.1e-07  7.29s
+  C2HNO_rxn4439_R      all1_t1                  c8  n=17 k=10  E -203.0589236685  dE +nan  corr%  54.6758 (ref  54.7000, d -2.4e-04)  |psi|^2-1 +2.0e-07  7.49s
+  C2HNO_rxn4439_TS     rl1                      c8  n=17 k=10  E -202.9044566816  dE -2.33e-08  corr%  63.0403 (ref  63.0403, d +7.6e-08)  |psi|^2-1 +6.0e-07  7.72s
+  C2HNO_rxn4439_TS     label                    c8  n=17 k=10  E -202.8866617033  dE +nan  corr%  57.2632 (ref  57.3000, d -3.7e-04)  |psi|^2-1 +1.3e-07  7.68s
+  C2HNO_rxn4439_TS     all1_t1                  c8  n=17 k=10  E -202.8756046034  dE +nan  corr%  53.6735 (ref  53.7000, d -2.6e-04)  |psi|^2-1 -1.1e-06  7.77s
+  C2HNO_rxn4440_P      rl1                      c8  n=17 k=10  E -203.0922489845  dE -6.50e-08  corr%  64.2218 (ref  64.2218, d +2.2e-07)  |psi|^2-1 +2.6e-07  6.41s
+  C2HNO_rxn4440_P      label                    c8  n=17 k=10  E -203.1148742983  dE +nan  corr%  71.9090 (ref  71.9000, d +9.0e-05)  |psi|^2-1 +6.0e-08  6.42s
+  C2HNO_rxn4440_P      all1_t1                  c8  n=17 k=10  E -203.0850270441  dE +nan  corr%  61.7681 (ref  61.8000, d -3.2e-04)  |psi|^2-1 -7.2e-07  6.65s
+  C2HNO_rxn4440_R      rl1                      c8  n=17 k=10  E -203.1020793170  dE -4.06e-08  corr%  69.6680 (ref  69.6680, d +1.4e-07)  |psi|^2-1 -5.8e-07  7.61s
+  C2HNO_rxn4440_R      label                    c8  n=17 k=10  E -203.0787312866  dE +nan  corr%  61.5569 (ref  61.6000, d -4.3e-04)  |psi|^2-1 -9.1e-07  7.63s
+  C2HNO_rxn4440_R      all1_t1                  c8  n=17 k=10  E -203.0589236685  dE +nan  corr%  54.6758 (ref  54.7000, d -2.4e-04)  |psi|^2-1 +2.0e-07  7.79s
+  C2HNO_rxn4440_TS     rl1                      c8  n=17 k=10  E -202.8669829680  dE -7.54e-08  corr%  49.1256 (ref  49.1256, d +2.4e-07)  |psi|^2-1 -1.3e-06  7.62s
+  C2HNO_rxn4440_TS     label                    c8  n=17 k=10  E -202.9232914442  dE +nan  corr%  67.0569 (ref  67.1000, d -4.3e-04)  |psi|^2-1 -9.7e-07  7.62s
+  C2HNO_rxn4440_TS     all1_t1                  c8  n=17 k=10  E -202.8171165955  dE +nan  corr%  33.2459 (ref  33.2000, d +4.6e-04)  |psi|^2-1 +1.4e-07  7.67s
+  C2HNO_rxn4441_P      rl1                      c8  n=17 k=10  E -203.0558431921  dE -4.97e-08  corr%  67.3091 (ref  67.3091, d +1.9e-07)  |psi|^2-1 -5.4e-07  7.72s
+  C2HNO_rxn4441_P      label                    c8  n=17 k=10  E -203.0517263319  dE +nan  corr%  65.7545 (ref  65.8000, d -4.5e-04)  |psi|^2-1 -4.1e-07  7.90s
+  C2HNO_rxn4441_P      all1_t1                  c8  n=17 k=10  E -203.0010957613  dE +nan  corr%  46.6352 (ref  46.6000, d +3.5e-04)  |psi|^2-1 -3.9e-07  7.65s
+  C2HNO_rxn4441_R      rl1                      c8  n=17 k=10  E -203.1020793170  dE -4.06e-08  corr%  69.6680 (ref  69.6680, d +1.4e-07)  |psi|^2-1 -5.8e-07  7.62s
+  C2HNO_rxn4441_R      label                    c8  n=17 k=10  E -203.0787312866  dE +nan  corr%  61.5569 (ref  61.6000, d -4.3e-04)  |psi|^2-1 -9.1e-07  7.98s
+  C2HNO_rxn4441_R      all1_t1                  c8  n=17 k=10  E -203.0589236685  dE +nan  corr%  54.6758 (ref  54.7000, d -2.4e-04)  |psi|^2-1 +2.0e-07  7.89s
+  C2HNO_rxn4441_TS     rl1                      c8  n=17 k=10  E -202.9676553684  dE -9.00e-09  corr%  61.6338 (ref  61.6338, d +3.2e-08)  |psi|^2-1 -1.8e-07  7.72s
+  C2HNO_rxn4441_TS     label                    c8  n=17 k=10  E -202.9242359162  dE +nan  corr%  46.0253 (ref  46.0000, d +2.5e-04)  |psi|^2-1 -3.5e-07  7.82s
+  C2HNO_rxn4441_TS     all1_t1                  c8  n=17 k=10  E -202.9026415916  dE +nan  corr%  38.2625 (ref  38.3000, d -3.7e-04)  |psi|^2-1 -3.8e-07  8.02s
+  C2HNO_rxn4442_P      rl1                      c8  n=17 k=10  E -202.9701789246  dE -1.00e-07  corr%  64.3500 (ref  64.3500, d +3.9e-07)  |psi|^2-1 -2.9e-07  7.67s
+  C2HNO_rxn4442_P      label                    c8  n=17 k=10  E -202.9846682543  dE +nan  corr%  69.9530 (ref  70.0000, d -4.7e-04)  |psi|^2-1 -1.0e-06  7.88s
+  C2HNO_rxn4442_P      all1_t1                  c8  n=17 k=10  E -202.9257893788  dE +nan  corr%  47.1847 (ref  47.2000, d -1.5e-04)  |psi|^2-1 -7.4e-07  7.74s
+  C2HNO_rxn4442_R      rl1                      c8  n=17 k=10  E -203.1020793170  dE -4.06e-08  corr%  69.6680 (ref  69.6680, d +1.4e-07)  |psi|^2-1 -5.8e-07  7.69s
+  C2HNO_rxn4442_R      label                    c8  n=17 k=10  E -203.0787312866  dE +nan  corr%  61.5569 (ref  61.6000, d -4.3e-04)  |psi|^2-1 -9.1e-07  7.96s
+  C2HNO_rxn4442_R      all1_t1                  c8  n=17 k=10  E -203.0589236685  dE +nan  corr%  54.6758 (ref  54.7000, d -2.4e-04)  |psi|^2-1 +2.0e-07  7.74s
+  C2HNO_rxn4442_TS     rl1                      c8  n=17 k=10  E -202.8695309056  dE -5.23e-08  corr%  52.6256 (ref  52.6255, d +1.8e-07)  |psi|^2-1 +3.6e-07  7.77s
+  C2HNO_rxn4442_TS     label                    c8  n=17 k=10  E -202.8736240238  dE +nan  corr%  54.0367 (ref  54.0000, d +3.7e-04)  |psi|^2-1 +1.2e-07  7.87s
+  C2HNO_rxn4442_TS     all1_t1                  c8  n=17 k=10  E -202.8022807192  dE +nan  corr%  29.4409 (ref  29.4000, d +4.1e-04)  |psi|^2-1 -5.0e-07  7.98s
+  C3HN_rxn2586_P       label                    c8  n=17 k=9  E -166.4027167670  dE +nan  corr%  44.4695 (ref  44.5000, d -3.0e-04)  |psi|^2-1 +2.4e-07  11.95s
+
+=== summary ===
+  c8: {"n": 37, "n_full_precision": 12, "max_abs_dE": 1.0031678243649367e-07, "max_abs_dcf": 3.879231285086604e-07, "mean_abs_dE": 4.635732627396768e-08, "max_abs_dcf_vs_1decimal": 0.0004925631784806761, "mean_t": 8.020429867219079}
+-> pretrain/rl/tests/results/gpu_energy_refs_n17_c8.json

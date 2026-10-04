@@ -1,0 +1,14 @@
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 100 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+C2H3N_rxn2858_P|rl4L                     norb 15 centre -130.324853802 stored -130.32485380178113 (diff 0.0) group std 0.688 mHa (18s)
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 36 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+C2H4O_rxn0724_P|rl4s                     norb 16 centre -150.929528323 stored -150.92952832330354 (diff 0.0) group std 1.305 mHa (38s)
+C2H4O_rxn2507_TS|rl4L                    norb 16 centre -150.913401603 stored -150.91340160347238 (diff 0.0) group std 0.958 mHa (58s)
+C3H4_rxn2391_TS|rl4s                     norb 16 centre -114.378988692 stored -114.37898869160011 (diff 0.0) group std 1.253 mHa (85s)
+C3H4_rxn2391_P|rl4L                      norb 16 centre -114.582681825 stored -114.58268182508317 (diff 0.0) group std 0.887 mHa (111s)
+C2HNO_rxn4439_TS|rl4L                    norb 17 centre -202.924174788 stored -202.92417478839053 (diff 0.0) group std 1.181 mHa (177s)
+C2HNO_rxn4441_P|rl4L                     norb 17 centre -203.051637651 stored -203.05163765133923 (diff 0.0) group std 1.107 mHa (241s)
+C2HNO_rxn4440_R|pre4                     norb 17 centre -203.063796245 stored -203.0637962454706 (diff 0.0) group std 3.856 mHa (306s)
+C2HNO_rxn4442_TS|rl4                     norb 17 centre -202.888254996 stored -202.8882549879306 (diff -8.104194648694829e-09) group std 1.747 mHa (372s)
+C2HNO_rxn4441_R|all4_t4                  norb 17 centre -203.063796212 stored None (diff None) group std 2.707 mHa (437s)

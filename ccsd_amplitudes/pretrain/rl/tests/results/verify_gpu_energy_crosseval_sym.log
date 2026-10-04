@@ -1,0 +1,12 @@
+asym: h1 1.5e-15  eri 7.2e-16
+{"engine_full": -182.39414607330116, "engine_sym": -182.39414607330116}
+rdm done (488s) {"engine_full": -182.39414607330116, "engine_sym": -182.39414607330116, "rdm_full": -182.39414607208545, "rdm_sym": -182.39414607208545}
+linop_full (332s): -182.394146072784
+linop_sym (328s): -182.394146072784
+  engine_full  -182.394146073301   - engine_sym +0.000e+00
+  engine_sym   -182.394146073301   - engine_sym +0.000e+00
+  rdm_full     -182.394146072085   - engine_sym +1.216e-09
+  rdm_sym      -182.394146072085   - engine_sym +1.216e-09
+  linop_full   -182.394146072784   - engine_sym +5.174e-10
+  linop_sym    -182.394146072784   - engine_sym +5.174e-10
+done

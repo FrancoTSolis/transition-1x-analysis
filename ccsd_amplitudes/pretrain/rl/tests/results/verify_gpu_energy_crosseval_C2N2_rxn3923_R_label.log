@@ -1,0 +1,4 @@
+engine: E -182.394146073301  energy_of_state(normalized) -182.394146073301  |psi|^2-1 -5.7e-12  asym 5.7e-17
+ffsim linop: E -182.394146072784  (327s)  engine - linop -5.174e-10
+pyscf rdm12: E -182.394146072216  (454s)  engine - rdm -1.085e-09  linop - rdm -5.674e-10
+-> pretrain/rl/tests/results/verify_gpu_energy_crosseval_C2N2_rxn3923_R_label.json

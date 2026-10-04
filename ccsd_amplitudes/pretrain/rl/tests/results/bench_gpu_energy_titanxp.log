@@ -1,0 +1,13 @@
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 100 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+C2H3N_rxn2857_P n=15 k=8 dim=6435 fuse=1 t=3: 0.66 s/energy  prepare=0.026 init+phase1=0.029 rotations=0.173 phases=0.042 energy=0.391 total=0.661  | batch 8: 5.38 s  | peak 3.00 GB (reserved 3.38)  setup 4.6s  tile 1024
+C3H4_rxn2391_P n=16 k=8 dim=12870 fuse=1 t=4: 2.91 s/energy  prepare=0.024 init+phase1=0.066 rotations=0.746 phases=0.048 energy=2.025 total=2.909  | batch 8: 23.38 s  | peak 4.65 GB (reserved 5.01)  setup 1.4s  tile 1024
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 36 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+C2H4O_rxn0721_P n=16 k=9 dim=11440 fuse=1 t=4: 2.24 s/energy  prepare=0.015 init+phase1=0.056 rotations=0.597 phases=0.042 energy=1.534 total=2.245  | batch 8: 18.10 s  | peak 4.37 GB (reserved 4.73)  setup 1.7s  tile 1024
+C2HNO_rxn4439_P n=17 k=10 dim=19448 fuse=1 t=5: 7.32 s/energy  prepare=0.036 init+phase1=0.172 rotations=2.137 phases=0.131 energy=4.843 total=7.320  | batch 8: 58.61 s  | peak 7.00 GB (reserved 7.33)  setup 2.7s  tile 1024
+C3HN_rxn2586_P n=17 k=9 dim=24310 fuse=1 t=5: 11.49 s/energy  prepare=0.044 init+phase1=0.206 rotations=3.185 phases=0.196 energy=7.863 total=11.494  | batch 8: 92.32 s  | peak 8.84 GB (reserved 9.16)  setup 2.5s  tile 1024
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/numba/cuda/dispatcher.py:537: NumbaPerformanceWarning: Grid size 64 will likely result in GPU under-utilization due to low occupancy.
+  warn(NumbaPerformanceWarning(msg))
+C2H2O2_rxn3279_P n=18 k=11 dim=31824 fuse=1 t=6: 22.79 s/energy  prepare=0.040 init+phase1=0.398 rotations=7.301 phases=0.382 energy=14.673 total=22.794  | batch 8: 183.08 s  | peak 11.64 GB (reserved 11.91)  setup 4.2s  tile 672
+-> pretrain/rl/tests/results/bench_gpu_energy_titanxp.json

@@ -1,0 +1,52 @@
+[oom] C4H2_rxn9388_P: MemoryError: norb=18 k=9: state 18.91 GB + coefficient table 2.42 GB exceed the budget 11.49 GB
+[oom] C2H6O_rxn2392_P: MemoryError: norb=18 k=10: state 15.32 GB + coefficient table 2.35 GB exceed the budget 11.39 GB
+[n17 (10,7)] C2HNO_rxn4439_P rl1 complex64: E -202.9979579834 dE -1.87e-08 dcf +7.2e-08 corr% 62.1963  12.7s  reserved 7.68 GB
+[n17 (10,7)] C2HNO_rxn4441_P rl1 complex64: E -203.0558431917 dE -4.94e-08 dcf +1.9e-07 corr% 67.3091  7.3s  reserved 7.68 GB
+[n17 (10,7)] C2HNO_rxn4441_TS rl1 complex64: E -202.9676553684 dE -9.00e-09 dcf +3.2e-08 corr% 61.6338  7.1s  reserved 7.90 GB
+[n17 (10,7)] C2HNO_rxn4442_P rl1 complex64: E -202.9701789246 dE -1.00e-07 dcf +3.9e-07 corr% 64.3500  7.1s  reserved 7.74 GB
+[n17 (10,7)] C2HNO_rxn4439_P rl1 complex128: E -202.9979580087 dE -4.39e-08 dcf +1.7e-07 corr% 62.1963  71.6s  reserved 11.34 GB
+[n17 (10,7)] C2HNO_rxn4441_P rl1 complex128: E -203.0558431774 dE -3.51e-08 dcf +1.3e-07 corr% 67.3091  65.0s  reserved 11.34 GB
+[n17 (10,7)] C2HNO_rxn4441_TS rl1 complex128: E -202.9676554000 dE -4.07e-08 dcf +1.5e-07 corr% 61.6338  65.1s  reserved 11.34 GB
+[n17 (10,7)] C2HNO_rxn4442_P rl1 complex128: E -202.9701788533 dE -2.90e-08 dcf +1.1e-07 corr% 64.3500  65.1s  reserved 11.41 GB
+   c8 - c16 ('C2HNO_rxn4439_P', 'rl1'): +2.53e-08
+   c8 - c16 ('C2HNO_rxn4441_P', 'rl1'): -1.42e-08
+   c8 - c16 ('C2HNO_rxn4441_TS', 'rl1'): +3.17e-08
+   c8 - c16 ('C2HNO_rxn4442_P', 'rl1'): -7.13e-08
+[n17 (9,8)] C3HN_rxn2586_P label: corr% 44.4695 (log 44.5)  11.1s  reserved 9.46 GB  alloc 8.99 GB
+[n17 (9,8)] C3HN_rxn2586_P all1_t1: corr% 51.6603 (log -)  11.2s  reserved 9.46 GB  alloc 8.99 GB
+[n17 (9,8)] C3HN_rxn2586_R label: corr% 59.4339 (log -)  11.1s  reserved 9.46 GB  alloc 8.99 GB
+[n17 (9,8)] C3HN_rxn2586_R all1_t1: corr% 53.8162 (log -)  11.3s  reserved 9.46 GB  alloc 8.99 GB
+[n17 (9,8)] C3HN_rxn2586_TS label: corr% 47.9074 (log -)  11.6s  reserved 9.87 GB  alloc 9.40 GB
+[n17 (9,8)] C3HN_rxn2586_TS all1_t1: corr% 47.4725 (log -)  11.7s  reserved 9.87 GB  alloc 9.40 GB
+[n17 (9,8)] C3HN_rxn2587_P label: corr% 53.2518 (log -)  11.3s  reserved 9.87 GB  alloc 9.40 GB
+[n17 (9,8)] C3HN_rxn2587_P all1_t1: corr% 58.1548 (log -)  11.4s  reserved 9.87 GB  alloc 9.40 GB
+[n17 (9,8)] C3HN_rxn2587_R label: corr% 59.4339 (log -)  11.4s  reserved 9.87 GB  alloc 9.40 GB
+[n17 (9,8)] C3HN_rxn2587_R all1_t1: corr% 53.8162 (log -)  11.4s  reserved 9.87 GB  alloc 9.40 GB
+[n17 (9,8)] C3HN_rxn2587_TS label: corr% 52.9932 (log -)  11.6s  reserved 9.87 GB  alloc 9.40 GB
+[n17 (9,8)] C3HN_rxn2587_TS all1_t1: corr% 58.0021 (log -)  11.7s  reserved 9.87 GB  alloc 9.40 GB
+[n17 (9,8)] C3HN_rxn9249_P label: corr% 60.6362 (log -)  11.7s  reserved 9.87 GB  alloc 9.40 GB
+[n17 (9,8)] C3HN_rxn9249_P all1_t1: corr% 65.2020 (log -)  11.6s  reserved 9.87 GB  alloc 9.40 GB
+[n17 (9,8)] C3HN_rxn9249_R label: corr% 59.8694 (log -)  11.4s  reserved 9.87 GB  alloc 9.40 GB
+[n17 (9,8)] C3HN_rxn9249_R all1_t1: corr% 53.8162 (log -)  11.5s  reserved 9.87 GB  alloc 9.40 GB
+[n17 (9,8)] C3HN_rxn9249_TS label: corr% 57.6282 (log -)  11.7s  reserved 9.87 GB  alloc 9.40 GB
+[n17 (9,8)] C3HN_rxn9249_TS all1_t1: corr% 51.3151 (log -)  11.7s  reserved 9.87 GB  alloc 9.40 GB
+[n17 (9,8)] C3HN_rxn2586_P all4_t4: corr% 54.3026 (log -)  11.5s  reserved 9.87 GB  alloc 9.40 GB
+[n17 (9,8)] C3HN_rxn2586_R all4_t4: corr% 55.1487 (log -)  11.4s  reserved 9.87 GB  alloc 9.40 GB
+[n17 (9,8)] C3HN_rxn2586_TS all4_t4: corr% 55.7882 (log -)  11.7s  reserved 9.87 GB  alloc 9.40 GB
+[n17 (9,8)] C3HN_rxn2587_P all4_t4: corr% 61.8164 (log -)  11.4s  reserved 9.87 GB  alloc 9.40 GB
+[n17 (9,8)] C3HN_rxn2587_R all4_t4: corr% 55.1487 (log -)  11.3s  reserved 9.87 GB  alloc 9.40 GB
+[n17 (9,8)] C3HN_rxn2587_TS all4_t4: corr% 57.9988 (log -)  11.7s  reserved 9.87 GB  alloc 9.40 GB
+[n17 (9,8)] C3HN_rxn9249_P all4_t4: corr% 62.1143 (log -)  11.6s  reserved 9.87 GB  alloc 9.40 GB
+[n17 (9,8)] C3HN_rxn9249_R all4_t4: corr% 55.1488 (log -)  11.4s  reserved 9.87 GB  alloc 9.40 GB
+[n17 (9,8)] C3HN_rxn9249_TS all4_t4: corr% 56.5822 (log -)  11.7s  reserved 9.87 GB  alloc 9.40 GB
+[n18 C2H2O2_rxn3279_TS (11,7)] default : E -221.8111712088  corr% -619.8207  t_top 6  tile 544  22.9s  reserved 11.49 GB
+     slater 0: E -223.4522295538 analytic -223.4522295484 dE -5.41e-09 (npz e_hf -223.4522295484)
+     slater 1: E -215.1974168541 analytic -215.1974168565 dE +2.35e-09
+     slater 2: E -216.2778389851 analytic -216.2778390791 dE +9.40e-08
+[n18 C2H2O2_rxn3279_TS (11,7)] gauge   : E -221.8111712441  corr% -619.8207  t_top 6  tile 640  22.7s  reserved 12.06 GB
+[n18 C2H2O2_rxn3279_TS (11,7)] fuse_t7 : E -221.8111712654  corr% -619.8207  t_top 7  tile 640  24.3s  reserved 12.06 GB
+[n18 C2H2O2_rxn3279_TS (11,7)] tile384 : E -221.8111712089  corr% -619.8207  t_top 6  tile 384  23.7s  reserved 11.08 GB
+[n18 C2H2O2_rxn3279_TS (11,7)] nofuse  : E -221.8111712984  corr% -619.8207  t_top 0  tile 640  27.1s  reserved 12.06 GB
+   spread vs default: default: +0.0e+00  gauge: -3.5e-08  fuse_t7: -5.7e-08  tile384: -5.1e-11  nofuse: -9.0e-08
+-> pretrain/rl/tests/results/verify_gpu_energy_large.json
+exit 0
