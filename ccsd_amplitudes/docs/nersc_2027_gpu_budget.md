@@ -128,6 +128,7 @@ Lines are rounded to 10 node-hours and sum to the request.
 | Exact LUCJ energy | A100 40 GB; H200 shared with another job | 3.0 s (17 orb.); 9–23 s (18); 43–57 s (19, H200) | 0.3–18 A100-s (15–18 orb.) | measured; 15–16 orb. derived (TITAN Xp ÷ 2.44) |
 | TN energy, 29 orb., χ64 / 128 / 256 | 1 worker, TITAN Xp, host load 60–120 on 48 cores | 150 / 274 / 851 s; ⟨H⟩ 126 → 36 s on 4 threads; error 1.8 / 0.42 mHa at χ64 / 128 (15–18 orb.) | 35 / 108 A100-s at χ128 / 256 (4 workers per A100) | measured; A100 extrapolated |
 | TN energy, older engine, χ256, 29 orb. | A100, 5 workers | 59–80 A100-s | check: model is 1.4–1.8× higher | measured |
+| TN energy, χ128, 29 orb., 4 workers × 4 threads per GPU (5 Oct) | TITAN Xp, idle host; H200 shared with another job at ~100% | 74 and 126 energies/h per GPU (each task also rebuilds its MPO) | model: ~103 per A100, between the two | measured |
 | GRPO RL, 15–18 orb., 50 steps × 32 exact energies | 6 mixed GPUs | 1.5 h; ≤ 9.2 GPU-h | ≈ 4.8 A100-h | measured; A100 value derived |
 | SQD diagonalization, PySCF, 29 orb. | 4 CPU threads | d ≈ 10⁵: 18–32 min; d ≈ 0.3–1 × 10⁶: 9–42 h (15 diag.) | 125 core-h at d = 10⁷ | measured; extrapolated ×100 in d |
 | SQD diagonalization, GPU SBD (Walkup et al. 2026) | 8 × A100 | N₂, 3.1 × 10⁸ determinants: 309 s | 12 A100-min at d = 10⁷, 29 orb. (corners 3.4–32) | published; extrapolated |
@@ -245,7 +246,7 @@ cost(n) = [75.5·(n/29)^2.6 + 35.4·(n/29)^4 + 40·(n/29)^4 / 8] × 1.2 / 4
   - The A100 throughput is extrapolated, and checked against the older engine's A100 runs.
   - Four workers per A100 assume the MPS build is about half GPU work. If it is fully GPU-bound, rewards cost up to ~1.8× more.
   - Still untested: χ ≥ 1024 (memory), a batched GPU sampler (still to be written), and SQD in our localized-orbital basis.
-  - A short A100 timing before submission (4 workers × 4 threads, 29 orbitals, χ128) would pin down the reward cost.
+  - The 5 Oct throughput test (4 workers × 4 threads, 29 orbitals, χ128) gave 74 energies/h on a TITAN Xp and 126 on a shared H200, bracketing the model's ~103 per A100.
 - **RL scope is a planning choice.** We plan 3 campaigns × 1,200 steps; our runs so far were 30–50 steps. A χ64 reward at 30–44 orbitals would lower the total by ~1,300; χ256 there would add ~4,800.
 - **QSD.** The 1.0–1.5× rule is my estimate (Fang). We budget 1.25×; 1.0× gives 9,619 and 1.5× gives 10,403. The variant (NOQE-type or Krylov/SKQD) is still open; Krylov variants use deeper circuits, which need larger χ and more QPU time.
 - **Lower or higher.** Fewer RL campaigns, pooled QPU SQD (one SQD per circuit saves ~1,200) or reduced SQD settings would lower the total; none is assumed. Larger basis sets (active spaces ≤ 44 orbitals; mostly CPU), DMC references or SQD-energy RL rewards would raise it.

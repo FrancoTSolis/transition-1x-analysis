@@ -71,3 +71,4 @@ ccsd_amplitudes/rl_queue/
 ccsd_amplitudes/rhf_targets_compressed_n19/
 ccsd_amplitudes/rl_runs/tn_basis_cache/
 ccsd_amplitudes/rhf_targets_compressed_n29test/
+ccsd_amplitudes/rhf_targets_compressed_conv/

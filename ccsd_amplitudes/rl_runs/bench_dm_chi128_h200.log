@@ -1,0 +1,22 @@
+submitted 40 tasks
+  [queue] waiting for 40 results
+  [queue] waiting for 40 results
+  [queue] waiting for 40 results
+  [queue] waiting for 36 results
+  [queue] waiting for 36 results
+  [queue] waiting for 32 results
+  [queue] waiting for 28 results
+  [queue] waiting for 28 results
+  [queue] waiting for 24 results
+  [queue] waiting for 24 results
+  [queue] waiting for 20 results
+  [queue] waiting for 20 results
+  [queue] waiting for 16 results
+  [queue] waiting for 16 results
+  [queue] waiting for 12 results
+  [queue] waiting for 12 results
+  [queue] waiting for 8 results
+  [queue] waiting for 6 results
+  [queue] waiting for 4 results
+  [queue] waiting for 3 results
+-> pretrain/opt_true/results/bench_dm_chi128_h200_4x4.json  (1147s, 0 errors)
