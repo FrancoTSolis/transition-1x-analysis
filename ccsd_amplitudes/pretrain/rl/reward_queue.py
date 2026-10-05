@@ -189,7 +189,7 @@ def default_exact_factory(dtype_name="complex64", max_mem_gb=None):
     return make
 
 
-def tn_factory(chi=256, basis_cache=None, stack_mem_gb=2.0, zip_margin=1.5, impl="current"):
+def tn_factory(chi=256, basis_cache=None, stack_mem_gb=2.0, zip_margin=1.5, impl="current", block2_threads=1):
     """Tensor-network (MPS) engines on this GPU: pretrain.rl.tn_energy.LUCJEnergyTN, complex64, block2 <H> on CPU.
     zip_margin (zip-up bond = margin * chi) is an accuracy knob like chi: 3.0 at chi 256 costs ~3x margin 1.5."""
     def make(name, norb, nelec):
@@ -202,7 +202,7 @@ def tn_factory(chi=256, basis_cache=None, stack_mem_gb=2.0, zip_margin=1.5, impl
         d = np.load(ROOT / "rhf_hamiltonians" / f"{name}.npz")
         return LUCJEnergyTN(d["one_body"], d["two_body"], float(d["constant"]), int(d["norb"]),
                             (int(d["nelec_a"]), int(d["nelec_b"])), max_bond=chi, device="cuda", name=name,
-                            block2_threads=1, scratch=tempfile.mkdtemp(prefix="tnq_"),
+                            block2_threads=block2_threads, scratch=tempfile.mkdtemp(prefix="tnq_"),
                             stack_mem=int(stack_mem_gb * (1 << 30)), basis_cache=basis_cache,
                             zip_margin=zip_margin)
     return make
@@ -327,6 +327,7 @@ def main():
     w.add_argument("--kind", default="exact", choices=["exact", "tn"])
     w.add_argument("--chi", type=int, default=256, help="MPS bond dimension for --kind tn")
     w.add_argument("--zip-margin", type=float, default=1.5, help="zip-up margin for --kind tn")
+    w.add_argument("--block2-threads", type=int, default=1, help="CPU threads for block2 <H> (--kind tn)")
     w.add_argument("--tn-impl", default="current", choices=["current", "v1"],
                    help="v1 = frozen zip-up engine (tn_energy_v1.py) used for the Oct-3 n29 evaluations")
     w.add_argument("--basis-cache", default=str(ROOT / "rl_runs" / "tn_basis_cache"))
@@ -343,7 +344,8 @@ def main():
                 print(f"refusing to start on {host}: user already holds {n} GPUs (limit {GPU_LIMIT})", flush=True)
                 sys.exit(2)
         sys.path.insert(0, str(ROOT))
-        fac = (tn_factory(args.chi, args.basis_cache, zip_margin=args.zip_margin, impl=args.tn_impl)
+        fac = (tn_factory(args.chi, args.basis_cache, zip_margin=args.zip_margin, impl=args.tn_impl,
+                          block2_threads=args.block2_threads)
                if args.kind == "tn"
                else default_exact_factory(args.dtype, args.max_mem_gb))
         worker(args.root, args.worker_id, args.max_norb, fac, kinds=(args.kind,), max_items=args.max_items,
