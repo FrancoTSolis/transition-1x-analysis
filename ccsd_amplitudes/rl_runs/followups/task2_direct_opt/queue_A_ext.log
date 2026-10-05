@@ -1,0 +1,47 @@
+=== 2026-10-05 04:02:19 start lucj/C2H4O_rxn0724_P__label__spsa
+C2H4O_rxn0724_P__label__spsa: 500 evals, 19.9 min; f -150.932903 -> -150.956601 (67.35 -> 78.53 %corr); var 67.35 -> 78.53
+=== 2026-10-05 04:22:23 end lucj/C2H4O_rxn0724_P__label__spsa
+=== 2026-10-05 04:22:23 start lucj/C2H4O_rxn0724_P__rl4n29f__spsa__aLabel
+C2H4O_rxn0724_P__rl4n29f__spsa__aLabel: 500 evals, 20.1 min; f -150.932956 -> -150.949314 (67.37 -> 75.09 %corr); var 67.37 -> 75.09
+=== 2026-10-05 04:42:36 end lucj/C2H4O_rxn0724_P__rl4n29f__spsa__aLabel
+=== 2026-10-05 04:42:36 start lucj/C2H4O_rxn0724_TS__label__spsa
+C2H4O_rxn0724_TS__label__spsa: 500 evals, 20.5 min; f -150.806072 -> -150.848412 (53.31 -> 72.42 %corr); var 53.31 -> 72.42
+=== 2026-10-05 05:03:18 end lucj/C2H4O_rxn0724_TS__label__spsa
+=== 2026-10-05 05:03:18 start lucj/C2H4O_rxn0724_TS__rl4n29f__spsa__aLabel
+C2H4O_rxn0724_TS__rl4n29f__spsa__aLabel: 500 evals, 20.6 min; f -150.834260 -> -150.852383 (66.03 -> 74.22 %corr); var 66.03 -> 74.22
+=== 2026-10-05 05:24:04 end lucj/C2H4O_rxn0724_TS__rl4n29f__spsa__aLabel
+=== 2026-10-05 05:24:04 start lucj/C2H4O_rxn2507_P__label__spsa
+C2H4O_rxn2507_P__label__spsa: 500 evals, 19.9 min; f -151.051370 -> -151.065533 (69.41 -> 76.57 %corr); var 69.41 -> 76.57
+=== 2026-10-05 05:44:06 end lucj/C2H4O_rxn2507_P__label__spsa
+=== 2026-10-05 05:44:06 start lucj/C2H4O_rxn2507_P__rl4n29f__spsa__aLabel
+C2H4O_rxn2507_P__rl4n29f__spsa__aLabel: 500 evals, 20.0 min; f -151.057702 -> -151.067475 (72.61 -> 77.55 %corr); var 72.61 -> 77.55
+=== 2026-10-05 06:04:13 end lucj/C2H4O_rxn2507_P__rl4n29f__spsa__aLabel
+=== 2026-10-05 06:04:13 start lucj/C3H4_rxn2391_R__label__spsa
+C3H4_rxn2391_R__label__spsa: 500 evals, 26.7 min; f -114.608387 -> -114.617982 (70.07 -> 74.19 %corr); var 70.07 -> 74.19
+=== 2026-10-05 06:31:09 end lucj/C3H4_rxn2391_R__label__spsa
+=== 2026-10-05 06:31:09 start lucj/C3H4_rxn2391_R__rl4n29f__spsa__aLabel
+C3H4_rxn2391_R__rl4n29f__spsa__aLabel: 500 evals, 27.7 min; f -114.626479 -> -114.632903 (77.84 -> 80.61 %corr); var 77.84 -> 80.61
+=== 2026-10-05 06:58:59 end lucj/C3H4_rxn2391_R__rl4n29f__spsa__aLabel
+=== 2026-10-05 06:58:59 start lucj/C3H4_rxn2391_P__label__spsa
+C3H4_rxn2391_P__label__spsa: 500 evals, 27.1 min; f -114.581834 -> -114.600979 (68.80 -> 76.96 %corr); var 68.80 -> 76.96
+=== 2026-10-05 07:26:20 end lucj/C3H4_rxn2391_P__label__spsa
+=== 2026-10-05 07:26:20 start lucj/C3H4_rxn2391_P__rl4n29f__spsa__aLabel
+C3H4_rxn2391_P__rl4n29f__spsa__aLabel: 500 evals, 27.1 min; f -114.589195 -> -114.600696 (71.94 -> 76.84 %corr); var 71.94 -> 76.84
+=== 2026-10-05 07:53:39 end lucj/C3H4_rxn2391_P__rl4n29f__spsa__aLabel
+=== 2026-10-05 07:53:39 start lucj/C3H4_rxn2391_TS__label__spsa
+C3H4_rxn2391_TS__label__spsa: 500 evals, 27.3 min; f -114.365499 -> -114.387827 (61.17 -> 70.61 %corr); var 61.17 -> 70.61
+=== 2026-10-05 08:21:08 end lucj/C3H4_rxn2391_TS__label__spsa
+=== 2026-10-05 08:21:08 start lucj/C3H4_rxn2391_TS__rl4n29f__spsa__aLabel
+C3H4_rxn2391_TS__rl4n29f__spsa__aLabel: 500 evals, 27.3 min; f -114.383707 -> -114.395429 (68.87 -> 73.83 %corr); var 68.87 -> 73.83
+=== 2026-10-05 08:48:39 end lucj/C3H4_rxn2391_TS__rl4n29f__spsa__aLabel
+=== 2026-10-05 08:48:39 start lucj/C2H3N_rxn2858_P__label__spsa__long5000
+C2H3N_rxn2858_P__label__spsa__long5000: 5000 evals, 50.5 min; f -130.316701 -> -130.354145 (61.84 -> 78.67 %corr); var 61.84 -> 78.67
+=== 2026-10-05 09:39:17 end lucj/C2H3N_rxn2858_P__label__spsa__long5000
+=== 2026-10-05 09:39:17 start lucj/C2H3N_rxn2858_P__rl4n29f__spsa__long5000aLabel
+C2H3N_rxn2858_P__rl4n29f__spsa__long5000aLabel: 5000 evals, 53.1 min; f -130.330564 -> -130.353889 (68.07 -> 78.55 %corr); var 68.07 -> 78.55
+=== 2026-10-05 10:32:31 end lucj/C2H3N_rxn2858_P__rl4n29f__spsa__long5000aLabel
+=== 2026-10-05 10:32:31 start lucj/C2H4O_rxn2507_TS__rl4n29f__nomad
+Blackbox evaluations:         503
+Cache hits:                   195
+Total number of evaluations:  698
+C2H4O_rxn2507_TS__rl4n29f__nomad: 503 evals, 20.2 min; f -150.917564 -> -150.918185 (69.33 -> 69.60 %corr); var 69.33 -> 69.60

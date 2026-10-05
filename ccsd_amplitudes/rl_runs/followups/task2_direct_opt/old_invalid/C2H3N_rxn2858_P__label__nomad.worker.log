@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_worker.py", line 93, in <module>
+    main()
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_worker.py", line 88, in main
+    _write(proto_out, out)
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_worker.py", line 38, in _write
+    f.flush()
+BrokenPipeError: [Errno 32] Broken pipe

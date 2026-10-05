@@ -1,0 +1,27 @@
+--name C2H4O_rxn0724_P --start label --objective lucj --optimizer spsa --spsa-target 0.008 --worker-threads 1 --max-mem-gb 2.8
+--name C2H4O_rxn0724_P --start rl4n29f --objective lucj --optimizer spsa --spsa-target 0.008 --worker-threads 1 --max-mem-gb 2.8 --spsa-a-from C2H4O_rxn0724_P__label__spsa --tag aLabel
+--name C2H4O_rxn0724_TS --start label --objective lucj --optimizer spsa --spsa-target 0.008 --worker-threads 1 --max-mem-gb 2.8
+--name C2H4O_rxn0724_TS --start rl4n29f --objective lucj --optimizer spsa --spsa-target 0.008 --worker-threads 1 --max-mem-gb 2.8 --spsa-a-from C2H4O_rxn0724_TS__label__spsa --tag aLabel
+--name C2H4O_rxn2507_P --start label --objective lucj --optimizer spsa --spsa-target 0.008 --worker-threads 1 --max-mem-gb 2.8
+--name C2H4O_rxn2507_P --start rl4n29f --objective lucj --optimizer spsa --spsa-target 0.008 --worker-threads 1 --max-mem-gb 2.8 --spsa-a-from C2H4O_rxn2507_P__label__spsa --tag aLabel
+--name C3H4_rxn2391_R --start label --objective lucj --optimizer spsa --spsa-target 0.008 --worker-threads 1 --max-mem-gb 2.8
+--name C3H4_rxn2391_R --start rl4n29f --objective lucj --optimizer spsa --spsa-target 0.008 --worker-threads 1 --max-mem-gb 2.8 --spsa-a-from C3H4_rxn2391_R__label__spsa --tag aLabel
+--name C3H4_rxn2391_P --start label --objective lucj --optimizer spsa --spsa-target 0.008 --worker-threads 1 --max-mem-gb 2.8
+--name C3H4_rxn2391_P --start rl4n29f --objective lucj --optimizer spsa --spsa-target 0.008 --worker-threads 1 --max-mem-gb 2.8 --spsa-a-from C3H4_rxn2391_P__label__spsa --tag aLabel
+--name C3H4_rxn2391_TS --start label --objective lucj --optimizer spsa --spsa-target 0.008 --worker-threads 1 --max-mem-gb 2.8
+--name C3H4_rxn2391_TS --start rl4n29f --objective lucj --optimizer spsa --spsa-target 0.008 --worker-threads 1 --max-mem-gb 2.8 --spsa-a-from C3H4_rxn2391_TS__label__spsa --tag aLabel
+--name C2H3N_rxn2858_P --start label --objective lucj --optimizer spsa --spsa-target 0.008 --worker-threads 1 --budget 5000 --tag long5000 --max-mem-gb 2.0
+--name C2H3N_rxn2858_P --start rl4n29f --objective lucj --optimizer spsa --spsa-target 0.008 --worker-threads 1 --budget 5000 --spsa-a-from C2H3N_rxn2858_P__label__spsa__long5000 --tag long5000aLabel --max-mem-gb 2.0
+--name C2H4O_rxn2507_TS --start rl4n29f --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 2.6
+--name C2H4O_rxn0724_P --start label --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 2.8
+--name C2H4O_rxn0724_P --start rl4n29f --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 2.8
+--name C2H4O_rxn0724_TS --start label --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 2.8
+--name C2H4O_rxn0724_TS --start rl4n29f --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 2.8
+--name C2H4O_rxn2507_P --start label --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 2.8
+--name C2H4O_rxn2507_P --start rl4n29f --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 2.8
+--name C3H4_rxn2391_R --start label --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 2.8
+--name C3H4_rxn2391_R --start rl4n29f --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 2.8
+--name C3H4_rxn2391_P --start label --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 2.8
+--name C3H4_rxn2391_P --start rl4n29f --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 2.8
+--name C3H4_rxn2391_TS --start label --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 2.8
+--name C3H4_rxn2391_TS --start rl4n29f --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 2.8

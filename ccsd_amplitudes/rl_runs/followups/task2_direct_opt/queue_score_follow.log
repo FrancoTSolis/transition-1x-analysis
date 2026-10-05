@@ -1,0 +1,154 @@
+=== 2026-10-05 11:14:49 scoring C2H4O_rxn0724_P
+1 parameter sets to score
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_score.py", line 117, in <module>
+    main()
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_score.py", line 91, in main
+    r = rem.call({"cmd": "solve", "ci": s["ci"], "spin_sq": C.T1_PROTOCOL["spin_sq"]})
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_opt.py", line 67, in call
+    raise RuntimeError(r["error"] + "\n" + r.get("tb", ""))
+RuntimeError: OutOfMemoryError: CUDA out of memory. Tried to allocate 1000.00 MiB. GPU 0 has a total capacity of 11.90 GiB of which 334.81 MiB is free. Process 619308 has 5.24 GiB memory in use. Process 621836 has 2.85 GiB memory in use. Including non-PyTorch memory, this process has 3.48 GiB memory in use. Of the allocated memory 3.20 GiB is allocated by PyTorch, and 112.96 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Traceback (most recent call last):
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_worker.py", line 136, in main
+    E_full, asym = full_space_energy(vec)
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_worker.py", line 116, in full_space_energy
+    asym = float((eng.psi - eng.psi.T).abs().max())
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1000.00 MiB. GPU 0 has a total capacity of 11.90 GiB of which 334.81 MiB is free. Process 619308 has 5.24 GiB memory in use. Process 621836 has 2.85 GiB memory in use. Including non-PyTorch memory, this process has 3.48 GiB memory in use. Of the allocated memory 3.20 GiB is allocated by PyTorch, and 112.96 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+=== 2026-10-05 11:16:11 scoring C2H4O_rxn0724_P
+1 parameter sets to score
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_score.py", line 117, in <module>
+    main()
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_score.py", line 91, in main
+    r = rem.call({"cmd": "solve", "ci": s["ci"], "spin_sq": C.T1_PROTOCOL["spin_sq"]})
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_opt.py", line 67, in call
+    raise RuntimeError(r["error"] + "\n" + r.get("tb", ""))
+RuntimeError: OutOfMemoryError: CUDA out of memory. Tried to allocate 1000.00 MiB. GPU 0 has a total capacity of 11.90 GiB of which 334.81 MiB is free. Process 619308 has 5.24 GiB memory in use. Process 621836 has 2.85 GiB memory in use. Including non-PyTorch memory, this process has 3.48 GiB memory in use. Of the allocated memory 3.20 GiB is allocated by PyTorch, and 112.96 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Traceback (most recent call last):
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_worker.py", line 136, in main
+    E_full, asym = full_space_energy(vec)
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_worker.py", line 116, in full_space_energy
+    asym = float((eng.psi - eng.psi.T).abs().max())
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1000.00 MiB. GPU 0 has a total capacity of 11.90 GiB of which 334.81 MiB is free. Process 619308 has 5.24 GiB memory in use. Process 621836 has 2.85 GiB memory in use. Including non-PyTorch memory, this process has 3.48 GiB memory in use. Of the allocated memory 3.20 GiB is allocated by PyTorch, and 112.96 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+=== 2026-10-05 11:17:33 scoring C2H4O_rxn0724_P
+1 parameter sets to score
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_score.py", line 117, in <module>
+    main()
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_score.py", line 91, in main
+    r = rem.call({"cmd": "solve", "ci": s["ci"], "spin_sq": C.T1_PROTOCOL["spin_sq"]})
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_opt.py", line 67, in call
+    raise RuntimeError(r["error"] + "\n" + r.get("tb", ""))
+RuntimeError: OutOfMemoryError: CUDA out of memory. Tried to allocate 500.00 MiB. GPU 0 has a total capacity of 11.90 GiB of which 128.81 MiB is free. Process 621836 has 2.85 GiB memory in use. Including non-PyTorch memory, this process has 2.99 GiB memory in use. Process 623378 has 5.93 GiB memory in use. Of the allocated memory 2.71 GiB is allocated by PyTorch, and 112.96 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Traceback (most recent call last):
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_worker.py", line 136, in main
+    E_full, asym = full_space_energy(vec)
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_worker.py", line 116, in full_space_energy
+    asym = float((eng.psi - eng.psi.T).abs().max())
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 500.00 MiB. GPU 0 has a total capacity of 11.90 GiB of which 128.81 MiB is free. Process 621836 has 2.85 GiB memory in use. Including non-PyTorch memory, this process has 2.99 GiB memory in use. Process 623378 has 5.93 GiB memory in use. Of the allocated memory 2.71 GiB is allocated by PyTorch, and 112.96 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+=== 2026-10-05 11:18:57 scoring C2H4O_rxn0724_P
+1 parameter sets to score
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_score.py", line 117, in <module>
+    main()
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_score.py", line 91, in main
+    r = rem.call({"cmd": "solve", "ci": s["ci"], "spin_sq": C.T1_PROTOCOL["spin_sq"]})
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_opt.py", line 67, in call
+    raise RuntimeError(r["error"] + "\n" + r.get("tb", ""))
+RuntimeError: OutOfMemoryError: CUDA out of memory. Tried to allocate 500.00 MiB. GPU 0 has a total capacity of 11.90 GiB of which 128.81 MiB is free. Process 621836 has 2.85 GiB memory in use. Process 623378 has 5.93 GiB memory in use. Including non-PyTorch memory, this process has 2.99 GiB memory in use. Of the allocated memory 2.71 GiB is allocated by PyTorch, and 112.96 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Traceback (most recent call last):
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_worker.py", line 136, in main
+    E_full, asym = full_space_energy(vec)
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_worker.py", line 116, in full_space_energy
+    asym = float((eng.psi - eng.psi.T).abs().max())
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 500.00 MiB. GPU 0 has a total capacity of 11.90 GiB of which 128.81 MiB is free. Process 621836 has 2.85 GiB memory in use. Process 623378 has 5.93 GiB memory in use. Including non-PyTorch memory, this process has 2.99 GiB memory in use. Of the allocated memory 2.71 GiB is allocated by PyTorch, and 112.96 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+=== 2026-10-05 11:20:18 scoring C2H4O_rxn0724_P
+1 parameter sets to score
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_score.py", line 117, in <module>
+    main()
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_score.py", line 91, in main
+    r = rem.call({"cmd": "solve", "ci": s["ci"], "spin_sq": C.T1_PROTOCOL["spin_sq"]})
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_opt.py", line 67, in call
+    raise RuntimeError(r["error"] + "\n" + r.get("tb", ""))
+RuntimeError: OutOfMemoryError: CUDA out of memory. Tried to allocate 500.00 MiB. GPU 0 has a total capacity of 11.90 GiB of which 128.81 MiB is free. Process 621836 has 2.85 GiB memory in use. Process 623378 has 5.93 GiB memory in use. Including non-PyTorch memory, this process has 2.99 GiB memory in use. Of the allocated memory 2.71 GiB is allocated by PyTorch, and 112.96 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Traceback (most recent call last):
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_worker.py", line 136, in main
+    E_full, asym = full_space_energy(vec)
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_worker.py", line 116, in full_space_energy
+    asym = float((eng.psi - eng.psi.T).abs().max())
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 500.00 MiB. GPU 0 has a total capacity of 11.90 GiB of which 128.81 MiB is free. Process 621836 has 2.85 GiB memory in use. Process 623378 has 5.93 GiB memory in use. Including non-PyTorch memory, this process has 2.99 GiB memory in use. Of the allocated memory 2.71 GiB is allocated by PyTorch, and 112.96 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+=== 2026-10-05 11:21:40 scoring C2H4O_rxn0724_P
+1 parameter sets to score
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_score.py", line 117, in <module>
+    main()
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_score.py", line 91, in main
+    r = rem.call({"cmd": "solve", "ci": s["ci"], "spin_sq": C.T1_PROTOCOL["spin_sq"]})
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_opt.py", line 67, in call
+    raise RuntimeError(r["error"] + "\n" + r.get("tb", ""))
+RuntimeError: OutOfMemoryError: CUDA out of memory. Tried to allocate 500.00 MiB. GPU 0 has a total capacity of 11.90 GiB of which 128.81 MiB is free. Process 621836 has 2.85 GiB memory in use. Process 623378 has 5.93 GiB memory in use. Including non-PyTorch memory, this process has 2.99 GiB memory in use. Of the allocated memory 2.71 GiB is allocated by PyTorch, and 112.96 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Traceback (most recent call last):
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_worker.py", line 136, in main
+    E_full, asym = full_space_energy(vec)
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/followups/task2_worker.py", line 116, in full_space_energy
+    asym = float((eng.psi - eng.psi.T).abs().max())
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 500.00 MiB. GPU 0 has a total capacity of 11.90 GiB of which 128.81 MiB is free. Process 621836 has 2.85 GiB memory in use. Process 623378 has 5.93 GiB memory in use. Including non-PyTorch memory, this process has 2.99 GiB memory in use. Of the allocated memory 2.71 GiB is allocated by PyTorch, and 112.96 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+=== 2026-10-05 11:23:04 scoring C2H4O_rxn0724_P
+1 parameter sets to score
+=== 2026-10-05 11:30:54 relaunch after the OOM loop (killed 11:23)
+=== 2026-10-05 11:30:54 scoring C2H4O_rxn0724_P
+1 parameter sets to score
+  C2H4O_rxn0724_P      lucj:label:nomad               var  69.28%  SQD mean  99.44% [99.44, 99.44]  uniq100k 1806  dims 480-480  d_full 4.8e-09  (19+35s)
+=== 2026-10-05 11:37:03 scoring C2H4O_rxn0724_TS
+1 parameter sets to score
+  C2H4O_rxn0724_TS     lucj:label:nomad               var  56.12%  SQD mean  98.66% [98.66, 98.66]  uniq100k 2643  dims 642-642  d_full -2.8e-08  (19+51s)
+=== 2026-10-05 11:56:28 scoring C2H4O_rxn2507_P
+1 parameter sets to score
+  C2H4O_rxn2507_P      lucj:label:nomad               var  69.90%  SQD mean  97.77% [97.77, 97.77]  uniq100k 1788  dims 427-427  d_full -2.6e-08  (18+26s)
+=== 2026-10-05 12:23:27 scoring C3H4_rxn2391_R
+1 parameter sets to score
+  C3H4_rxn2391_R       lucj:label:nomad               var  70.42%  SQD mean  96.36% [96.36, 96.36]  uniq100k 1603  dims 443-443  d_full -1.6e-08  (23+19s)
+=== 2026-10-05 12:50:27 scoring C3H4_rxn2391_P
+1 parameter sets to score
+  C3H4_rxn2391_P       lucj:label:nomad               var  69.00%  SQD mean  97.25% [97.25, 97.25]  uniq100k 1878  dims 531-531  d_full 1.2e-08  (23+27s)
+=== 2026-10-05 13:17:34 scoring C3H4_rxn2391_TS
+1 parameter sets to score
+  C3H4_rxn2391_TS      lucj:label:nomad               var  63.20%  SQD mean 100.59% [100.59, 100.59]  uniq100k 2984  dims 645-645  d_full -2.0e-09  (19+57s)
+=== 2026-10-05 13:19:08 follow done

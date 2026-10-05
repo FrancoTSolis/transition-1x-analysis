@@ -1,0 +1,197 @@
+{
+ "per_molecule": {
+  "C2H3NO_rxn3839_P": {
+   "warm_conv": {
+    "E": -204.134584969961,
+    "corr_frac": 0.7037370083961099,
+    "t": 55.83305478096008,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3839_R": {
+   "warm_conv": {
+    "E": -204.27896027192503,
+    "corr_frac": 0.7091055565721203,
+    "t": 55.64420795440674,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3839_TS": {
+   "warm_conv": {
+    "E": -204.10262978537398,
+    "corr_frac": 0.6766650021316424,
+    "t": 55.563013553619385,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3840_P": {
+   "warm_conv": {
+    "E": -204.23530307147638,
+    "corr_frac": 0.7118118989414753,
+    "t": 55.81825542449951,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3840_R": {
+   "warm_conv": {
+    "E": -204.27896027192503,
+    "corr_frac": 0.7091055565721203,
+    "t": 55.6474974155426,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3840_TS": {
+   "warm_conv": {
+    "E": -204.14018498307098,
+    "corr_frac": 0.6661105660717169,
+    "t": 56.241535663604736,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3841_P": {
+   "warm_conv": {
+    "E": -204.2044427774734,
+    "corr_frac": 0.6896404552997921,
+    "t": 54.560556411743164,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3841_R": {
+   "warm_conv": {
+    "E": -204.27896027192503,
+    "corr_frac": 0.7091055565721203,
+    "t": 55.6317343711853,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3841_TS": {
+   "warm_conv": {
+    "E": -204.0684697153475,
+    "corr_frac": 0.6309408575767752,
+    "t": 56.197118043899536,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3842_P": {
+   "warm_conv": {
+    "E": -204.1568253332967,
+    "corr_frac": 0.5930264362318934,
+    "t": 55.35845685005188,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3842_R": {
+   "warm_conv": {
+    "E": -204.279671575497,
+    "corr_frac": 0.711789156640095,
+    "t": 55.612163066864014,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3842_TS": {
+   "warm_conv": {
+    "E": -204.07256861028026,
+    "corr_frac": 0.6829566166836462,
+    "t": 56.25123620033264,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  }
+ },
+ "meta": {
+  "C2H3NO_rxn3839_P": {
+   "resid": {
+    "warm_conv": 0.25586611906588785
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3839_R": {
+   "resid": {
+    "warm_conv": 0.2283979176059161
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3839_TS": {
+   "resid": {
+    "warm_conv": 0.2618569080461418
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3840_P": {
+   "resid": {
+    "warm_conv": 0.24957205077103728
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3840_R": {
+   "resid": {
+    "warm_conv": 0.2283979176059161
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3840_TS": {
+   "resid": {
+    "warm_conv": 0.2609152539982992
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3841_P": {
+   "resid": {
+    "warm_conv": 0.19939641830477145
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3841_R": {
+   "resid": {
+    "warm_conv": 0.2283979176059161
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3841_TS": {
+   "resid": {
+    "warm_conv": 0.29396869872817666
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3842_P": {
+   "resid": {
+    "warm_conv": 0.2802016879717873
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3842_R": {
+   "resid": {
+    "warm_conv": 0.2278064542530374
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3842_TS": {
+   "resid": {
+    "warm_conv": 0.23488375755990232
+   },
+   "norb": 19
+  }
+ },
+ "args": {
+  "dump": [
+   "runs_ot/energy_tasks/task3/n19_warm.pkl"
+  ],
+  "queue_root": "rl_queue/exact_shared",
+  "out": "pretrain/opt_true/results/followups/task3_converged_labels/energy_n19_warm.json",
+  "skip_keys": [],
+  "only_names": null,
+  "kind": "exact"
+ },
+ "wall_s": 692.3900876045227
+}

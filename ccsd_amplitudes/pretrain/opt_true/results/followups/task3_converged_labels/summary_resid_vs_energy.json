@@ -1,0 +1,92 @@
+{
+ "six_runs": {
+  "500": {
+   "molecules": 21,
+   "spearman_resid_corr_mean": 0.06554447856966178,
+   "spearman_resid_corr_median": 0.3142857142857143,
+   "spearman_negative": 9,
+   "lowest_resid_is_best_energy": 6,
+   "pick_lowest_resid": 61.36842677674257,
+   "pick_highest_resid": 62.49909451526774,
+   "run_mean": 61.43534361742232,
+   "oracle_best": 63.60793887437455,
+   "pairs": 313,
+   "lower_resid_better_energy": 0.46645367412140576
+  },
+  "conv": {
+   "molecules": 21,
+   "spearman_resid_corr_mean": 0.26746698679471786,
+   "spearman_resid_corr_median": 0.3714285714285715,
+   "spearman_negative": 8,
+   "lowest_resid_is_best_energy": 7,
+   "pick_lowest_resid": 61.72853892951754,
+   "pick_highest_resid": 62.98809680734136,
+   "run_mean": 62.015735232412126,
+   "oracle_best": 64.0607719546268,
+   "pairs": 312,
+   "lower_resid_better_energy": 0.391025641025641
+  }
+ },
+ "label_variants": {
+  "molecules": 87,
+  "pairs": 350,
+  "lower_resid_better_energy": 0.5171428571428571,
+  "spearman_dresid_dcorr": -0.09695777781494713
+ },
+ "networks_vs_labconv": {
+  "pre4": {
+   "molecules": 87,
+   "resid_higher": 69,
+   "mean_dresid": 0.019487253135486854,
+   "energy_better": 18,
+   "mean_dcorr_points": -6.57213912563796,
+   "resid_higher_and_energy_better": 16
+  },
+  "rl4L": {
+   "molecules": 87,
+   "resid_higher": 85,
+   "mean_dresid": 0.05515599411261234,
+   "energy_better": 78,
+   "mean_dcorr_points": 5.417823110905158,
+   "resid_higher_and_energy_better": 77
+  },
+  "rl4n29": {
+   "molecules": 78,
+   "resid_higher": 76,
+   "mean_dresid": 0.05816592896188844,
+   "energy_better": 69,
+   "mean_dcorr_points": 6.38174131704031,
+   "resid_higher_and_energy_better": 67
+  },
+  "rl4n29f": {
+   "molecules": 78,
+   "resid_higher": 76,
+   "mean_dresid": 0.056776999023417735,
+   "energy_better": 71,
+   "mean_dcorr_points": 6.303231345522498,
+   "resid_higher_and_energy_better": 69
+  }
+ },
+ "across_molecules_labconv": {
+  "norb 15-16 val (9)": {
+   "n": 9,
+   "spearman_resid_corr": -0.5499999999999999
+  },
+  "norb 17-18 val (22)": {
+   "n": 22,
+   "spearman_resid_corr": -0.6604202157864851
+  },
+  "norb 19 test (12)": {
+   "n": 12,
+   "spearman_resid_corr": -0.773049645390071
+  },
+  "n29 val (20)": {
+   "n": 20,
+   "spearman_resid_corr": -0.31127819548872177
+  },
+  "n29 test (24)": {
+   "n": 24,
+   "spearman_resid_corr": -0.5765217391304347
+  }
+ }
+}

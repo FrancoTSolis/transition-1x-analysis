@@ -1,0 +1,197 @@
+{
+ "per_molecule": {
+  "C2H3NO_rxn3839_P": {
+   "warmown_conv": {
+    "E": -204.11869504485566,
+    "corr_frac": 0.6430111787262184,
+    "t": 55.88164472579956,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3839_R": {
+   "warmown_conv": {
+    "E": -204.27889497991106,
+    "corr_frac": 0.708859223033161,
+    "t": 55.5822479724884,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3839_TS": {
+   "warmown_conv": {
+    "E": -204.0952042066046,
+    "corr_frac": 0.6503564267161741,
+    "t": 55.619898557662964,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3840_P": {
+   "warmown_conv": {
+    "E": -204.23658602885533,
+    "corr_frac": 0.717045310660543,
+    "t": 55.86985421180725,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3840_R": {
+   "warmown_conv": {
+    "E": -204.27889497991106,
+    "corr_frac": 0.708859223033161,
+    "t": 55.662190675735474,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3840_TS": {
+   "warmown_conv": {
+    "E": -204.13296794228918,
+    "corr_frac": 0.6381169803076719,
+    "t": 56.153176069259644,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3841_P": {
+   "warmown_conv": {
+    "E": -204.20424364341557,
+    "corr_frac": 0.6889344750211245,
+    "t": 54.57853031158447,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3841_R": {
+   "warmown_conv": {
+    "E": -204.27889497991106,
+    "corr_frac": 0.708859223033161,
+    "t": 55.57703256607056,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3841_TS": {
+   "warmown_conv": {
+    "E": -204.05070804085904,
+    "corr_frac": 0.5696761100046978,
+    "t": 55.21832537651062,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3842_P": {
+   "warmown_conv": {
+    "E": -204.1607776453794,
+    "corr_frac": 0.6075525953376243,
+    "t": 55.29360032081604,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3842_R": {
+   "warmown_conv": {
+    "E": -204.2792959978576,
+    "corr_frac": 0.7103721783175732,
+    "t": 55.601744413375854,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3842_TS": {
+   "warmown_conv": {
+    "E": -204.06712635253842,
+    "corr_frac": 0.6681874021353024,
+    "t": 56.18079495429993,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  }
+ },
+ "meta": {
+  "C2H3NO_rxn3839_P": {
+   "resid": {
+    "warmown_conv": 0.2681566082764726
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3839_R": {
+   "resid": {
+    "warmown_conv": 0.2283455227820311
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3839_TS": {
+   "resid": {
+    "warmown_conv": 0.26668180994729623
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3840_P": {
+   "resid": {
+    "warmown_conv": 0.2496913998655942
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3840_R": {
+   "resid": {
+    "warmown_conv": 0.2283455227820311
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3840_TS": {
+   "resid": {
+    "warmown_conv": 0.2575785154879488
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3841_P": {
+   "resid": {
+    "warmown_conv": 0.19936382279864207
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3841_R": {
+   "resid": {
+    "warmown_conv": 0.2283455227820311
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3841_TS": {
+   "resid": {
+    "warmown_conv": 0.29056390038452606
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3842_P": {
+   "resid": {
+    "warmown_conv": 0.28098229126461716
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3842_R": {
+   "resid": {
+    "warmown_conv": 0.22837119602023437
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3842_TS": {
+   "resid": {
+    "warmown_conv": 0.236626346474297
+   },
+   "norb": 19
+  }
+ },
+ "args": {
+  "dump": [
+   "runs_ot/energy_tasks/task3/n19_warmown.pkl"
+  ],
+  "queue_root": "rl_queue/exact_shared",
+  "out": "pretrain/opt_true/results/followups/task3_converged_labels/energy_n19_warmown.json",
+  "skip_keys": [],
+  "only_names": null,
+  "kind": "exact"
+ },
+ "wall_s": 704.266791343689
+}

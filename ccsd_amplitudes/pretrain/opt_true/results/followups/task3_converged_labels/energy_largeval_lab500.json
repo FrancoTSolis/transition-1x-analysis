@@ -1,0 +1,62 @@
+{
+ "per_molecule": {
+  "C2H6O_rxn4702_P": {
+   "lab500": {
+    "E": -152.0687142969361,
+    "corr_frac": 0.6733800279107314,
+    "t": 15.9087233543396,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C3H2O_rxn1391_P": {
+   "lab500": {
+    "E": -187.28459143481123,
+    "corr_frac": 0.6844851842393965,
+    "t": 15.601273775100708,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C3H2O_rxn1391_TS": {
+   "lab500": {
+    "E": -187.07632285550878,
+    "corr_frac": 0.6173465188696865,
+    "t": 15.623419523239136,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  }
+ },
+ "meta": {
+  "C2H6O_rxn4702_P": {
+   "resid": {
+    "lab500": 0.23994684777366165
+   },
+   "norb": 18
+  },
+  "C3H2O_rxn1391_P": {
+   "resid": {
+    "lab500": 0.18352208748821358
+   },
+   "norb": 18
+  },
+  "C3H2O_rxn1391_TS": {
+   "resid": {
+    "lab500": 0.2416084901603005
+   },
+   "norb": 18
+  }
+ },
+ "args": {
+  "dump": [
+   "runs_ot/energy_tasks/task3/largeval_lab500.pkl"
+  ],
+  "queue_root": "rl_queue/exact_shared",
+  "out": "pretrain/opt_true/results/followups/task3_converged_labels/energy_largeval_lab500.json",
+  "skip_keys": [],
+  "only_names": null,
+  "kind": "exact"
+ },
+ "wall_s": 280.104300737381
+}

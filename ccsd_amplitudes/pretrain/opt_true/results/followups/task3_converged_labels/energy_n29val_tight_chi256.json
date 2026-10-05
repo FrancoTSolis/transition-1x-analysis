@@ -1,0 +1,62 @@
+{
+ "per_molecule": {
+  "C3H5N3_rxn0063_P": {
+   "tight_conv": {
+    "E": -276.5208807785987,
+    "corr_frac": 0.5813531765751353,
+    "t": 377.0483453273773,
+    "worker": "scai2-gpu4-c",
+    "error": null
+   }
+  },
+  "C4H5NO_rxn0162_TS": {
+   "tight_conv": {
+    "E": -280.1067708188279,
+    "corr_frac": 0.5976605374759705,
+    "t": 368.43479323387146,
+    "worker": "scai2-gpu4-b",
+    "error": null
+   }
+  },
+  "C4H5NO_rxn1429_TS": {
+   "tight_conv": {
+    "E": -280.1267574929057,
+    "corr_frac": 0.5877161564886377,
+    "t": 358.0936987400055,
+    "worker": "scai2-gpu4-b",
+    "error": null
+   }
+  }
+ },
+ "meta": {
+  "C3H5N3_rxn0063_P": {
+   "resid": {
+    "tight_conv": 0.3297700569976173
+   },
+   "norb": 29
+  },
+  "C4H5NO_rxn0162_TS": {
+   "resid": {
+    "tight_conv": 0.3598780819558241
+   },
+   "norb": 29
+  },
+  "C4H5NO_rxn1429_TS": {
+   "resid": {
+    "tight_conv": 0.34606537657943887
+   },
+   "norb": 29
+  }
+ },
+ "args": {
+  "dump": [
+   "runs_ot/energy_tasks/task3/n29val_tight.pkl"
+  ],
+  "queue_root": "rl_queue/task3_tn256",
+  "out": "pretrain/opt_true/results/followups/task3_converged_labels/energy_n29val_tight_chi256.json",
+  "skip_keys": [],
+  "only_names": null,
+  "kind": "tn"
+ },
+ "wall_s": 7900.086999416351
+}

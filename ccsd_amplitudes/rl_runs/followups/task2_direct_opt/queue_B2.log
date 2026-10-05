@@ -1,0 +1,7 @@
+=== 2026-10-05 02:07:02 start qsci/C2H3N_rxn2858_TS__label__nomad
+Blackbox evaluations:         503
+Cache hits:                   295
+Total number of evaluations:  798
+C2H3N_rxn2858_TS__label__nomad: 503 evals, 82.6 min; f -130.233600 -> -130.238482 (95.33 -> 97.18 %corr); var 56.71 -> 21.66
+=== 2026-10-05 03:29:44 end qsci/C2H3N_rxn2858_TS__label__nomad
+queue done 2026-10-05 03:29:44

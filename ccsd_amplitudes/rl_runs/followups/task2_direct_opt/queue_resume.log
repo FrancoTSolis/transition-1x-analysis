@@ -1,0 +1,6 @@
+=== 2026-10-05 09:53:30 scoring objective-B sets
+4 parameter sets to score
+  C2H3N_rxn2858_P      qsci:label:nomad               var -1036.73%  SQD mean 100.05% [100.36, 99.55]  uniq100k 36404  dims 1078-1123  d_full -1.1e-08  (10+725s)
+  C2H3N_rxn2858_P      qsci:label:spsa                var -91.85%  SQD mean 101.29% [101.46, 101.19]  uniq100k 5458  dims 970-987  d_full 1.3e-08  (6+647s)
+  C2H3N_rxn2858_TS     qsci:label:nomad               var  21.66%  SQD mean 101.97% [101.97, 101.97]  uniq100k 2724  dims 559-559  d_full -2.2e-08  (9+29s)
+  C2H3N_rxn2858_TS     qsci:label:spsa                var -44.62%  SQD mean 103.41% [103.53, 103.36]  uniq100k 5066  dims 943-968  d_full -7.2e-09  (6+758s)

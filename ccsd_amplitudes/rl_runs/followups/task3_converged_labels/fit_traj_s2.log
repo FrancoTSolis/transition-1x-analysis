@@ -1,0 +1,43 @@
+  C2H3N_rxn2858_P norb 15: nit 553 nfev 570 success True resid 0.26938 (snap {500: np.float64(0.26955)}) gmax 9.32e-06 10s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 1/21 done=1 skip=0 err=0  12s
+  C2H3N_rxn2858_TS norb 15: nit 283 nfev 294 success True resid 0.25079 (snap {}) gmax 7.85e-06 8s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 2/21 done=2 skip=0 err=0  20s
+  C2H4O_rxn0724_P norb 16: nit 673 nfev 697 success True resid 0.23709 (snap {500: np.float64(0.23967)}) gmax 9.20e-06 13s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 3/21 done=3 skip=0 err=0  34s
+  C2H4O_rxn0724_TS norb 16: nit 648 nfev 668 success True resid 0.25250 (snap {500: np.float64(0.25501)}) gmax 9.10e-06 9s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 4/21 done=4 skip=0 err=0  43s
+  C2H4O_rxn2507_P norb 16: nit 690 nfev 714 success True resid 0.23799 (snap {500: np.float64(0.24072)}) gmax 9.43e-06 12s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 5/21 done=5 skip=0 err=0  55s
+  C2H4O_rxn2507_TS norb 16: nit 873 nfev 907 success True resid 0.27394 (snap {500: np.float64(0.30054)}) gmax 6.58e-06 15s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 6/21 done=6 skip=0 err=0  70s
+  C3H4_rxn2391_R norb 16: nit 553 nfev 579 success True resid 0.22510 (snap {500: np.float64(0.22522)}) gmax 6.70e-06 11s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 7/21 done=7 skip=0 err=0  81s
+  C3H4_rxn2391_P norb 16: nit 894 nfev 919 success True resid 0.25564 (snap {500: np.float64(0.26053)}) gmax 9.06e-06 16s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 8/21 done=8 skip=0 err=0  97s
+  C3H4_rxn2391_TS norb 16: nit 493 nfev 510 success True resid 0.26541 (snap {}) gmax 5.82e-06 11s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 9/21 done=9 skip=0 err=0  109s
+  C2HNO_rxn4439_P norb 17: nit 415 nfev 433 success True resid 0.27012 (snap {}) gmax 8.50e-06 13s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 10/21 done=10 skip=0 err=0  122s
+  C2HNO_rxn4439_R norb 17: nit 854 nfev 876 success True resid 0.24548 (snap {500: np.float64(0.25124)}) gmax 9.16e-06 19s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 11/21 done=11 skip=0 err=0  141s
+  C2HNO_rxn4439_TS norb 17: nit 491 nfev 507 success True resid 0.27560 (snap {}) gmax 8.82e-06 9s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 12/21 done=12 skip=0 err=0  150s
+  C2HNO_rxn4440_P norb 17: nit 488 nfev 509 success True resid 0.18517 (snap {}) gmax 8.21e-06 14s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 13/21 done=13 skip=0 err=0  164s
+  C2HNO_rxn4440_R norb 17: nit 854 nfev 876 success True resid 0.24548 (snap {500: np.float64(0.25124)}) gmax 9.16e-06 20s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 14/21 done=14 skip=0 err=0  185s
+  C2HNO_rxn4440_TS norb 17: nit 415 nfev 432 success True resid 0.25267 (snap {}) gmax 9.79e-06 13s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 15/21 done=15 skip=0 err=0  198s
+  C2HNO_rxn4441_P norb 17: nit 491 nfev 508 success True resid 0.23961 (snap {}) gmax 7.81e-06 14s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 16/21 done=16 skip=0 err=0  212s
+  C2HNO_rxn4441_R norb 17: nit 854 nfev 876 success True resid 0.24548 (snap {500: np.float64(0.25124)}) gmax 9.16e-06 18s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 17/21 done=17 skip=0 err=0  230s
+  C2HNO_rxn4441_TS norb 17: nit 520 nfev 537 success True resid 0.29545 (snap {500: np.float64(0.29548)}) gmax 6.71e-06 9s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 18/21 done=18 skip=0 err=0  240s
+  C2HNO_rxn4442_P norb 17: nit 394 nfev 402 success True resid 0.24202 (snap {}) gmax 9.58e-06 10s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 19/21 done=19 skip=0 err=0  250s
+  C2HNO_rxn4442_R norb 17: nit 854 nfev 876 success True resid 0.24548 (snap {500: np.float64(0.25124)}) gmax 9.16e-06 17s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 20/21 done=20 skip=0 err=0  268s
+  C2HNO_rxn4442_TS norb 17: nit 499 nfev 521 success True resid 0.26697 (snap {}) gmax 9.88e-06 12s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 21/21 done=21 skip=0 err=0  280s
+[shard 0] DONE done=21 skip=0 err=0 280s

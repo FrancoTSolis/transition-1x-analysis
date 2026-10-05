@@ -1,0 +1,12 @@
+--name C2H4O_rxn0724_P --start label --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 2.8
+--name C2H4O_rxn0724_TS --start label --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 2.8
+--name C2H4O_rxn2507_P --start label --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 2.8
+--name C3H4_rxn2391_R --start label --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 2.8
+--name C3H4_rxn2391_P --start label --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 2.8
+--name C3H4_rxn2391_TS --start label --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 2.8
+--name C2H4O_rxn0724_P --start rl4n29f --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 2.8
+--name C2H4O_rxn0724_TS --start rl4n29f --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 2.8
+--name C2H4O_rxn2507_P --start rl4n29f --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 2.8
+--name C3H4_rxn2391_R --start rl4n29f --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 2.8
+--name C3H4_rxn2391_P --start rl4n29f --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 2.8
+--name C3H4_rxn2391_TS --start rl4n29f --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 2.8

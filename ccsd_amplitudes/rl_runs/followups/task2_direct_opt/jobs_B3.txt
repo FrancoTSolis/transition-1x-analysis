@@ -1,0 +1,2 @@
+--name C2H3N_rxn2858_TS --start label --objective qsci --optimizer spsa --spsa-c 0.02 --spsa-target 0.008 --worker-threads 2 --max-mem-gb 2.0 --max-wall-h 3
+--name C2H3N_rxn2858_P --start label --objective qsci --optimizer spsa --spsa-c 0.02 --spsa-target 0.008 --worker-threads 2 --max-mem-gb 2.0 --max-wall-h 3

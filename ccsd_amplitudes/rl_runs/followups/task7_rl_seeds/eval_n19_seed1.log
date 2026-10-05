@@ -1,0 +1,43 @@
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/bin/python3 -m pretrain.rl.policy_dump --names-file gauge_study/names_norb19.txt --device cpu --out runs_ot/energy_tasks/task7_n19_seed1.pkl --policy rl_runs/followups/task7_rl_seeds/seed1/policy_best.pt --tag s1best --policy rl_runs/followups/task7_rl_seeds/seed1/policy_last.pt --tag s1last
+s1best: median residual 0.312
+s1last: median residual 0.331
+24 tasks -> runs_ot/energy_tasks/task7_n19_seed1.pkl
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/bin/python3 -m pretrain.rl.queue_eval --dump runs_ot/energy_tasks/task7_n19_seed1.pkl --queue-root rl_queue/exact_shared --out pretrain/opt_true/results/followups/task7_rl_seeds/energy_n19_seed1.json
+submitted 24 tasks
+  [queue] waiting for 24 results
+  [queue] waiting for 23 results
+  [queue] waiting for 23 results
+  [queue] waiting for 21 results
+  [queue] waiting for 21 results
+  [queue] waiting for 20 results
+  [queue] waiting for 20 results
+  [queue] waiting for 20 results
+  [queue] waiting for 20 results
+  [queue] waiting for 19 results
+  [queue] waiting for 18 results
+  [queue] waiting for 18 results
+  [queue] waiting for 18 results
+  [queue] waiting for 17 results
+  [queue] waiting for 17 results
+  [queue] waiting for 16 results
+  [queue] waiting for 15 results
+  [queue] waiting for 14 results
+  [queue] waiting for 12 results
+  [queue] waiting for 12 results
+  [queue] waiting for 11 results
+  [queue] waiting for 11 results
+  [queue] waiting for 9 results
+  [queue] waiting for 9 results
+  [queue] waiting for 8 results
+  [queue] waiting for 7 results
+  [queue] waiting for 7 results
+  [queue] waiting for 6 results
+  [queue] waiting for 5 results
+  [queue] waiting for 5 results
+  [queue] waiting for 4 results
+  [queue] waiting for 3 results
+  [queue] waiting for 3 results
+  [queue] waiting for 1 results
+  [queue] waiting for 1 results
+-> pretrain/opt_true/results/followups/task7_rl_seeds/energy_n19_seed1.json  (2057s, 0 errors)
+steps {'best': 35, 'last': 50}; aliases {} -> /xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/opt_true/results/followups/task7_rl_seeds/energy_n19_seed1.json

@@ -1,0 +1,28 @@
+davidson 0 1  |r|= 0.625  e= [-50.21412204]  max|de|= -50.2  lindep=    1
+davidson 1 2  |r|= 0.333  e= [-50.39623627]  max|de|= -0.182  lindep= 0.985
+davidson 2 3  |r|= 0.19  e= [-50.43855841]  max|de|= -0.0423  lindep= 0.959
+davidson 3 4  |r|= 0.111  e= [-50.45251526]  max|de|= -0.014  lindep= 0.931
+davidson 4 5  |r|= 0.0819  e= [-50.45847937]  max|de|= -0.00596  lindep= 0.925
+davidson 5 6  |r|= 0.0663  e= [-50.46196534]  max|de|= -0.00349  lindep= 0.914
+davidson 6 7  |r|= 0.0445  e= [-50.46381872]  max|de|= -0.00185  lindep= 0.946
+davidson 7 8  |r|= 0.026  e= [-50.4644647]  max|de|= -0.000646  lindep= 0.953
+davidson 8 9  |r|= 0.0149  e= [-50.46466344]  max|de|= -0.000199  lindep= 0.952
+davidson 9 10  |r|= 0.00835  e= [-50.46472758]  max|de|= -6.41e-05  lindep= 0.932
+davidson 10 11  |r|= 0.00473  e= [-50.46474808]  max|de|= -2.05e-05  lindep= 0.926
+davidson 11 12  |r|= 0.00281  e= [-50.46475473]  max|de|= -6.65e-06  lindep= 0.91
+davidson 12 1  |r|= 0.00281  e= [-50.46475473]  max|de|= 5.97e-13  lindep=    1
+davidson 13 2  |r|= 0.00169  e= [-50.46475642]  max|de|= -1.69e-06  lindep= 0.928
+davidson 14 3  |r|= 0.00152  e= [-50.46475764]  max|de|= -1.21e-06  lindep= 0.852
+davidson 15 4  |r|= 0.0011  e= [-50.46475828]  max|de|= -6.46e-07  lindep= 0.878
+davidson 16 5  |r|= 0.000661  e= [-50.46475857]  max|de|= -2.83e-07  lindep= 0.937
+davidson 17 6  |r|= 0.000388  e= [-50.46475867]  max|de|= -1.06e-07  lindep= 0.911
+davidson 18 7  |r|= 0.000216  e= [-50.46475871]  max|de|= -3.48e-08  lindep= 0.921
+davidson 19 8  |r|= 0.000115  e= [-50.46475872]  max|de|= -1.11e-08  lindep= 0.933
+davidson 20 9  |r|= 6.61e-05  e= [-50.46475872]  max|de|= -3.52e-09  lindep= 0.915
+davidson 21 10  |r|= 4.34e-05  e= [-50.46475872]  max|de|= -1.27e-09  lindep= 0.884
+davidson 22 11  |r|= 2.91e-05  e= [-50.46475872]  max|de|= -5.87e-10  lindep= 0.831
+davidson 23 12  |r|= 1.73e-05  e= [-50.46475872]  max|de|= -2.48e-10  lindep= 0.783
+davidson 24 1  |r|= 1.73e-05  e= [-50.46475872]  max|de|= 6.4e-12  lindep= 0.913
+root 0 converged  |r|= 9.49e-06  e= -50.46475872364007  max|de|= -5.69e-11
+converged 25 2  |r|= 9.49e-06  e= [-50.46475872]  max|de|= -5.69e-11
+{'C3H4_rxn2391_TS': {'e_fci': -114.47154583133812, 's2': 1.1895404165910344e-11, 'conv_tol': 1e-10, 't_s': 779.2760667800903, 'threads': 16, 'solver': 'pyscf.fci.direct_spin0', 'converged': True, 'dim': 165636900, 'c_hf': 0.826510913749959, 'host': 'exp-1-11'}}

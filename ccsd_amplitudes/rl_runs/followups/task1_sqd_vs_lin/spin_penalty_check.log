@@ -1,0 +1,8 @@
+C2H3N_rxn2858_TS truncated  dim   58  E(spin_sq=0) -130.17585430 S2 2.1e-02   E(no penalty) -130.17640085 S2 3.5e-02   diff -0.5465 mHa
+C2H3N_rxn2858_TS label      dim  489  E(spin_sq=0) -130.25000493 S2 3.7e-03   E(no penalty) -130.25006311 S2 5.1e-03   diff -0.0582 mHa
+C2H3N_rxn2858_TS rl4L       dim  551  E(spin_sq=0) -130.25194706 S2 3.2e-03   E(no penalty) -130.25199741 S2 4.4e-03   diff -0.0504 mHa
+C2H3N_rxn2858_TS rl4n29f    dim  508  E(spin_sq=0) -130.25053075 S2 4.1e-03   E(no penalty) -130.25060958 S2 6.0e-03   diff -0.0788 mHa
+C2H4O_rxn2507_TS truncated  dim  168  E(spin_sq=0) -150.94275083 S2 1.7e-02   E(no penalty) -150.94306016 S2 2.4e-02   diff -0.3093 mHa
+C2H4O_rxn2507_TS label      dim  605  E(spin_sq=0) -150.98745953 S2 4.2e-03   E(no penalty) -150.98752625 S2 5.7e-03   diff -0.0667 mHa
+C2H4O_rxn2507_TS rl4L       dim  656  E(spin_sq=0) -150.98839861 S2 4.0e-03   E(no penalty) -150.98846036 S2 5.4e-03   diff -0.0618 mHa
+C2H4O_rxn2507_TS rl4n29f    dim  557  E(spin_sq=0) -150.98562577 S2 4.9e-03   E(no penalty) -150.98570905 S2 6.8e-03   diff -0.0833 mHa

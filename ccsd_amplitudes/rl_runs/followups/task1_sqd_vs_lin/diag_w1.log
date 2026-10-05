@@ -1,0 +1,4 @@
+  C2H3N_rxn2858_P__truncated__s0       lin    b0  E -130.34257297  dim 82^2  S2 2.7e-02  1.6s  [1 solved, 4s]
+  C2H3N_rxn2858_P__cdf_lin__s0         lin    b0  E -130.39901834  dim 820^2  S2 3.7e-03  71.5s  [2 solved, 75s]
+  C2H3N_rxn2858_P__cdf_lin__s0         lin    b1  E -130.39898284  dim 832^2  S2 4.5e-03  76.4s  [3 solved, 152s]
+  C2H3N_rxn2858_P__cdf_lin__s0         lin    b2  E -130.39899894  dim 860^2  S2 4.3e-03  79.0s  [4 solved, 231s]

@@ -170,6 +170,9 @@ def main():
                          "queue: exact energies from GPU workers through pretrain.rl.reward_queue")
     ap.add_argument("--queue-root", default=None, help="shared-FS queue directory for --reward queue")
     ap.add_argument("--queue-timeout", type=float, default=3600.0)
+    ap.add_argument("--queue-kind", default="exact", choices=["exact", "tn"],
+                    help="kind of the --reward queue tasks: exact (GPU state vector) or tn (served by "
+                         "'reward_queue worker --kind tn' workers, whose --chi / --tn-impl set the TN energy)")
     ap.add_argument("--max-bond", type=int, default=32)
     ap.add_argument("--shots", type=int, default=2000)
     ap.add_argument("--samples-per-batch", type=int, default=300)
@@ -252,9 +255,11 @@ def main():
             return out
         if args.reward == "queue":
             sub = [{"name": n, "U": U, "Z": Z, "t1": t1, "norb": mols[n].n, "nelec": (mols[n].no, mols[n].no),
-                    "kind": "exact"} for (k, n, U, Z, t1) in tasks]
+                    "kind": args.queue_kind} for (k, n, U, Z, t1) in tasks]
             ids = RQ.submit(args.queue_root, sub)
-            res = RQ.collect(args.queue_root, ids, timeout=args.queue_timeout)
+            # TN energies can run 30 min and their heartbeats come from a child process: be slow to requeue
+            res = RQ.collect(args.queue_root, ids, timeout=args.queue_timeout,
+                             stale_s=1800.0 if args.queue_kind == "tn" else 300.0)
             return {k: res[i] for (k, *_), i in zip(tasks, ids)}
         jobs = [(k, n, U, Z, t1, "square", args.reward, rkw) for (k, n, U, Z, t1) in tasks]
         return {key: (E, info) for key, E, info in pool.imap_unordered(_reward_job, jobs)}

@@ -1,0 +1,16 @@
+=== 2026-10-05 00:40:33 start lucj/C2H3N_rxn2857_TS__label__spsa__tune_t5e-4
+C2H3N_rxn2857_TS__label__spsa__tune_t5e-4: 500 evals, 11.2 min; f -130.286565 -> -130.295082 (68.85 -> 72.89 %corr); var 68.85 -> 72.89
+=== 2026-10-05 00:51:54 end lucj/C2H3N_rxn2857_TS__label__spsa__tune_t5e-4
+=== 2026-10-05 00:51:54 start lucj/C2H3N_rxn2857_TS__label__spsa__tune_t2e-3
+C2H3N_rxn2857_TS__label__spsa__tune_t2e-3: 500 evals, 11.1 min; f -130.286565 -> -130.302159 (68.85 -> 76.25 %corr); var 68.85 -> 76.25
+=== 2026-10-05 01:03:05 end lucj/C2H3N_rxn2857_TS__label__spsa__tune_t2e-3
+=== 2026-10-05 01:03:05 start lucj/C2H3N_rxn2857_TS__label__spsa__tune_t8e-3
+C2H3N_rxn2857_TS__label__spsa__tune_t8e-3: 500 evals, 11.5 min; f -130.286565 -> -130.303660 (68.85 -> 76.96 %corr); var 68.85 -> 76.96
+=== 2026-10-05 01:14:41 end lucj/C2H3N_rxn2857_TS__label__spsa__tune_t8e-3
+=== 2026-10-05 01:14:41 start lucj/C2H3N_rxn2857_TS__label__spsa__tune_t2e-3_c2e-2
+C2H3N_rxn2857_TS__label__spsa__tune_t2e-3_c2e-2: 500 evals, 11.2 min; f -130.286565 -> -130.302160 (68.85 -> 76.25 %corr); var 68.85 -> 76.25
+=== 2026-10-05 01:25:56 end lucj/C2H3N_rxn2857_TS__label__spsa__tune_t2e-3_c2e-2
+=== 2026-10-05 01:25:56 start lucj/C2H3N_rxn2857_TS__label__spsa__tune_t3e-2
+C2H3N_rxn2857_TS__label__spsa__tune_t3e-2: 500 evals, 11.3 min; f -130.286565 -> -130.291630 (68.85 -> 71.25 %corr); var 68.85 -> 71.25
+=== 2026-10-05 01:37:19 end lucj/C2H3N_rxn2857_TS__label__spsa__tune_t3e-2
+queue done 2026-10-05 01:37:19

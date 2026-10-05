@@ -1,0 +1,8 @@
+best step 20, last step 24
+rl4n29dm: median residual 0.379
+rl4n29dmf: median residual 0.398
+40 tasks -> rl_runs/followups/task6_n29_rl_dm/tasks_n29val_rl4n29dm.pkl
+rl4n29dm: median residual 0.350
+rl4n29dmf: median residual 0.370
+48 tasks -> rl_runs/followups/task6_n29_rl_dm/tasks_n29test_rl4n29dm.pkl
+evaluations done Mon Oct  5 11:38:25 AM PDT 2026

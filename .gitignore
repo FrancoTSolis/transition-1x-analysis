@@ -72,3 +72,9 @@ ccsd_amplitudes/rhf_targets_compressed_n19/
 ccsd_amplitudes/rl_runs/tn_basis_cache/
 ccsd_amplitudes/rhf_targets_compressed_n29test/
 ccsd_amplitudes/rhf_targets_compressed_conv/
+# follow-up experiments (Oct 2026): keep code, results JSON, reports and logs; drop scratch and bulky arrays
+ccsd_amplitudes/rl_runs/followups/**/smpv_*/
+ccsd_amplitudes/rl_runs/followups/**/*.npz
+ccsd_amplitudes/rl_runs/followups/**/*.pkl
+ccsd_amplitudes/rl_runs/followups/**/*TNKET*
+ccsd_amplitudes/rl_runs/followups/**/tnq_*/

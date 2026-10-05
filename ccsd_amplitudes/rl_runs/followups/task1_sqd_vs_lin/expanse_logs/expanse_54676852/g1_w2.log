@@ -1,0 +1,8 @@
+  C2HNO_rxn4439_R__rl4L__s0            n2631g b0  E -203.19401626  dim 1571^2  S2 1.4e-03  288.6s  [1 solved, 291s]
+  C2HNO_rxn4440_TS__rl4n29f__s0        n2631g b0  E -203.03864287  dim 1252^2  S2 2.2e-03  234.4s  [1 solved, 235s]
+  C2HNO_rxn4441_P__rl4L__s0            n2631g b0  E -203.14983490  dim 1643^2  S2 1.8e-03  305.3s  [1 solved, 306s]
+  C2HNO_rxn4441_P__truncated__s0       n2631g b0  E -203.09620635  dim 191^2  S2 2.5e-02  6.7s  [1 solved, 7s]
+  C2HNO_rxn4441_TS__rl4L__s0           n2631g b0  E -203.08350531  dim 1832^2  S2 2.1e-03  447.5s  [1 solved, 448s]
+  C2HNO_rxn4442_P__rl4n29f__s0         n2631g b0  E -203.06747819  dim 1281^2  S2 2.2e-03  192.0s  [1 solved, 192s]
+  C2HNO_rxn4442_R__rl4n29f__s0         n2631g b0  E -203.19265873  dim 1224^2  S2 2.0e-03  184.5s  [1 solved, 185s]
+  C2HNO_rxn4442_TS__rl4L__s0           n2631g b0  E -203.01907532  dim 1889^2  S2 2.2e-03  442.9s  [1 solved, 443s]

@@ -1,0 +1,13 @@
+  C2H3N_rxn2858_P norb 15: nit 1601 nfev 1656 success True resid 0.26913 (snap {500: np.float64(0.27018), 1000: np.float64(0.26898)}) gmax 8.89e-09 12s  [CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH]
+[shard 0] 1/6 done=1 skip=0 err=0  14s
+  C2H4O_rxn0724_P norb 16: nit 1411 nfev 1466 success True resid 0.23696 (snap {500: np.float64(0.23926), 1000: np.float64(0.23695)}) gmax 3.24e-08 13s  [CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH]
+[shard 0] 2/6 done=2 skip=0 err=0  26s
+  C2H4O_rxn2507_P norb 16: nit 1361 nfev 1409 success True resid 0.23869 (snap {500: np.float64(0.24129), 1000: np.float64(0.23868)}) gmax 2.23e-09 11s  [CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH]
+[shard 0] 3/6 done=3 skip=0 err=0  38s
+  C3H4_rxn2391_R norb 16: nit 1729 nfev 1791 success True resid 0.22145 (snap {500: np.float64(0.22335), 1000: np.float64(0.22147)}) gmax 3.90e-09 14s  [CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH]
+[shard 0] 4/6 done=4 skip=0 err=0  52s
+  C3H4_rxn2391_TS norb 16: nit 1482 nfev 1547 success True resid 0.26511 (snap {500: np.float64(0.26539), 1000: np.float64(0.2651)}) gmax 2.50e-08 12s  [CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH]
+[shard 0] 5/6 done=5 skip=0 err=0  65s
+  C4H5NO_rxn0162_TS norb 29: nit 1811 nfev 1869 success True resid 0.35988 (snap {500: np.float64(0.36), 1000: np.float64(0.35988)}) gmax 1.45e-08 219s  [CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH]
+[shard 0] 6/6 done=6 skip=0 err=0  285s
+[shard 0] DONE done=6 skip=0 err=0 285s

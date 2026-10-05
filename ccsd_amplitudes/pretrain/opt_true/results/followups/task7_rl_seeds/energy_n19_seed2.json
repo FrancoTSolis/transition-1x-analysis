@@ -1,0 +1,297 @@
+{
+ "per_molecule": {
+  "C2H3NO_rxn3839_P": {
+   "s2best": {
+    "E": -204.1345296948801,
+    "corr_frac": 0.7035257660443608,
+    "t": 55.89686131477356,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "s2last": {
+    "E": -204.1345296948801,
+    "corr_frac": 0.7035257660443608,
+    "t": 55.89686131477356,
+    "worker": "scai7-gpu1",
+    "error": null,
+    "same_as": "s2best"
+   }
+  },
+  "C2H3NO_rxn3839_R": {
+   "s2best": {
+    "E": -204.28278225432155,
+    "corr_frac": 0.7235251217273068,
+    "t": 55.6127028465271,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "s2last": {
+    "E": -204.28278225432155,
+    "corr_frac": 0.7235251217273068,
+    "t": 55.6127028465271,
+    "worker": "scai7-gpu1",
+    "error": null,
+    "same_as": "s2best"
+   }
+  },
+  "C2H3NO_rxn3839_TS": {
+   "s2best": {
+    "E": -204.1129238786073,
+    "corr_frac": 0.7131366276538197,
+    "t": 55.63407015800476,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "s2last": {
+    "E": -204.1129238786073,
+    "corr_frac": 0.7131366276538197,
+    "t": 55.63407015800476,
+    "worker": "scai7-gpu1",
+    "error": null,
+    "same_as": "s2best"
+   }
+  },
+  "C2H3NO_rxn3840_P": {
+   "s2best": {
+    "E": -204.2338767648511,
+    "corr_frac": 0.7059937401076216,
+    "t": 56.03700137138367,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "s2last": {
+    "E": -204.2338767648511,
+    "corr_frac": 0.7059937401076216,
+    "t": 56.03700137138367,
+    "worker": "scai7-gpu1",
+    "error": null,
+    "same_as": "s2best"
+   }
+  },
+  "C2H3NO_rxn3840_R": {
+   "s2best": {
+    "E": -204.28278225432155,
+    "corr_frac": 0.7235251217273068,
+    "t": 55.58126258850098,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "s2last": {
+    "E": -204.28278225432155,
+    "corr_frac": 0.7235251217273068,
+    "t": 55.58126258850098,
+    "worker": "scai7-gpu1",
+    "error": null,
+    "same_as": "s2best"
+   }
+  },
+  "C2H3NO_rxn3840_TS": {
+   "s2best": {
+    "E": -204.14208623380026,
+    "corr_frac": 0.6734851711152656,
+    "t": 56.21674346923828,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "s2last": {
+    "E": -204.14208623380026,
+    "corr_frac": 0.6734851711152656,
+    "t": 56.21674346923828,
+    "worker": "scai7-gpu1",
+    "error": null,
+    "same_as": "s2best"
+   }
+  },
+  "C2H3NO_rxn3841_P": {
+   "s2best": {
+    "E": -204.19195674960216,
+    "corr_frac": 0.6453743486761573,
+    "t": 54.2160370349884,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "s2last": {
+    "E": -204.19195674960216,
+    "corr_frac": 0.6453743486761573,
+    "t": 54.2160370349884,
+    "worker": "scai7-gpu1",
+    "error": null,
+    "same_as": "s2best"
+   }
+  },
+  "C2H3NO_rxn3841_R": {
+   "s2best": {
+    "E": -204.28278225432155,
+    "corr_frac": 0.7235251217273068,
+    "t": 55.631837368011475,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "s2last": {
+    "E": -204.28278225432155,
+    "corr_frac": 0.7235251217273068,
+    "t": 55.631837368011475,
+    "worker": "scai7-gpu1",
+    "error": null,
+    "same_as": "s2best"
+   }
+  },
+  "C2H3NO_rxn3841_TS": {
+   "s2best": {
+    "E": -204.08473673598291,
+    "corr_frac": 0.6870501457874797,
+    "t": 56.12137174606323,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "s2last": {
+    "E": -204.08473673598291,
+    "corr_frac": 0.6870501457874797,
+    "t": 56.12137174606323,
+    "worker": "scai7-gpu1",
+    "error": null,
+    "same_as": "s2best"
+   }
+  },
+  "C2H3NO_rxn3842_P": {
+   "s2best": {
+    "E": -204.16718237395415,
+    "corr_frac": 0.6310922613252924,
+    "t": 55.46285271644592,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "s2last": {
+    "E": -204.16718237395415,
+    "corr_frac": 0.6310922613252924,
+    "t": 55.46285271644592,
+    "worker": "scai7-gpu1",
+    "error": null,
+    "same_as": "s2best"
+   }
+  },
+  "C2H3NO_rxn3842_R": {
+   "s2best": {
+    "E": -204.28278225597433,
+    "corr_frac": 0.7235251237005443,
+    "t": 55.64068531990051,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "s2last": {
+    "E": -204.28278225597433,
+    "corr_frac": 0.7235251237005443,
+    "t": 55.64068531990051,
+    "worker": "scai7-gpu1",
+    "error": null,
+    "same_as": "s2best"
+   }
+  },
+  "C2H3NO_rxn3842_TS": {
+   "s2best": {
+    "E": -204.08180839999952,
+    "corr_frac": 0.7080315843200284,
+    "t": 56.256797790527344,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "s2last": {
+    "E": -204.08180839999952,
+    "corr_frac": 0.7080315843200284,
+    "t": 56.256797790527344,
+    "worker": "scai7-gpu1",
+    "error": null,
+    "same_as": "s2best"
+   }
+  }
+ },
+ "meta": {
+  "C2H3NO_rxn3839_P": {
+   "resid": {
+    "s2best": 0.3210129192843808
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3839_R": {
+   "resid": {
+    "s2best": 0.29785514201271507
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3839_TS": {
+   "resid": {
+    "s2best": 0.3211197333654893
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3840_P": {
+   "resid": {
+    "s2best": 0.3136298509333513
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3840_R": {
+   "resid": {
+    "s2best": 0.29785514201271507
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3840_TS": {
+   "resid": {
+    "s2best": 0.3207154036973968
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3841_P": {
+   "resid": {
+    "s2best": 0.28527380613888054
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3841_R": {
+   "resid": {
+    "s2best": 0.29785514201271507
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3841_TS": {
+   "resid": {
+    "s2best": 0.3363642245996675
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3842_P": {
+   "resid": {
+    "s2best": 0.3114200239439583
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3842_R": {
+   "resid": {
+    "s2best": 0.29785516209441204
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3842_TS": {
+   "resid": {
+    "s2best": 0.3092276735100854
+   },
+   "norb": 19
+  }
+ },
+ "args": {
+  "dump": [
+   "runs_ot/energy_tasks/task7_n19_seed2.pkl"
+  ],
+  "queue_root": "rl_queue/exact_shared",
+  "out": "pretrain/opt_true/results/followups/task7_rl_seeds/energy_n19_seed2.json",
+  "skip_keys": [],
+  "only_names": null,
+  "kind": "exact"
+ },
+ "wall_s": 1818.9115314483643,
+ "policy_steps": {
+  "s2best": 50,
+  "s2last": 50
+ }
+}

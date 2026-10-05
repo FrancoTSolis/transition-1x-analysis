@@ -85,15 +85,15 @@ labels (`rhf_targets_compressed*`), Hamiltonians and queues are gitignored.
 
 | # | task | status / plan |
 |:--|:--|:--|
-| 1 | Noiseless SQD comparison with Lin et al.'s protocol: exact GPU state vectors at 15–19 orbitals; 10⁵ samples, 10 batches × 4,000, her SQD settings; candidates truncated CCSD init / label / pretrained / NN+RL; references CCSD(T), FCI at 15–16 | launched 5 Oct (workflow agent) |
-| 2 | Per-molecule direct optimization, 500 NOMAD/SPSA evaluations, 15–16 orbitals. Objective: LUCJ energy (RL upper bound) and QSCI energy (her TN-optimization baseline) | launched 5 Oct |
-| 3 | optimize=True labels run to convergence (~5,000 iterations) on the test sets, then energies (exact ≤ 19; TN v1 χ256 at 29) | launched 5 Oct |
-| 4 | dm TN engine timing, 29 orbitals, χ128, 4 workers × 4 threads per GPU (the NERSC RL line) | running 5 Oct 00:10 on a TITAN Xp (clean host) and an H200 (shared); scai3 A100 unreachable |
-| 5 | dm engine accuracy and timing at 33 / 37 / 44 orbitals, χ 64 / 128 / 256 | launched 5 Oct |
-| 6 | n29 RL redone with dm χ128 rewards on GPUs | launched 5 Oct (after task 5) |
-| 7 | more seeds of the norb 15–18 exact-reward RL | launched 5 Oct |
-| 8 | reaction energies and barriers from existing energies | **done** (§1) |
-| – | MPS sampler for TN-sampled SQD at 29 orbitals (~1 day of code) | launched 5 Oct (development) |
-| – | GPU SQD solver (SBD) build and benchmark | not started |
+| 1 | Noiseless SQD comparison with Lin et al.'s protocol: exact GPU state vectors at 15–19 orbitals; 10⁵ samples, 10 batches × 4,000, her SQD settings; candidates truncated CCSD init / label / pretrained / NN+RL; references CCSD(T), FCI at 15–16 | **done**: QSCI follows the number of sampled configurations, not the LUCJ energy; `rl4L` ≈ Lin's compressed DF at 10⁵ samples (8.6 vs 8.0 mHa), behind at 10⁶ (2.08 vs 0.69). `docs/followups/task1_sqd_vs_lin.md` |
+| 2 | Per-molecule direct optimization, 500 NOMAD/SPSA evaluations, 15–16 orbitals. Objective: LUCJ energy (RL upper bound) and QSCI energy (her TN-optimization baseline) | **done**: SPSA reaches 73.8–75.8 % vs 70.3 % for one call (NOMAD 63.9 %); the QSCI objective beats one call only by spreading the samples. `docs/followups/task2_direct_opt.md` |
+| 3 | optimize=True labels run to convergence (~5,000 iterations) on the test sets, then energies (exact ≤ 19; TN v1 χ256 at 29) | **done**: converged labels move the pooled mean 61.03 → 61.06 %; networks still win 78–79/87; the norb-19 margin is fragile (+0.1 to +0.6 vs best of 3). `docs/followups/task3_converged_labels.md` |
+| 4 | dm TN engine timing, 29 orbitals, χ128, 4 workers × 4 threads per GPU (the NERSC RL line) | **done**: 74 energies/h (TITAN Xp) and 126 (shared H200); A100 not measured. `docs/nersc_2027_gpu_budget.md`, `pretrain/opt_true/results/bench_dm_chi128_*.json` |
+| 5 | dm engine accuracy and timing at 33 / 37 / 44 orbitals, χ 64 / 128 / 256 | **done**: χ128 within 0.28–1.81 mHa of χ256 at 33–44 orbitals; throughput 29 → 44 orbitals drops 2.36× (model 3.77×); RL line consistent. `docs/followups/task5_dm_scaling.md` |
+| 6 | n29 RL redone with dm χ128 rewards on GPUs | **done**: no gain over Expanse χ64 (test 65.7 vs 66.3–66.5 %), confounded with a halved batch. `docs/followups/task6_n29_rl_dm.md` |
+| 7 | more seeds of the norb 15–18 exact-reward RL | **done**: val-selected +7.31 ± 0.15 is selection-inflated (late-training mean +5.7 ± 0.7); norb 19 about +2 ± 1. `docs/followups/task7_rl_seeds.md` |
+| 8 | reaction energies and barriers from existing energies | **done** (§1); summarized in `docs/followups_2026-10.md` §2 |
+| – | MPS sampler for TN-sampled SQD at 29 orbitals (~1 day of code) | **done**: `pretrain/rl/tn_sampler.py`; χ512 samples match exact ones for QSCI; norb-29 subspaces (1–2 M determinants) need SBD. `docs/followups/sampler.md` |
+| – | GPU SQD solver (SBD) build and benchmark | not started (next step 4 in `docs/followups_2026-10.md`) |
 
 Results of the follow-up tasks go to `docs/followups_2026-10.md` and `pretrain/opt_true/results/followups/`.

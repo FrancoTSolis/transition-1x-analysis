@@ -1,0 +1,49 @@
+=== 2026-10-05 10:53:03 start lucj/C2H4O_rxn0724_P__label__nomad
+Blackbox evaluations:         503
+Cache hits:                   221
+Total number of evaluations:  724
+C2H4O_rxn0724_P__label__nomad: 503 evals, 20.7 min; f -150.932903 -> -150.937006 (67.35 -> 69.28 %corr); var 67.35 -> 69.28
+=== 2026-10-05 11:13:54 end lucj/C2H4O_rxn0724_P__label__nomad
+queue done 2026-10-05 11:13:54
+=== 2026-10-05 11:13:54 start lucj/C2H4O_rxn0724_TS__label__nomad
+Blackbox evaluations:         503
+Cache hits:                   229
+Total number of evaluations:  732
+C2H4O_rxn0724_TS__label__nomad: 503 evals, 22.1 min; f -150.806072 -> -150.812298 (53.31 -> 56.12 %corr); var 53.31 -> 56.12
+=== 2026-10-05 11:36:10 end lucj/C2H4O_rxn0724_TS__label__nomad
+queue done 2026-10-05 11:36:10
+=== 2026-10-05 11:36:10 start lucj/C2H4O_rxn2507_P__label__nomad
+Blackbox evaluations:         503
+Cache hits:                   195
+Total number of evaluations:  698
+C2H4O_rxn2507_P__label__nomad: 503 evals, 20.0 min; f -151.051370 -> -151.052346 (69.41 -> 69.90 %corr); var 69.41 -> 69.90
+=== 2026-10-05 11:56:21 end lucj/C2H4O_rxn2507_P__label__nomad
+queue done 2026-10-05 11:56:21
+=== 2026-10-05 11:56:21 start lucj/C3H4_rxn2391_R__label__nomad
+Blackbox evaluations:         503
+Cache hits:                   217
+Total number of evaluations:  720
+C3H4_rxn2391_R__label__nomad: 503 evals, 26.7 min; f -114.608387 -> -114.609200 (70.07 -> 70.42 %corr); var 70.07 -> 70.42
+=== 2026-10-05 12:23:18 end lucj/C3H4_rxn2391_R__label__nomad
+queue done 2026-10-05 12:23:18
+=== 2026-10-05 12:23:18 start lucj/C3H4_rxn2391_P__label__nomad
+Blackbox evaluations:         503
+Cache hits:                   196
+Total number of evaluations:  699
+C3H4_rxn2391_P__label__nomad: 503 evals, 26.8 min; f -114.581834 -> -114.582321 (68.80 -> 69.00 %corr); var 68.80 -> 69.00
+=== 2026-10-05 12:50:19 end lucj/C3H4_rxn2391_P__label__nomad
+queue done 2026-10-05 12:50:19
+=== 2026-10-05 12:50:19 start lucj/C3H4_rxn2391_TS__label__nomad
+Blackbox evaluations:         503
+Cache hits:                   221
+Total number of evaluations:  724
+C3H4_rxn2391_TS__label__nomad: 503 evals, 26.9 min; f -114.365499 -> -114.370299 (61.17 -> 63.20 %corr); var 61.17 -> 63.20
+=== 2026-10-05 13:17:25 end lucj/C3H4_rxn2391_TS__label__nomad
+queue done 2026-10-05 13:17:25
+deadline passed 2026-10-05 13:17:25; not started: --name C2H4O_rxn0724_P --start rl4n29f --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 2.8
+deadline passed 2026-10-05 13:17:25; not started: --name C2H4O_rxn0724_TS --start rl4n29f --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 2.8
+deadline passed 2026-10-05 13:17:25; not started: --name C2H4O_rxn2507_P --start rl4n29f --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 2.8
+deadline passed 2026-10-05 13:17:25; not started: --name C3H4_rxn2391_R --start rl4n29f --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 2.8
+deadline passed 2026-10-05 13:17:25; not started: --name C3H4_rxn2391_P --start rl4n29f --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 2.8
+deadline passed 2026-10-05 13:17:25; not started: --name C3H4_rxn2391_TS --start rl4n29f --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 2.8
+nomad2 queue done 2026-10-05 13:17:25

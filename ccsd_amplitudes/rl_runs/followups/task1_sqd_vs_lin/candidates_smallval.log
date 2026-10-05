@@ -1,0 +1,19 @@
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/bin/python3 -m pretrain.rl.policy_dump --names-file pretrain/rl/small_val.txt --policy init4:runs_ot/slotall_T4/best.pt --tag pre4 --policy rl_runs/grpo_large_rl4/policy_best.pt --tag rl4L --policy rl_runs/grpo_n29_tn/policy_last.pt --tag rl4n29f --labels-dir rhf_targets_compressed_small --device cpu --out runs_ot/energy_tasks/task1_sqd_vs_lin/policy_dump_smallval.pkl
+pre4: median residual 0.278
+rl4L: median residual 0.335
+rl4n29f: median residual 0.332
+36 tasks -> runs_ot/energy_tasks/task1_sqd_vs_lin/policy_dump_smallval.pkl
+  C2H3N_rxn2858_P: cdf_lin 42.1s
+  C2H3N_rxn2858_TS: cdf_lin 20.4s
+  C2H4O_rxn0724_P: cdf_lin 37.5s
+  C2H4O_rxn0724_TS: cdf_lin 19.3s
+  C2H4O_rxn2507_P: cdf_lin 19.3s
+  C2H4O_rxn2507_TS: cdf_lin 19.5s
+  C3H4_rxn2391_R: cdf_lin 34.3s
+  C3H4_rxn2391_P: cdf_lin 19.5s
+  C3H4_rxn2391_TS: cdf_lin 19.0s
+54 candidate tasks -> /xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/runs_ot/energy_tasks/task1_sqd_vs_lin/cands_smallval.pkl
+
+real	4m4.068s
+user	34m17.600s
+sys	0m48.667s

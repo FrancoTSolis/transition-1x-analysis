@@ -1,0 +1,4 @@
+[C2H3N_rxn2858_P] 6 sets each of exact + MPS chi [64, 256]: 60s
+[C2H3N_rxn2858_TS] 6 sets each of exact + MPS chi [64, 256]: 58s
+[C2H4O_rxn0724_P] 6 sets each of exact + MPS chi [64, 256]: 60s
+[C3H4_rxn2391_TS] 6 sets each of exact + MPS chi [64, 256]: 76s

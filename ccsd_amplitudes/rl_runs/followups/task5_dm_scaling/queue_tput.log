@@ -1,0 +1,2 @@
+{"norb": 44, "n_tasks": 8, "wall_s": 540.3, "energies_per_h": 53.3, "s_per_energy": 67.54, "task_t_median": 259.01, "n_failed": 0, "t_start": 1791191102.64}
+{"norb": 37, "n_tasks": 8, "wall_s": 270.17, "energies_per_h": 106.6, "s_per_energy": 33.77, "task_t_median": 119.28, "n_failed": 0, "t_start": 1791191642.98}

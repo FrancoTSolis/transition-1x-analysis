@@ -1,0 +1,4 @@
+=== 2026-10-05 10:53:05 scoring (--only lucj --threads 3 --max-mem-gb 2.0 --names C2H4O_rxn2507_TS)
+1 parameter sets to score
+  C2H4O_rxn2507_TS     lucj:rl4n29f:nomad             var  69.60%  SQD mean  99.17% [99.17, 99.17]  uniq100k 2387  dims 539-539  d_full -3.0e-09  (19+50s)
+=== 2026-10-05 10:54:28 scoring done

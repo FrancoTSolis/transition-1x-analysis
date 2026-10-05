@@ -1,0 +1,5 @@
+--name C2H3N_rxn2858_P --start label --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 4
+--name C2H3N_rxn2858_P --start rl4n29f --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 4
+--name C2H3N_rxn2858_TS --start label --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 4
+--name C2H3N_rxn2858_TS --start rl4n29f --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 4
+--name C2H4O_rxn2507_TS --start label --objective lucj --optimizer nomad --worker-threads 1 --max-mem-gb 4

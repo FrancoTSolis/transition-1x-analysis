@@ -1,0 +1,5 @@
+  C2HNO_rxn4439_P__rl4n29f__s0         n2631g b0  E -203.10158179  dim 1335^2  S2 2.2e-03  217.4s  [1 solved, 219s]
+  C2HNO_rxn4439_TS__cdf_lin__s0        n2631g b0  E -203.03360171  dim 5584^2  S2 5.6e-04  2325.5s  [1 solved, 2328s]
+  C2HNO_rxn4441_R__rl4n29f__s0         n2631g b0  E -203.19265873  dim 1224^2  S2 2.0e-03  173.6s  [1 solved, 174s]
+  C2HNO_rxn4441_TS__label__s0          n2631g b0  E -203.08256629  dim 1588^2  S2 2.4e-03  377.4s  [1 solved, 378s]
+  C2HNO_rxn4442_TS__cdf_lin__s0        n2631g b0  E -203.02149730  dim 3311^2  S2 1.0e-03  1077.0s  [1 solved, 1078s]

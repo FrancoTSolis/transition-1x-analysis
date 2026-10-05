@@ -1,0 +1,60 @@
+{
+ "name": "C3H5N3_rxn4472_P",
+ "cand": "rl4n29f",
+ "norb": 29,
+ "nelec": [
+  16,
+  16
+ ],
+ "sets": {
+  "mps256": {
+   "basis": "chi",
+   "unique": {
+    "n": 100000,
+    "unique": 3204,
+    "unique_alpha": 984,
+    "unique_beta": 962,
+    "unique_union": 1408
+   },
+   "dims": [
+    160000,
+    160000,
+    160000,
+    160000,
+    160000,
+    160000,
+    160000,
+    160000,
+    160000,
+    160000
+   ],
+   "batches": [
+    {
+     "E": -276.4934910449055,
+     "dim_a": 400,
+     "dim_b": 400,
+     "dim": 160000,
+     "t": 3750.6644971370697,
+     "spin_sq": 0.016587754813985934
+    }
+   ],
+   "E_min": -276.4934910449055,
+   "E_mean": -276.4934910449055,
+   "E_std": 0.0,
+   "n_done": 1
+  }
+ },
+ "settings": {
+  "samples_per_batch": 4000,
+  "num_batches": 10,
+  "energy_tol": 1e-05,
+  "occupancies_tol": 0.001,
+  "carryover_threshold": 0.001,
+  "max_iterations": 1,
+  "symmetrize_spin": true,
+  "max_dim": 400,
+  "spin_sq": 0.0,
+  "seed": 0,
+  "solver": "qiskit_addon_sqd.fermion.solve_sci (pyscf SCI)"
+ }
+}

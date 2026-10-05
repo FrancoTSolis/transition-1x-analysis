@@ -1,0 +1,20 @@
+davidson 0 1  |r|= 0.648  e= [-50.18861012]  max|de|= -50.2  lindep=    1
+davidson 1 2  |r|= 0.308  e= [-50.38722161]  max|de|= -0.199  lindep= 0.995
+davidson 2 3  |r|= 0.134  e= [-50.41996646]  max|de|= -0.0327  lindep= 0.989
+davidson 3 4  |r|= 0.0623  e= [-50.42488042]  max|de|= -0.00491  lindep= 0.974
+davidson 4 5  |r|= 0.0281  e= [-50.4259288]  max|de|= -0.00105  lindep= 0.972
+davidson 5 6  |r|= 0.0126  e= [-50.42613613]  max|de|= -0.000207  lindep= 0.969
+davidson 6 7  |r|= 0.00585  e= [-50.42617447]  max|de|= -3.83e-05  lindep= 0.933
+davidson 7 8  |r|= 0.00266  e= [-50.42618266]  max|de|= -8.19e-06  lindep= 0.947
+davidson 8 9  |r|= 0.00127  e= [-50.42618423]  max|de|= -1.57e-06  lindep= 0.946
+davidson 9 10  |r|= 0.000629  e= [-50.42618455]  max|de|= -3.22e-07  lindep= 0.912
+davidson 10 11  |r|= 0.00032  e= [-50.42618463]  max|de|= -8.06e-08  lindep= 0.919
+davidson 11 12  |r|= 0.000157  e= [-50.42618465]  max|de|= -2.05e-08  lindep= 0.899
+davidson 12 1  |r|= 0.000157  e= [-50.42618465]  max|de|= 1.45e-11  lindep=    1
+davidson 13 2  |r|= 7.98e-05  e= [-50.42618465]  max|de|= -3.86e-09  lindep= 0.973
+davidson 14 3  |r|= 4.73e-05  e= [-50.42618465]  max|de|= -1.57e-09  lindep= 0.891
+davidson 15 4  |r|= 2.46e-05  e= [-50.42618466]  max|de|= -4.27e-10  lindep= 0.87
+davidson 16 5  |r|= 1.12e-05  e= [-50.42618466]  max|de|= -1.13e-10  lindep= 0.959
+root 0 converged  |r|= 5.28e-06  e= -50.426184655281354  max|de|= -2.32e-11
+converged 17 6  |r|= 5.28e-06  e= [-50.42618466]  max|de|= -2.32e-11
+{'C3H4_rxn2391_P': {'e_fci': -114.65813804592577, 's2': 1.370927130716662e-11, 'conv_tol': 1e-10, 't_s': 536.3747065067291, 'threads': 16, 'solver': 'pyscf.fci.direct_spin0', 'converged': True, 'dim': 165636900, 'c_hf': 0.9158331244950811, 'host': 'exp-1-11'}}

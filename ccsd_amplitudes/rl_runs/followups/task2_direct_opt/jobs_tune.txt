@@ -1,0 +1,5 @@
+--name C2H3N_rxn2857_TS --start label --objective lucj --optimizer spsa --spsa-target 0.0005 --tag tune_t5e-4 --worker-threads 1 --max-mem-gb 3.5
+--name C2H3N_rxn2857_TS --start label --objective lucj --optimizer spsa --spsa-target 0.002 --tag tune_t2e-3 --worker-threads 1 --max-mem-gb 3.5
+--name C2H3N_rxn2857_TS --start label --objective lucj --optimizer spsa --spsa-target 0.008 --tag tune_t8e-3 --worker-threads 1 --max-mem-gb 3.5
+--name C2H3N_rxn2857_TS --start label --objective lucj --optimizer spsa --spsa-target 0.002 --spsa-c 0.02 --tag tune_t2e-3_c2e-2 --worker-threads 1 --max-mem-gb 3.5
+--name C2H3N_rxn2857_TS --start label --objective lucj --optimizer spsa --spsa-target 0.03 --tag tune_t3e-2 --worker-threads 1 --max-mem-gb 3.0

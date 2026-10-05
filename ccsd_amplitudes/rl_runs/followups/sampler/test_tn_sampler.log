@@ -1,0 +1,30 @@
+  amplitudes dm cpu n=5 k=2: max|c - phase*sign*amp| 5.8e-15 |phase| 1.000000000000 isometry err 4.4e-16
+  amplitudes dm cpu n=6 k=3: max|c - phase*sign*amp| 6.9e-14 |phase| 1.000000000000 isometry err 8.9e-16
+  amplitudes dm cpu n=7 k=3: max|c - phase*sign*amp| 1.5e-14 |phase| 1.000000000000 isometry err 1.0e-15
+  amplitudes dm cpu n=7 k=2: max|c - phase*sign*amp| 1.2e-13 |phase| 1.000000000000 isometry err 6.7e-16
+  amplitudes zipup cpu n=6 k=3: max|c - phase*sign*amp| 1.7e-14 |phase| 1.000000000000 isometry err 8.9e-16
+  sampler cpu n=6 k=3 chi=1000000 (max bond 64, disc 3.9e-15): sum p 1.000000000000  chi2 p-value 0.053 (stat 445, dof 398)  TVD 0.0171  max|logp - log|amp|^2| 2.7e-15
+  sampler cpu n=7 k=3 chi=1000000 (max bond 64, disc 6.3e-15): sum p 1.000000000000  chi2 p-value 0.510 (stat 1175, dof 1177)  TVD 0.0274  max|logp - log|amp|^2| 4.4e-15
+  sampler cpu n=8 k=4 chi=12 (max bond 12, disc 4.8e+00): sum p 1.000000000000  chi2 p-value 0.175 (stat 2114, dof 2054)  TVD 0.0334  max|logp - log|amp|^2| 5.3e-15
+  amplitudes dm cuda n=5 k=2: max|c - phase*sign*amp| 8.2e-15 |phase| 1.000000000000 isometry err 6.7e-16
+  amplitudes dm cuda n=6 k=3: max|c - phase*sign*amp| 9.8e-14 |phase| 1.000000000000 isometry err 1.1e-15
+  amplitudes dm cuda n=7 k=3: max|c - phase*sign*amp| 7.8e-15 |phase| 1.000000000000 isometry err 1.3e-15
+  amplitudes dm cuda n=7 k=2: max|c - phase*sign*amp| 2.5e-13 |phase| 1.000000000000 isometry err 8.9e-16
+  sampler cuda n=6 k=3 chi=1000000 (max bond 64, disc 4.0e-15): sum p 1.000000000000  chi2 p-value 0.053 (stat 445, dof 398)  TVD 0.0171  max|logp - log|amp|^2| 3.6e-15
+  sampler cuda n=7 k=3 chi=1000000 (max bond 64, disc 6.2e-15): sum p 1.000000000000  chi2 p-value 0.510 (stat 1175, dof 1177)  TVD 0.0274  max|logp - log|amp|^2| 7.1e-15
+  sampler cuda n=8 k=4 chi=12 (max bond 12, disc 4.8e+00): sum p 1.000000000000  chi2 p-value 0.352 (stat 2119, dof 2095)  TVD 0.0350  max|logp - log|amp|^2| 5.3e-15
+  basis n=6: E_MO -54.2729262636  E_chi(ffsim) +2.1e-14  mps_energy -2.5e-12  ev.energy -2.5e-12
+  basis n=7: E_MO -31.9718435709  E_chi(ffsim) -3.6e-14  mps_energy +7.4e-12  ev.energy +7.4e-12
+  int convention: chi2 p-values ffsim 0.492  MPS 0.350; HF int 780 == 780
+  LUCJStateGPU complex128 n=6 k=3: max|c - phase v| 4.4e-16  E_chi - E_MO +1.1e-12
+  LUCJStateGPU complex64 n=6 k=3: max|c - phase v| 6.1e-08  E_chi - E_MO -2.3e-05
+  sample_ci_matrix n=6: chi2 p-value 0.285
+  LUCJStateGPU complex128 n=8 k=3: max|c - phase v| 2.8e-16  E_chi - E_MO +1.0e-12
+  LUCJStateGPU complex64 n=8 k=3: max|c - phase v| 2.5e-08  E_chi - E_MO +5.7e-06
+  sample_ci_matrix n=8: chi2 p-value 0.324
+  LUCJStateGPU complex128 n=9 k=4: max|c - phase v| 2.1e-16  E_chi - E_MO +6.1e-12
+  LUCJStateGPU complex64 n=9 k=4: max|c - phase v| 1.5e-08  E_chi - E_MO -1.1e-05
+  sample_ci_matrix n=9: chi2 p-value 0.345
+  sqd: batches ['-777.56912193', '-844.18961117', '-756.76938953'] dims [576, 576, 576] | library -844.18961117 dims [576, 576, 576]
+  sqd full space: FCI(MO) -1431.1125748830  QSCI(all strings, chi basis) -1431.1125748830  diff -6.8e-13
+all ok

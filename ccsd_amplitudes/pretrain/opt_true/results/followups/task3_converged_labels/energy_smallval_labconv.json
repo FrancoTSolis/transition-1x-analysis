@@ -1,0 +1,152 @@
+{
+ "per_molecule": {
+  "C2H3N_rxn2858_P": {
+   "labconv": {
+    "E": -130.31599977407927,
+    "corr_frac": 0.6152842557701347,
+    "t": 0.8610930442810059,
+    "worker": "local-gpu7",
+    "error": null
+   }
+  },
+  "C2H3N_rxn2858_TS": {
+   "labconv": {
+    "E": -130.1317716758325,
+    "corr_frac": 0.5671306195414064,
+    "t": 0.8266515731811523,
+    "worker": "local-gpu7",
+    "error": null
+   }
+  },
+  "C2H4O_rxn0724_P": {
+   "labconv": {
+    "E": -150.93366999432433,
+    "corr_frac": 0.6771067750822417,
+    "t": 2.426279067993164,
+    "worker": "local-gpu7",
+    "error": null
+   }
+  },
+  "C2H4O_rxn0724_TS": {
+   "labconv": {
+    "E": -150.80077228636787,
+    "corr_frac": 0.5091611752931097,
+    "t": 2.336359977722168,
+    "worker": "local-gpu6",
+    "error": null
+   }
+  },
+  "C2H4O_rxn2507_P": {
+   "labconv": {
+    "E": -151.05110297407577,
+    "corr_frac": 0.6927253891267339,
+    "t": 2.3367371559143066,
+    "worker": "local-gpu6",
+    "error": null
+   }
+  },
+  "C2H4O_rxn2507_TS": {
+   "labconv": {
+    "E": -150.89571447473594,
+    "corr_frac": 0.5972795931459279,
+    "t": 2.432642936706543,
+    "worker": "local-gpu7",
+    "error": null
+   }
+  },
+  "C3H4_rxn2391_R": {
+   "labconv": {
+    "E": -114.60984764541821,
+    "corr_frac": 0.7069785424404711,
+    "t": 2.973283052444458,
+    "worker": "local-gpu6",
+    "error": null
+   }
+  },
+  "C3H4_rxn2391_P": {
+   "labconv": {
+    "E": -114.57463439451715,
+    "corr_frac": 0.657243083771603,
+    "t": 3.031768798828125,
+    "worker": "local-gpu6",
+    "error": null
+   }
+  },
+  "C3H4_rxn2391_TS": {
+   "labconv": {
+    "E": -114.36549929330985,
+    "corr_frac": 0.611666879401169,
+    "t": 3.041048049926758,
+    "worker": "local-gpu7",
+    "error": null
+   }
+  }
+ },
+ "meta": {
+  "C2H3N_rxn2858_P": {
+   "resid": {
+    "labconv": 0.26951752680150665
+   },
+   "norb": 15
+  },
+  "C2H3N_rxn2858_TS": {
+   "resid": {
+    "labconv": 0.24059288450687205
+   },
+   "norb": 15
+  },
+  "C2H4O_rxn0724_P": {
+   "resid": {
+    "labconv": 0.22612756241811136
+   },
+   "norb": 16
+  },
+  "C2H4O_rxn0724_TS": {
+   "resid": {
+    "labconv": 0.25243592428899636
+   },
+   "norb": 16
+  },
+  "C2H4O_rxn2507_P": {
+   "resid": {
+    "labconv": 0.2420145787539872
+   },
+   "norb": 16
+  },
+  "C2H4O_rxn2507_TS": {
+   "resid": {
+    "labconv": 0.2739765933216321
+   },
+   "norb": 16
+  },
+  "C3H4_rxn2391_R": {
+   "resid": {
+    "labconv": 0.22219889756400704
+   },
+   "norb": 16
+  },
+  "C3H4_rxn2391_P": {
+   "resid": {
+    "labconv": 0.25202127123297824
+   },
+   "norb": 16
+  },
+  "C3H4_rxn2391_TS": {
+   "resid": {
+    "labconv": 0.26537677859728326
+   },
+   "norb": 16
+  }
+ },
+ "args": {
+  "dump": [
+   "runs_ot/energy_tasks/task3/smallval_labconv.pkl"
+  ],
+  "queue_root": "rl_queue/exact_shared",
+  "out": "pretrain/opt_true/results/followups/task3_converged_labels/energy_smallval_labconv.json",
+  "skip_keys": [],
+  "only_names": null,
+  "kind": "exact"
+ },
+ "wall_s": 56.14600205421448
+}

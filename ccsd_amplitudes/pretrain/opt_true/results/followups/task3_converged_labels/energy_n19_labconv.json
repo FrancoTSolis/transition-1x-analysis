@@ -1,0 +1,285 @@
+{
+ "per_molecule": {
+  "C2H3NO_rxn3839_P": {
+   "labconv": {
+    "E": -204.11769416638543,
+    "corr_frac": 0.6391861653860015,
+    "t": 55.91191029548645,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "lab500": {
+    "E": -204.11755481903083,
+    "corr_frac": 0.6386536277142022,
+    "t": 55.571510553359985,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3839_R": {
+   "labconv": {
+    "E": -204.27897248272302,
+    "corr_frac": 0.709151625438733,
+    "t": 55.61826968193054,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "lab500": {
+    "E": -204.2705092564274,
+    "corr_frac": 0.6772215874814735,
+    "t": 55.62171721458435,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3839_TS": {
+   "labconv": {
+    "E": -204.09522431178917,
+    "corr_frac": 0.6504276587077884,
+    "t": 55.635749101638794,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "lab500": {
+    "E": -204.09526252276257,
+    "corr_frac": 0.6505630388992356,
+    "t": 55.616132497787476,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3840_P": {
+   "labconv": {
+    "E": -204.23646380596216,
+    "corr_frac": 0.7165467417042078,
+    "t": 55.910420656204224,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "lab500": {
+    "E": -204.2367258545545,
+    "corr_frac": 0.7176156845986367,
+    "t": 55.8238890171051,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3840_R": {
+   "labconv": {
+    "E": -204.27897248272302,
+    "corr_frac": 0.709151625438733,
+    "t": 55.587910413742065,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "lab500": {
+    "E": -204.2705092564274,
+    "corr_frac": 0.6772215874814735,
+    "t": 55.6024808883667,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3840_TS": {
+   "labconv": {
+    "E": -204.1355548550349,
+    "corr_frac": 0.6481511433394601,
+    "t": 56.24326300621033,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "lab500": {
+    "E": -204.13266565676585,
+    "corr_frac": 0.6369444698593476,
+    "t": 56.220038414001465,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3841_P": {
+   "labconv": {
+    "E": -204.20456569654806,
+    "corr_frac": 0.6900762343098608,
+    "t": 54.625993967056274,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3841_R": {
+   "labconv": {
+    "E": -204.27897248272302,
+    "corr_frac": 0.709151625438733,
+    "t": 55.60697054862976,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "lab500": {
+    "E": -204.2705092564274,
+    "corr_frac": 0.6772215874814735,
+    "t": 55.64116382598877,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3841_TS": {
+   "labconv": {
+    "E": -204.05035522566234,
+    "corr_frac": 0.568459156390389,
+    "t": 56.149014949798584,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "lab500": {
+    "E": -204.0556833242581,
+    "corr_frac": 0.5868371880179782,
+    "t": 56.10629343986511,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3842_P": {
+   "labconv": {
+    "E": -204.15146110992902,
+    "corr_frac": 0.5733109986634392,
+    "t": 55.35456705093384,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "lab500": {
+    "E": -204.14987021829677,
+    "corr_frac": 0.5674639034729709,
+    "t": 55.43068194389343,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3842_R": {
+   "labconv": {
+    "E": -204.27567602326553,
+    "corr_frac": 0.6967147477709191,
+    "t": 55.59097123146057,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "lab500": {
+    "E": -204.2708786766594,
+    "corr_frac": 0.6786153312100488,
+    "t": 55.6687548160553,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3842_TS": {
+   "labconv": {
+    "E": -204.06726944948247,
+    "corr_frac": 0.6685757390292986,
+    "t": 56.800930976867676,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "lab500": {
+    "E": -204.07658119249894,
+    "corr_frac": 0.6938459737284227,
+    "t": 56.1616051197052,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  }
+ },
+ "meta": {
+  "C2H3NO_rxn3839_P": {
+   "resid": {
+    "labconv": 0.2678702718909843,
+    "lab500": 0.26805113504917016
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3839_R": {
+   "resid": {
+    "labconv": 0.22835332683481047,
+    "lab500": 0.23045222675319635
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3839_TS": {
+   "resid": {
+    "labconv": 0.26663705191453024,
+    "lab500": 0.2674762471259407
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3840_P": {
+   "resid": {
+    "labconv": 0.24958033611242972,
+    "lab500": 0.2500165594324356
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3840_R": {
+   "resid": {
+    "labconv": 0.22835332683481047,
+    "lab500": 0.23045222675319635
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3840_TS": {
+   "resid": {
+    "labconv": 0.25766681795009505,
+    "lab500": 0.2586641520292067
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3841_P": {
+   "resid": {
+    "labconv": 0.19942387494854832
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3841_R": {
+   "resid": {
+    "labconv": 0.22835332683481047,
+    "lab500": 0.23045222675319635
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3841_TS": {
+   "resid": {
+    "labconv": 0.29034510469423325,
+    "lab500": 0.29401875920012566
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3842_P": {
+   "resid": {
+    "labconv": 0.2852427012654818,
+    "lab500": 0.2925705659472767
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3842_R": {
+   "resid": {
+    "labconv": 0.23070130024246685,
+    "lab500": 0.23046712796974367
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3842_TS": {
+   "resid": {
+    "labconv": 0.2366710393541527,
+    "lab500": 0.2423953885775391
+   },
+   "norb": 19
+  }
+ },
+ "args": {
+  "dump": [
+   "runs_ot/energy_tasks/task3/n19_labconv.pkl"
+  ],
+  "queue_root": "rl_queue/exact_shared",
+  "out": "pretrain/opt_true/results/followups/task3_converged_labels/energy_n19_labconv.json",
+  "skip_keys": [],
+  "only_names": null,
+  "kind": "exact"
+ },
+ "wall_s": 1319.7626490592957
+}

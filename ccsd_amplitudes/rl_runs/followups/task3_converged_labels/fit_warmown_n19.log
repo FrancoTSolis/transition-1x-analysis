@@ -1,0 +1,25 @@
+  C2H3NO_rxn3839_P norb 19: nit 134 nfev 143 success True resid 0.26816 (snap {}) gmax 7.40e-06 10s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 1/12 done=1 skip=0 err=0  12s
+  C2H3NO_rxn3839_R norb 19: nit 307 nfev 321 success True resid 0.22835 (snap {}) gmax 5.56e-06 12s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 2/12 done=2 skip=0 err=0  24s
+  C2H3NO_rxn3839_TS norb 19: nit 89 nfev 93 success True resid 0.26668 (snap {}) gmax 9.06e-06 6s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 3/12 done=3 skip=0 err=0  30s
+  C2H3NO_rxn3840_P norb 19: nit 22 nfev 24 success True resid 0.24969 (snap {}) gmax 8.79e-06 6s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 4/12 done=4 skip=0 err=0  36s
+  C2H3NO_rxn3840_R norb 19: nit 307 nfev 321 success True resid 0.22835 (snap {}) gmax 5.56e-06 13s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 5/12 done=5 skip=0 err=0  48s
+  C2H3NO_rxn3840_TS norb 19: nit 79 nfev 83 success True resid 0.25758 (snap {}) gmax 8.80e-06 8s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 6/12 done=6 skip=0 err=0  56s
+  C2H3NO_rxn3841_P norb 19: nit 16 nfev 19 success True resid 0.19936 (snap {}) gmax 6.61e-06 6s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 7/12 done=7 skip=0 err=0  62s
+  C2H3NO_rxn3841_R norb 19: nit 307 nfev 321 success True resid 0.22835 (snap {}) gmax 5.56e-06 11s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 8/12 done=8 skip=0 err=0  73s
+  C2H3NO_rxn3841_TS norb 19: nit 98 nfev 105 success True resid 0.29056 (snap {}) gmax 9.06e-06 6s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 9/12 done=9 skip=0 err=0  79s
+  C2H3NO_rxn3842_P norb 19: nit 673 nfev 695 success True resid 0.28098 (snap {}) gmax 7.60e-06 21s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 10/12 done=10 skip=0 err=0  100s
+  C2H3NO_rxn3842_R norb 19: nit 258 nfev 269 success True resid 0.22837 (snap {}) gmax 8.15e-06 11s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 11/12 done=11 skip=0 err=0  112s
+  C2H3NO_rxn3842_TS norb 19: nit 389 nfev 417 success True resid 0.23663 (snap {}) gmax 7.85e-06 19s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 0] 12/12 done=12 skip=0 err=0  131s
+[shard 0] DONE done=12 skip=0 err=0 131s

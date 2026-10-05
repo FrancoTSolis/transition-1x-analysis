@@ -1,0 +1,196 @@
+{
+ "args": {
+  "queue_root": "rl_queue/task6_tn128",
+  "params": "rl_runs/followups/task5_dm_scaling/params_rl4n29f.pkl",
+  "sizes": "44,37",
+  "per_size": 8,
+  "seed": 0,
+  "out": "pretrain/opt_true/results/followups/task5_dm_scaling/queue_tput.json"
+ },
+ "batches": [
+  {
+   "norb": 44,
+   "n_tasks": 8,
+   "wall_s": 540.3002209663391,
+   "energies_per_h": 53.30369835587065,
+   "s_per_energy": 67.53752762079239,
+   "task_t_median": 259.0051839351654,
+   "n_failed": 0,
+   "tasks": [
+    {
+     "name": "C7H16_rxn8742_TS",
+     "E": -271.26132282741156,
+     "t": 312.8159019947052,
+     "worker": "scai7-gpu4-b",
+     "host": "scai7",
+     "discarded_sum": 0.0014562333692447194,
+     "max_bond": 128.0,
+     "t_total": 311.4426460266113
+    },
+    {
+     "name": "C7H16_rxn8744_P",
+     "E": -271.39456988688636,
+     "t": 205.38475847244263,
+     "worker": "scai7-gpu4-c",
+     "host": "scai7",
+     "discarded_sum": 0.0012164998834728324,
+     "max_bond": 128.0,
+     "t_total": 201.08087420463562
+    },
+    {
+     "name": "C7H16_rxn8743_R",
+     "E": -271.5838453441861,
+     "t": 203.9495973587036,
+     "worker": "scai7-gpu4-a",
+     "host": "scai7",
+     "discarded_sum": 0.0006094105431325714,
+     "max_bond": 128.0,
+     "t_total": 200.27788639068604
+    },
+    {
+     "name": "C7H16_rxn8743_R",
+     "E": -271.58384534418605,
+     "t": 316.8892078399658,
+     "worker": "scai7-gpu4-c",
+     "host": "scai7",
+     "discarded_sum": 0.0006094105431325714,
+     "max_bond": 128.0,
+     "t_total": 315.35453748703003
+    },
+    {
+     "name": "C7H16_rxn8742_TS",
+     "E": -271.26132282741156,
+     "t": 313.00232768058777,
+     "worker": "scai7-gpu4-a",
+     "host": "scai7",
+     "discarded_sum": 0.0014562333692447194,
+     "max_bond": 128.0,
+     "t_total": 311.79463624954224
+    },
+    {
+     "name": "C7H16_rxn8743_R",
+     "E": -271.58384534418605,
+     "t": 199.79390716552734,
+     "worker": "scai7-gpu4-d",
+     "host": "scai7",
+     "discarded_sum": 0.0006094105431325714,
+     "max_bond": 128.0,
+     "t_total": 196.16067123413086
+    },
+    {
+     "name": "C7H16_rxn8744_P",
+     "E": -271.39456988688636,
+     "t": 199.75595116615295,
+     "worker": "scai7-gpu4-b",
+     "host": "scai7",
+     "discarded_sum": 0.0012164998834728324,
+     "max_bond": 128.0,
+     "t_total": 196.50280714035034
+    },
+    {
+     "name": "C7H16_rxn8744_P",
+     "E": -271.39456988688636,
+     "t": 312.6256093978882,
+     "worker": "scai7-gpu4-d",
+     "host": "scai7",
+     "discarded_sum": 0.0012164998834728324,
+     "max_bond": 128.0,
+     "t_total": 311.00885796546936
+    }
+   ],
+   "t_start": 1791191102.64314
+  },
+  {
+   "norb": 37,
+   "n_tasks": 8,
+   "wall_s": 270.17215871810913,
+   "energies_per_h": 106.59869668528354,
+   "s_per_energy": 33.77151983976364,
+   "task_t_median": 119.27534818649292,
+   "n_failed": 0,
+   "tasks": [
+    {
+     "name": "C4H9NO2_rxn5799_R",
+     "E": -356.5504603403529,
+     "t": 120.60920000076294,
+     "worker": "scai7-gpu4-d",
+     "host": "scai7",
+     "discarded_sum": 0.0009393575720657577,
+     "max_bond": 128.0,
+     "t_total": 116.95076537132263
+    },
+    {
+     "name": "C4H9NO2_rxn6579_TS",
+     "E": -356.4101214509474,
+     "t": 119.12941884994507,
+     "worker": "scai7-gpu4-a",
+     "host": "scai7",
+     "discarded_sum": 0.0011841608365230627,
+     "max_bond": 128.0,
+     "t_total": 115.46278762817383
+    },
+    {
+     "name": "C4H9NO2_rxn7572_P",
+     "E": -356.4253770517815,
+     "t": 119.42127752304077,
+     "worker": "scai7-gpu4-b",
+     "host": "scai7",
+     "discarded_sum": 0.00031320109653876216,
+     "max_bond": 128.0,
+     "t_total": 116.04353594779968
+    },
+    {
+     "name": "C4H9NO2_rxn7572_P",
+     "E": -356.4253770517814,
+     "t": 117.74807405471802,
+     "worker": "scai7-gpu4-d",
+     "host": "scai7",
+     "discarded_sum": 0.00031320109653876216,
+     "max_bond": 128.0,
+     "t_total": 115.76714634895325
+    },
+    {
+     "name": "C4H9NO2_rxn6579_TS",
+     "E": -356.4101214509474,
+     "t": 115.11625981330872,
+     "worker": "scai7-gpu4-b",
+     "host": "scai7",
+     "discarded_sum": 0.0011841608365230627,
+     "max_bond": 128.0,
+     "t_total": 113.38751792907715
+    },
+    {
+     "name": "C4H9NO2_rxn7572_P",
+     "E": -356.4253770517815,
+     "t": 121.88490438461304,
+     "worker": "scai7-gpu4-c",
+     "host": "scai7",
+     "discarded_sum": 0.00031320109653876216,
+     "max_bond": 128.0,
+     "t_total": 120.02657198905945
+    },
+    {
+     "name": "C4H9NO2_rxn5799_R",
+     "E": -356.5504603403529,
+     "t": 122.40921521186829,
+     "worker": "scai7-gpu4-c",
+     "host": "scai7",
+     "discarded_sum": 0.0009393575720657577,
+     "max_bond": 128.0,
+     "t_total": 118.38917279243469
+    },
+    {
+     "name": "C4H9NO2_rxn5799_R",
+     "E": -356.5504603403529,
+     "t": 115.92169284820557,
+     "worker": "scai7-gpu4-a",
+     "host": "scai7",
+     "discarded_sum": 0.0009393575720657577,
+     "max_bond": 128.0,
+     "t_total": 113.41802668571472
+    }
+   ],
+   "t_start": 1791191642.9823709
+  }
+ ]
+}

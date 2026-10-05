@@ -1,0 +1,2 @@
+task6 dm chi128 workers on scai7 GPU4 (main pids): 1681265 1681475 1681648 1681808; heartbeat children: 1681488 1681659 1681861 1681997; started Mon Oct  5 02:05:02 AM PDT 2026
+part-B monitor python pid 1732097 (bash wrapper 1732096)

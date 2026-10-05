@@ -1,0 +1,1 @@
+task6 v1 chi256 eval workers on scai7 GPU4 (main pids): 2934085 2934118 2934156 2934232; heartbeat children: 2934132 2934170 2934247 2934271; started Mon Oct  5 10:21:02 AM PDT 2026

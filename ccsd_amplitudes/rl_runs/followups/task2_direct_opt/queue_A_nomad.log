@@ -1,0 +1,31 @@
+=== 2026-10-05 00:40:35 start lucj/C2H3N_rxn2858_P__label__nomad
+Blackbox evaluations:         503
+Cache hits:                   203
+Total number of evaluations:  706
+C2H3N_rxn2858_P__label__nomad: 503 evals, 11.2 min; f -130.316701 -> -130.325694 (61.84 -> 65.88 %corr); var 61.84 -> 65.88
+=== 2026-10-05 00:51:52 end lucj/C2H3N_rxn2858_P__label__nomad
+=== 2026-10-05 00:51:52 start lucj/C2H3N_rxn2858_P__rl4n29f__nomad
+Blackbox evaluations:         503
+Cache hits:                   200
+Total number of evaluations:  703
+C2H3N_rxn2858_P__rl4n29f__nomad: 503 evals, 11.0 min; f -130.330564 -> -130.331269 (68.07 -> 68.39 %corr); var 68.07 -> 68.39
+=== 2026-10-05 01:03:01 end lucj/C2H3N_rxn2858_P__rl4n29f__nomad
+=== 2026-10-05 01:03:01 start lucj/C2H3N_rxn2858_TS__label__nomad
+Blackbox evaluations:         503
+Cache hits:                   209
+Total number of evaluations:  712
+C2H3N_rxn2858_TS__label__nomad: 503 evals, 11.4 min; f -130.131772 -> -130.138305 (56.71 -> 59.19 %corr); var 56.71 -> 59.19
+=== 2026-10-05 01:14:35 end lucj/C2H3N_rxn2858_TS__label__nomad
+=== 2026-10-05 01:14:35 start lucj/C2H3N_rxn2858_TS__rl4n29f__nomad
+Blackbox evaluations:         503
+Cache hits:                   172
+Total number of evaluations:  675
+C2H3N_rxn2858_TS__rl4n29f__nomad: 503 evals, 11.2 min; f -130.167516 -> -130.169686 (70.27 -> 71.09 %corr); var 70.27 -> 71.09
+=== 2026-10-05 01:25:52 end lucj/C2H3N_rxn2858_TS__rl4n29f__nomad
+=== 2026-10-05 01:25:52 start lucj/C2H4O_rxn2507_TS__label__nomad
+Blackbox evaluations:         503
+Cache hits:                   229
+Total number of evaluations:  732
+C2H4O_rxn2507_TS__label__nomad: 503 evals, 40.7 min; f -150.872388 -> -150.878598 (49.48 -> 52.21 %corr); var 49.48 -> 52.21
+=== 2026-10-05 02:06:48 end lucj/C2H4O_rxn2507_TS__label__nomad
+queue done 2026-10-05 02:06:48

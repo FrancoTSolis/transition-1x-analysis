@@ -1,0 +1,25 @@
+  C4H5NO_rxn1111_TS norb 29: nit 512 nfev 538 success True resid 0.30331 (snap {}) gmax 9.97e-06 102s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 1] 1/12 done=1 skip=0 err=0  105s
+  C4H5NO_rxn0708_R norb 29: nit 103 nfev 107 success True resid 0.32399 (snap {}) gmax 6.10e-06 26s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 1] 2/12 done=2 skip=0 err=0  131s
+  C4H5NO_rxn1671_TS norb 29: nit 146 nfev 150 success True resid 0.35643 (snap {}) gmax 5.54e-06 33s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 1] 3/12 done=3 skip=0 err=0  165s
+  C3H5N3_rxn4065_R norb 29: nit 168 nfev 177 success True resid 0.40766 (snap {}) gmax 9.07e-06 35s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 1] 4/12 done=4 skip=0 err=0  200s
+  C3H5N3_rxn0062_TS norb 29: nit 428 nfev 442 success True resid 0.38278 (snap {}) gmax 6.56e-06 63s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 1] 5/12 done=5 skip=0 err=0  263s
+  C3H5N3_rxn2264_R norb 29: nit 466 nfev 487 success True resid 0.37733 (snap {}) gmax 7.79e-06 90s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 1] 6/12 done=6 skip=0 err=0  353s
+  C3H5NO2_rxn1086_R norb 29: nit 34 nfev 39 success True resid 0.26994 (snap {}) gmax 7.46e-06 13s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 1] 7/12 done=7 skip=0 err=0  367s
+  C3H5NO2_rxn0346_TS norb 29: nit 335 nfev 352 success True resid 0.30165 (snap {}) gmax 9.85e-06 66s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 1] 8/12 done=8 skip=0 err=0  433s
+  C3H5NO2_rxn1092_TS norb 29: nit 787 nfev 810 success True resid 0.35780 (snap {}) gmax 6.91e-06 123s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 1] 9/12 done=9 skip=0 err=0  557s
+  C5H5N_rxn2354_P norb 29: nit 496 nfev 507 success True resid 0.31749 (snap {}) gmax 8.51e-06 74s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 1] 10/12 done=10 skip=0 err=0  631s
+  C5H5N_rxn0196_R norb 29: nit 12 nfev 14 success True resid 0.26323 (snap {}) gmax 8.76e-06 6s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 1] 11/12 done=11 skip=0 err=0  638s
+  C5H5N_rxn3306_TS norb 29: nit 208 nfev 220 success True resid 0.29513 (snap {}) gmax 9.07e-06 31s  [CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL]
+[shard 1] 12/12 done=12 skip=0 err=0  669s
+[shard 1] DONE done=12 skip=0 err=0 669s

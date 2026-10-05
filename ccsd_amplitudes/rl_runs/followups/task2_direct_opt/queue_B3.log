@@ -1,0 +1,7 @@
+=== 2026-10-05 03:30:00 start qsci/C2H3N_rxn2858_TS__label__spsa
+C2H3N_rxn2858_TS__label__spsa: 478 evals, 180.1 min; f -130.233600 -> -130.247291 (95.33 -> 100.52 %corr); var 56.71 -> -44.62
+=== 2026-10-05 06:30:14 end qsci/C2H3N_rxn2858_TS__label__spsa
+=== 2026-10-05 06:30:14 start qsci/C2H3N_rxn2858_P__label__spsa
+C2H3N_rxn2858_P__label__spsa: 500 evals, 148.3 min; f -130.383396 -> -130.397817 (91.81 -> 98.29 %corr); var 61.84 -> -91.85
+=== 2026-10-05 08:58:38 end qsci/C2H3N_rxn2858_P__label__spsa
+queue done 2026-10-05 08:58:38

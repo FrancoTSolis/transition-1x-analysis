@@ -1,0 +1,4 @@
+=== 2026-10-05 10:32:54 scoring (--only lucj --threads 3 --max-mem-gb 2.0 --names C2H3N_rxn2858_P)
+1 parameter sets to score
+  C2H3N_rxn2858_P      lucj:rl4n29f:spsa:long5000aLabel var  78.55%  SQD mean  99.03% [99.03, 99.03]  uniq100k 1702  dims 418-418  d_full 3.6e-08  (9+16s)
+=== 2026-10-05 10:33:28 scoring done

@@ -1,0 +1,8 @@
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/bin/python3 -m pretrain.rl.policy_dump --names-file pretrain/rl/small_val.txt --device cpu --out runs_ot/energy_tasks/task7_smallval_seed2.pkl --policy rl_runs/followups/task7_rl_seeds/seed2/policy_best.pt --tag s2best
+s2best: median residual 0.314
+9 tasks -> runs_ot/energy_tasks/task7_smallval_seed2.pkl
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/bin/python3 -m pretrain.rl.queue_eval --dump runs_ot/energy_tasks/task7_smallval_seed2.pkl --queue-root rl_queue/exact_shared --out pretrain/opt_true/results/followups/task7_rl_seeds/energy_smallval_seed2.json
+submitted 9 tasks
+  [queue] waiting for 9 results
+-> pretrain/opt_true/results/followups/task7_rl_seeds/energy_smallval_seed2.json  (30s, 0 errors)
+steps {'best': 50, 'last': 50}; aliases {'last': 'best'} -> /xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/opt_true/results/followups/task7_rl_seeds/energy_smallval_seed2.json

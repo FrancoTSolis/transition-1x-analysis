@@ -1,0 +1,23 @@
+=== 2026-10-05 03:30:07 scoring objective-A sets
+20 parameter sets to score
+  C2H3N_rxn2858_P      start:rl4n29f                  var  68.07%  SQD mean  99.51% [99.51, 99.51]  uniq100k 1816  dims 465-465  d_full -2.1e-08  (9+55s)
+  C2H3N_rxn2858_P      start:label                    var  61.84%  SQD mean  99.17% [99.17, 99.17]  uniq100k 1745  dims 449-449  d_full 6.3e-09  (6+50s)
+  C2H3N_rxn2858_P      lucj:label:nomad               var  65.88%  SQD mean  98.29% [98.29, 98.29]  uniq100k 1635  dims 400-400  d_full -1.9e-08  (6+40s)
+  C2H3N_rxn2858_P      lucj:label:spsa                var  72.64%  SQD mean  98.55% [98.55, 98.55]  uniq100k 1717  dims 422-422  d_full -2.6e-08  (6+43s)
+  C2H3N_rxn2858_P      lucj:rl4n29f:nomad             var  68.39%  SQD mean  99.59% [99.59, 99.59]  uniq100k 1857  dims 462-462  d_full -2.8e-08  (6+58s)
+  C2H3N_rxn2858_P      lucj:rl4n29f:spsa              var  68.43%  SQD mean  99.41% [99.41, 99.41]  uniq100k 1826  dims 467-467  d_full 3.9e-08  (6+55s)
+  C2H3N_rxn2858_P      lucj:rl4n29f:spsa:aLabel       var  73.71%  SQD mean  99.07% [99.07, 99.07]  uniq100k 1660  dims 405-405  d_full -2.0e-08  (6+41s)
+  C2H3N_rxn2858_TS     start:rl4n29f                  var  70.27%  SQD mean 101.74% [101.74, 101.74]  uniq100k 2051  dims 509-509  d_full 2.2e-09  (9+76s)
+  C2H3N_rxn2858_TS     start:label                    var  56.71%  SQD mean 101.54% [101.54, 101.54]  uniq100k 2005  dims 488-488  d_full -1.5e-08  (6+72s)
+  C2H3N_rxn2858_TS     lucj:label:nomad               var  59.19%  SQD mean 101.77% [101.77, 101.77]  uniq100k 1997  dims 493-493  d_full 7.8e-09  (6+70s)
+  C2H3N_rxn2858_TS     lucj:label:spsa                var  74.37%  SQD mean 100.85% [100.85, 100.85]  uniq100k 1839  dims 454-454  d_full 5.4e-09  (6+61s)
+  C2H3N_rxn2858_TS     lucj:rl4n29f:nomad             var  71.09%  SQD mean 101.51% [101.51, 101.51]  uniq100k 1992  dims 514-514  d_full -1.3e-08  (6+78s)
+  C2H3N_rxn2858_TS     lucj:rl4n29f:spsa              var  70.59%  SQD mean 101.97% [101.97, 101.97]  uniq100k 2047  dims 513-513  d_full 7.5e-09  (6+75s)
+  C2H3N_rxn2858_TS     lucj:rl4n29f:spsa:aLabel       var  74.87%  SQD mean 101.36% [101.36, 101.36]  uniq100k 1857  dims 456-456  d_full 5.3e-09  (6+65s)
+  C2H4O_rxn2507_TS     start:rl4n29f                  var  69.33%  SQD mean  99.12% [99.12, 99.12]  uniq100k 2359  dims 551-551  d_full -2.3e-08  (18+152s)
+  C2H4O_rxn2507_TS     start:label                    var  49.48%  SQD mean 100.02% [100.02, 100.02]  uniq100k 2500  dims 604-604  d_full -9.6e-10  (14+174s)
+  C2H4O_rxn2507_TS     lucj:label:nomad               var  52.21%  SQD mean  99.14% [99.14, 99.14]  uniq100k 2387  dims 545-545  d_full 4.3e-09  (15+144s)
+  C2H4O_rxn2507_TS     lucj:label:spsa                var  67.86%  SQD mean  99.11% [99.11, 99.11]  uniq100k 2345  dims 529-529  d_full 1.0e-08  (14+143s)
+  C2H4O_rxn2507_TS     lucj:rl4n29f:spsa              var  72.78%  SQD mean  99.09% [99.09, 99.09]  uniq100k 2410  dims 524-524  d_full -6.4e-09  (14+133s)
+  C2H4O_rxn2507_TS     lucj:rl4n29f:spsa:aLabel       var  75.11%  SQD mean  99.45% [99.45, 99.45]  uniq100k 2357  dims 538-538  d_full -5.3e-10  (14+130s)
+=== 2026-10-05 04:02:19 scoring done; starting the extension queue

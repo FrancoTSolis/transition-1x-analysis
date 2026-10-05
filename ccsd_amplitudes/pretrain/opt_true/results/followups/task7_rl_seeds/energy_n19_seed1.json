@@ -1,0 +1,297 @@
+{
+ "per_molecule": {
+  "C2H3NO_rxn3839_P": {
+   "s1best": {
+    "E": -204.13465208058898,
+    "corr_frac": 0.7039934821388618,
+    "t": 55.580756187438965,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "s1last": {
+    "E": -204.1298190698107,
+    "corr_frac": 0.6855233768760408,
+    "t": 56.070563554763794,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3839_R": {
+   "s1best": {
+    "E": -204.2766938882769,
+    "corr_frac": 0.7005549502923248,
+    "t": 55.61286759376526,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "s1last": {
+    "E": -204.27154502127846,
+    "corr_frac": 0.6811293183932723,
+    "t": 55.699243783950806,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3839_TS": {
+   "s1best": {
+    "E": -204.11095299364317,
+    "corr_frac": 0.7061538486241736,
+    "t": 55.61089777946472,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "s1last": {
+    "E": -204.1043325077788,
+    "corr_frac": 0.6826976902479368,
+    "t": 55.70270085334778,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3840_P": {
+   "s1best": {
+    "E": -204.22417322417647,
+    "corr_frac": 0.666411268923212,
+    "t": 55.94071578979492,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "s1last": {
+    "E": -204.22639594349388,
+    "corr_frac": 0.6754781370162941,
+    "t": 55.82970952987671,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3840_R": {
+   "s1best": {
+    "E": -204.2766938882769,
+    "corr_frac": 0.7005549502923248,
+    "t": 55.58446168899536,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "s1last": {
+    "E": -204.27154502127846,
+    "corr_frac": 0.6811293183932723,
+    "t": 55.63831162452698,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3840_TS": {
+   "s1best": {
+    "E": -204.14352764073564,
+    "corr_frac": 0.679076125896671,
+    "t": 36.4196891784668,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "s1last": {
+    "E": -204.13593481614944,
+    "corr_frac": 0.6496249432483504,
+    "t": 56.30197238922119,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3841_P": {
+   "s1best": {
+    "E": -204.18721749350712,
+    "corr_frac": 0.6285724948133372,
+    "t": 54.6247239112854,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "s1last": {
+    "E": -204.1867088317551,
+    "corr_frac": 0.6267691610724588,
+    "t": 54.569790840148926,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3841_R": {
+   "s1best": {
+    "E": -204.2766938882769,
+    "corr_frac": 0.7005549502923248,
+    "t": 55.68050837516785,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "s1last": {
+    "E": -204.27154502127846,
+    "corr_frac": 0.6811293183932723,
+    "t": 55.50809168815613,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3841_TS": {
+   "s1best": {
+    "E": -204.07974744397745,
+    "corr_frac": 0.6698407483584006,
+    "t": 56.08951735496521,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "s1last": {
+    "E": -204.07177214342883,
+    "corr_frac": 0.6423318118986079,
+    "t": 56.13776087760925,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3842_P": {
+   "s1best": {
+    "E": -204.1645369736994,
+    "corr_frac": 0.6213694701603409,
+    "t": 55.32917404174805,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "s1last": {
+    "E": -204.16231878883445,
+    "corr_frac": 0.6132168482013828,
+    "t": 55.390249252319336,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3842_R": {
+   "s1best": {
+    "E": -204.2766939139867,
+    "corr_frac": 0.7005550431859231,
+    "t": 55.63061285018921,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "s1last": {
+    "E": -204.2715450359994,
+    "corr_frac": 0.6811293699618596,
+    "t": 55.25489091873169,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  },
+  "C2H3NO_rxn3842_TS": {
+   "s1best": {
+    "E": -204.0763584975527,
+    "corr_frac": 0.6932416235495167,
+    "t": 56.181862592697144,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "s1last": {
+    "E": -204.07541103876696,
+    "corr_frac": 0.6906704072003508,
+    "t": 56.20260715484619,
+    "worker": "scai7-gpu1",
+    "error": null
+   }
+  }
+ },
+ "meta": {
+  "C2H3NO_rxn3839_P": {
+   "resid": {
+    "s1best": 0.32776590345847967,
+    "s1last": 0.34902787022444204
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3839_R": {
+   "resid": {
+    "s1best": 0.3043661036990673,
+    "s1last": 0.3291190448771259
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3839_TS": {
+   "resid": {
+    "s1best": 0.32899562823297634,
+    "s1last": 0.3446488249140653
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3840_P": {
+   "resid": {
+    "s1best": 0.3157436314351019,
+    "s1last": 0.33594385797751525
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3840_R": {
+   "resid": {
+    "s1best": 0.3043661036990673,
+    "s1last": 0.3291190448771259
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3840_TS": {
+   "resid": {
+    "s1best": 0.3234783444095631,
+    "s1last": 0.3571902769332556
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3841_P": {
+   "resid": {
+    "s1best": 0.28763080747723624,
+    "s1last": 0.3216269953826782
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3841_R": {
+   "resid": {
+    "s1best": 0.3043661036990673,
+    "s1last": 0.3291190448771259
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3841_TS": {
+   "resid": {
+    "s1best": 0.3381688368636411,
+    "s1last": 0.3642763560914172
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3842_P": {
+   "resid": {
+    "s1best": 0.3141589275232771,
+    "s1last": 0.3327788760169104
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3842_R": {
+   "resid": {
+    "s1best": 0.30436612229935095,
+    "s1last": 0.3291190472991242
+   },
+   "norb": 19
+  },
+  "C2H3NO_rxn3842_TS": {
+   "resid": {
+    "s1best": 0.3093476198673872,
+    "s1last": 0.3226300809486273
+   },
+   "norb": 19
+  }
+ },
+ "args": {
+  "dump": [
+   "runs_ot/energy_tasks/task7_n19_seed1.pkl"
+  ],
+  "queue_root": "rl_queue/exact_shared",
+  "out": "pretrain/opt_true/results/followups/task7_rl_seeds/energy_n19_seed1.json",
+  "skip_keys": [],
+  "only_names": null,
+  "kind": "exact"
+ },
+ "wall_s": 2057.1040251255035,
+ "policy_steps": {
+  "s1best": 35,
+  "s1last": 50
+ }
+}

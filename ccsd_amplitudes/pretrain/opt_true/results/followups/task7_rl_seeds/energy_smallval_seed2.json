@@ -1,0 +1,228 @@
+{
+ "per_molecule": {
+  "C2H3N_rxn2858_P": {
+   "s2best": {
+    "E": -130.32839603266436,
+    "corr_frac": 0.6709786677863532,
+    "t": 0.5469951629638672,
+    "worker": "local-gpu7",
+    "error": null
+   },
+   "s2last": {
+    "E": -130.32839603266436,
+    "corr_frac": 0.6709786677863532,
+    "t": 0.5469951629638672,
+    "worker": "local-gpu7",
+    "error": null,
+    "same_as": "s2best"
+   }
+  },
+  "C2H3N_rxn2858_TS": {
+   "s2best": {
+    "E": -130.1697074394416,
+    "corr_frac": 0.7109888662279286,
+    "t": 0.774528980255127,
+    "worker": "local-gpu6",
+    "error": null
+   },
+   "s2last": {
+    "E": -130.1697074394416,
+    "corr_frac": 0.7109888662279286,
+    "t": 0.774528980255127,
+    "worker": "local-gpu6",
+    "error": null,
+    "same_as": "s2best"
+   }
+  },
+  "C2H4O_rxn0724_P": {
+   "s2best": {
+    "E": -150.93255446581887,
+    "corr_frac": 0.6718419332021803,
+    "t": 2.291435718536377,
+    "worker": "local-gpu6",
+    "error": null
+   },
+   "s2last": {
+    "E": -150.93255446581887,
+    "corr_frac": 0.6718419332021803,
+    "t": 2.291435718536377,
+    "worker": "local-gpu6",
+    "error": null,
+    "same_as": "s2best"
+   }
+  },
+  "C2H4O_rxn0724_TS": {
+   "s2best": {
+    "E": -150.83560926335196,
+    "corr_frac": 0.6664291507870197,
+    "t": 2.3083655834198,
+    "worker": "local-gpu6",
+    "error": null
+   },
+   "s2last": {
+    "E": -150.83560926335196,
+    "corr_frac": 0.6664291507870197,
+    "t": 2.3083655834198,
+    "worker": "local-gpu6",
+    "error": null,
+    "same_as": "s2best"
+   }
+  },
+  "C2H4O_rxn2507_P": {
+   "s2best": {
+    "E": -151.05306901214553,
+    "corr_frac": 0.7026636522868884,
+    "t": 2.2832159996032715,
+    "worker": "local-gpu6",
+    "error": null
+   },
+   "s2last": {
+    "E": -151.05306901214553,
+    "corr_frac": 0.7026636522868884,
+    "t": 2.2832159996032715,
+    "worker": "local-gpu6",
+    "error": null,
+    "same_as": "s2best"
+   }
+  },
+  "C2H4O_rxn2507_TS": {
+   "s2best": {
+    "E": -150.9163366525826,
+    "corr_frac": 0.6878985493945458,
+    "t": 2.3409340381622314,
+    "worker": "local-gpu7",
+    "error": null
+   },
+   "s2last": {
+    "E": -150.9163366525826,
+    "corr_frac": 0.6878985493945458,
+    "t": 2.3409340381622314,
+    "worker": "local-gpu7",
+    "error": null,
+    "same_as": "s2best"
+   }
+  },
+  "C3H4_rxn2391_R": {
+   "s2best": {
+    "E": -114.62465284407703,
+    "corr_frac": 0.7706025662796585,
+    "t": 2.9944465160369873,
+    "worker": "local-gpu7",
+    "error": null
+   },
+   "s2last": {
+    "E": -114.62465284407703,
+    "corr_frac": 0.7706025662796585,
+    "t": 2.9944465160369873,
+    "worker": "local-gpu7",
+    "error": null,
+    "same_as": "s2best"
+   }
+  },
+  "C3H4_rxn2391_P": {
+   "s2best": {
+    "E": -114.58754085911413,
+    "corr_frac": 0.7123001099171742,
+    "t": 3.908592700958252,
+    "worker": "scai7-gpu1",
+    "error": null
+   },
+   "s2last": {
+    "E": -114.58754085911413,
+    "corr_frac": 0.7123001099171742,
+    "t": 3.908592700958252,
+    "worker": "scai7-gpu1",
+    "error": null,
+    "same_as": "s2best"
+   }
+  },
+  "C3H4_rxn2391_TS": {
+   "s2best": {
+    "E": -114.38143652467323,
+    "corr_frac": 0.6790869434172669,
+    "t": 3.0135605335235596,
+    "worker": "local-gpu6",
+    "error": null
+   },
+   "s2last": {
+    "E": -114.38143652467323,
+    "corr_frac": 0.6790869434172669,
+    "t": 3.0135605335235596,
+    "worker": "local-gpu6",
+    "error": null,
+    "same_as": "s2best"
+   }
+  }
+ },
+ "meta": {
+  "C2H3N_rxn2858_P": {
+   "resid": {
+    "s2best": 0.3137785981197888
+   },
+   "norb": 15
+  },
+  "C2H3N_rxn2858_TS": {
+   "resid": {
+    "s2best": 0.30903637006305895
+   },
+   "norb": 15
+  },
+  "C2H4O_rxn0724_P": {
+   "resid": {
+    "s2best": 0.34651597148145563
+   },
+   "norb": 16
+  },
+  "C2H4O_rxn0724_TS": {
+   "resid": {
+    "s2best": 0.3210403538583545
+   },
+   "norb": 16
+  },
+  "C2H4O_rxn2507_P": {
+   "resid": {
+    "s2best": 0.29552923076470355
+   },
+   "norb": 16
+  },
+  "C2H4O_rxn2507_TS": {
+   "resid": {
+    "s2best": 0.3240465299783411
+   },
+   "norb": 16
+  },
+  "C3H4_rxn2391_R": {
+   "resid": {
+    "s2best": 0.27625550558168044
+   },
+   "norb": 16
+  },
+  "C3H4_rxn2391_P": {
+   "resid": {
+    "s2best": 0.3120275972739908
+   },
+   "norb": 16
+  },
+  "C3H4_rxn2391_TS": {
+   "resid": {
+    "s2best": 0.32016243199247507
+   },
+   "norb": 16
+  }
+ },
+ "args": {
+  "dump": [
+   "runs_ot/energy_tasks/task7_smallval_seed2.pkl"
+  ],
+  "queue_root": "rl_queue/exact_shared",
+  "out": "pretrain/opt_true/results/followups/task7_rl_seeds/energy_smallval_seed2.json",
+  "skip_keys": [],
+  "only_names": null,
+  "kind": "exact"
+ },
+ "wall_s": 30.089441537857056,
+ "policy_steps": {
+  "s2best": 50,
+  "s2last": 50
+ }
+}

@@ -1,0 +1,20 @@
+davidson 0 1  |r|= 0.649  e= [-53.76351074]  max|de|= -53.8  lindep=    1
+davidson 1 2  |r|= 0.32  e= [-53.95210082]  max|de|= -0.189  lindep= 0.995
+davidson 2 3  |r|= 0.17  e= [-53.98224714]  max|de|= -0.0301  lindep= 0.963
+davidson 3 4  |r|= 0.0775  e= [-53.99020625]  max|de|= -0.00796  lindep= 0.982
+davidson 4 5  |r|= 0.0349  e= [-53.99180492]  max|de|= -0.0016  lindep= 0.971
+davidson 5 6  |r|= 0.0165  e= [-53.99212821]  max|de|= -0.000323  lindep= 0.965
+davidson 6 7  |r|= 0.00794  e= [-53.99219424]  max|de|= -6.6e-05  lindep= 0.976
+davidson 7 8  |r|= 0.00379  e= [-53.99220768]  max|de|= -1.34e-05  lindep= 0.927
+davidson 8 9  |r|= 0.00184  e= [-53.99221087]  max|de|= -3.19e-06  lindep= 0.937
+davidson 9 10  |r|= 0.000933  e= [-53.99221154]  max|de|= -6.74e-07  lindep= 0.933
+davidson 10 11  |r|= 0.000451  e= [-53.99221173]  max|de|= -1.92e-07  lindep= 0.924
+davidson 11 12  |r|= 0.000229  e= [-53.99221178]  max|de|= -4.37e-08  lindep= 0.91
+davidson 12 1  |r|= 0.000229  e= [-53.99221178]  max|de|= 5.49e-12  lindep=    1
+davidson 13 2  |r|= 0.000116  e= [-53.99221179]  max|de|= -8.56e-09  lindep= 0.975
+davidson 14 3  |r|= 6.84e-05  e= [-53.99221179]  max|de|= -3.67e-09  lindep= 0.902
+davidson 15 4  |r|= 3.62e-05  e= [-53.99221179]  max|de|= -9.58e-10  lindep= 0.874
+davidson 16 5  |r|= 1.7e-05  e= [-53.99221179]  max|de|= -2.59e-10  lindep= 0.949
+root 0 converged  |r|= 8.56e-06  e= -53.99221179019731  max|de|= -5.76e-11
+converged 17 6  |r|= 8.56e-06  e= [-53.99221179]  max|de|= -5.76e-11
+  C2H3N_rxn2858_P      E_FCI -130.4077531061  S2 4.3e-12  236s  dim 41409225

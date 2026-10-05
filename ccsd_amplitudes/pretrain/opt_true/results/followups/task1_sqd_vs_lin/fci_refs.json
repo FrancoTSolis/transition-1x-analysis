@@ -1,0 +1,110 @@
+{
+ "C2H3N_rxn2858_P": {
+  "e_fci": -130.4077531060952,
+  "s2": 4.259567341492909e-12,
+  "conv_tol": 1e-10,
+  "t_s": 236.21832990646362,
+  "threads": 8,
+  "solver": "pyscf.fci.direct_spin0",
+  "converged": true,
+  "dim": 41409225,
+  "c_hf": 0.9232105159761721,
+  "host": "scai2"
+ },
+ "C2H3N_rxn2858_TS": {
+  "e_fci": -130.2589719893287,
+  "s2": 2.168846121050072e-12,
+  "conv_tol": 1e-10,
+  "t_s": 297.3482115268707,
+  "threads": 8,
+  "solver": "pyscf.fci.direct_spin0",
+  "converged": true,
+  "dim": 41409225,
+  "c_hf": 0.8812996656307588,
+  "host": "scai2"
+ },
+ "C2H4O_rxn0724_P": {
+  "e_fci": -151.01019976078527,
+  "s2": 3.4837475708567313e-13,
+  "conv_tol": 1e-10,
+  "t_s": 996.4833846092224,
+  "threads": 8,
+  "solver": "pyscf.fci.direct_spin0",
+  "converged": true,
+  "dim": 130873600,
+  "c_hf": 0.9257852969896512,
+  "host": "scai2"
+ },
+ "C2H4O_rxn0724_TS": {
+  "e_fci": -150.9172515084386,
+  "s2": 7.946620179731112e-13,
+  "conv_tol": 1e-10,
+  "t_s": 1018.7544040679932,
+  "threads": 8,
+  "solver": "pyscf.fci.direct_spin0",
+  "converged": true,
+  "dim": 130873600,
+  "c_hf": 0.911730504707898,
+  "host": "scai2"
+ },
+ "C2H4O_rxn2507_P": {
+  "e_fci": -151.11574970309033,
+  "s2": 2.3937887708181457e-13,
+  "conv_tol": 1e-10,
+  "t_s": 904.806492805481,
+  "threads": 8,
+  "solver": "pyscf.fci.direct_spin0",
+  "converged": true,
+  "dim": 130873600,
+  "c_hf": 0.9357204866762385,
+  "host": "scai2"
+ },
+ "C2H4O_rxn2507_TS": {
+  "e_fci": -150.99869542771197,
+  "s2": 6.491795039372542e-13,
+  "conv_tol": 1e-10,
+  "t_s": 1348.3626010417938,
+  "threads": 8,
+  "solver": "pyscf.fci.direct_spin0",
+  "converged": true,
+  "dim": 130873600,
+  "c_hf": 0.9155210006573796,
+  "host": "scai2"
+ },
+ "C3H4_rxn2391_P": {
+  "e_fci": -114.65813804592577,
+  "s2": 1.370927130716662e-11,
+  "conv_tol": 1e-10,
+  "t_s": 536.3747065067291,
+  "threads": 16,
+  "solver": "pyscf.fci.direct_spin0",
+  "converged": true,
+  "dim": 165636900,
+  "c_hf": 0.9158331244950811,
+  "host": "exp-1-11"
+ },
+ "C3H4_rxn2391_TS": {
+  "e_fci": -114.47154583133812,
+  "s2": 1.1895404165910344e-11,
+  "conv_tol": 1e-10,
+  "t_s": 779.2760667800903,
+  "threads": 16,
+  "solver": "pyscf.fci.direct_spin0",
+  "converged": true,
+  "dim": 165636900,
+  "c_hf": 0.826510913749959,
+  "host": "exp-1-11"
+ },
+ "C3H4_rxn2391_R": {
+  "e_fci": -114.68136264244268,
+  "s2": 4.8820413983930995e-11,
+  "conv_tol": 1e-10,
+  "t_s": 1081.5368523597717,
+  "threads": 8,
+  "solver": "pyscf.fci.direct_spin0",
+  "converged": true,
+  "dim": 165636900,
+  "c_hf": 0.928113832220751,
+  "host": "scai2"
+ }
+}

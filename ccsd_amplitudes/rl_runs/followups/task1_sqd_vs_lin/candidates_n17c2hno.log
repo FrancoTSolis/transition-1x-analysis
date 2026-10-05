@@ -1,0 +1,18 @@
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/bin/python3 -m pretrain.rl.policy_dump --names-file pretrain/opt_true/results/followups/task1_sqd_vs_lin/names_n17_c2hno.txt --policy init4:runs_ot/slotall_T4/best.pt --tag pre4 --policy rl_runs/grpo_large_rl4/policy_best.pt --tag rl4L --policy rl_runs/grpo_n29_tn/policy_last.pt --tag rl4n29f --labels-dir rhf_targets_compressed_n17 --device cpu --out runs_ot/energy_tasks/task1_sqd_vs_lin/policy_dump_n17c2hno.pkl
+pre4: median residual 0.284
+rl4L: median residual 0.310
+rl4n29f: median residual 0.330
+48 tasks -> runs_ot/energy_tasks/task1_sqd_vs_lin/policy_dump_n17c2hno.pkl
+  C2HNO_rxn4439_P: cdf_lin 40.9s
+  C2HNO_rxn4439_R: cdf_lin 23.6s
+  C2HNO_rxn4439_TS: cdf_lin 23.6s
+  C2HNO_rxn4440_P: cdf_lin 23.2s
+  C2HNO_rxn4440_R: cdf_lin 22.9s
+  C2HNO_rxn4440_TS: cdf_lin 22.6s
+  C2HNO_rxn4441_P: cdf_lin 23.3s
+  C2HNO_rxn4441_R: cdf_lin 23.4s
+  C2HNO_rxn4441_TS: cdf_lin 22.4s
+  C2HNO_rxn4442_P: cdf_lin 22.9s
+  C2HNO_rxn4442_R: cdf_lin 23.2s
+  C2HNO_rxn4442_TS: cdf_lin 22.8s
+72 candidate tasks -> /xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/runs_ot/energy_tasks/task1_sqd_vs_lin/cands_n17c2hno.pkl
