@@ -1,11 +1,13 @@
-# Handoff: ML-LUCJ (ccsd_amplitudes/), state as of 28 Oct 2026
+# Handoff: ML-LUCJ (ccsd_amplitudes/), state as of 29 Oct 2026
 
 **Read in this order:**
 1. this file;
 2. `docs/followups_2026-10.md` — the latest results and the ranked next steps;
-3. `slides/deck_v5.md` — the whole story in 26 slides;
-4. `docs/chem_frame_pretraining.md` (how pretraining works), `docs/rl_larger_molecules.md` (RL at 15–29 orbitals);
-5. `docs/optimize_true_learnability_study.md` (why the old label regression failed).
+3. `docs/ucj_init/report.md` — 29 Oct: Avijit's UCJ optimizer (its objective has no minimum) and our network as a
+   start for exact LUCJ optimization (§7 below);
+4. `slides/deck_v5.md` — the whole story in 26 slides;
+5. `docs/chem_frame_pretraining.md` (how pretraining works), `docs/rl_larger_molecules.md` (RL at 15–29 orbitals);
+6. `docs/optimize_true_learnability_study.md` (why the old label regression failed).
 
 ## 1. Where things stand
 
@@ -99,7 +101,7 @@ Labels run to convergence (5,000 iterations) leave the baseline unchanged (61.03
   * use `expanse/expanse.py`;
   * never print or copy the TOTP seed;
   * never touch the remote `fermi_arc/` directory, the conda env `negf`, or the original batch_screen project.
-* **Processes.** Never kill processes you did not start. As of 28 Oct nothing from this project runs on scai2 or scai7.
+* **Processes.** Never kill processes you did not start. As of 29 Oct (07:00) nothing from this project runs on scai2, scai3 or scai7.
 * **Marp.** The system node is v6 and cannot run the installed marp-cli 4.5, which needs Node ≥ 22.12. PDF export also
   needs a Chrome (set `CHROME_PATH`). Download both into a scratch directory; they are not installed.
 
@@ -147,3 +149,69 @@ The table of 5 Oct tasks (all done, except SBD) is in `docs/followups_2026-10.md
 * Untracked: `../orbital_ordering/t1x_formula_split.json` at the repository root (created 28 Oct, not by this
   project's sessions; left alone). Also `../NN_LUCJ_full_outline/` and `../Transition-State-Generation-Flow/`, which are
   other projects.
+* 29 Oct: the `ucj_init` work (§7) is committed and pushed (43cccf3, 02201a3 and the final commit after them).
+
+## 7. Avijit's UCJ optimizer and the network as a start (29 Oct)
+
+Brandon passed on Avijit's UCJ optimizer (`avijit_simulator/`, unmodified, commit 92b76eb; `UCJ_context.md` is the
+agent brief that came with it). The question: can our network's output make it converge on our TS data, compared with
+random/naive starts and with Lin et al.'s (Wan-Hsuan's) optimize=False/True starts? Full report:
+`docs/ucj_init/report.md`, generated from `report_template.md` by `python -m ucj_init.fill_report`, which also prints
+the statistics the report's Answer section quotes. Status file: `ucj_init/PLAN.md`.
+
+**Results.**
+* **His objective has no minimum.** It is the second-order BCH energy. For fixed orbitals it is exactly
+  E_HF + gᵀM(U)g, with no linear term. Its only stationary value is therefore E_HF, and M is indefinite whenever
+  correlation is possible.
+  * Confirmed on all 7 of his test systems, and on TS molecules from 5 starts.
+  * No start converges; a better start runs away faster.
+  * Complex U and a bounded CISD-space Rayleigh quotient ("RQ2") do not fix it.
+* **His ansatz (real U, 1 layer, spin-free) is too small.** It holds 52–71 % of the H4 FCI correlation and 51 % of
+  C2's. Projected network or label starts land above HF.
+* **The fix is the exact energy.** As a drop-in `_LocalModel` (`exact_model.py`), his own driver converges on H4 and LiH.
+* **On our TS set.** Engine: `lucj_grad_gpu.py`, the exact LUCJ energy plus adjoint gradient on GPU, up to norb 18.
+  Per evaluation on an H200: 1.7 s at norb 16, 4.1 s at 17, 11.7 s at 18. Driver: `opt_exact.py` (L-BFGS, his
+  trust-region Newton logic, Jastrow-only). 15 molecules, norb 15–18:
+  * **vs Lin and random starts.** `rl4n29f` starts at 64–78 % of the CCSD correlation and reaches 80 % in a median
+    9 evaluations. Medians for the others: Lin truncated 84, compressed DF 82, random 90. The network is ahead of
+    every Lin and random run at 100 evaluations, and ends above truncated on 14 of 15 (1 tie).
+  * **vs our optimize=True label.** At norb 15–16 the label erases the head start in ~2 evaluations. At norb 17–18
+    the network stays ahead on all 6 molecules (0.3–4.8 points at 100 evaluations). Final values: network ahead on
+    12 of 15.
+  * **Trust-region Newton.** Truncated and random starts need a median 87 and 103 evaluations to reach 70 % (2–3×
+    L-BFGS); the network needs ≤ 5.
+  * **RL vs pretrained (`pre4`).** RL improves the start (65–70 % vs 28–65 %); the final values agree within 0.25
+    points on all 9 molecules.
+  * **The zero start** (U = I, Z = 0) is a stationary point and never moves.
+
+**Code map** (`ucj_init/`):
+* `common.py`: loads his module, `ao2mo` shim, `active_mf`, the ffsim mapping of his ansatz;
+* `bch2_reproduce.py`, `bch2_ts.py`;
+* `exact_model.py` + `avijit_exact.py`;
+* `ansatz_capacity.py`, `projection_loss.py`;
+* `lucj_grad_gpu.py`, with `test_lucj_grad.py` and `check_ts_grad.py`;
+* `opt_exact.py`; `worker.sh` and `chain_worker.sh` (the lock-based queue);
+* `report_exact.py`, `report_small.py`, `make_figs.py`, `fill_report.py`;
+* `fix_c2_fci.py`.
+
+Results are in `pretrain/opt_true/results/ucj_init/`. Logs are in `rl_runs/ucj_init/`, with every evaluation of every
+run in `exact_opt/*.jsonl`. The norb-18 starts are in `runs_ot/energy_tasks/ucj_init_n18.pkl`, which is gitignored;
+every run's `.npz` also stores its start vector as `x0`.
+
+**Pitfalls.**
+* **Loading his module.** `avijit_simulator/__init__.py` imports a nonexistent `pyscf.ucj`, so load `UCJ_optimizer.py`
+  by file (`common.load_avijit`). His `RUCJ` calls `ao2mo.kernel(mol, ...)`, which fails on a fake molecule;
+  `common._Ao2moShim` covers it.
+* **C2 reference energy.** PySCF FCI with nroots=1 lands on an excited state of C2 (STO-3G, 1.25 Å). The symptoms
+  were CCSD below "FCI" and capacities above 100 %. Solve several roots and take the minimum (`common.ref_energies`).
+* **Remote launches.** `ssh host "cd dir && nohup cmd &"` hangs; use
+  `setsid nohup cmd < /dev/null > log 2>&1 & disown`.
+* **pkill.** `pkill -f <pattern>` run through ssh/bash matches its own command line and kills the calling shell.
+  Kill by PID.
+* **Gradient precision.** complex64, ~1e-6 relative. No run gets below |grad| ~1e-3, so "final" means the best value
+  within the budget.
+* **Possible next steps:**
+  * trust-region runs at norb 17–18;
+  * more random seeds;
+  * also optimizing the final orbital rotation;
+  * gradients beyond norb 18, via MPS.

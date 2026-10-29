@@ -33,3 +33,5 @@ C2_1.25      default    start exact -0.00000 | BCH2: conv=False E_corr=   -6.718
 C2_1.25      zero       start exact -0.00000 | BCH2: conv=True E_corr=   -0.000 (exact at end -0.0000) | EXACT: conv=True cyc=  0 E_corr=-0.00000 |grad|=0.0e+00 | FCI -0.22129 CCSD -0.25282
 C2_1.25      random0    start exact +0.52941 | BCH2: conv=False E_corr= -784.698 (exact at end +2.4449) | EXACT: conv=False cyc=100 E_corr=-0.11331 |grad|=1.1e-02 | FCI -0.22129 CCSD -0.25282
 C2_1.25      random1    start exact +0.09546 | BCH2: conv=False E_corr= -780.229 (exact at end +2.7308) | EXACT: conv=False cyc=100 E_corr=-0.14340 |grad|=2.2e-04 | FCI -0.22129 CCSD -0.25282
+C2_1.25      truncated  start exact +0.03843 | BCH2: conv=False E_corr= -957.395 (exact at end +1.3070) | EXACT: conv=False cyc=100 E_corr=-0.11876 |grad|=7.4e-04 | FCI -0.22129 CCSD -0.25282
+C2_1.25      compressed start exact +0.16274 | BCH2: conv=False E_corr=-1219.038 (exact at end +1.3155) | EXACT: conv=False cyc=100 E_corr=-0.14128 |grad|=4.7e-04 | FCI -0.22129 CCSD -0.25282

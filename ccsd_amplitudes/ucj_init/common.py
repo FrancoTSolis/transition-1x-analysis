@@ -143,6 +143,8 @@ def ref_energies(mf, fci: bool = True):
         h1, eri = mo_integrals(mf)
         n = h1.shape[0]
         nelec = mf.mol.nelectron
-        e, _ = pfci.direct_spin1.kernel(h1, eri, n, nelec, ecore=mf.mol.energy_nuc(), conv_tol=1e-10)
-        out["e_fci"] = float(e)
+        # several roots: with nroots=1 the Davidson solver lands on an excited state of C2 (-74.6430 instead of
+        # -74.6906 Eh at 1.25 A, STO-3G); checked against a Lanczos solve with exact_model.DenseFCI.sigma
+        e, _ = pfci.direct_spin1.kernel(h1, eri, n, nelec, ecore=mf.mol.energy_nuc(), conv_tol=1e-10, nroots=4)
+        out["e_fci"] = float(np.min(e))
     return out

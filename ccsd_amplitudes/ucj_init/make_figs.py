@@ -17,6 +17,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib.lines import Line2D
 
 from ucj_init.report_exact import load
 
@@ -104,10 +105,18 @@ def fig_exact(method="lbfgs"):
         ax.set_xlabel("gradient evaluations", color=INK, fontsize=8)
         ax.set_ylabel("% of CCSD corr. (best so far)", color=INK, fontsize=8)
         _axes_style(ax)
-    for ax in list(axes.flat)[len(names):]:
+    # one legend for every start that appears in any panel (the first panel may lack some)
+    used = [i for i in STYLE if any((n, i) in runs for n in names)]
+    handles = [Line2D([], [], color=STYLE[i][0], ls=STYLE[i][1], lw=1.7, label=STYLE[i][2]) for i in used]
+    spare = list(axes.flat)[len(names):]
+    for ax in spare:
         ax.axis("off")
-    axes.flat[0].legend(fontsize=7, frameon=False, loc="lower right")
-    fig.tight_layout()
+    if spare:
+        spare[0].legend(handles=handles, fontsize=9, frameon=False, loc="center")
+        fig.tight_layout()
+    else:
+        fig.legend(handles=handles, fontsize=8, frameon=False, loc="upper center", ncol=len(handles))
+        fig.tight_layout(rect=(0, 0, 1, 0.97))
     fig.savefig(OUT / f"fig_exact_opt_{method}.png", dpi=140)
 
 

@@ -1,1 +1,6 @@
 04:11:18 scai7 gpu7 start: --name C2H2O2_rxn3279_TS --init label --method lbfgs --max-evals 150 --cands runs_ot/energy_tasks/ucj_init_n18.pkl
+{"name": "C2H2O2_rxn3279_TS", "init": "label", "method": "lbfgs", "n_evals": 150, "seconds": 1760.273134469986, "status": "max_evals", "e_hf": -223.4522295483697, "e_ccsd": -223.71699294989082, "E0": -223.57507102411319, "pct0": 46.396697971749205, "gnorm0": 0.5331677376660662, "E_best": -223.66268999029253, "pct_best": 79.4900053080197, "norb": 18, "n_params": 718, "sec_per_eval": 11.735154444376628}
+04:53:54 done: --name C2H2O2_rxn3279_TS --init label --method lbfgs --max-evals 150 --cands runs_ot/energy_tasks/ucj_init_n18.pkl
+04:53:54 scai7 gpu7 start: --name C2H2O2_rxn3279_TS --init pre4 --method lbfgs --max-evals 150 --cands runs_ot/energy_tasks/ucj_init_n18.pkl
+{"name": "C2H2O2_rxn3279_TS", "init": "pre4", "method": "lbfgs", "n_evals": 150, "seconds": 1761.9789819717407, "status": "max_evals", "e_hf": -223.4522295483697, "e_ccsd": -223.71699294989082, "E0": -223.5271215891747, "pct0": 28.286402265088785, "gnorm0": 0.85473770618913, "E_best": -223.6757901452797, "pct_best": 84.43787760151194, "norb": 18, "n_params": 718, "sec_per_eval": 11.74652667840322}
+05:36:12 done: --name C2H2O2_rxn3279_TS --init pre4 --method lbfgs --max-evals 150 --cands runs_ot/energy_tasks/ucj_init_n18.pkl

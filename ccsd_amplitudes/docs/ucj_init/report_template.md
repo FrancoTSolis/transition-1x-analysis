@@ -23,8 +23,8 @@ molecules. Compare a start from our network's LUCJ parameters with random and na
 2. **His ansatz cannot take our network output.**
    * It uses a real orbital rotation, one layer and a spin-free Jastrow. Projected onto it, every network or label
      start lands *above* Hartree–Fock (−28 to −55 %).
-   * Exactly optimized, his ansatz holds 52–71 % of the FCI correlation on H4 (62 % on C2). A complex rotation in
-     the same layer holds 90–99 %, and our 2-layer LUCJ 100 %.
+   * Exactly optimized, his ansatz holds 52–71 % of the FCI correlation on H4 and 51 % on C2. A complex rotation in
+     the same layer holds 90–99 % on H4 (86 % on C2), and our 2-layer LUCJ 100 % (92 % on C2).
    * The cause is the same as in point 1: with real rotations the first-order correlation is zero.
 3. **The fix is the exact (variational) energy, in the LUCJ ansatz.**
    * Swapped into his own `RUCJ.kernel`, with nothing else changed, it reaches stationary points on H4 and LiH
@@ -33,19 +33,28 @@ molecules. Compare a start from our network's LUCJ parameters with random and na
      * a bounded polynomial completion of BCH2: its minima have the Hartree–Fock energy when evaluated exactly;
      * complex rotations: BCH2 stays indefinite at some rotations.
 4. **On TS molecules, with the exact LUCJ energy and exact GPU gradients, our network is the best start we have.**
-   * **Against Lin et al.'s starts it wins clearly** (16 molecules, norb 15–18):
-     * it starts at 66–78 % before any step, and reaches 80 % in a median 10 gradient evaluations. Lin's truncated
-       start needs 82–93, Lin's compressed start 82–98, random starts ~100;
-     * at a fixed budget of 100 evaluations it is ahead of every Lin and random run;
-     * it also ends higher: above the truncated start on 11/12 molecules (tied on 1), and above the compressed start
-       on 8/8.
-   * **With Avijit's own trust-region Newton driver** (§4.2) the gaps grow. Truncated and random starts need 87–103
-     evaluations just to reach 70 %; the network start needs 4.
+   * **Against Lin et al.'s starts it wins clearly** (15 molecules, norb 15–18):
+     * it starts at 64–78 % before any step, and reaches 80 % in a median 9 gradient evaluations (2–20). Medians
+       for the others: Lin's truncated start 84 (15 molecules; one never gets there), Lin's compressed start 82
+       (9 molecules; one never gets there), random starts 90 (9 molecules);
+     * at a fixed budget of 100 evaluations it is ahead of every Lin and random run (15/15 truncated, 9/9
+       compressed, 11/11 random);
+     * it also ends higher: above the truncated start on 14 of 15 molecules (tied on 1), above the compressed
+       start on 9/9 and above random on 9/9.
+   * **With Avijit's own trust-region Newton driver** (§4.2) the gaps grow. Truncated and random starts need a median
+     87 and 103 evaluations just to reach 70 %, about 2× and 3× what L-BFGS needs from the same starts. The network
+     start needs at most 5 and ends above both on all 4 molecules.
    * **Against our own optimize=True label the gain is real but small.**
-     * One gradient step takes the label past the network's one-call value (2 evaluations).
-     * At norb 15–16 the two trajectories then run together.
-     * At norb 17–18 the network start stays ahead at a fixed budget (§4.1). Its final energy is higher on 9 of 12
-       molecules (tied on 1, lower on 2).
+     * The network's head start is short-lived. Two gradient evaluations take the label past the network's
+       one-call value on 12 of 15 molecules.
+     * At norb 15–16 the two trajectories then run within ~2 points of each other. The network is ahead at 100
+       evaluations on 6 of 9.
+     * At norb 17–18 the network start stays ahead on all 6 molecules, by 0.3–4.8 points at 100 evaluations. The
+       largest margin is on the norb-18 TS, 84.0 vs 79.1 %; there the label never reaches 80 % within 150.
+     * Final energy: the network is higher on 12 of 15 molecules (tied on 1, lower on 2).
+   * **What RL adds is the start, not the end point.** The RL network starts at 65–70 %, against 28–65 % for the
+     pretrained network (`pre4`), and so reaches 80 % sooner (median 9 vs 12 evaluations). Both then run into the
+     same minimum: on all 9 molecules their final values agree within 0.25 points.
    * **The zero start never moves**: it is a stationary point, the LUCJ version of his g = 0 problem.
 
 **Where the network helps most:**
@@ -78,7 +87,7 @@ with X = R̂(U) Ĝ R̂(U)† and Ĝ = ½ Σ g_pq n_p n_q. X is linear in g, so f
 | LiH 1.6 Å | 0 | 1e-13 | 3 / 21 | −4.0 | +0.29 | −0.020 |
 | LiH 3.0 Å | 2e-15 | 1e-13 | 3 / 21 | −23.6 | +0.07 | −0.088 |
 | LiH 1.6 Å, 6-31G | 0 | 3e-14 | 11 / 66 | −0.82 | +0.32 | −0.019 |
-| C2 1.25 Å | 7e-14 | 4e-14 | 4 / 55 | −0.44 | +0.18 | −0.221 |
+| C2 1.25 Å | 7e-14 | 4e-14 | 4 / 55 | −0.44 | +0.18 | −0.269 |
 
 None of these converged, and |g| grew every cycle to 10–30. In the exact energy every end point is *worse than
 Hartree–Fock*.
@@ -106,7 +115,7 @@ correlation energy. Right: the TS molecule from five starts; values above E_HF a
 * **Complex orbital rotations** (`bch2_complex_check.py`; one layer, random complex U).
   * They give a linear term, b ≠ 0, but M(U) stays indefinite at some rotations. Positive definite at 11 of 16
     random U (H4 ×2, LiH, C2); indefinite at the rest, where BCH2 is unbounded again.
-  * Where it is bounded, the fixed-U minimum holds little: −0.003 to −0.010 Eh on C2 (FCI −0.221).
+  * Where it is bounded, the fixed-U minimum holds little: −0.003 to −0.010 Eh on C2 (FCI −0.269).
 * **A bounded polynomial completion, "RQ2"** (`rq2_test.py`). This is the Rayleigh quotient of the truncated state
   (1 + iX − X²/2)|0⟩ in the CISD space:
   [E₀ + ⟨x₀|H|x₀⟩ − ⟨h₀|xx₀⟩ + ¼⟨xx₀|H|xx₀⟩] / [1 + ¼⟨xx₀|xx₀⟩].
@@ -167,7 +176,8 @@ FILL_AVIJIT
 * **H4 and LiH: every nonzero start ends at a stationary point**, with |grad|∞ 1e-8 to 1e-13 (one LiH run stopped at
   5e-7). His `converged` flag is False on some of them only because his triple test (step < 1e-6, |ΔE| < 1e-9 and
   gradient, all at once) stalls once the trust region cannot lower the energy any further.
-* **C2 does not finish in 100 cycles** (|grad| 1e-3 to 1e-2, still descending).
+* **C2 does not finish in 100 cycles** (|grad|∞ 2e-4 to 1e-2, still descending). Its start dependence is
+  as large as H4's: his default seed reaches 16 %, the projected compressed start and the better random seed 53 %.
 * **The zero start "converges" at cycle 0 at E_HF.** g = 0 is a stationary point of the exact energy too.
 * **The start decides the basin.** Example, H4 at 2.0 Å: his default start 26 %, random starts 22–32 %, the
   projected ffsim compressed start 69 %. Structured starts matter even in his ansatz.
@@ -207,10 +217,11 @@ rotation stays the t1 rotation for every start, as in task 2. Budgets:
 
 | molecules | budget |
 |:--|--:|
-| TS, norb 15 | 400 |
+| norb 15 (C2H3N TS and P) | 400 |
 | TS, norb 16 | 300 |
 | TS, norb 17 | 250 (200 for rxn4442) |
-| R/P, norb 16; norb 18 | 150 |
+| P, norb 17 (C2HNO_rxn4440) | 200 |
+| R/P, norb 16; TS, norb 18 | 150 |
 
 **Starts** (task-1 candidates: `cands_smallval.pkl`, `cands_n17c2hno.pkl`; norb 18: `ucj_init_n18.pkl`):
 
@@ -243,8 +254,8 @@ FILL_TRN
 ![exact optimization, trust region](fig_exact_opt_trn.png)
 
 **A trust-region Newton method depends more on its start than L-BFGS does.** Its steps are capped at radius 1, and
-each step costs up to 21 gradient evaluations. From Lin's truncated start it needs ~2× the evaluations L-BFGS
-needs to reach 70 %. The network and label starts are within a few steps of the region where it moves fast.
+each step costs up to 21 gradient evaluations. To reach 70 % it needs 1.8–2.5× the evaluations L-BFGS needs from Lin's truncated
+start, and 2.2–3.1× from a random start. The network and label starts are within a few steps of the region where it moves fast.
 
 ### 4.3 What the starts' orbitals are worth: Jastrow-only optimization
 
@@ -253,7 +264,9 @@ Here the orbital rotations are frozen at the start and only the 2 × (2·norb �
 
 FILL_JONLY
 
-Our two orbital sets (label and network) are equally good. Lin et al.'s are 15–45 points worse. The network's
+Our two orbital sets (label and network) are about equally good: within 2 points, except C2H4O_rxn2507_TS, where the
+network's are 3.8 points better. Lin et al.'s are worse than the better of ours by 14–27 points (compressed DF) and
+21–47 points (truncated). The network's
 one-call lead over the label therefore comes from its Jastrow factors, not its orbitals. Once the Jastrows are
 optimized from the label's orbitals, that lead is gone.
 
@@ -262,6 +275,10 @@ optimized from the label's orbitals, that lead is gone.
 Best over the whole run; the budget is the same for every start of a molecule:
 
 FILL_FINAL
+
+`pre4` (the pretrained network) and `rl4n29f` (the same network after energy RL) end within 0.25 points of each
+other on all 9 molecules where both ran, although `pre4` starts 5–37 points lower. The two outputs are close: their orbital
+parameters differ by ≤ 0.02 and their Jastrows by ≤ 0.1. L-BFGS takes both into the same minimum. RL buys the start.
 
 ## 5. Recommendations for Avijit
 
@@ -274,21 +291,26 @@ FILL_FINAL
    * With real rotations the first-order correlation is zero, and the ansatz holds 52–71 % of the H4 correlation.
    * With LUCJ, our network output is a native start: no projection, 0.2 s per molecule.
 3. **Start from our network, or from our label if the network is unavailable.**
-   * With exact gradients, both reach ~80 % of the CCSD correlation within ~10 evaluations at norb 15–18.
-   * Lin et al.'s starts and random starts need ~80–100.
+   * With exact gradients, both reach 80 % of the CCSD correlation in a median 8–9 evaluations at norb 15–18. The
+     exception is the label on the norb-18 TS, which does not get there within 150.
+   * Lin et al.'s starts and random starts need a median 82–90.
    * The zero start never leaves Hartree–Fock.
    * The network start ends higher than the label on most molecules, more often at norb 17–18.
 
 ## 6. Caveats
 
+* **C2's FCI reference.** PySCF's single-root FCI solve converges to an excited state of C2 (−74.6430 Eh). The
+  ground state is −74.6906 Eh: six roots and an independent Lanczos solve agree. All C2 percentages here use the
+  ground state (`fix_c2_fci.py`; `common.ref_energies` now solves for 4 roots). H4 and LiH were checked the same way.
 * **Precision.** Gradients are complex64/float32: ~1e-6 relative, 1e-6 Ha in the energy. No run reaches a gradient
   norm below ~1e-3, so "final" means the best within the budget, not a converged minimum.
 * **Seeds.** One optimizer run per (molecule, start). Random starts: one seed, two for C2H3N. Budgets differ between
   molecules (§4).
 * **The final orbital rotation stays the t1 rotation for all starts.** Optimizing it as well (Lin et al. do) adds
   norb² parameters per molecule.
-* **Molecules.** 16 molecules: 9 at norb 15–16 (small_val), 4 at norb 17 (C2HNO TS) + 1 norb-17 P, 1 at norb 18
-  (C2H2O2 TS). Small-sample statements are win counts, not significance tests.
+* **Molecules.** 15 molecules: 9 at norb 15–16 (small_val), 5 at norb 17 (4 C2HNO TS + 1 P), 1 at norb 18
+  (C2H2O2 TS). Not every start ran on every molecule (see the `molecules` column of each table). Small-sample
+  statements are win counts, not significance tests.
 * **Small systems.**
   * His seeds and starts are all-electron; the TS runs use our frozen-core active space (`active_mf`). He uses
     PySCF's CISD space, all electrons.
