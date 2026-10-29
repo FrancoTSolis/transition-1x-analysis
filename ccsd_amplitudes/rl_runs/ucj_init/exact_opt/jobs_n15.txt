@@ -1,0 +1,36 @@
+--name C2H3N_rxn2858_TS --init rl4n29f --method lbfgs --max-evals 400
+--name C2H3N_rxn2858_TS --init label --method lbfgs --max-evals 400
+--name C2H3N_rxn2858_TS --init truncated --method lbfgs --max-evals 400
+--name C2H3N_rxn2858_TS --init zero --method lbfgs --max-evals 400
+--name C2H3N_rxn2858_TS --init cdf_lin --method lbfgs --max-evals 400
+--name C2H3N_rxn2858_TS --init pre4 --method lbfgs --max-evals 400
+--name C2H3N_rxn2858_TS --init rl4L --method lbfgs --max-evals 400
+--name C2H3N_rxn2858_TS --init random --rand-seed 0 --method lbfgs --max-evals 400
+--name C2H3N_rxn2858_TS --init random --rand-seed 1 --method lbfgs --max-evals 400
+--name C2H3N_rxn2858_P --init rl4n29f --method lbfgs --max-evals 400
+--name C2H3N_rxn2858_P --init label --method lbfgs --max-evals 400
+--name C2H3N_rxn2858_P --init truncated --method lbfgs --max-evals 400
+--name C2H3N_rxn2858_P --init zero --method lbfgs --max-evals 400
+--name C2H3N_rxn2858_P --init cdf_lin --method lbfgs --max-evals 400
+--name C2H3N_rxn2858_P --init pre4 --method lbfgs --max-evals 400
+--name C2H3N_rxn2858_P --init rl4L --method lbfgs --max-evals 400
+--name C2H3N_rxn2858_P --init random --rand-seed 0 --method lbfgs --max-evals 400
+--name C2H3N_rxn2858_P --init random --rand-seed 1 --method lbfgs --max-evals 400
+--name C2H3N_rxn2858_TS --init rl4n29f --method trn --max-evals 400
+--name C2H3N_rxn2858_TS --init label --method trn --max-evals 400
+--name C2H3N_rxn2858_TS --init truncated --method trn --max-evals 400
+--name C2H3N_rxn2858_TS --init random --method trn --max-evals 400
+--name C2H3N_rxn2858_P --init rl4n29f --method trn --max-evals 400
+--name C2H3N_rxn2858_P --init label --method trn --max-evals 400
+--name C2H3N_rxn2858_P --init truncated --method trn --max-evals 400
+--name C2H3N_rxn2858_P --init random --method trn --max-evals 400
+--name C2H3N_rxn2858_TS --init rl4n29f --method lbfgs --max-evals 150 --jastrow-only
+--name C2H3N_rxn2858_TS --init label --method lbfgs --max-evals 150 --jastrow-only
+--name C2H3N_rxn2858_TS --init truncated --method lbfgs --max-evals 150 --jastrow-only
+--name C2H3N_rxn2858_TS --init cdf_lin --method lbfgs --max-evals 150 --jastrow-only
+--name C2H3N_rxn2858_TS --init pre4 --method lbfgs --max-evals 150 --jastrow-only
+--name C2H3N_rxn2858_P --init rl4n29f --method lbfgs --max-evals 150 --jastrow-only
+--name C2H3N_rxn2858_P --init label --method lbfgs --max-evals 150 --jastrow-only
+--name C2H3N_rxn2858_P --init truncated --method lbfgs --max-evals 150 --jastrow-only
+--name C2H3N_rxn2858_P --init cdf_lin --method lbfgs --max-evals 150 --jastrow-only
+--name C2H3N_rxn2858_P --init pre4 --method lbfgs --max-evals 150 --jastrow-only

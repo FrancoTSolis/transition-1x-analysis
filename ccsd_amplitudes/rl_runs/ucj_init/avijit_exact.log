@@ -1,0 +1,35 @@
+H4_lin_1.5   default    start exact -0.00000 | BCH2: conv=False E_corr= -171.034 (exact at end +0.8440) | EXACT: conv=True cyc= 33 E_corr=-0.03209 |grad|=3.1e-10 | FCI -0.16701 CCSD -0.16849
+H4_lin_1.5   zero       start exact +0.00000 | BCH2: conv=True E_corr=   +0.000 (exact at end +0.0000) | EXACT: conv=True cyc=  0 E_corr=+0.00000 |grad|=0.0e+00 | FCI -0.16701 CCSD -0.16849
+H4_lin_1.5   random0    start exact +0.00301 | BCH2: conv=False E_corr= -169.659 (exact at end +0.1934) | EXACT: conv=False cyc= 33 E_corr=-0.06176 |grad|=2.3e-08 | FCI -0.16701 CCSD -0.16849
+H4_lin_1.5   random1    start exact +0.00032 | BCH2: conv=False E_corr= -176.937 (exact at end +0.9363) | EXACT: conv=True cyc= 40 E_corr=-0.03228 |grad|=3.0e-10 | FCI -0.16701 CCSD -0.16849
+H4_lin_1.5   truncated  start exact +0.03852 | BCH2: conv=False E_corr= -152.308 (exact at end +0.3595) | EXACT: conv=False cyc= 57 E_corr=-0.06379 |grad|=2.4e-09 | FCI -0.16701 CCSD -0.16849
+An NVIDIA GPU may be present on this machine, but a CUDA-enabled jaxlib is not installed. Falling back to cpu.
+H4_lin_1.5   compressed start exact +0.13659 | BCH2: conv=False E_corr= -119.675 (exact at end +0.4984) | EXACT: conv=False cyc= 58 E_corr=-0.06372 |grad|=2.7e-09 | FCI -0.16701 CCSD -0.16849
+H4_lin_2.0   default    start exact -0.00000 | BCH2: conv=False E_corr= -204.775 (exact at end +0.2632) | EXACT: conv=True cyc= 15 E_corr=-0.08503 |grad|=9.8e-15 | FCI -0.32216 CCSD -0.34047
+H4_lin_2.0   zero       start exact -0.00000 | BCH2: conv=True E_corr=   -0.000 (exact at end -0.0000) | EXACT: conv=True cyc=  0 E_corr=-0.00000 |grad|=0.0e+00 | FCI -0.32216 CCSD -0.34047
+H4_lin_2.0   random0    start exact +0.00217 | BCH2: conv=False E_corr= -413.258 (exact at end +0.3655) | EXACT: conv=False cyc= 25 E_corr=-0.10326 |grad|=3.7e-13 | FCI -0.32216 CCSD -0.34047
+H4_lin_2.0   random1    start exact +0.00026 | BCH2: conv=False E_corr= -270.108 (exact at end +0.3282) | EXACT: conv=True cyc= 33 E_corr=-0.07198 |grad|=1.1e-10 | FCI -0.32216 CCSD -0.34047
+H4_lin_2.0   truncated  start exact +0.07051 | BCH2: conv=False E_corr= -305.226 (exact at end +0.5289) | EXACT: conv=True cyc= 34 E_corr=-0.10565 |grad|=5.8e-11 | FCI -0.32216 CCSD -0.34047
+H4_lin_2.0   compressed start exact +0.19469 | BCH2: conv=False E_corr= -335.485 (exact at end +0.2901) | EXACT: conv=True cyc= 29 E_corr=-0.22295 |grad|=5.9e-11 | FCI -0.32216 CCSD -0.34047
+H4_sq_1.5    default    start exact -0.00000 | BCH2: conv=False E_corr= -307.925 (exact at end +0.0540) | EXACT: conv=False cyc= 38 E_corr=-0.07849 |grad|=6.7e-10 | FCI -0.24113 CCSD -0.25423
+H4_sq_1.5    zero       start exact +0.00000 | BCH2: conv=True E_corr=   -0.000 (exact at end +0.0000) | EXACT: conv=True cyc=  0 E_corr=+0.00000 |grad|=0.0e+00 | FCI -0.24113 CCSD -0.25423
+H4_sq_1.5    random0    start exact +0.00246 | BCH2: conv=False E_corr= -137.204 (exact at end +0.5120) | EXACT: conv=True cyc= 36 E_corr=-0.09054 |grad|=1.5e-09 | FCI -0.24113 CCSD -0.25423
+H4_sq_1.5    random1    start exact +0.00011 | BCH2: conv=False E_corr= -263.350 (exact at end +0.3364) | EXACT: conv=True cyc= 28 E_corr=-0.05682 |grad|=1.9e-11 | FCI -0.24113 CCSD -0.25423
+H4_sq_1.5    truncated  start exact +0.02021 | BCH2: conv=False E_corr= -309.320 (exact at end +0.0577) | EXACT: conv=True cyc= 14 E_corr=-0.05537 |grad|=9.6e-13 | FCI -0.24113 CCSD -0.25423
+H4_sq_1.5    compressed start exact +0.08715 | BCH2: conv=False E_corr= -227.316 (exact at end -0.0425) | EXACT: conv=False cyc= 11 E_corr=-0.05537 |grad|=4.9e-09 | FCI -0.24113 CCSD -0.25423
+LiH_1.6      default    start exact -0.00000 | BCH2: conv=False E_corr=  -23.843 (exact at end +0.2832) | EXACT: conv=False cyc= 68 E_corr=-0.01732 |grad|=9.5e-10 | FCI -0.02046 CCSD -0.02045
+LiH_1.6      zero       start exact +0.00000 | BCH2: conv=True E_corr=   +0.000 (exact at end +0.0000) | EXACT: conv=True cyc=  0 E_corr=+0.00000 |grad|=0.0e+00 | FCI -0.02046 CCSD -0.02045
+LiH_1.6      random0    start exact +0.04193 | BCH2: conv=False E_corr=   -6.388 (exact at end +0.1307) | EXACT: conv=False cyc=100 E_corr=-0.01731 |grad|=4.7e-07 | FCI -0.02046 CCSD -0.02045
+LiH_1.6      random1    start exact +0.03912 | BCH2: conv=False E_corr=  -14.838 (exact at end +0.1695) | EXACT: conv=False cyc= 73 E_corr=-0.01731 |grad|=1.2e-08 | FCI -0.02046 CCSD -0.02045
+LiH_1.6      truncated  start exact +0.00543 | BCH2: conv=False E_corr=  -20.682 (exact at end +1.0023) | EXACT: conv=True cyc= 32 E_corr=-0.01722 |grad|=1.2e-12 | FCI -0.02046 CCSD -0.02045
+LiH_1.6      compressed start exact +0.01859 | BCH2: conv=False E_corr=  -44.489 (exact at end +0.2679) | EXACT: conv=True cyc= 45 E_corr=-0.01852 |grad|=3.6e-10 | FCI -0.02046 CCSD -0.02045
+LiH_3.0      default    start exact -0.00000 | BCH2: conv=False E_corr= -102.635 (exact at end +0.0204) | EXACT: conv=True cyc= 36 E_corr=-0.05554 |grad|=1.9e-08 | FCI -0.08801 CCSD -0.08793
+LiH_3.0      zero       start exact +0.00000 | BCH2: conv=True E_corr=   +0.000 (exact at end +0.0000) | EXACT: conv=True cyc=  0 E_corr=+0.00000 |grad|=0.0e+00 | FCI -0.08801 CCSD -0.08793
+LiH_3.0      random0    start exact +0.04196 | BCH2: conv=False E_corr= -102.587 (exact at end +0.0722) | EXACT: conv=False cyc=100 E_corr=-0.06360 |grad|=4.9e-07 | FCI -0.08801 CCSD -0.08793
+LiH_3.0      random1    start exact +0.03730 | BCH2: conv=False E_corr= -125.262 (exact at end +0.6127) | EXACT: conv=False cyc=100 E_corr=-0.06360 |grad|=1.4e-09 | FCI -0.08801 CCSD -0.08793
+LiH_3.0      truncated  start exact +0.01841 | BCH2: conv=False E_corr= -310.205 (exact at end +0.3947) | EXACT: conv=True cyc= 20 E_corr=-0.06360 |grad|=1.4e-10 | FCI -0.08801 CCSD -0.08793
+LiH_3.0      compressed start exact +0.06775 | BCH2: conv=False E_corr= -259.968 (exact at end +0.0185) | EXACT: conv=False cyc=100 E_corr=-0.06360 |grad|=3.2e-09 | FCI -0.08801 CCSD -0.08793
+C2_1.25      default    start exact -0.00000 | BCH2: conv=False E_corr=   -6.718 (exact at end +0.2582) | EXACT: conv=False cyc=100 E_corr=-0.04299 |grad|=8.3e-04 | FCI -0.22129 CCSD -0.25282
+C2_1.25      zero       start exact -0.00000 | BCH2: conv=True E_corr=   -0.000 (exact at end -0.0000) | EXACT: conv=True cyc=  0 E_corr=-0.00000 |grad|=0.0e+00 | FCI -0.22129 CCSD -0.25282
+C2_1.25      random0    start exact +0.52941 | BCH2: conv=False E_corr= -784.698 (exact at end +2.4449) | EXACT: conv=False cyc=100 E_corr=-0.11331 |grad|=1.1e-02 | FCI -0.22129 CCSD -0.25282
+C2_1.25      random1    start exact +0.09546 | BCH2: conv=False E_corr= -780.229 (exact at end +2.7308) | EXACT: conv=False cyc=100 E_corr=-0.14340 |grad|=2.2e-04 | FCI -0.22129 CCSD -0.25282

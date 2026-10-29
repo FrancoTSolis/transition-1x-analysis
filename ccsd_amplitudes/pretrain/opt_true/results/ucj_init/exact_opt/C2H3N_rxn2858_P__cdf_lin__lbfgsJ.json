@@ -1,0 +1,18 @@
+{
+ "name": "C2H3N_rxn2858_P",
+ "init": "cdf_lin",
+ "method": "lbfgsJ",
+ "n_evals": 50,
+ "seconds": 110.63791680335999,
+ "status": "scipy:0:CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+ "e_hf": -130.17905205416014,
+ "e_ccsd": -130.4016283977523,
+ "E0": -128.00573709451285,
+ "pct0": -976.4357364184477,
+ "gnorm0": 2.740037316743492,
+ "E_best": -130.29407159856274,
+ "pct_best": 51.67644617855746,
+ "norb": 15,
+ "n_params": 508,
+ "sec_per_eval": 2.212758836746216
+}

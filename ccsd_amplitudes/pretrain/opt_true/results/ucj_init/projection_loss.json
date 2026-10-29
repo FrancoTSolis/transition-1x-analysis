@@ -1,0 +1,254 @@
+[
+ {
+  "name": "C2H3N_rxn2858_P",
+  "cand": "pre4",
+  "pct_orig": 62.52696266805812,
+  "pct_proj_real1": -49.77232517114666,
+  "pct_layer1_complex": 29.647366961290984
+ },
+ {
+  "name": "C2H3N_rxn2858_P",
+  "cand": "rl4n29f",
+  "pct_orig": 68.07174801621156,
+  "pct_proj_real1": -38.68513512365905,
+  "pct_layer1_complex": 44.04801110869797
+ },
+ {
+  "name": "C2H3N_rxn2858_P",
+  "cand": "label",
+  "pct_orig": 61.84333901229382,
+  "pct_proj_real1": -40.6294540173192,
+  "pct_layer1_complex": 11.01788304042826
+ },
+ {
+  "name": "C2H3N_rxn2858_P",
+  "cand": "truncated",
+  "pct_orig": 13.055236652575648,
+  "pct_proj_real1": -1.5322487467432306,
+  "pct_layer1_complex": 10.461392816276181
+ },
+ {
+  "name": "C2H3N_rxn2858_TS",
+  "cand": "pre4",
+  "pct_orig": 62.421440931011716,
+  "pct_proj_real1": -32.57788256521861,
+  "pct_layer1_complex": 35.84078337489927
+ },
+ {
+  "name": "C2H3N_rxn2858_TS",
+  "cand": "rl4n29f",
+  "pct_orig": 70.26772422380053,
+  "pct_proj_real1": -28.369791719082322,
+  "pct_layer1_complex": 45.18862457506434
+ },
+ {
+  "name": "C2H3N_rxn2858_TS",
+  "cand": "label",
+  "pct_orig": 56.71305964207656,
+  "pct_proj_real1": -54.721793352139024,
+  "pct_layer1_complex": 18.78026572362965
+ },
+ {
+  "name": "C2H3N_rxn2858_TS",
+  "cand": "truncated",
+  "pct_orig": 25.401089481515974,
+  "pct_proj_real1": -1.600605994926453,
+  "pct_layer1_complex": 18.65133020277064
+ },
+ {
+  "name": "C2H4O_rxn0724_P",
+  "cand": "pre4",
+  "pct_orig": 41.75721105728886,
+  "pct_proj_real1": -46.24710141900268,
+  "pct_layer1_complex": 33.81517223498346
+ },
+ {
+  "name": "C2H4O_rxn0724_P",
+  "cand": "rl4n29f",
+  "pct_orig": 67.3738387229829,
+  "pct_proj_real1": -37.21330554106661,
+  "pct_layer1_complex": 51.00094902778819
+ },
+ {
+  "name": "C2H4O_rxn0724_P",
+  "cand": "label",
+  "pct_orig": 67.34863006916808,
+  "pct_proj_real1": -40.13206816177689,
+  "pct_layer1_complex": 39.770240879469156
+ },
+ {
+  "name": "C2H4O_rxn0724_P",
+  "cand": "truncated",
+  "pct_orig": 14.073056986263769,
+  "pct_proj_real1": -1.4015168126023114,
+  "pct_layer1_complex": 13.904252424830418
+ },
+ {
+  "name": "C2H4O_rxn0724_TS",
+  "cand": "pre4",
+  "pct_orig": 42.164035790169976,
+  "pct_proj_real1": -52.22887372653893,
+  "pct_layer1_complex": 28.25788417903052
+ },
+ {
+  "name": "C2H4O_rxn0724_TS",
+  "cand": "rl4n29f",
+  "pct_orig": 66.03402674073281,
+  "pct_proj_real1": -39.827412545565025,
+  "pct_layer1_complex": 43.34233889171812
+ },
+ {
+  "name": "C2H4O_rxn0724_TS",
+  "cand": "label",
+  "pct_orig": 53.30880617365459,
+  "pct_proj_real1": -27.80077350984041,
+  "pct_layer1_complex": 30.12157490211944
+ },
+ {
+  "name": "C2H4O_rxn0724_TS",
+  "cand": "truncated",
+  "pct_orig": 11.914853551212957,
+  "pct_proj_real1": -1.182400399637493,
+  "pct_layer1_complex": 9.290911555663438
+ },
+ {
+  "name": "C2H4O_rxn2507_P",
+  "cand": "pre4",
+  "pct_orig": 59.34908840943084,
+  "pct_proj_real1": -52.708829468316765,
+  "pct_layer1_complex": 29.149327772044543
+ },
+ {
+  "name": "C2H4O_rxn2507_P",
+  "cand": "rl4n29f",
+  "pct_orig": 72.60854241117701,
+  "pct_proj_real1": -40.9184964793429,
+  "pct_layer1_complex": 47.7110915943118
+ },
+ {
+  "name": "C2H4O_rxn2507_P",
+  "cand": "label",
+  "pct_orig": 69.40762905408491,
+  "pct_proj_real1": -37.12940838668206,
+  "pct_layer1_complex": 34.654810571253165
+ },
+ {
+  "name": "C2H4O_rxn2507_P",
+  "cand": "truncated",
+  "pct_orig": 18.247630872935364,
+  "pct_proj_real1": -1.6263794400221177,
+  "pct_layer1_complex": 15.006710706852221
+ },
+ {
+  "name": "C2H4O_rxn2507_TS",
+  "cand": "pre4",
+  "pct_orig": 64.5809975061157,
+  "pct_proj_real1": -48.247100988833346,
+  "pct_layer1_complex": 33.448099877306056
+ },
+ {
+  "name": "C2H4O_rxn2507_TS",
+  "cand": "rl4n29f",
+  "pct_orig": 69.32935002978377,
+  "pct_proj_real1": -44.25612566966781,
+  "pct_layer1_complex": 35.38656207112298
+ },
+ {
+  "name": "C2H4O_rxn2507_TS",
+  "cand": "label",
+  "pct_orig": 49.47779558110203,
+  "pct_proj_real1": -43.680819817135195,
+  "pct_layer1_complex": 10.186021335659465
+ },
+ {
+  "name": "C2H4O_rxn2507_TS",
+  "cand": "truncated",
+  "pct_orig": 14.521297012066123,
+  "pct_proj_real1": -1.5950261485810868,
+  "pct_layer1_complex": 14.871168675714275
+ },
+ {
+  "name": "C3H4_rxn2391_P",
+  "cand": "pre4",
+  "pct_orig": 66.68395362952225,
+  "pct_proj_real1": -41.89937886485302,
+  "pct_layer1_complex": 35.38124643394561
+ },
+ {
+  "name": "C3H4_rxn2391_P",
+  "cand": "rl4n29f",
+  "pct_orig": 71.93555165112421,
+  "pct_proj_real1": -38.197587490958874,
+  "pct_layer1_complex": 40.77817685008052
+ },
+ {
+  "name": "C3H4_rxn2391_P",
+  "cand": "label",
+  "pct_orig": 68.79573054467782,
+  "pct_proj_real1": -45.51788025543745,
+  "pct_layer1_complex": 29.31210219628117
+ },
+ {
+  "name": "C3H4_rxn2391_P",
+  "cand": "truncated",
+  "pct_orig": 15.5550104168336,
+  "pct_proj_real1": -1.6923817774424483,
+  "pct_layer1_complex": 11.182013138512335
+ },
+ {
+  "name": "C3H4_rxn2391_R",
+  "cand": "pre4",
+  "pct_orig": 71.22976991384023,
+  "pct_proj_real1": -49.20536678019506,
+  "pct_layer1_complex": 36.379325584388724
+ },
+ {
+  "name": "C3H4_rxn2391_R",
+  "cand": "rl4n29f",
+  "pct_orig": 77.84494755052155,
+  "pct_proj_real1": -42.63667582840218,
+  "pct_layer1_complex": 45.573283553372974
+ },
+ {
+  "name": "C3H4_rxn2391_R",
+  "cand": "label",
+  "pct_orig": 70.07017578031382,
+  "pct_proj_real1": -34.47306892122344,
+  "pct_layer1_complex": 41.69240287944348
+ },
+ {
+  "name": "C3H4_rxn2391_R",
+  "cand": "truncated",
+  "pct_orig": 24.031090018093966,
+  "pct_proj_real1": -2.1118756932206906,
+  "pct_layer1_complex": 20.908645428714635
+ },
+ {
+  "name": "C3H4_rxn2391_TS",
+  "cand": "pre4",
+  "pct_orig": 64.13535121290724,
+  "pct_proj_real1": -39.27405966259533,
+  "pct_layer1_complex": 29.759115290274295
+ },
+ {
+  "name": "C3H4_rxn2391_TS",
+  "cand": "rl4n29f",
+  "pct_orig": 68.8691031189999,
+  "pct_proj_real1": -35.83985943365528,
+  "pct_layer1_complex": 39.49613619313283
+ },
+ {
+  "name": "C3H4_rxn2391_TS",
+  "cand": "label",
+  "pct_orig": 61.166682059825696,
+  "pct_proj_real1": -49.97366778957888,
+  "pct_layer1_complex": 24.595665702376866
+ },
+ {
+  "name": "C3H4_rxn2391_TS",
+  "cand": "truncated",
+  "pct_orig": 12.537198435480375,
+  "pct_proj_real1": -1.340175800546095,
+  "pct_layer1_complex": 10.480717912933471
+ }
+]

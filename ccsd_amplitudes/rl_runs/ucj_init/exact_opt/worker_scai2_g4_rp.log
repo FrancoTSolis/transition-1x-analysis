@@ -1,0 +1,12 @@
+02:55:31 scai2 gpu4 start: --name C2H4O_rxn0724_P --init truncated --method lbfgs --max-evals 150
+{"name": "C2H4O_rxn0724_P", "init": "truncated", "method": "lbfgs", "n_evals": 150, "seconds": 1264.9205448627472, "status": "max_evals", "e_hf": -150.79020283499545, "e_ccsd": -151.00208545766077, "E0": -150.8200205841196, "pct0": 14.072767624381484, "gnorm0": 0.4040219945521136, "E_best": -150.9682354350121, "pct_best": 84.02416289601375, "norb": 16, "n_params": 574, "sec_per_eval": 8.432803891499837}
+03:16:59 done: --name C2H4O_rxn0724_P --init truncated --method lbfgs --max-evals 150
+03:16:59 scai2 gpu4 start: --name C3H4_rxn2391_R --init truncated --method lbfgs --max-evals 150
+{"name": "C3H4_rxn2391_R", "init": "truncated", "method": "lbfgs", "n_evals": 150, "seconds": 1664.322844028473, "status": "max_evals", "e_hf": -114.4453349796552, "e_ccsd": -114.67803322420887, "E0": -114.50125537567203, "pct0": 24.03129259702335, "gnorm0": 0.3079950476482133, "E_best": -114.64916485272559, "pct_best": 87.59407423177812, "norb": 16, "n_params": 574, "sec_per_eval": 11.095485846201578}
+03:45:10 done: --name C3H4_rxn2391_R --init truncated --method lbfgs --max-evals 150
+03:45:10 scai2 gpu4 start: --name C2H4O_rxn2507_P --init truncated --method lbfgs --max-evals 150
+{"name": "C2H4O_rxn2507_P", "init": "truncated", "method": "lbfgs", "n_evals": 150, "seconds": 1254.721762895584, "status": "max_evals", "e_hf": -150.9140644931098, "e_ccsd": -151.11188960984, "E0": -150.95016237605802, "pct0": 18.247370983454772, "gnorm0": 0.2558746561810723, "E_best": -151.08288652075626, "pct_best": 85.33902592192098, "norb": 16, "n_params": 574, "sec_per_eval": 8.364811937014261}
+04:06:35 done: --name C2H4O_rxn2507_P --init truncated --method lbfgs --max-evals 150
+04:06:35 scai2 gpu4 start: --name C3H4_rxn2391_P --init truncated --method lbfgs --max-evals 150
+{"name": "C3H4_rxn2391_P", "init": "truncated", "method": "lbfgs", "n_evals": 150, "seconds": 1637.8177964687347, "status": "max_evals", "e_hf": -114.42056351226717, "e_ccsd": -114.65498344920411, "E0": -114.45702762671553, "pct0": 15.555039782376712, "gnorm0": 0.28258492910703514, "E_best": -114.6148044813612, "pct_best": 82.86025993867881, "norb": 16, "n_params": 574, "sec_per_eval": 10.918785471916198}
+04:34:20 done: --name C3H4_rxn2391_P --init truncated --method lbfgs --max-evals 150

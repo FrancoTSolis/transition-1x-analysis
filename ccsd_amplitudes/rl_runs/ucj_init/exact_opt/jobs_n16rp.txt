@@ -1,0 +1,12 @@
+--name C2H4O_rxn0724_P --init rl4n29f --method lbfgs --max-evals 150
+--name C2H4O_rxn0724_P --init label --method lbfgs --max-evals 150
+--name C2H4O_rxn0724_P --init truncated --method lbfgs --max-evals 150
+--name C3H4_rxn2391_R --init rl4n29f --method lbfgs --max-evals 150
+--name C3H4_rxn2391_R --init label --method lbfgs --max-evals 150
+--name C3H4_rxn2391_R --init truncated --method lbfgs --max-evals 150
+--name C2H4O_rxn2507_P --init rl4n29f --method lbfgs --max-evals 150
+--name C2H4O_rxn2507_P --init label --method lbfgs --max-evals 150
+--name C2H4O_rxn2507_P --init truncated --method lbfgs --max-evals 150
+--name C3H4_rxn2391_P --init rl4n29f --method lbfgs --max-evals 150
+--name C3H4_rxn2391_P --init label --method lbfgs --max-evals 150
+--name C3H4_rxn2391_P --init truncated --method lbfgs --max-evals 150

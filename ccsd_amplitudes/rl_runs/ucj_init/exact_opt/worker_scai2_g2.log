@@ -1,0 +1,33 @@
+00:46:09 scai2 gpu2 start: --name C2H3N_rxn2858_TS --init rl4n29f --method lbfgs --max-evals 400
+{"name": "C2H3N_rxn2858_TS", "init": "rl4n29f", "method": "lbfgs", "n_evals": 397, "seconds": 855.5489797592163, "status": "scipy:0:CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH", "e_hf": -129.9822179754786, "e_ccsd": -130.2459203664284, "E0": -130.1675155158652, "pct0": 70.26767551071484, "gnorm0": 0.15805546518773936, "E_best": -130.21614397383814, "pct_best": 88.70833423883106, "norb": 15, "n_params": 508, "sec_per_eval": 2.1550352927719616}
+01:00:42 done: --name C2H3N_rxn2858_TS --init rl4n29f --method lbfgs --max-evals 400
+01:00:42 scai2 gpu2 start: --name C2H3N_rxn2858_TS --init cdf_lin --method lbfgs --max-evals 400
+{"name": "C2H3N_rxn2858_TS", "init": "cdf_lin", "method": "lbfgs", "n_evals": 400, "seconds": 865.798520565033, "status": "max_evals", "e_hf": -129.9822179754786, "e_ccsd": -130.2459203664284, "E0": -129.7287995869545, "pct0": -96.10014820545274, "gnorm0": 1.4981074925735482, "E_best": -130.2022707002408, "pct_best": 83.44737564555813, "norb": 15, "n_params": 508, "sec_per_eval": 2.1644963949918745}
+01:15:28 done: --name C2H3N_rxn2858_TS --init cdf_lin --method lbfgs --max-evals 400
+01:15:28 scai2 gpu2 start: --name C2H3N_rxn2858_TS --init random --rand-seed 1 --method lbfgs --max-evals 400
+{"name": "C2H3N_rxn2858_TS", "init": "random1", "method": "lbfgs", "n_evals": 400, "seconds": 883.9638183116913, "status": "max_evals", "e_hf": -129.9822179754786, "e_ccsd": -130.2459203664284, "E0": -129.88006303505293, "pct0": -38.73872362617429, "gnorm0": 0.45110892930962265, "E_best": -130.20785448106574, "pct_best": 85.56483116229542, "norb": 15, "n_params": 508, "sec_per_eval": 2.2099096930027007}
+01:30:28 done: --name C2H3N_rxn2858_TS --init random --rand-seed 1 --method lbfgs --max-evals 400
+01:30:28 scai2 gpu2 start: --name C2H3N_rxn2858_P --init label --method lbfgs --max-evals 400
+{"name": "C2H3N_rxn2858_P", "init": "label", "method": "lbfgs", "n_evals": 400, "seconds": 862.9651188850403, "status": "max_evals", "e_hf": -130.17905205416014, "e_ccsd": -130.4016283977523, "E0": -130.31670002511456, "pct0": 61.84303719475417, "gnorm0": 0.4237426452465439, "E_best": -130.36854319146587, "pct_best": 85.13534468557877, "norb": 15, "n_params": 508, "sec_per_eval": 2.157412893772125}
+01:45:09 done: --name C2H3N_rxn2858_P --init label --method lbfgs --max-evals 400
+01:45:10 scai2 gpu2 start: --name C2H3N_rxn2858_P --init pre4 --method lbfgs --max-evals 400
+{"name": "C2H3N_rxn2858_P", "init": "pre4", "method": "lbfgs", "n_evals": 400, "seconds": 860.8179740905762, "status": "max_evals", "e_hf": -130.17905205416014, "e_ccsd": -130.4016283977523, "E0": -130.31822222426405, "pct0": 62.526936986135595, "gnorm0": 0.2230775660974204, "E_best": -130.36848895123913, "pct_best": 85.11097541709756, "norb": 15, "n_params": 508, "sec_per_eval": 2.1520450431108475}
+01:59:52 done: --name C2H3N_rxn2858_P --init pre4 --method lbfgs --max-evals 400
+01:59:52 scai2 gpu2 start: --name C2H3N_rxn2858_P --init random --rand-seed 1 --method lbfgs --max-evals 400
+{"name": "C2H3N_rxn2858_P", "init": "random1", "method": "lbfgs", "n_evals": 400, "seconds": 860.9872505664825, "status": "max_evals", "e_hf": -130.17905205416014, "e_ccsd": -130.4016283977523, "E0": -130.07966237184195, "pct0": -44.654198516402566, "gnorm0": 0.4797096477671939, "E_best": -130.36461748749085, "pct_best": 83.37158852368329, "norb": 15, "n_params": 508, "sec_per_eval": 2.152468201518059}
+02:14:36 done: --name C2H3N_rxn2858_P --init random --rand-seed 1 --method lbfgs --max-evals 400
+02:14:36 scai2 gpu2 start: --name C2H3N_rxn2858_TS --init truncated --method trn --max-evals 400
+{"name": "C2H3N_rxn2858_TS", "init": "truncated", "method": "trn", "n_evals": 401, "seconds": 862.273672580719, "status": "max_evals", "e_hf": -129.9822179754786, "e_ccsd": -130.2459203664284, "E0": -130.04920097430283, "pct0": 25.400982745352163, "gnorm0": 0.3307364236108993, "E_best": -130.2097720487881, "pct_best": 86.29200231741913, "norb": 15, "n_params": 508, "sec_per_eval": 2.150308534094223}
+02:29:17 done: --name C2H3N_rxn2858_TS --init truncated --method trn --max-evals 400
+02:29:17 scai2 gpu2 start: --name C2H3N_rxn2858_P --init label --method trn --max-evals 400
+{"name": "C2H3N_rxn2858_P", "init": "label", "method": "trn", "n_evals": 401, "seconds": 862.7478368282318, "status": "max_evals", "e_hf": -130.17905205416014, "e_ccsd": -130.4016283977523, "E0": -130.31670002511456, "pct0": 61.84303719475417, "gnorm0": 0.4237426473859666, "E_best": -130.36804314605322, "pct_best": 84.91068225983305, "norb": 15, "n_params": 508, "sec_per_eval": 2.1514909540923157}
+02:43:59 done: --name C2H3N_rxn2858_P --init label --method trn --max-evals 400
+02:43:59 scai2 gpu2 start: --name C2H3N_rxn2858_TS --init rl4n29f --method lbfgs --max-evals 150 --jastrow-only
+{"name": "C2H3N_rxn2858_TS", "init": "rl4n29f", "method": "lbfgsJ", "n_evals": 79, "seconds": 171.04745745658875, "status": "scipy:2:ABNORMAL: ", "e_hf": -129.9822179754786, "e_ccsd": -130.2459203664284, "E0": -130.1675155158652, "pct0": 70.26767551071484, "gnorm0": 0.15805546757089214, "E_best": -130.18528379679526, "pct_best": 77.005680754451, "norb": 15, "n_params": 508, "sec_per_eval": 2.165158102783976}
+02:47:12 done: --name C2H3N_rxn2858_TS --init rl4n29f --method lbfgs --max-evals 150 --jastrow-only
+02:47:12 scai2 gpu2 start: --name C2H3N_rxn2858_TS --init cdf_lin --method lbfgs --max-evals 150 --jastrow-only
+{"name": "C2H3N_rxn2858_TS", "init": "cdf_lin", "method": "lbfgsJ", "n_evals": 101, "seconds": 217.7886667251587, "status": "scipy:0:CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH", "e_hf": -129.9822179754786, "e_ccsd": -130.2459203664284, "E0": -129.7287995869545, "pct0": -96.10014820545274, "gnorm0": 1.4981074730573498, "E_best": -130.15119473072662, "pct_best": 64.0785829204641, "norb": 15, "n_params": 508, "sec_per_eval": 2.156323775206462}
+02:51:07 done: --name C2H3N_rxn2858_TS --init cdf_lin --method lbfgs --max-evals 150 --jastrow-only
+02:51:07 scai2 gpu2 start: --name C2H3N_rxn2858_P --init label --method lbfgs --max-evals 150 --jastrow-only
+{"name": "C2H3N_rxn2858_P", "init": "label", "method": "lbfgsJ", "n_evals": 65, "seconds": 140.5526623725891, "status": "scipy:0:CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH", "e_hf": -130.17905205416014, "e_ccsd": -130.4016283977523, "E0": -130.31670002511456, "pct0": 61.84303719475417, "gnorm0": 0.42374264911600373, "E_best": -130.3506105895525, "pct_best": 77.07851275817855, "norb": 15, "n_params": 508, "sec_per_eval": 2.1623490040118876}
+02:53:45 done: --name C2H3N_rxn2858_P --init label --method lbfgs --max-evals 150 --jastrow-only

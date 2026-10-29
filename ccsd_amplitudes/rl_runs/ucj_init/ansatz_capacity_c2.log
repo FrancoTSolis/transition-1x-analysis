@@ -1,0 +1,2 @@
+C2_1.25     real1    npar  100  best   61.6% of FCI corr (random1)  all: 54.3 61.6  (2894s)
+C2_1.25     cplx1    npar  155  best  104.8% of FCI corr (truncated)  all: 99.6 93.1 104.8  (3668s)

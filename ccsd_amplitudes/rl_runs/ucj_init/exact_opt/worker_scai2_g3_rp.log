@@ -1,0 +1,12 @@
+02:54:31 scai2 gpu3 start: --name C2H4O_rxn0724_P --init label --method lbfgs --max-evals 150
+{"name": "C2H4O_rxn0724_P", "init": "label", "method": "lbfgs", "n_evals": 150, "seconds": 1245.434627532959, "status": "max_evals", "e_hf": -150.79020283499545, "e_ccsd": -151.00208545766077, "E0": -150.93290453158113, "pct0": 67.3494101548309, "gnorm0": 0.3473266809707925, "E_best": -150.97459394268034, "pct_best": 87.02512049614806, "norb": 16, "n_params": 574, "sec_per_eval": 8.302897961934407}
+03:15:54 done: --name C2H4O_rxn0724_P --init label --method lbfgs --max-evals 150
+03:15:54 scai2 gpu3 start: --name C3H4_rxn2391_R --init label --method lbfgs --max-evals 150
+{"name": "C3H4_rxn2391_R", "init": "label", "method": "lbfgs", "n_evals": 150, "seconds": 1630.0692279338837, "status": "max_evals", "e_hf": -114.4453349796552, "e_ccsd": -114.67803322420887, "E0": -114.60838625387453, "pct0": 70.06983423191147, "gnorm0": 0.22916903365144203, "E_best": -114.64859999125187, "pct_best": 87.3513300397009, "norb": 16, "n_params": 574, "sec_per_eval": 10.867128397623699}
+03:43:37 done: --name C3H4_rxn2391_R --init label --method lbfgs --max-evals 150
+03:43:37 scai2 gpu3 start: --name C2H4O_rxn2507_P --init label --method lbfgs --max-evals 150
+{"name": "C2H4O_rxn2507_P", "init": "label", "method": "lbfgs", "n_evals": 150, "seconds": 1248.4713530540466, "status": "max_evals", "e_hf": -150.9140644931098, "e_ccsd": -151.11188960984, "E0": -151.05136998118886, "pct0": 69.40751020322239, "gnorm0": 0.23474948490221056, "E_best": -151.08262382113574, "pct_best": 85.20623205587256, "norb": 16, "n_params": 574, "sec_per_eval": 8.323142561912537}
+04:04:55 done: --name C2H4O_rxn2507_P --init label --method lbfgs --max-evals 150
+04:04:55 scai2 gpu3 start: --name C3H4_rxn2391_P --init label --method lbfgs --max-evals 150
+{"name": "C3H4_rxn2391_P", "init": "label", "method": "lbfgs", "n_evals": 150, "seconds": 1628.058675289154, "status": "max_evals", "e_hf": -114.42056351226717, "e_ccsd": -114.65498344920411, "E0": -114.58183383195178, "pct0": 68.79547951077107, "gnorm0": 0.2598683985344694, "E_best": -114.61957724724095, "pct_best": 84.89624968516254, "norb": 16, "n_params": 574, "sec_per_eval": 10.853724697430929}
+04:32:37 done: --name C3H4_rxn2391_P --init label --method lbfgs --max-evals 150

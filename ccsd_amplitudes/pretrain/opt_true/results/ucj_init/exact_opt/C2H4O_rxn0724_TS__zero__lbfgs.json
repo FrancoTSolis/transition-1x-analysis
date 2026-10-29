@@ -1,0 +1,18 @@
+{
+ "name": "C2H4O_rxn0724_TS",
+ "init": "zero",
+ "method": "lbfgs",
+ "n_evals": 1,
+ "seconds": 1.7222588062286377,
+ "status": "scipy:0:CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+ "e_hf": -150.6879862211237,
+ "e_ccsd": -150.90949970392066,
+ "E0": -150.678526400983,
+ "pct0": -4.270539211094673,
+ "gnorm0": 3.3787182497967703e-07,
+ "E_best": -150.678526400983,
+ "pct_best": -4.270539211094673,
+ "norb": 16,
+ "n_params": 574,
+ "sec_per_eval": 1.72226881980896
+}

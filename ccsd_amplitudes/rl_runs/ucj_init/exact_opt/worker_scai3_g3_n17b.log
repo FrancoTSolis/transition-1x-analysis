@@ -1,0 +1,1 @@
+04:28:27 scai3 gpu3 start: --name C2HNO_rxn4442_TS --init label --method lbfgs --max-evals 200 --cands runs_ot/energy_tasks/task1_sqd_vs_lin/cands_n17c2hno.pkl

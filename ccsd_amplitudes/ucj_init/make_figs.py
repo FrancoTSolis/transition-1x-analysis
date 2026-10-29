@@ -85,7 +85,8 @@ def fig_bch2():
 def fig_exact(method="lbfgs"):
     runs = load(method)
     names = sorted({n for n, _ in runs}, key=lambda n: (n.split("_")[0], n))
-    names = [n for n in names if (n, "rl4n29f") in runs and (n, "truncated") in runs]
+    names = [n for n in names if (n, "rl4n29f") in runs and (n, "truncated") in runs
+             and (method != "lbfgs" or n.endswith("_TS"))]
     ncol = min(3, len(names))
     nrow = (len(names) + ncol - 1) // ncol
     fig, axes = plt.subplots(nrow, ncol, figsize=(4.2 * ncol, 3.2 * nrow), squeeze=False)

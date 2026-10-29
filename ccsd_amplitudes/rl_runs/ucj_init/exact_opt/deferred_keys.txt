@@ -1,0 +1,20 @@
+d5dcd6d7aa1a --name C2H4O_rxn0724_P --init rl4n29f --method lbfgs --max-evals 300
+1a35dfcb6737 --name C2H4O_rxn0724_P --init label --method lbfgs --max-evals 300
+ccae0b0ed309 --name C2H4O_rxn0724_P --init truncated --method lbfgs --max-evals 300
+e4b658a5b24d --name C2H4O_rxn0724_P --init pre4 --method lbfgs --max-evals 300
+963ce336618b --name C2H4O_rxn0724_P --init random --rand-seed 0 --method lbfgs --max-evals 300
+dc8de913b709 --name C2H4O_rxn2507_P --init rl4n29f --method lbfgs --max-evals 300
+288e6f947760 --name C2H4O_rxn2507_P --init label --method lbfgs --max-evals 300
+c09e401a3503 --name C2H4O_rxn2507_P --init truncated --method lbfgs --max-evals 300
+8fb124ea9dc5 --name C2H4O_rxn2507_P --init pre4 --method lbfgs --max-evals 300
+58d26d7d6a45 --name C2H4O_rxn2507_P --init random --rand-seed 0 --method lbfgs --max-evals 300
+c42370ad83bb --name C3H4_rxn2391_R --init rl4n29f --method lbfgs --max-evals 300
+55769f0b4cc5 --name C3H4_rxn2391_R --init label --method lbfgs --max-evals 300
+1f03de9933c2 --name C3H4_rxn2391_R --init truncated --method lbfgs --max-evals 300
+a71969ee501c --name C3H4_rxn2391_R --init pre4 --method lbfgs --max-evals 300
+b12e8b6a673a --name C3H4_rxn2391_R --init random --rand-seed 0 --method lbfgs --max-evals 300
+7560d654a5b6 --name C3H4_rxn2391_P --init rl4n29f --method lbfgs --max-evals 300
+b916b450e8ec --name C3H4_rxn2391_P --init label --method lbfgs --max-evals 300
+fb2078003599 --name C3H4_rxn2391_P --init truncated --method lbfgs --max-evals 300
+3f7bb7c9e3fc --name C3H4_rxn2391_P --init pre4 --method lbfgs --max-evals 300
+07cf0323b0dc --name C3H4_rxn2391_P --init random --rand-seed 0 --method lbfgs --max-evals 300

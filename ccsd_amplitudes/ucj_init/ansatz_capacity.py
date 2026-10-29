@@ -133,6 +133,7 @@ def truncated_x(mf, ans):
 
 
 def minimize(ans, x0, maxiter=3000):
+    maxiter = int(__import__("os").environ.get("CAP_MAXITER", maxiter))
     def fg(x):
         xt = torch.tensor(x, requires_grad=True)
         E = ans.energy(xt)

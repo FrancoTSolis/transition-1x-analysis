@@ -1,0 +1,18 @@
+{
+ "name": "C3H4_rxn2391_TS",
+ "init": "cdf_lin",
+ "method": "lbfgsJ",
+ "n_evals": 58,
+ "seconds": 98.29353308677673,
+ "status": "scipy:0:CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+ "e_hf": -114.22090915213161,
+ "e_ccsd": -114.45729622170745,
+ "E0": -113.04513312040146,
+ "pct0": -497.3943937965372,
+ "gnorm0": 2.1428778134896524,
+ "E_best": -114.33940997445514,
+ "pct_best": 50.129993377453665,
+ "norb": 16,
+ "n_params": 574,
+ "sec_per_eval": 1.694716243908323
+}

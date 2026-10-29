@@ -1,0 +1,18 @@
+{
+ "name": "C3H4_rxn2391_TS",
+ "init": "zero",
+ "method": "lbfgs",
+ "n_evals": 1,
+ "seconds": 2.4319961071014404,
+ "status": "scipy:0:CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+ "e_hf": -114.22090915213161,
+ "e_ccsd": -114.45729622170745,
+ "E0": -114.20104547203263,
+ "pct0": -8.403031576397606,
+ "gnorm0": 2.968126191348795e-07,
+ "E_best": -114.20104547203263,
+ "pct_best": -8.403031576397606,
+ "norb": 16,
+ "n_params": 574,
+ "sec_per_eval": 2.432004690170288
+}

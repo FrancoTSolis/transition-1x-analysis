@@ -57,6 +57,24 @@ def init_x(init, cands, norb, rand_seed=0, rand_scale=0.1):
     return x_from_uz(U, Z)
 
 
+class JastrowOnly:
+    """Restrict an Objective to the Jastrow parameters (orbital rotations frozen at the start)."""
+
+    def __init__(self, obj, x0, norb, n_reps=2):
+        self.obj, self.x0 = obj, x0.copy()
+        per = norb * norb + 2 * norb - 1
+        self.idx = np.concatenate([np.arange(r * per + norb * norb, (r + 1) * per) for r in range(n_reps)])
+
+    def full(self, y):
+        x = self.x0.copy()
+        x[self.idx] = y
+        return x
+
+    def __call__(self, y):
+        E, g = self.obj(self.full(y))
+        return E, g[self.idx]
+
+
 class Objective:
     def __init__(self, eng, log_path, max_evals):
         self.eng, self.max_evals = eng, max_evals
@@ -170,12 +188,13 @@ def main():
     ap.add_argument("--inner", type=int, default=20)
     ap.add_argument("--tag", default="")
     ap.add_argument("--cands", default=str(CANDS))
+    ap.add_argument("--jastrow-only", action="store_true", help="freeze the orbital rotations at the start")
     args = ap.parse_args()
     cands = load_cands(args.name, args.cands)
     t1 = next(iter(cands.values()))[2]
     eng = LUCJGradGPU.from_npz(args.name, t1=t1)
     init = args.init + (f"{args.rand_seed}" if args.init == "random" else "")
-    run = f"{args.name}__{init}__{args.method}{args.tag}"
+    run = f"{args.name}__{init}__{args.method}{'J' if args.jastrow_only else ''}{args.tag}"
     RES.mkdir(parents=True, exist_ok=True)
     LOGS.mkdir(parents=True, exist_ok=True)
     x0 = init_x(args.init, cands, eng.norb, args.rand_seed, args.rand_scale)
@@ -184,7 +203,13 @@ def main():
     status = "max_evals"
     E0, g0 = obj(x0)
     try:
-        if args.method == "lbfgs":
+        if args.jastrow_only:
+            jo = JastrowOnly(obj, x0, eng.norb)
+            res = scipy.optimize.minimize(jo, x0[jo.idx], jac=True, method="L-BFGS-B",
+                                          options=dict(maxfun=args.max_evals, maxiter=10 * args.max_evals,
+                                                       maxcor=20, gtol=1e-6, ftol=1e-13))
+            status = f"scipy:{res.status}:{res.message}"
+        elif args.method == "lbfgs":
             res = scipy.optimize.minimize(obj, x0, jac=True, method="L-BFGS-B",
                                           options=dict(maxfun=args.max_evals, maxiter=10 * args.max_evals,
                                                        maxcor=20, gtol=1e-6, ftol=1e-13))
@@ -195,7 +220,7 @@ def main():
     except StopIteration:
         pass
     Eb, xb = obj.best
-    out = dict(name=args.name, init=init, method=args.method, n_evals=obj.n, seconds=time.time() - t0,
+    out = dict(name=args.name, init=init, method=args.method + ("J" if args.jastrow_only else ""), n_evals=obj.n, seconds=time.time() - t0,
                status=status, e_hf=eng.e_hf, e_ccsd=eng.e_ccsd, E0=E0, pct0=eng.corr_pct(E0),
                gnorm0=float(np.linalg.norm(g0)), E_best=Eb, pct_best=eng.corr_pct(Eb), norb=eng.norb,
                n_params=eng.n_params, sec_per_eval=(time.time() - t0) / max(1, obj.n))

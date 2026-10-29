@@ -1,0 +1,18 @@
+{
+ "name": "C2H4O_rxn2507_TS",
+ "init": "rl4n29f",
+ "method": "lbfgsJ",
+ "n_evals": 57,
+ "seconds": 169.85515117645264,
+ "status": "scipy:0:CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+ "e_hf": -150.75979141289616,
+ "e_ccsd": -150.98736165537483,
+ "E0": -150.91756414269463,
+ "pct0": 69.32924449173505,
+ "gnorm0": 0.21719028981548066,
+ "E_best": -150.93454136435972,
+ "pct_best": 76.78945610823354,
+ "norb": 16,
+ "n_params": 574,
+ "sec_per_eval": 2.979915167156019
+}

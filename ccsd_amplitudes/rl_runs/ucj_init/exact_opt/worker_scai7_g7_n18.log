@@ -1,0 +1,1 @@
+04:11:18 scai7 gpu7 start: --name C2H2O2_rxn3279_TS --init label --method lbfgs --max-evals 150 --cands runs_ot/energy_tasks/ucj_init_n18.pkl

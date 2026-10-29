@@ -1,0 +1,85 @@
+--name C3H4_rxn2391_TS --init rl4n29f --method lbfgs --max-evals 300
+--name C3H4_rxn2391_TS --init label --method lbfgs --max-evals 300
+--name C3H4_rxn2391_TS --init truncated --method lbfgs --max-evals 300
+--name C3H4_rxn2391_TS --init cdf_lin --method lbfgs --max-evals 300
+--name C3H4_rxn2391_TS --init pre4 --method lbfgs --max-evals 300
+--name C3H4_rxn2391_TS --init zero --method lbfgs --max-evals 300
+--name C3H4_rxn2391_TS --init rl4L --method lbfgs --max-evals 300
+--name C3H4_rxn2391_TS --init random --rand-seed 0 --method lbfgs --max-evals 300
+--name C2H4O_rxn0724_TS --init rl4n29f --method lbfgs --max-evals 300
+--name C2H4O_rxn0724_TS --init label --method lbfgs --max-evals 300
+--name C2H4O_rxn0724_TS --init truncated --method lbfgs --max-evals 300
+--name C2H4O_rxn0724_TS --init cdf_lin --method lbfgs --max-evals 300
+--name C2H4O_rxn0724_TS --init pre4 --method lbfgs --max-evals 300
+--name C2H4O_rxn0724_TS --init zero --method lbfgs --max-evals 300
+--name C2H4O_rxn0724_TS --init rl4L --method lbfgs --max-evals 300
+--name C2H4O_rxn0724_TS --init random --rand-seed 0 --method lbfgs --max-evals 300
+--name C2H4O_rxn2507_TS --init rl4n29f --method lbfgs --max-evals 300
+--name C2H4O_rxn2507_TS --init label --method lbfgs --max-evals 300
+--name C2H4O_rxn2507_TS --init truncated --method lbfgs --max-evals 300
+--name C2H4O_rxn2507_TS --init cdf_lin --method lbfgs --max-evals 300
+--name C2H4O_rxn2507_TS --init pre4 --method lbfgs --max-evals 300
+--name C2H4O_rxn2507_TS --init zero --method lbfgs --max-evals 300
+--name C2H4O_rxn2507_TS --init rl4L --method lbfgs --max-evals 300
+--name C2H4O_rxn2507_TS --init random --rand-seed 0 --method lbfgs --max-evals 300
+--name C2H4O_rxn0724_P --init rl4n29f --method lbfgs --max-evals 300
+--name C2H4O_rxn0724_P --init label --method lbfgs --max-evals 300
+--name C2H4O_rxn0724_P --init truncated --method lbfgs --max-evals 300
+--name C2H4O_rxn0724_P --init pre4 --method lbfgs --max-evals 300
+--name C2H4O_rxn0724_P --init random --rand-seed 0 --method lbfgs --max-evals 300
+--name C2H4O_rxn2507_P --init rl4n29f --method lbfgs --max-evals 300
+--name C2H4O_rxn2507_P --init label --method lbfgs --max-evals 300
+--name C2H4O_rxn2507_P --init truncated --method lbfgs --max-evals 300
+--name C2H4O_rxn2507_P --init pre4 --method lbfgs --max-evals 300
+--name C2H4O_rxn2507_P --init random --rand-seed 0 --method lbfgs --max-evals 300
+--name C3H4_rxn2391_R --init rl4n29f --method lbfgs --max-evals 300
+--name C3H4_rxn2391_R --init label --method lbfgs --max-evals 300
+--name C3H4_rxn2391_R --init truncated --method lbfgs --max-evals 300
+--name C3H4_rxn2391_R --init pre4 --method lbfgs --max-evals 300
+--name C3H4_rxn2391_R --init random --rand-seed 0 --method lbfgs --max-evals 300
+--name C3H4_rxn2391_P --init rl4n29f --method lbfgs --max-evals 300
+--name C3H4_rxn2391_P --init label --method lbfgs --max-evals 300
+--name C3H4_rxn2391_P --init truncated --method lbfgs --max-evals 300
+--name C3H4_rxn2391_P --init pre4 --method lbfgs --max-evals 300
+--name C3H4_rxn2391_P --init random --rand-seed 0 --method lbfgs --max-evals 300
+--name C2HNO_rxn4439_TS --init rl4n29f --method lbfgs --max-evals 250 --cands runs_ot/energy_tasks/task1_sqd_vs_lin/cands_n17c2hno.pkl
+--name C2HNO_rxn4439_TS --init label --method lbfgs --max-evals 250 --cands runs_ot/energy_tasks/task1_sqd_vs_lin/cands_n17c2hno.pkl
+--name C2HNO_rxn4439_TS --init truncated --method lbfgs --max-evals 250 --cands runs_ot/energy_tasks/task1_sqd_vs_lin/cands_n17c2hno.pkl
+--name C2HNO_rxn4440_TS --init rl4n29f --method lbfgs --max-evals 250 --cands runs_ot/energy_tasks/task1_sqd_vs_lin/cands_n17c2hno.pkl
+--name C2HNO_rxn4440_TS --init label --method lbfgs --max-evals 250 --cands runs_ot/energy_tasks/task1_sqd_vs_lin/cands_n17c2hno.pkl
+--name C2HNO_rxn4440_TS --init truncated --method lbfgs --max-evals 250 --cands runs_ot/energy_tasks/task1_sqd_vs_lin/cands_n17c2hno.pkl
+--name C2HNO_rxn4441_TS --init rl4n29f --method lbfgs --max-evals 250 --cands runs_ot/energy_tasks/task1_sqd_vs_lin/cands_n17c2hno.pkl
+--name C2HNO_rxn4441_TS --init label --method lbfgs --max-evals 250 --cands runs_ot/energy_tasks/task1_sqd_vs_lin/cands_n17c2hno.pkl
+--name C2HNO_rxn4441_TS --init truncated --method lbfgs --max-evals 250 --cands runs_ot/energy_tasks/task1_sqd_vs_lin/cands_n17c2hno.pkl
+--name C2HNO_rxn4439_TS --init random --rand-seed 0 --method lbfgs --max-evals 250 --cands runs_ot/energy_tasks/task1_sqd_vs_lin/cands_n17c2hno.pkl
+--name C2HNO_rxn4439_TS --init cdf_lin --method lbfgs --max-evals 250 --cands runs_ot/energy_tasks/task1_sqd_vs_lin/cands_n17c2hno.pkl
+--name C2HNO_rxn4439_TS --init pre4 --method lbfgs --max-evals 250 --cands runs_ot/energy_tasks/task1_sqd_vs_lin/cands_n17c2hno.pkl
+--name C2HNO_rxn4440_TS --init random --rand-seed 0 --method lbfgs --max-evals 250 --cands runs_ot/energy_tasks/task1_sqd_vs_lin/cands_n17c2hno.pkl
+--name C2HNO_rxn4440_TS --init cdf_lin --method lbfgs --max-evals 250 --cands runs_ot/energy_tasks/task1_sqd_vs_lin/cands_n17c2hno.pkl
+--name C2HNO_rxn4440_TS --init pre4 --method lbfgs --max-evals 250 --cands runs_ot/energy_tasks/task1_sqd_vs_lin/cands_n17c2hno.pkl
+--name C2HNO_rxn4441_TS --init random --rand-seed 0 --method lbfgs --max-evals 250 --cands runs_ot/energy_tasks/task1_sqd_vs_lin/cands_n17c2hno.pkl
+--name C2HNO_rxn4441_TS --init cdf_lin --method lbfgs --max-evals 250 --cands runs_ot/energy_tasks/task1_sqd_vs_lin/cands_n17c2hno.pkl
+--name C2HNO_rxn4441_TS --init pre4 --method lbfgs --max-evals 250 --cands runs_ot/energy_tasks/task1_sqd_vs_lin/cands_n17c2hno.pkl
+--name C3H4_rxn2391_TS --init rl4n29f --method trn --max-evals 400
+--name C3H4_rxn2391_TS --init label --method trn --max-evals 400
+--name C3H4_rxn2391_TS --init truncated --method trn --max-evals 400
+--name C3H4_rxn2391_TS --init random --rand-seed 0 --method trn --max-evals 400
+--name C2H4O_rxn0724_TS --init rl4n29f --method trn --max-evals 400
+--name C2H4O_rxn0724_TS --init label --method trn --max-evals 400
+--name C2H4O_rxn0724_TS --init truncated --method trn --max-evals 400
+--name C2H4O_rxn0724_TS --init random --rand-seed 0 --method trn --max-evals 400
+--name C3H4_rxn2391_TS --init rl4n29f --method lbfgs --max-evals 150 --jastrow-only
+--name C3H4_rxn2391_TS --init label --method lbfgs --max-evals 150 --jastrow-only
+--name C3H4_rxn2391_TS --init truncated --method lbfgs --max-evals 150 --jastrow-only
+--name C3H4_rxn2391_TS --init cdf_lin --method lbfgs --max-evals 150 --jastrow-only
+--name C3H4_rxn2391_TS --init pre4 --method lbfgs --max-evals 150 --jastrow-only
+--name C2H4O_rxn0724_TS --init rl4n29f --method lbfgs --max-evals 150 --jastrow-only
+--name C2H4O_rxn0724_TS --init label --method lbfgs --max-evals 150 --jastrow-only
+--name C2H4O_rxn0724_TS --init truncated --method lbfgs --max-evals 150 --jastrow-only
+--name C2H4O_rxn0724_TS --init cdf_lin --method lbfgs --max-evals 150 --jastrow-only
+--name C2H4O_rxn0724_TS --init pre4 --method lbfgs --max-evals 150 --jastrow-only
+--name C2H4O_rxn2507_TS --init rl4n29f --method lbfgs --max-evals 150 --jastrow-only
+--name C2H4O_rxn2507_TS --init label --method lbfgs --max-evals 150 --jastrow-only
+--name C2H4O_rxn2507_TS --init truncated --method lbfgs --max-evals 150 --jastrow-only
+--name C2H4O_rxn2507_TS --init cdf_lin --method lbfgs --max-evals 150 --jastrow-only
+--name C2H4O_rxn2507_TS --init pre4 --method lbfgs --max-evals 150 --jastrow-only

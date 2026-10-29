@@ -132,3 +132,42 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+def paired_table(method="lbfgs", ref="rl4n29f", budgets=(0, 10, 25, 50, 100, 150), names_filter=None):
+    """Markdown table: each start against `ref` on the molecules where both ran (budgets both runs reached)."""
+    runs = load(method)
+    names = sorted({n for n, _ in runs if names_filter is None or names_filter(n)})
+    lines = ["| start | molecules | " + " | ".join(f"% at {b}" for b in budgets) +
+             " | evals to 70 % (median) | evals to 80 % (median) | network ahead at 100 |",
+             "|:--|--:|" + "--:|" * len(budgets) + "--:|--:|--:|"]
+    for init in ORDER:
+        mols = [n for n in names if (n, init) in runs and (n, ref) in runs]
+        if not mols:
+            continue
+        cells = []
+        for b in budgets:
+            v = [runs[(n, init)]["best"][b] for n in mols if b < len(runs[(n, init)]["best"])]
+            cells.append(f"{np.mean(v):.1f}" if len(v) == len(mols) else "–")
+
+        def med(thr):
+            e = [evals_to(runs[(n, init)]["best"], thr) for n in mols]
+            e = [x if x is not None else np.inf for x in e]
+            m = float(np.median(e))
+            return "never" if not np.isfinite(m) else f"{m:.0f}"
+        ahead = [runs[(n, ref)]["best"][100] > runs[(n, init)]["best"][100] for n in mols
+                 if len(runs[(n, ref)]["best"]) > 100 and len(runs[(n, init)]["best"]) > 100]
+        lines.append(f"| {init} | {len(mols)} | " + " | ".join(cells) + f" | {med(70)} | {med(80)} | "
+                     f"{'–' if init == ref else f'{sum(ahead)}/{len(ahead)}'} |")
+    return "\n".join(lines)
+
+
+def final_table(method="lbfgsJ", inits=("truncated", "cdf_lin", "label", "pre4", "rl4n29f")):
+    """Markdown table: final best % per molecule (rows) and start (columns)."""
+    runs = load(method)
+    names = sorted({n for n, _ in runs})
+    lines = ["| molecule | " + " | ".join(inits) + " |", "|:--|" + "--:|" * len(inits)]
+    for n in names:
+        lines.append(f"| {n} | " + " | ".join(f"{runs[(n, i)]['best'][-1]:.1f}" if (n, i) in runs else ""
+                                            for i in inits) + " |")
+    return "\n".join(lines)

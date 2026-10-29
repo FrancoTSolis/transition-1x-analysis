@@ -1,0 +1,5 @@
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/pyscf/gto/mole.py:1291: UserWarning: Function mol.dumps drops attribute nao_nr because it is not JSON-serializable
+  warnings.warn(msg)
+/xuanwu-tank/east/fts/projects/transition-1x-analysis/ccsd_amplitudes/pretrain/.train_venv/lib/python3.11/site-packages/pyscf/gto/mole.py:1291: UserWarning: Function mol.dumps drops attribute energy_nuc because it is not JSON-serializable
+  warnings.warn(msg)
+C2H3N_rxn2858_P random: converged=False cycles=25 E_corr=-0.8825 (CCSD -0.2226) |g|=5.78 1607s
